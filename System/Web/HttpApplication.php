@@ -77,6 +77,7 @@ class HttpApplication {
                 $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))
                     ->replace('.', '\\');
 
+                $this->preAction($controller);
                 $moduleInstance = null;
 
                 try{
@@ -90,8 +91,6 @@ class HttpApplication {
                     }
                 }
 
-                $this->preAction($controller);
-                
                 $controller->execute($requestContext);
                 
                 $this->postAction($controller);
