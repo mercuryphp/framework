@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>iu-Cans</name>
+    <displayName>Inuktitut (Syllabics)</displayName>
+    <datetime>
+        <nativeCalendar>ᐅᓪᓗᖅᓯᐅᑎᑦ</nativeCalendar>
+        <shortDatePattern>d/M/yyyy</shortDatePattern>
+        <longDatePattern>dddd,MMMM dd,yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ᓈᑦᑏᖑᔭ</name>
+                <name>ᓇᒡᒐᔾᔭᐅ</name>
+                <name>ᐊᐃᑉᐱᖅ</name>
+                <name>ᐱᖓᑦᓯᖅ</name>
+                <name>ᓯᑕᒻᒥᖅ</name>
+                <name>ᑕᓪᓕᕐᒥᖅ</name>
+                <name>ᓯᕙᑖᕐᕕᒃ</name>
+
+            </fullName>
+            <shortName>
+                <name>ᓈᑦᑏ</name>
+                <name>ᓇᒡᒐ</name>
+                <name>ᐊᐃᑉᐱ</name>
+                <name>ᐱᖓᑦᓯ</name>
+                <name>ᓯᑕ</name>
+                <name>ᑕᓪᓕ</name>
+                <name>ᓯᕙᑖᕐᕕᒃ</name>
+
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ᔮᓐᓄᐊᕆ</name>
+                <name>ᕖᕝᕗᐊᕆ</name>
+                <name>ᒫᑦᓯ</name>
+                <name>ᐄᐳᕆ</name>
+                <name>ᒪᐃ</name>
+                <name>ᔫᓂ</name>
+                <name>ᔪᓚᐃ</name>
+                <name>ᐋᒡᒌᓯ</name>
+                <name>ᓯᑎᐱᕆ</name>
+                <name>ᐅᑐᐱᕆ</name>
+                <name>ᓄᕕᐱᕆ</name>
+                <name>ᑎᓯᐱᕆ</name>
+
+            </fullName>
+            <shortName>
+                <name>ᔮᓐᓄ</name>
+                <name>ᕖᕝᕗ</name>
+                <name>ᒫᑦᓯ</name>
+                <name>ᐄᐳᕆ</name>
+                <name>ᒪᐃ</name>
+                <name>ᔫᓂ</name>
+                <name>ᔪᓚᐃ</name>
+                <name>ᐋᒡᒌ</name>
+                <name>ᓯᑎᐱ</name>
+                <name>ᐅᑐᐱ</name>
+                <name>ᓄᕕᐱ</name>
+                <name>ᑎᓯᐱ</name>
+
+            </shortName>
+        </monthNames>
+    </datetime>
+</locale>

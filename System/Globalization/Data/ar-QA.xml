@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ar-QA</name>
+    <displayName>Arabic (Qatar)</displayName>
+    <datetime>
+        <nativeCalendar>التقويم الميلادي (تسمية إنجليزية)‏</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>الأحد</name>
+                <name>الإثنين</name>
+                <name>الثلاثاء</name>
+                <name>الأربعاء</name>
+                <name>الخميس</name>
+                <name>الجمعة</name>
+                <name>السبت</name>
+
+            </fullName>
+            <shortName>
+                <name>الأحد</name>
+                <name>الإثنين</name>
+                <name>الثلاثاء</name>
+                <name>الأربعاء</name>
+                <name>الخميس</name>
+                <name>الجمعة</name>
+                <name>السبت</name>
+
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>يناير</name>
+                <name>فبراير</name>
+                <name>مارس</name>
+                <name>أبريل</name>
+                <name>مايو</name>
+                <name>يونيو</name>
+                <name>يوليو</name>
+                <name>أغسطس</name>
+                <name>سبتمبر</name>
+                <name>أكتوبر</name>
+                <name>نوفمبر</name>
+                <name>ديسمبر</name>
+
+            </fullName>
+            <shortName>
+                <name>يناير</name>
+                <name>فبراير</name>
+                <name>مارس</name>
+                <name>أبريل</name>
+                <name>مايو</name>
+                <name>يونيو</name>
+                <name>يوليو</name>
+                <name>أغسطس</name>
+                <name>سبتمبر</name>
+                <name>أكتوبر</name>
+                <name>نوفمبر</name>
+                <name>ديسمبر</name>
+
+            </shortName>
+        </monthNames>
+    </datetime>
+</locale>

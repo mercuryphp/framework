@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>de-AT</name>
+    <displayName>German (Austria)</displayName>
+    <datetime>
+        <nativeCalendar>Gregorianischer Kalender</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>dddd, dd. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Sonntag</name>
+                <name>Montag</name>
+                <name>Dienstag</name>
+                <name>Mittwoch</name>
+                <name>Donnerstag</name>
+                <name>Freitag</name>
+                <name>Samstag</name>
+
+            </fullName>
+            <shortName>
+                <name>So</name>
+                <name>Mo</name>
+                <name>Di</name>
+                <name>Mi</name>
+                <name>Do</name>
+                <name>Fr</name>
+                <name>Sa</name>
+
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Jänner</name>
+                <name>Februar</name>
+                <name>März</name>
+                <name>April</name>
+                <name>Mai</name>
+                <name>Juni</name>
+                <name>Juli</name>
+                <name>August</name>
+                <name>September</name>
+                <name>Oktober</name>
+                <name>November</name>
+                <name>Dezember</name>
+
+            </fullName>
+            <shortName>
+                <name>Jän</name>
+                <name>Feb</name>
+                <name>Mär</name>
+                <name>Apr</name>
+                <name>Mai</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Aug</name>
+                <name>Sep</name>
+                <name>Okt</name>
+                <name>Nov</name>
+                <name>Dez</name>
+
+            </shortName>
+        </monthNames>
+    </datetime>
+</locale>

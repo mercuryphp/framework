@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>as-IN</name>
+    <displayName>Assamese (India)</displayName>
+    <datetime>
+        <nativeCalendar>ইংৰাজী কেলেণ্ডাৰ</nativeCalendar>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
+        <longDatePattern>yyyy,MMMM dd, dddd</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>সোমবাৰ</name>
+                <name>মঙ্গলবাৰ</name>
+                <name>বুধবাৰ</name>
+                <name>বৃহস্পতিবাৰ</name>
+                <name>শুক্রবাৰ</name>
+                <name>শনিবাৰ</name>
+                <name>ৰবিবাৰ</name>
+
+            </fullName>
+            <shortName>
+                <name>সোম.</name>
+                <name>মঙ্গল.</name>
+                <name>বুধ.</name>
+                <name>বৃহ.</name>
+                <name>শুক্র.</name>
+                <name>শনি.</name>
+                <name>ৰবি.</name>
+
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>জানুৱাৰী</name>
+                <name>ফেব্রুৱাৰী</name>
+                <name>মার্চ</name>
+                <name>এপ্রিল</name>
+                <name>মে</name>
+                <name>জুন</name>
+                <name>জুলাই</name>
+                <name>আগষ্ট</name>
+                <name>চেপ্টেম্বর</name>
+                <name>অক্টোবর</name>
+                <name>নবেম্বর</name>
+                <name>ডিচেম্বর</name>
+
+            </fullName>
+            <shortName>
+                <name>জানু</name>
+                <name>ফেব্রু</name>
+                <name>মার্চ</name>
+                <name>এপ্রিল</name>
+                <name>মে</name>
+                <name>জুন</name>
+                <name>জুলাই</name>
+                <name>আগষ্ট</name>
+                <name>চেপ্টে</name>
+                <name>অক্টো</name>
+                <name>নবে</name>
+                <name>ডিচে</name>
+
+            </shortName>
+        </monthNames>
+    </datetime>
+</locale>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>kk</name>
+    <displayName>Kazakh</displayName>
+    <datetime>
+        <nativeCalendar>григорианкүнтізбек</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy 'ж.'</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Жексенбі</name>
+                <name>Дүйсенбі</name>
+                <name>Сейсенбі</name>
+                <name>Сәрсенбі</name>
+                <name>Бейсенбі</name>
+                <name>Жұма</name>
+                <name>Сенбі</name>
+
+            </fullName>
+            <shortName>
+                <name>Жк</name>
+                <name>Дс</name>
+                <name>Сс</name>
+                <name>Ср</name>
+                <name>Бс</name>
+                <name>Жм</name>
+                <name>Сн</name>
+
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>қаңтар</name>
+                <name>ақпан</name>
+                <name>наурыз</name>
+                <name>сәуір</name>
+                <name>мамыр</name>
+                <name>маусым</name>
+                <name>шілде</name>
+                <name>тамыз</name>
+                <name>қыркүйек</name>
+                <name>қазан</name>
+                <name>қараша</name>
+                <name>желтоқсан</name>
+
+            </fullName>
+            <shortName>
+                <name>Қаң</name>
+                <name>Ақп</name>
+                <name>Нау</name>
+                <name>Сәу</name>
+                <name>Мам</name>
+                <name>Мау</name>
+                <name>Шіл</name>
+                <name>Там</name>
+                <name>Қыр</name>
+                <name>Қаз</name>
+                <name>Қар</name>
+                <name>Жел</name>
+
+            </shortName>
+        </monthNames>
+    </datetime>
+</locale>
