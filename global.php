@@ -9,12 +9,16 @@ class MvcApplication extends HttpApplication {
 
         $this->routes->add('default', new UriRoute(
                 array(
-                    'controller' => 'Index', 
+                    'controller' => 'Home', 
                     'action' => 'index'
                 ),
                 array('id')
             )
         );
+    }
+    
+    public function error($e){
+        print_r($e);
     }
 }
 

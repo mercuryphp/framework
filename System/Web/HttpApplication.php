@@ -20,7 +20,12 @@ class HttpApplication {
         
         $this->routes = new Dictionary();
         $this->view = new NativeView();
-        $this->config = new Configuration('config.php');
+        
+        if(is_file('config.php')){
+            $this->config = new Configuration('config.php');
+        }else{
+            throw new \System\Configuration\ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
+        }
         
         Environment::setRootPath($rootPath);
         Environment::setAppPath($rootPath);
@@ -49,14 +54,14 @@ class HttpApplication {
     public function run(){
         
         if($this->routes->count() == 0){
-            throw new \RuntimeException("test");
+            throw new \RuntimeException('One ore more routes must be registered.');
         }
 
         foreach($this->routes as $route){
             $route->setHttpContext($this->httpContext);
             
             $requestContext = $route->execute();
-            
+
             if($requestContext){
                 $routeData = $requestContext->getRouteData();
                 
@@ -74,6 +79,10 @@ class HttpApplication {
                     $controller = $refClass->newInstanceArgs(array());
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist", $class));
+                }
+                
+                if(!$controller instanceof Mvc\Controller){
+                    throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller", $class));
                 }
                     
                 $controller->setViewEngine($this->view);
@@ -110,6 +119,8 @@ class HttpApplication {
                 break;
             }
         }
+        print "OK"; exit;
+        throw new Mvc\ControllerNotFoundException('Controller not found');
     }
 
     public function preAction(\System\Web\Mvc\Controller $controller){}
