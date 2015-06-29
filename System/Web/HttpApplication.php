@@ -25,15 +25,19 @@ class HttpApplication {
         Environment::setRootPath($rootPath);
         Environment::setAppPath($rootPath);
         Environment::setNamespaces($this->config->getNamespaces()->toArray());
+        Environment::setCulture(new \System\Globalization\CultureInfo('en-GB'));
 
-        try{
-            $session = Instance::getInstance(
-                $this->config->getSession()->getHandler(),
-                array($this->config->getSession()->getName())
-            );
-        }catch(Exception $ex){
-            throw $ex;
-        }
+        $session = Instance::getInstance(
+            $this->config->getSession()->getHandler(),
+            array(
+                $this->config->getSession()->getName(),
+                $this->config->getSession()->getExpires(),
+                $this->config->getSession()->getPath(),
+                $this->config->getSession()->getDomain(),
+                $this->config->getSession()->getSecure(),
+                $this->config->getSession()->getHttpOnly()
+            )
+        );
 
         $request = new HttpRequest();
         $response = new HttpResponse();

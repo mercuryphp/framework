@@ -10,7 +10,6 @@ class Date {
     protected $hour = 0;
     protected $minute = 0;
     protected $second = 0;
-    protected $format = 'c';
     protected $dayIndex = 0;
     protected $cultureInfo;
 
@@ -47,6 +46,22 @@ class Date {
         $date->setDate($this->year, $this->month, $this->day);
         $date->setTime($this->hour, $this->minute, $this->second);
         $date->modify('+'.$days.' day');
+        return self::toDate($date);
+    }
+    
+    public function addHours($hours){
+        $date = new \DateTime();
+        $date->setDate($this->year, $this->month, $this->day);
+        $date->setTime($this->hour, $this->minute, $this->second);
+        $date->modify('+'.$hours.' hour');
+        return self::toDate($date);
+    }
+    
+    public function addSeconds($seconds){
+        $date = new \DateTime();
+        $date->setDate($this->year, $this->month, $this->day);
+        $date->setTime($this->hour, $this->minute, $this->second);
+        $date->modify('+'.$seconds.' second');
         return self::toDate($date);
     }
     

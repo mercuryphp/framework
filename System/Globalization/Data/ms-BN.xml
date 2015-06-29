@@ -63,4 +63,11 @@
             </shortName>
         </monthNames>
     </datetime>
+    <numberFormat>
+        <currencySymbol>$</currencySymbol>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
 </locale>

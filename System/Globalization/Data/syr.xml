@@ -63,4 +63,11 @@
             </shortName>
         </monthNames>
     </datetime>
+    <numberFormat>
+        <currencySymbol>ل.س.‏</currencySymbol>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
 </locale>

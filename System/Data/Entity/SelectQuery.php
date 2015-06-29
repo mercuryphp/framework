@@ -67,6 +67,11 @@ class SelectQuery {
         return $this;
     }
     
+    public function raw($sql){
+        $this->sql = $this->sql->append($sql.' '.PHP_EOL);
+        return $this;
+    }
+    
     public function single($entityName, $params = array(), $default = false){
         return $this->sqlQuery
             ->setQuery($this->sql->toString(), $params)
@@ -77,6 +82,18 @@ class SelectQuery {
         return $this->sqlQuery
             ->setQuery($this->sql->toString(), $params)
             ->toList($entityName);
+    }
+    
+    public function toObject($params = array()){
+        return $this->sqlQuery
+            ->setQuery($this->sql->toString(), $params)
+            ->single();
+    }
+    
+    public function toObjectList($params = array()){
+        return $this->sqlQuery
+            ->setQuery($this->sql->toString(), $params)
+            ->toList();
     }
     
     public function sql(){
