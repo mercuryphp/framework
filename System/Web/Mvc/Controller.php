@@ -118,10 +118,9 @@ abstract class Controller{
     public function view($viewName = null){
         $viewName = !is_null($viewName) ? $viewName : $this->routeData->get('action');
         
-        $this->view->setViewFile(
+        $this->view->setViewFile(Environment::getAppPath().'/'.    
             String::join('/',
                 array(
-                    Environment::getAppPath(),
                     String::set($this->routeData->get('module'))->toLower()->toUpperFirst(),
                     'Views',
                     String::set($this->routeData->get('controller'))->toLower()->toUpperFirst(),
@@ -129,7 +128,7 @@ abstract class Controller{
                 )    
             )->append('.php')
         );
-
+        
         return $this->view->render($this->viewContext);
     }
     
