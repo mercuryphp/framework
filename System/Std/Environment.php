@@ -45,7 +45,7 @@ final class Environment {
     
     public static function setExecutionTime($seconds){
         set_time_limit($seconds);
-        sef::$executionTime = $seconds;
+        self::$executionTime = $seconds;
     }
     
     public static function getExecutionTime(){
