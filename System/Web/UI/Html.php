@@ -26,6 +26,10 @@ class Html {
     public static function selectList(array $source, $dataValue, $dataText, $selectedValue = null){
         return new \System\Web\UI\SelectList($source, $dataValue, $dataText, $selectedValue);
     }
+    
+    public static function selectArray(array $source, $selectedValue = null, $useIndexAsValue = false){
+        return new \System\Web\UI\SelectArray($source, $selectedValue, $useIndexAsValue);
+    }
 }
 
 ?>

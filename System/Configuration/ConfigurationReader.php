@@ -14,43 +14,47 @@ abstract class ConfigurationReader {
     
     public function open($fileName){
 
-        $data = file($fileName);
+        if(is_file($fileName)){
+            $data = file($fileName);
 
-        $nodeName = '';
-        
-        $idx = 0;
-        foreach($data as $line){
-            if ($line[0] != " "){
-                $nodeName = trim($line);
-                $idx =0;
-            }else{
-                $pos = strpos($line, ':');
-                
-                if($pos > -1){
-                    list($key, $value) = explode(':', $line, 2);
-                    $key = trim($key);
-                    $value = trim($value);
+            $nodeName = '';
+
+            $idx = 0;
+            foreach($data as $line){
+                if ($line[0] != " "){
+                    $nodeName = trim($line);
+                    $idx =0;
                 }else{
-                    $key = $idx;
-                    $value = trim($line);
-                    ++$idx;
+                    $pos = strpos($line, ':');
+
+                    if($pos > -1){
+                        list($key, $value) = explode(':', $line, 2);
+                        $key = trim($key);
+                        $value = trim($value);
+                    }else{
+                        $key = $idx;
+                        $value = trim($line);
+                        ++$idx;
+                    }
+
+                    if($value && ($value[0] == '[' && $value[strlen($value)-1] == ']')){
+                        $innerValue = substr($value, 1, -1);
+                        $value = str_getcsv($innerValue);
+                    }
+                    $this->config[$nodeName][$key] = $value;
                 }
-                
-                if($value[0] == '[' && $value[strlen($value)-1] == ']'){
-                    $innerValue = substr($value, 1, -1);
-                    $value = str_getcsv($innerValue);
-                }
-                $this->config[$nodeName][$key] = $value;
             }
+            $this->init();
+        }else{
+            throw new ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
         }
-        $this->init();
     }
     
     protected function getItem($key){
         if(array_key_exists($key, $this->config)){
             return new \System\Collections\Dictionary($this->config[$key]);
         }
-        return false;
+        return new \System\Collections\Dictionary();
     }
 }
 

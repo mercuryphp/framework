@@ -6,9 +6,12 @@ final class Environment {
     private static $includes = array();
     private static $rootPath;
     private static $appPath;
+    private static $executionTime;
     private static $namespaces = array();
     private static $cultureInfo;
-
+    private static $dateTimeFormat;
+    private static $timezone;
+    
     public static function addClassFile($file){
         self::$includes[] = $file;
     }
@@ -40,6 +43,15 @@ final class Environment {
         return self::$appPath;
     }
     
+    public static function setExecutionTime($seconds){
+        set_time_limit($seconds);
+        sef::$executionTime = $seconds;
+    }
+    
+    public static function getExecutionTime(){
+        return sef::$executionTime;
+    }
+    
     public static function setNamespaces(array $namespaces){
         self::$namespaces = $namespaces;
     }
@@ -54,6 +66,22 @@ final class Environment {
     
     public static function getCulture(){
         return self::$cultureInfo;
+    }
+    
+    public static function setDateTimeFormat($format){
+        self::$dateTimeFormat = $format;
+    }
+    
+    public static function getDateTimeFormat(){
+        return self::$dateTimeFormat;
+    }
+    
+    public static function setTimezone($timezone){
+        self::$timezone = $timezone;
+    }
+    
+    public static function getTimezone(){
+        return self::$timezone;
     }
 }
 

@@ -11,6 +11,8 @@ class CultureInfo {
         
         if(is_file($dataFile)){
             $this->xml = simplexml_load_file($dataFile);
+        }else{
+            throw new \Exception(sprintf("Culture '%s' is not supported", $name));
         }
     }
     

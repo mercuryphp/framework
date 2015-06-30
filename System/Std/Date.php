@@ -7,8 +7,14 @@ class Date extends \DateTime {
     protected $cultureInfo;
 
     public function __construct($string, $timezone){
+        
+        if(Environment::getTimezone()){
+            $timezone = new \DateTimeZone(Environment::getTimezone());
+        }
+        
         parent::__construct($string, $timezone);
-        $this->cultureInfo = \System\Std\Environment::getCulture();
+        
+        $this->cultureInfo = Environment::getCulture();
     }
     
     public function getYear(){
@@ -74,7 +80,7 @@ class Date extends \DateTime {
     public function toString($format = null){
 
         if($format==null){
-            $format = 'yyyy-MM-dd HH:mm:ss';
+            $format = Environment::getDateTimeFormat();
         }
         
         $len = strlen($format);

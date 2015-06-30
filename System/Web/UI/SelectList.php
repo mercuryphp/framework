@@ -30,6 +30,8 @@ class SelectList {
                 
             }elseif(is_object($item) && $item instanceof \stdClass){
                 $this->data[] = get_object_vars($item);
+            }elseif(is_array($item)){
+                $this->data[] = $item;
             }
         }
     }

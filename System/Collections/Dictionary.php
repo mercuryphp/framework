@@ -9,6 +9,7 @@ class Dictionary extends Collection implements IDictionary{
             throw new \InvalidArgumentException('An item with the same key has already been added.');
         }
         $this->collection[$key] = $value;
+        return $this;
     }
     
     public function hasKey($key){

@@ -5,6 +5,7 @@ namespace System\Web;
 use System\Std\Environment;
 use System\Std\String;
 use System\Std\Instance;
+use System\Globalization\CultureInfo;
 use System\Configuration\Configuration;
 use System\Collections\Dictionary;
 use System\Web\Mvc\NativeView;
@@ -16,21 +17,25 @@ class HttpApplication {
     protected $routes;
     protected $view;
     
-    public function __construct($rootPath){
-        
+    public function initConfiguration(){
+        $this->config = new Configuration('config.php'); 
+    }
+    
+    public function init($rootPath){
         $this->routes = new Dictionary();
         $this->view = new NativeView();
-        
-        if(is_file('config.php')){
-            $this->config = new Configuration('config.php');
-        }else{
-            throw new \System\Configuration\ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
+
+        if(!$this->config instanceof \System\Configuration\Configuration){
+            throw new \RuntimeException('Configuration file has not been initialized');
         }
-        
+
         Environment::setRootPath($rootPath);
         Environment::setAppPath($rootPath);
+        Environment::setExecutionTime($this->config->getEnvironment()->getExecutionTime());
         Environment::setNamespaces($this->config->getNamespaces()->toArray());
-        Environment::setCulture(new \System\Globalization\CultureInfo('en-GB'));
+        Environment::setCulture(new CultureInfo($this->config->getEnvironment()->getLocale()));
+        Environment::setDateTimeFormat($this->config->getEnvironment()->getDateTimeFormat());
+        Environment::setTimezone($this->config->getEnvironment()->getTimezone());
 
         $session = Instance::getInstance(
             $this->config->getSession()->getHandler(),
@@ -54,7 +59,7 @@ class HttpApplication {
     public function run(){
         
         if($this->routes->count() == 0){
-            throw new \RuntimeException('One ore more routes must be registered.');
+            throw new \RuntimeException('One or more routes must be registered.');
         }
 
         foreach($this->routes as $route){

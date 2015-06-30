@@ -31,7 +31,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         }
     }
     
-    public function merge(array $array){
+    public function merge($array){
+        if($array instanceof \System\Collections\Collection){
+            $array = $array->toArray();
+        }
         $this->collection = array_merge($this->collection, $array);
         return $this;
     }

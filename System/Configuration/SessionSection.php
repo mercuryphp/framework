@@ -7,21 +7,15 @@ class SessionSection {
     protected $section;
     
     public function __construct($section){
-        if($section instanceof \System\Collections\Dictionary){
-            $this->section = $section;
-   
-            if($this->section->secure && !in_array(strtolower($this->section->secure), array('true', 'false'))){
-                throw new ConfigurationException("Invalid value specified for Session:Secure. Boolean required");
-            }else{
-                $this->section->secure = strtolower($this->section->secure) =='true' ? true : false;
-            }
-            
-            if($this->section->httpOnly && !in_array(strtolower($this->section->httpOnly), array('true', 'false'))){
-                throw new ConfigurationException("Invalid value specified for Session:HttpOnly. Boolean required");
-            }else{
-                $this->section->httpOnly = strtolower($this->section->httpOnly) =='true' ? true : false;
-            }
-        }
+        $defaults = new \System\Collections\Dictionary();
+        $defaults->add('name', 'PHPSESSID')
+            ->add('expires', 0)
+            ->add('secure', false)
+            ->add('httpOnly', true)
+            ->add('handler', 'System.Web.Session.FileSystem');
+
+        $defaults->merge($section);
+        $this->section = $defaults;
     }
 
     public function getName(){

@@ -49,9 +49,10 @@
 
     require $rootPath . '/global.php';
 
-    $mvcApplication = new MvcApplication($rootPath);
+    $mvcApplication = new MvcApplication();
     
     try {
+        $mvcApplication->initConfiguration($rootPath);
         $mvcApplication->load();
         $mvcApplication->run();
     }catch(\Exception $e){
