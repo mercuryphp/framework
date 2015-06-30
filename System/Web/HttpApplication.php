@@ -10,17 +10,53 @@ use System\Configuration\Configuration;
 use System\Collections\Dictionary;
 use System\Web\Mvc\NativeView;
 
-class HttpApplication {
+/**
+ * HttpApplication
+ * 
+ * Executes and dispatches controller/action
+ *
+ * @license http://www.mercuryphp.com/license
+ */
+abstract class HttpApplication {
 
+    /**
+     * Application configuration
+     *
+     * @var System\Configuration\Configuration
+     */
     protected $config;
+    
+    /**
+     * Encapsulates Http request/response/server details
+     *
+     * @var System\Web\HttpContext
+     */
     protected $httpContext;
+    
+    /**
+     * Collection of routes
+     *
+     * @var System\Collections\Dictionary.
+     */
     protected $routes;
+    
+    /**
+     * Default View
+     *
+     * @var System\Web\Mvc\NativeView
+     */
     protected $view;
     
+    /**
+     * Instantiates the application configuration object.
+     */
     public function initConfiguration(){
         $this->config = new Configuration('config.php'); 
     }
     
+    /**
+     * Initializes application settings.
+     */
     public function init($rootPath){
         $this->routes = new Dictionary();
         $this->view = new NativeView();
@@ -54,8 +90,14 @@ class HttpApplication {
         $this->httpContext = new HttpContext($request, $response, $session);
     }
     
+    /**
+     * Override in global.php to bootstrap application.
+     */
     public function load(){}
 
+    /**
+     * Dispatches a controller/action.
+     */
     public function run(){
         
         if($this->routes->count() == 0){
@@ -96,42 +138,52 @@ class HttpApplication {
                     ->replace('.', '\\');
 
                 $this->preAction($controller);
+                
                 $moduleInstance = null;
-
                 try{
                     $refModClass = new \ReflectionClass((string)$moduleClassName);
                     $moduleInstance = $refModClass->newInstanceArgs(array());
                 }catch(\Exception $e){}
 
-                if($moduleInstance != null){
+                if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){
-                        $moduleInstance->load( new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
+                        $moduleInstance->load(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
 
                 $controller->execute($requestContext);
-                
-                $this->postAction($controller);
-                
-                if($moduleInstance != null){
+
+                if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){
-                        $moduleInstance->load( new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
+                        $moduleInstance->unload(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
+                
+                $this->postAction($controller);
 
                 $this->httpContext->getSession()->writeSession();
                 $this->httpContext->getResponse()->flush();
                 break;
             }
         }
-        print "OK"; exit;
-        throw new Mvc\ControllerNotFoundException('Controller not found');
     }
 
+    /**
+     * Override in global.php
+     * preAction event invoked before controller/action executed.
+     */
     public function preAction(\System\Web\Mvc\Controller $controller){}
     
+    /**
+     * Override in global.php
+     * postAction event invoked after controller/action executed.
+     */
     public function postAction(\System\Web\Mvc\Controller $controller){}
     
+    /**
+     * Override in global.php
+     * Handle and log errors.
+     */
     public function error(\Exception $e){}
 }
 
