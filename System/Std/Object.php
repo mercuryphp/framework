@@ -27,6 +27,23 @@ final class Object{
         }
         return $toObjInstance;
     }
+    
+    public static function setProperties($object, array $properties){
+        $refClass = new \ReflectionObject($object);
+        
+        foreach($properties as $key=>$value){
+            $property = $refClass->getProperty($key);
+            $property->setAccessible(true);
+            $property->setValue($object, $value);
+        }
+        return $object;
+    }
+    
+    public static function getInstance($name, array $args = array()){
+        $name = str_replace(".", "\\", $name);
+        $refClass = new \ReflectionClass($name);
+        return $refClass->newInstanceArgs($args);
+    }
 }
 
 ?>

@@ -2,6 +2,9 @@
 
 namespace System\Web\Mvc;
 
+use System\Std\Environment;
+use System\Std\String;
+
 class NativeView implements IView{
     
     protected $viewFile;
@@ -12,12 +15,7 @@ class NativeView implements IView{
     public function addScript($type, $script){
         $this->scripts[$type][] = $script;
     }
-    
-    public function setViewFile($viewFile){
-        $this->viewFile = $viewFile;
-        return $this;
-    }
-    
+
     public function setLayout($layoutFile){
         $this->layoutFile = $layoutFile;
         return $this;
@@ -47,17 +45,25 @@ class NativeView implements IView{
     }
     
     public function render(ViewContext $viewContext){
-        if(file_exists($this->viewFile)){
-            $request = $viewContext->getHttpContext()->getRequest();
+        $routeData = $viewContext->getRouteData();
+        $viewFilePattern = '@module/Views/@controller/@action';
+
+        $viewFile = String::set($viewFilePattern)
+            ->prepend(Environment::getAppPath())
+            ->replace('@module', String::set($routeData->module)->toLower()->toUpperFirst()->ifNotEmptyPrepend('/'))
+            ->replace('@controller', String::set($routeData->controller)->toLower()->toUpperFirst())
+            ->replace('@action', String::set($routeData->action)->toLower()->toUpperFirst())
+            ->append('.php');
+                
+        if(file_exists($viewFile)){
             extract($viewContext->getViewBag()->toArray());
 
             ob_start();
             
-            require_once $this->viewFile;
+            require_once $viewFile;
             $this->output['view'] = ob_get_clean();
 
             if($this->layoutFile){
-                
                 if(substr($this->layoutFile, 0, 1) == '~'){
                     $this->layoutFile = \System\Std\Environment::getAppPath() . substr($this->layoutFile, 1);
                 }
@@ -77,7 +83,7 @@ class NativeView implements IView{
             
             return $this->output['view'];
         }else{
-            throw new ViewNotFoundException(sprintf("The view '%s' was not found.", $this->viewFile));
+            throw new ViewNotFoundException(sprintf("The view '%s' was not found.", $viewFile));
         }
     }
 }

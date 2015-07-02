@@ -34,8 +34,20 @@ final class String{
         return new String($this->string.$string);
     }
     
+    public function ifNotEmptyAppend($string){
+        if($this->string){
+            return new String($this->string.$string);
+        }
+    }
+    
     public function prepend($string){
         return new String($string.$this->string);
+    }
+    
+    public function ifNotEmptyPrepend($string){
+        if($this->string){
+            return new String($string.$this->string);
+        }
     }
     
     public function trim($char = null){
@@ -72,11 +84,7 @@ final class String{
         }
         return new \System\Collections\ArrayList($array);
     }
-    
-    public function lineBreak(){
-        return new String(nl2br($this->string));
-    }
-    
+
     public function toString(){
         return $this->string;
     }

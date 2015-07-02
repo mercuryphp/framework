@@ -4,7 +4,7 @@ namespace System\Web;
 
 use System\Std\Environment;
 use System\Std\String;
-use System\Std\Instance;
+use System\Std\Object;
 use System\Globalization\CultureInfo;
 use System\Configuration\Configuration;
 use System\Collections\Dictionary;
@@ -78,7 +78,7 @@ abstract class HttpApplication {
         $request = new HttpRequest();
         $response = new HttpResponse();
         
-        $session = Instance::getInstance(
+        $session = Object::getInstance(
             $this->config->getSession()->getHandler(),
             array(
                 $request,

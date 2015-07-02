@@ -2,8 +2,6 @@
 
 namespace System\Web\Mvc;
 
-use System\Std\Environment;
-use System\Std\String;
 use System\Collections\Dictionary;
 use System\Web\Routing\RequestContext;
 use System\Web\Mvc\ViewContext;
@@ -19,7 +17,7 @@ abstract class Controller{
     private $identity;
     
     public function __construct(){
-        $this->viewBag = new Dictionary();
+        $this->viewBag = new ViewBag();
         $this->registry = new Dictionary();
     }
     
@@ -128,28 +126,18 @@ abstract class Controller{
     }
     
     public function view($viewName = null){
-        $viewName = !is_null($viewName) ? $viewName : $this->routeData->get('action');
-        
-        $this->view->setViewFile(Environment::getAppPath().'/'.    
-            String::join('/',
-                array(
-                    String::set($this->routeData->get('module'))->toLower()->toUpperFirst(),
-                    'Views',
-                    String::set($this->routeData->get('controller'))->toLower()->toUpperFirst(),
-                    String::set($viewName)->toLower()->toUpperFirst(),
-                )    
-            )->append('.php')
-        );
-        
+        if($viewName){
+            $this->viewContext->getRouteData()->set('action', $viewName);
+        }
         return $this->view->render($this->viewContext);
     }
     
     public function json($data, $options = null){
         $data = json_encode($data, $options);
         $this->httpContext
-                ->getResponse()
-                ->addHeader('Content-type' , 'application/json; charset=utf-8', false)
-                ->addHeader('Content-length' , strlen($data) , false);
+            ->getResponse()
+            ->addHeader('Content-type' , 'application/json; charset=utf-8', false)
+            ->addHeader('Content-length' , strlen($data) , false);
         return $data;
     }
     

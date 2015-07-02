@@ -33,7 +33,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function get($key){
-        if(array_key_exists($key, $this->collection)){
+        if($this->hasKey($key)){
             return $this->collection[$key];
         }
     }

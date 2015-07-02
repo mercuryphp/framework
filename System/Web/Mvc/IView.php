@@ -2,9 +2,7 @@
 
 namespace System\Web\Mvc;
 
-interface IView{
-    
-    public function setViewFile($viewFile);
+interface IView {
     public function render(ViewContext $viewContext);
 }
 
