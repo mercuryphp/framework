@@ -102,6 +102,20 @@ final class HttpRequest{
         return false;
     }
     
+    public function isPut(){
+        if($this->getServer('REQUEST_METHOD') == 'PUT'){
+            return true;
+        }
+        return false;
+    }
+    
+    public function isDelete(){
+        if($this->getServer('REQUEST_METHOD') == 'DELETE'){
+            return true;
+        }
+        return false;
+    }
+    
     public function isAjax(){
         if($this->getServer('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'){
             return true;

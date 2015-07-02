@@ -4,35 +4,65 @@ namespace System\Web\Session;
 
 abstract class Session {
     
+    protected $httpRequest;
+    protected $httpResponse;
     protected $collection = array();
     protected $sessionName;
     protected $sessionStarted = false;
     protected $sessionId;
-    protected $expire = 0;
+    protected $expires = 0;
     protected $path = '/';
     protected $domain = '';
-    protected $secure = false;
-    protected $httpOnly = true;
+    protected $isSecure = false;
+    protected $isHttpOnly = true;
     protected $onSaveFunction = null;
     
-    public function expire(){
-        return \System\Std\Date::now();
+    public function setSessionName($name){
+        $this->sessionName = $name;
+    }
+    
+    public function getSessionName(){
+        return $this->sessionName;
+    }
+    
+    public function setExpires($expires){
+        $this->expires = $expires;
+    }
+    
+    public function getExpires(){
+        return $this->expires;
     }
     
     public function setPath($path){
         $this->path = $path;
     }
     
+    public function getPath(){
+        return $this->path;
+    }
+    
     public function setDomain($domain){
         $this->domain = $domain;
     }
     
-    public function setSecure($secure){
-        $this->secure = $secure;
+    public function getDomain(){
+        return $this->domain;
     }
     
-    public function setHttpOnly($httpOnly){
-        $this->httpOnly = $httpOnly;
+    public function isSecure($bool = null){
+        if(!is_null($bool)){
+            $this->isSecure = $bool;
+        }else{
+            return $this->isSecure;
+        }
+    }
+
+    public function isHttpOnly($bool = null){
+        if(!is_null($bool)){
+            $this->isHttpOnly = $bool;
+        }else{
+            return $this->isHttpOnly;
+        }
     }
 
     public function hasKey($key){

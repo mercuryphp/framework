@@ -118,9 +118,7 @@ final class HttpResponse {
                 header($header.':'.$value, true);
             }
             foreach($this->cookies as $cookie){
-                $value = $cookie->getValues()->count() > 0 ? http_build_query($cookie->getValues()->toArray()) : $cookie->getValue();
-                $expire = $cookie->getExpiryDate() ? $cookie->getExpiryDate()->toString('Y') : 0;
-                setcookie($cookie->getName(), $value, $expire, $cookie->getPath(), $cookie->getDomain(), $cookie->secure(), $cookie->httpOnly());
+                setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpires(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
             }
         }
         echo $this->output;

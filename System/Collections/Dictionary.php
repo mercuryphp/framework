@@ -12,13 +12,6 @@ class Dictionary extends Collection implements IDictionary{
         return $this;
     }
     
-    public function hasKey($key){
-        if(array_key_exists($key, $this->collection)){
-            return true;
-        }
-        return false;
-    }
-    
     public function toObject(){
         return json_decode(json_encode($this->collection), false);
     }

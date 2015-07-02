@@ -25,6 +25,13 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         return false;
     }
     
+    public function hasKey($key){
+        if(array_key_exists($key, $this->collection)){
+            return true;
+        }
+        return false;
+    }
+    
     public function get($key){
         if(array_key_exists($key, $this->collection)){
             return $this->collection[$key];

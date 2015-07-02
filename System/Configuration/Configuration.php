@@ -7,6 +7,7 @@ class Configuration extends ConfigurationReader {
     protected $environment;
     protected $session;
     protected $namespaces;
+    protected $formsAuthentication;
     protected $connectionStrings;
     protected $appSettings;
 
@@ -14,6 +15,7 @@ class Configuration extends ConfigurationReader {
         $this->environment = new EnvironmentSection($this->getItem('environment'));
         $this->session = new SessionSection($this->getItem('session'));
         $this->namespaces = new NamespaceSection($this->getItem('namespaces'));
+        $this->formsAuthentication = new FormsAuthenticationSection($this->getItem('formsAuthentication'));
         $this->connectionStrings = new ConnectionStringSection($this->getItem('connectionStrings'));
         $this->appSettings = new AppSettingSection($this->getItem('appSettings'));
     }
@@ -28,6 +30,10 @@ class Configuration extends ConfigurationReader {
     
     public function getNamespaces(){
         return $this->namespaces;
+    }
+    
+    public function getFormsAuthentication(){
+        return $this->formsAuthentication;
     }
     
     public function getConnectionStrings(){

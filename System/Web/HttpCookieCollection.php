@@ -2,42 +2,26 @@
 
 namespace System\Web;
 
-class HttpCookieCollection implements \IteratorAggregate{
-    
-    private $cookies = array();
+class HttpCookieCollection extends \System\Collections\Collection {
     
     public function __construct($cookies){
         foreach($cookies as $k=>$v){
             $cookie = new HttpCookie($k, $v);
-            $this->cookies[$k] = $cookie;
+            $this->collection[$k] = $cookie;
         }
     }
     
     public function add(HttpCookie $httpCookie){
-        $this->cookies[$httpCookie->getName()] = $httpCookie;
+        if(is_string($httpCookie->getName())){
+            $this->collection[$httpCookie->getName()] = $httpCookie;
+        }
     }
     
     public function clear(){
-        foreach($this->cookies as $httpCookie){
-            $httpCookie->setExpires(\System\Std\DateTime::now()->sub(new \DateInterval('P1Y')));
+        foreach($this->collection as $httpCookie){
+            $httpCookie->setExpires(\System\Std\Date::now()->sub(new \DateInterval('P1Y')));
         }
-    }
-    
-    public function get($index){
-        $keys = array_keys($this->cookies);
-        
-        if(isset($keys[$index])){
-            $key = $keys[$index];
-            return $this->cookies[$key];
-        }
-    }
-    
-    public function count(){
-        return count($this->cookies);
-    }
-    
-    public function getIterator(){
-        return new \ArrayIterator($this->cookies);
+        $this->collection = array();
     }
 }
 

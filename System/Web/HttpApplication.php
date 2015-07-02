@@ -8,6 +8,8 @@ use System\Std\Instance;
 use System\Globalization\CultureInfo;
 use System\Configuration\Configuration;
 use System\Collections\Dictionary;
+use System\Web\Security\FormsAuthentication;
+use System\Web\Security\UserIdentity;
 use System\Web\Mvc\NativeView;
 
 /**
@@ -73,9 +75,14 @@ abstract class HttpApplication {
         Environment::setDateTimeFormat($this->config->getEnvironment()->getDateTimeFormat());
         Environment::setTimezone($this->config->getEnvironment()->getTimezone());
 
+        $request = new HttpRequest();
+        $response = new HttpResponse();
+        
         $session = Instance::getInstance(
             $this->config->getSession()->getHandler(),
             array(
+                $request,
+                $response,
                 $this->config->getSession()->getName(),
                 $this->config->getSession()->getExpires(),
                 $this->config->getSession()->getPath(),
@@ -85,9 +92,10 @@ abstract class HttpApplication {
             )
         );
 
-        $request = new HttpRequest();
-        $response = new HttpResponse();
         $this->httpContext = new HttpContext($request, $response, $session);
+        
+        FormsAuthentication::setCookieName($this->config->getFormsAuthentication()->getCookieName());
+        FormsAuthentication::setEncryptionKey($this->config->getFormsAuthentication()->getEncryptionKey());
     }
     
     /**
@@ -95,6 +103,37 @@ abstract class HttpApplication {
      */
     public function load(){}
 
+    public function authenticateRequest(\System\Web\Mvc\Controller $controller){
+        $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
+        
+        if($httpAuthCookie){
+            $ticket = FormsAuthentication::decrypt($httpAuthCookie->getValue());
+            $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
+        }else{
+            $identity = new UserIdentity('Anonymous');
+        }
+        
+        $controller->setUser($identity);
+    }
+    
+    /**
+     * Override in global.php
+     * preAction event invoked before controller/action executed.
+     */
+    public function preAction(\System\Web\Mvc\Controller $controller){}
+    
+    /**
+     * Override in global.php
+     * postAction event invoked after controller/action executed.
+     */
+    public function postAction(\System\Web\Mvc\Controller $controller){}
+    
+    /**
+     * Override in global.php
+     * Handle and log errors.
+     */
+    public function error(\Exception $e){}
+    
     /**
      * Dispatches a controller/action.
      */
@@ -137,6 +176,7 @@ abstract class HttpApplication {
                 $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))
                     ->replace('.', '\\');
 
+                $this->authenticateRequest($controller);
                 $this->preAction($controller);
                 
                 $moduleInstance = null;
@@ -167,24 +207,6 @@ abstract class HttpApplication {
             }
         }
     }
-
-    /**
-     * Override in global.php
-     * preAction event invoked before controller/action executed.
-     */
-    public function preAction(\System\Web\Mvc\Controller $controller){}
-    
-    /**
-     * Override in global.php
-     * postAction event invoked after controller/action executed.
-     */
-    public function postAction(\System\Web\Mvc\Controller $controller){}
-    
-    /**
-     * Override in global.php
-     * Handle and log errors.
-     */
-    public function error(\Exception $e){}
 }
 
 ?>

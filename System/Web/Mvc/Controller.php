@@ -11,11 +11,12 @@ use System\Web\Mvc\ViewContext;
 abstract class Controller{
     
     protected $viewBag;
-    protected $registry;
+    private $registry;
     private $httpContext;
     private $routeData;
     private $viewContext;
     private $view;
+    private $identity;
     
     public function __construct(){
         $this->viewBag = new Dictionary();
@@ -34,6 +35,14 @@ abstract class Controller{
         return $this->viewBag;
     }
     
+    public function setUser(\System\Web\Security\UserIdentity $identity){
+        $this->identity = $identity;
+    }
+    
+    public function getUser(){
+        return $this->identity;
+    }
+    
     public function execute(RequestContext $requestContext){
        
         $this->httpContext = $requestContext->getHttpContext();
@@ -48,16 +57,19 @@ abstract class Controller{
         
         if($this->httpContext->getRequest()->isPost() && $refClass->hasMethod($actionName.'Post')){
             $actionName .= 'Post';
+        }elseif($this->httpContext->getRequest()->isPut() && $refClass->hasMethod($actionName.'Put')){
+            $actionName .= 'Put';
+        }elseif($this->httpContext->getRequest()->isDelete() && $refClass->hasMethod($actionName.'Delete')){
+            $actionName .= 'Delete';
         }elseif($this->httpContext->getRequest()->isAjax() && $refClass->hasMethod($actionName.'Ajax')){
             $actionName .= 'Ajax';
         }
-        
+
         if(!$refClass->hasMethod($actionName)){
             throw new ActionNotFoundException(sprintf("The action '%s' does not exist", $actionName));
         }
 
         $actionMethod = $refClass->getMethod($actionName);
-        
         $methodParams = $actionMethod->getParameters();
         $requestParams = $requestContext->getHttpContext()->getRequest()->getParam();
 

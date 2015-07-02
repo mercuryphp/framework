@@ -2,20 +2,24 @@
 
 namespace System\Web;
 
-final class HttpCookie{
+final class HttpCookie {
 
     private $name;
     private $value;
     private $expires;
-    private $domain;
     private $path;
-    private $secure;
-    private $httpOnly;
+    private $domain;
+    private $isSecure;
+    private $isHttpOnly;
     
-    public function __construct($name, $value = ''){
+    public function __construct($name, $value = '', $expires = 0, $path = '/', $domain = '', $isSecure = false, $isHttpOnly = true ){
         $this->name = $name;
         $this->value = $value;
-        $this->expires = new \DateTime();
+        $this->expires = $expires;
+        $this->path = $path;
+        $this->domain = $domain;
+        $this->isSecure = $isSecure;
+        $this->isHttpOnly = $isHttpOnly;
     }
 
     public function setName($name){
@@ -34,20 +38,12 @@ final class HttpCookie{
         return $this->value;
     }
 
-    public function setExpires(\DateTime $dateTime){
-        $this->expires = $dateTime;
+    public function setExpires($expires){
+        $this->expires = $expires;
     }
     
     public function getExpires(){
         return $this->expires;
-    }
-    
-    public function setDomain($domain){
-        $this->domain = $domain;
-    }
-    
-    public function getDomain(){
-        return $this->domain;
     }
     
     public function setPath($path){
@@ -58,20 +54,28 @@ final class HttpCookie{
         return $this->path;
     }
     
-    public function setSecure($bool){
-        $this->secure = $bool;
+    public function setDomain($domain){
+        $this->domain = $domain;
     }
     
-    public function getSecure(){
-        return $this->secure;
+    public function getDomain(){
+        return $this->domain;
     }
-    
-    public function setHttpOnly($bool){
-        $this->httpOnly = $bool;
+
+    public function isSecure($bool = null){
+        if(!is_null($bool)){
+            $this->isSecure = $bool;
+        }else{
+            return $this->isSecure;
+        }
     }
-    
-    public function getHttpOnly(){
-        return $this->httpOnly;
+
+    public function isHttpOnly($bool = null){
+        if(!is_null($bool)){
+            $this->isHttpOnly = $bool;
+        }else{
+            return $this->isHttpOnly;
+        }
     }
 }
 
