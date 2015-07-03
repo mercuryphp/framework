@@ -6,6 +6,7 @@ final class HttpResponse {
 
     private $headers = array();
     private $cookies;
+    private $redirect;
     private $output;
     private $statusCode;
     private $statusCodes = array(
@@ -87,8 +88,7 @@ final class HttpResponse {
     }
     
     public function redirect($location){
-        header('Location: ' . $location);
-        exit;
+        $this->redirect = $location;
     }
 
     public function setStatusCode($code){
@@ -119,6 +119,10 @@ final class HttpResponse {
             }
             foreach($this->cookies as $cookie){
                 setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpires(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
+            }
+            
+            if($this->redirect){
+                header('Location: ' . $this->redirect);
             }
         }
         echo $this->output;

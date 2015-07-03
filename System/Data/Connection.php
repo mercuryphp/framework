@@ -4,30 +4,30 @@ namespace System\Data;
 
 class Connection {
     
-    protected $dbConfig;
+    protected $pdo;
     
     public function __construct($connectionString){
-        $this->dbConfig = new \System\Collections\Dictionary();
+        $dbConfig = new \System\Collections\Dictionary();
         
         if(strpos($connectionString, ';')){
             $params = explode(';', $connectionString);
             foreach($params as $param){
                 if($param && strpos($param, '=')){
                     list($name, $value) = explode('=', $param, 2);
-                    $this->dbConfig[$name] = $value;
+                    $dbConfig[$name] = $value;
                 }
             }
         }
         
-        $uid = $this->dbConfig['uid'];
-        $pwd = $this->dbConfig['pwd'];
+        $uid = $dbConfig['uid'];
+        $pwd = $dbConfig['pwd'];
         
-        unset($this->dbConfig['uid']);
-        unset($this->dbConfig['pwd']);
+        unset($dbConfig['uid']);
+        unset($dbConfig['pwd']);
 
         try{
             $this->pdo = new \PDO(
-                $this->dbConfig->each(function($k, $v){ return $k.'='.$v.';'; })->join(''),
+                $dbConfig->each(function($k, $v){ return $k.'='.$v.';'; })->join(''),
                 $uid,
                 $pwd
             );
@@ -133,6 +133,10 @@ class Connection {
 	
     public function getInsertId($field = null){
         return $this->pdo->lastInsertId($field);
+    }
+    
+    public function getAttribute($attribute){
+        return $this->pdo->getAttribute($attribute);
     }
     
     public static function getAvailableDrivers(){

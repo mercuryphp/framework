@@ -74,6 +74,7 @@ abstract class HttpApplication {
         Environment::setCulture(new CultureInfo($this->config->getEnvironment()->getLocale()));
         Environment::setDateTimeFormat($this->config->getEnvironment()->getDateTimeFormat());
         Environment::setTimezone($this->config->getEnvironment()->getTimezone());
+        Environment::setDefaultConnectionString($this->config->getConnectionStrings()->get('default'));
 
         $request = new HttpRequest();
         $response = new HttpResponse();
@@ -96,6 +97,7 @@ abstract class HttpApplication {
         
         FormsAuthentication::setCookieName($this->config->getFormsAuthentication()->getCookieName());
         FormsAuthentication::setEncryptionKey($this->config->getFormsAuthentication()->getEncryptionKey());
+        FormsAuthentication::setValidationKey($this->config->getFormsAuthentication()->getValidationKey());
     }
     
     /**

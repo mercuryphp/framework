@@ -6,14 +6,19 @@ use System\Std\Environment;
 use System\Std\String;
 
 class NativeView implements IView{
-    
-    protected $viewFile;
+
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
+    protected $viewFilePattern = '@module/Views/@controller/@action';
     
     public function addScript($type, $script){
         $this->scripts[$type][] = $script;
+    }
+    
+    public function setViewFilePattern($viewFilePattern){
+        $this->viewFilePattern = $viewFilePattern;
+        return $this;
     }
 
     public function setLayout($layoutFile){
@@ -46,14 +51,14 @@ class NativeView implements IView{
     
     public function render(ViewContext $viewContext){
         $routeData = $viewContext->getRouteData();
-        $viewFilePattern = '@module/Views/@controller/@action';
 
-        $viewFile = String::set($viewFilePattern)
+        $viewFile = String::set($this->viewFilePattern)
             ->prepend(Environment::getAppPath())
-            ->replace('@module', String::set($routeData->module)->toLower()->toUpperFirst()->ifNotEmptyPrepend('/'))
+            ->replace('@module', String::set($routeData->module)->toLower()->toUpperFirst())
             ->replace('@controller', String::set($routeData->controller)->toLower()->toUpperFirst())
             ->replace('@action', String::set($routeData->action)->toLower()->toUpperFirst())
-            ->append('.php');
+            ->append('.php')
+            ->replace('//', '/');
                 
         if(file_exists($viewFile)){
             extract($viewContext->getViewBag()->toArray());

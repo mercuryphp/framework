@@ -11,6 +11,7 @@ final class Environment {
     private static $cultureInfo;
     private static $dateTimeFormat;
     private static $timezone;
+    private static $defaultConnectionString;
     
     public static function addClassFile($file){
         self::$includes[] = $file;
@@ -82,6 +83,14 @@ final class Environment {
     
     public static function getTimezone(){
         return self::$timezone;
+    }
+    
+    public static function setDefaultConnectionString($connectionString){
+        self::$defaultConnectionString = $connectionString;
+    }
+    
+    public static function getDefaultConnectionString(){
+        return self::$defaultConnectionString;
     }
 }
 

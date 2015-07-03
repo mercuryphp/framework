@@ -17,7 +17,7 @@ abstract class Controller{
     private $identity;
     
     public function __construct(){
-        $this->viewBag = new ViewBag();
+        $this->viewBag = new Dictionary();
         $this->registry = new Dictionary();
     }
     
@@ -105,8 +105,7 @@ abstract class Controller{
         }
 
         $this->load();
-        $output = $actionMethod->invokeArgs($this, $args);
-        $this->httpContext->getResponse()->write($output);
+        $this->render($actionMethod->invokeArgs($this, $args));
     }
     
     public function getRequest(){
@@ -140,7 +139,7 @@ abstract class Controller{
             ->addHeader('Content-length' , strlen($data) , false);
         return $data;
     }
-    
+
     public function __set($key, $value){
         $this->registry->set($key, $value);
     }
@@ -153,6 +152,10 @@ abstract class Controller{
     }
     
     public function load(){}
+    
+    public function render($output){
+        $this->httpContext->getResponse()->write($output);
+    }
 }
 
 ?>
