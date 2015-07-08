@@ -3,29 +3,63 @@
 namespace System\Web\Security;
 
 use System\Std\Environment;
+use System\Std\Object;
 use System\Std\String;
+use System\Std\Date;
 use System\Data\Connection;
+
 
 class Membership {
     
     protected $con;
     protected $params = array();
     
-    public static function initialize(array $params = array(), \System\Data\Connection $con = null){
-        $membership = new Membership();
-        $membership->params['tablePrefix'] = 'merc_';
-        $membership->params = array_merge($membership->params,$params);
-        
+    public function __construct(\System\Data\Connection $con = null){
         if(!$con){
-            $membership->con = new Connection(Environment::getDefaultConnectionString());
+            $connectionString = Environment::getDefaultConnectionString();
             
-            if(!$membership->con){
+            if(!$connectionString){
                 throw new \RuntimeException("no default connection");
             }
+            
+            $this->con = new Connection($connectionString);
         }
+    }
+    
+    public function initialize(array $params = array(), \System\Data\Connection $con = null){
+        $this->params['tablePrefix'] = '';
+        $this->params = array_merge($this->params,$params);
         
-        $membership->createMembershipSchema();
-        $membership->createUserSchema();
+        $this->createMembershipSchema();
+        $this->createUserSchema();
+    }
+    
+    public function createUser($username, $password, $email, $firstName = '', $middleName = '', $lastName = ''){
+        $membership = array(
+            'password' => $password,
+            'password_salt' => $password,
+            'email' => $email,
+            'is_active' => 1,
+            'is_locked' => 0,
+            'created_date' => Date::now()->toString(),
+            'failed_password_count' => 0
+        );
+        
+        $this->con->insert('membership', $membership);
+        
+        $user = array(
+            'user_id' => $this->con->getInsertId(),
+            'username' => $username,
+            'first_name' => $firstName,
+            'middle_name' => $middleName,
+            'last_name' => $lastName
+        );
+
+        $this->con->insert('users', $user);
+        
+        $obj = Object::toObject('System.Web.Security.MembershipUser', $membership, $user );
+        
+        print_R($obj); exit;
     }
     
     protected function createMembershipSchema(){

@@ -15,7 +15,6 @@ final class HttpRequest{
     private $params = array();
     private $files = array();
 
-
     public function __construct($uri = null){
         
         $uri = $uri ? $uri : $this->getServer('REQUEST_URI');
@@ -28,6 +27,7 @@ final class HttpRequest{
 
         $this->uri = trim($uri, '/');
         $this->uriSegments = explode('/', $this->uri);
+        $this->routeData = new Dictionary();
         $this->query = new Dictionary($_GET);
         $this->post = new Dictionary($_POST);
         $this->params = new Dictionary($_REQUEST);
@@ -80,6 +80,10 @@ final class HttpRequest{
         return $this->uriSegments;
     }
     
+    public function setRouteData(\System\Collections\Dictionary $routeData){
+        $this->routeData = $routeData;
+    }
+    
     public function getRouteData(){
         return $this->routeData;
     }
@@ -122,7 +126,7 @@ final class HttpRequest{
         }
         return false;
     }
-    
+
     public function bindModel($object){
         $refClass = new \ReflectionClass($object);
         $properties = $refClass->getProperties();
@@ -142,7 +146,7 @@ final class HttpRequest{
     public function toArray(){
         return $this->params->toArray();
     }
-    
+
     private function getServer($key){
         if(array_key_exists($key, $_SERVER)){
             return $_SERVER[$key];

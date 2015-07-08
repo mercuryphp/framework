@@ -7,7 +7,7 @@ use System\Std\String;
 use System\Std\Object;
 use System\Globalization\CultureInfo;
 use System\Configuration\Configuration;
-use System\Collections\Dictionary;
+use System\Web\Routing\RouteCollection;
 use System\Web\Security\FormsAuthentication;
 use System\Web\Security\UserIdentity;
 use System\Web\Mvc\NativeView;
@@ -22,32 +22,68 @@ use System\Web\Mvc\NativeView;
 abstract class HttpApplication {
 
     /**
-     * Application configuration
+     * Application configuration.
      *
      * @var System\Configuration\Configuration
      */
-    protected $config;
+    private $config;
     
     /**
-     * Encapsulates Http request/response/server details
+     * Encapsulates Http request/response/server details.
      *
      * @var System\Web\HttpContext
      */
-    protected $httpContext;
+    private $httpContext;
     
     /**
-     * Collection of routes
+     * Collection of routes.
      *
      * @var System\Collections\Dictionary.
      */
-    protected $routes;
+    private $routes;
     
     /**
-     * Default View
+     * Default View.
      *
-     * @var System\Web\Mvc\NativeView
+     * @var System\Web\Mvc\IView
      */
-    protected $view;
+    private $view;
+    
+    /**
+     * Configuration.
+     *
+     * @return System\Configuration\Configuration;
+     */
+    public function getConfiguration(){
+        return $this->config;
+    }
+
+    /**
+     * Gets the HttpContext for the HTTP request.
+     *
+     * @return System\Web\HttpContext
+     */
+    public function getHttpContext(){
+        return $this->httpContext;
+    }
+    
+    /**
+     * Gets the route collection.
+     *
+     * @return System\Collections\Dictionary
+     */
+    public function getRoutes(){
+        return $this->routes;
+    }
+    
+    /**
+     * Gets the route collection.
+     *
+     * @return System\Web\Mvc\IView
+     */
+    public function getViewEngine(){
+        return $this->routes;
+    }
     
     /**
      * Instantiates the application configuration object.
@@ -60,7 +96,7 @@ abstract class HttpApplication {
      * Initializes application settings.
      */
     public function init($rootPath){
-        $this->routes = new Dictionary();
+        $this->routes = new RouteCollection();
         $this->view = new NativeView();
 
         if(!$this->config instanceof \System\Configuration\Configuration){
@@ -105,6 +141,9 @@ abstract class HttpApplication {
      */
     public function load(){}
 
+    /**
+     * Override in global.php to provide custom authentication.
+     */
     public function authenticateRequest(\System\Web\Mvc\Controller $controller){
         $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
         
@@ -144,15 +183,13 @@ abstract class HttpApplication {
         if($this->routes->count() == 0){
             throw new \RuntimeException('One or more routes must be registered.');
         }
-
+        
         foreach($this->routes as $route){
-            $route->setHttpContext($this->httpContext);
+            $route->setHttpRequest($this->httpContext->getRequest());
             
-            $requestContext = $route->execute();
+            $routeData = $route->execute();
 
-            if($requestContext){
-                $routeData = $requestContext->getRouteData();
-                
+            if($routeData){
                 $namespace = '';
                 if(Environment::getRootPath() != Environment::getAppPath()){
                     $namespace = String::set(Environment::getAppPath())->replace(Environment::getRootPath(), "")->trim("/");
@@ -166,11 +203,11 @@ abstract class HttpApplication {
                     $refClass = new \ReflectionClass((string)$class);
                     $controller = $refClass->newInstanceArgs(array());
                 }catch(\ReflectionException $e){
-                    throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist", $class));
+                    throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $class));
                 }
                 
                 if(!$controller instanceof Mvc\Controller){
-                    throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller", $class));
+                    throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
                     
                 $controller->setViewEngine($this->view);
@@ -193,7 +230,7 @@ abstract class HttpApplication {
                     }
                 }
 
-                $controller->execute($requestContext);
+                $controller->execute($this->httpContext);
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){
@@ -208,6 +245,7 @@ abstract class HttpApplication {
                 break;
             }
         }
+        throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $this->httpContext->getRequest()->getUri()));
     }
 }
 

@@ -3,7 +3,7 @@
 namespace System\Web\Mvc;
 
 use System\Collections\Dictionary;
-use System\Web\Routing\RequestContext;
+use System\Web\HttpContext;
 use System\Web\Mvc\ViewContext;
 
 abstract class Controller{
@@ -41,17 +41,14 @@ abstract class Controller{
         return $this->identity;
     }
     
-    public function execute(RequestContext $requestContext){
+    public function execute(HttpContext $httpContext){
        
-        $this->httpContext = $requestContext->getHttpContext();
-        $this->routeData = $requestContext->getRouteData();
+        $this->httpContext = $httpContext;
+        $this->routeData = $httpContext->getRequest()->getRouteData();
         $this->viewContext = new ViewContext($this->httpContext, $this->routeData, $this->viewBag);
         
-        $routeData = $requestContext->getRouteData();
-        
         $refClass = new \ReflectionClass(get_class($this));
-        
-        $actionName = $routeData->get('action');
+        $actionName = $this->routeData->get('action');
         
         if($this->httpContext->getRequest()->isPost() && $refClass->hasMethod($actionName.'Post')){
             $actionName .= 'Post';
@@ -64,12 +61,12 @@ abstract class Controller{
         }
 
         if(!$refClass->hasMethod($actionName)){
-            throw new ActionNotFoundException(sprintf("The action '%s' does not exist", $actionName));
+            throw new ActionNotFoundException(sprintf("The action '%s' does not exist in '%s'", $actionName, get_called_class()));
         }
 
         $actionMethod = $refClass->getMethod($actionName);
         $methodParams = $actionMethod->getParameters();
-        $requestParams = $requestContext->getHttpContext()->getRequest()->getParam();
+        $requestParams = $this->httpContext->getRequest()->getParam();
 
         $args = array();
 

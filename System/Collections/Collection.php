@@ -49,7 +49,9 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     public function remove($key){
         if(array_key_exists($key, $this->collection)){
             unset($this->collection[$key]);
+            return true;
         }
+        return false;
     }
     
     public function reverse(){
@@ -60,10 +62,40 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         asort($this->collection);
     }
     
+    public function getKeys(){
+        return new \System\Collections\ArrayList(array_keys($this->collection));
+    }
+    
     public function each(callable $func){
         $tmp = array();
         foreach($this->collection as $k=>$v){
             $tmp[$k] = $func($k, $v);
+        }
+        $this->collection = $tmp;
+        return $this;
+    }
+    
+    public function where($value){
+        $tmp = array();
+        foreach($this->collection as $item){
+            if(is_string($item)){
+                if($item == $value){
+                    $tmp[] = $item;
+                }
+            }
+        }
+        $this->collection = $tmp;
+        return $this;
+    }
+    
+    public function like($regex){
+        $tmp = array(); 
+        foreach($this->collection as $item){
+            if(is_string($item)){
+                if(preg_match('@'.$regex.'@', $item)){
+                    $tmp[] = $item;
+                }
+            }
         }
         $this->collection = $tmp;
         return $this;

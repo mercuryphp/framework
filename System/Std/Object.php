@@ -28,6 +28,33 @@ final class Object{
         return $toObjInstance;
     }
     
+    public static function toObject(){
+        $args = func_get_args();
+        
+        if(count($args) >=2){
+
+            $className = '\\'.str_replace('.', '\\', $args[0]);
+            $refClass = new \ReflectionClass($className);
+            $toObjInstance = $refClass->newInstance();
+
+            unset($args[0]);
+            
+            foreach($args as $arg){
+                if(is_array($arg)){
+                    foreach($arg as $propertyName=>$propertyValue){
+                        if($refClass->hasProperty($propertyName)){
+                            $property = $refClass->getProperty($propertyName);
+                            $property->setAccessible(true);
+                            $property->setValue($toObjInstance, $propertyValue);
+                        }
+                    }
+                }
+            }
+            
+            return $toObjInstance;
+        }
+    }
+    
     public static function setProperties($object, array $properties){
         $refClass = new \ReflectionObject($object);
         

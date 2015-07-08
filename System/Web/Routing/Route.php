@@ -2,16 +2,30 @@
 
 namespace System\Web\Routing;
 
-abstract class Route {
+class Route {
     
-    protected $httpContext;
-
-    public function setHttpContext(\System\Web\HttpContext $httpContext){
-        $this->httpContext = $httpContext;
+    protected $route;
+    protected $defaults;
+    protected $routeHandler;
+    protected $httpRequest;
+    
+    public function __construct($route, $defaults = array()){
+        $this->route = $route;
+        $this->defaults = $defaults;
+        $this->routeHandler = new RouteHandler();
     }
     
-    public abstract function execute();
+    public function setRouteHandler(RouteHandler $routeHandler){
+        $this->routeHandler = $routeHandler;
+    }
 
+    public function setHttpRequest(\System\Web\HttpRequest $httpRequest){
+        $this->httpRequest = $httpRequest;
+    }
+    
+    public function execute(){
+        return $this->routeHandler->execute($this->httpRequest, $this->route, $this->defaults);
+    }
 }
 
 ?>
