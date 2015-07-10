@@ -2,35 +2,35 @@
 
 namespace System\Configuration;
 
-class EnvironmentSection {
+class EnvironmentSection extends \System\Collections\Dictionary {
 
-    protected $section;
-    
     public function __construct($section){
-        $defaults = new \System\Collections\Dictionary();
-        $defaults->add('locale', 'en-GB')
-            ->add('dateTimeFormat', 'yyyy-MM-dd HH:mm:ss')
-            ->add('timezone', \System\Std\Date::now()->getTimezone()->getName())
-            ->add('executionTime', 30);
+
+        $default = array(
+            'locale' => 'en-GB',
+            'dateTimeFormat' => 'yyyy-MM-dd HH:mm:ss',
+            'timezone' => \System\Std\Date::now()->getTimezone()->getName(),
+            'executionTime' => 30
+        );
         
-        $defaults->merge($section);
-        $this->section = $defaults;
+        $this->merge($default)->merge($section);
+        $this->isReadOnly = true;
     }
     
     public function getLocale(){
-        return $this->section->locale;
+        return $this->collection['locale'];
     }
     
     public function getDateTimeFormat(){
-        return $this->section->dateTimeFormat;
+        return $this->collection['dateTimeFormat'];
     }
     
     public function getTimezone(){
-        return $this->section->timezone;
+        return $this->collection['timezone'];
     }
     
     public function getExecutionTime(){
-        return $this->section->executionTime;
+        return $this->collection['executionTime'];
     }
 }
 

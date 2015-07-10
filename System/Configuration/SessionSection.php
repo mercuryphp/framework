@@ -2,48 +2,71 @@
 
 namespace System\Configuration;
 
-class SessionSection {
-    
-    protected $section;
-    
-    public function __construct($section){
-        $defaults = new \System\Collections\Dictionary();
-        $defaults->add('name', 'PHPSESSID')
-            ->add('expires', 0)
-            ->add('secure', false)
-            ->add('httpOnly', true)
-            ->add('handler', 'System.Web.Session.FileSystem');
+class SessionSection extends \System\Collections\Dictionary {
 
-        $defaults->merge($section);
-        $this->section = $defaults;
+    public function __construct($section){
+
+        $defaults = array(
+            'name' =>'PHPSESSID',
+            'expires' => 0,
+            'path' => '/',
+            'domain' => '',
+            'secure' => false,
+            'httpOnly' => true,
+            'handler', 'System.Web.Session.FileSystem'
+        );
+
+        $this->merge($defaults)->merge($section);
+    }
+    
+    public function setName($name){
+        $this->collection['name'] = $name;
     }
 
     public function getName(){
-        return $this->section->name;
+        return $this->collection['name'];
+    }
+    
+    public function setExpires($expires){
+        $this->collection['expires'] = $expires;
     }
     
     public function getExpires(){
-        return $this->section->expires;
+        return $this->collection['expires'];
+    }
+    
+    public function setPath($path){
+        $this->collection['path'] = $path;
     }
     
     public function getPath(){
-        return $this->section->path;
+        return $this->collection['path'];
+    }
+    
+    public function setDomain($domain){
+        $this->collection['domain'] = $domain;
     }
     
     public function getDomain(){
-        return $this->section->domain;
+        return $this->collection['domain'];
     }
     
-    public function getSecure(){
-        return $this->section->secure;
+    public function isSecure($bool = null){
+        if(is_null($this->collection['secure'])){
+            return $this->collection['secure'];
+        }
+        $this->collection['secure'] = $bool;
     }
     
-    public function getHttpOnly(){
-        return $this->section->httpOnly;
+    public function isHttpOnly($bool = null){
+        if(is_null($this->collection['httpOnly'])){
+            return $this->collection['httpOnly'];
+        }
+        $this->collection['httpOnly'] = $bool;
     }
 
     public function getHandler(){
-        return $this->section->handler;
+        return $this->collection['handler'];
     }
 }
 

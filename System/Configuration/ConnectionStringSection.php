@@ -2,16 +2,11 @@
 
 namespace System\Configuration;
 
-class ConnectionStringSection {
+class ConnectionStringSection extends \System\Collections\Dictionary {
 
-    protected $connectionStrings;
-    
     public function __construct($section){
-        $this->connectionStrings = $section;
-    }
-    
-    public function get($key){
-        return $this->connectionStrings->get($key);
+        parent::__construct($section);
+        $this->isReadOnly = true;
     }
 }
 

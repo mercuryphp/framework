@@ -5,6 +5,7 @@ namespace System\Collections;
 abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     
     protected $collection = array();
+    protected $isReadOnly = false;
     
     public function __construct(array $collection = array()){
         $this->collection = $collection;
@@ -15,6 +16,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function clear(){
+        $this->readOnlyCheck();
         $this->collection = array();
     }
     
@@ -39,6 +41,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function merge($array){
+        $this->readOnlyCheck();
         if($array instanceof \System\Collections\Collection){
             $array = $array->toArray();
         }
@@ -47,6 +50,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
 
     public function remove($key){
+        $this->readOnlyCheck();
         if(array_key_exists($key, $this->collection)){
             unset($this->collection[$key]);
             return true;
@@ -67,6 +71,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function each(callable $func){
+        $this->readOnlyCheck();
         $tmp = array();
         foreach($this->collection as $k=>$v){
             $tmp[$k] = $func($k, $v);
@@ -76,9 +81,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function where($value){
+        $this->readOnlyCheck();
         $tmp = array();
         foreach($this->collection as $item){
-            if(is_string($item)){
+            if(is_scalar($item)){
                 if($item == $value){
                     $tmp[] = $item;
                 }
@@ -89,9 +95,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function like($regex){
+        $this->readOnlyCheck();
         $tmp = array(); 
         foreach($this->collection as $item){
-            if(is_string($item)){
+            if(is_scalar($item)){
                 if(preg_match('@'.$regex.'@', $item)){
                     $tmp[] = $item;
                 }
@@ -103,6 +110,13 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     
     public function join($glue, $removeEmptyEntries = true){
         return \System\Std\String::join($glue, $this->collection, $removeEmptyEntries);
+    }
+    
+    public function isReadOnly($bool = null){
+        if(is_null($bool)){
+            return $this->isReadOnly;
+        }
+        $this->isReadOnly = $bool;
     }
     
     public function toArray(){
@@ -130,6 +144,12 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     
     public function offsetUnset($offset){
         unset($this->collection[$offset]);
+    }
+    
+    protected function readOnlyCheck(){
+        if($this->isReadOnly){
+            throw new \Exception(get_called_class(). ' is read-only.');
+        }
     }
 }
 

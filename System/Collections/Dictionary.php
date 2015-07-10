@@ -5,6 +5,7 @@ namespace System\Collections;
 class Dictionary extends Collection implements IDictionary{
     
     public function add($key, $value){
+        $this->readOnlyCheck();
         if(array_key_exists($key, $this->collection)){
             throw new \InvalidArgumentException('An item with the same key has already been added.');
         }
@@ -17,6 +18,7 @@ class Dictionary extends Collection implements IDictionary{
     }
     
     public function set($key, $value){
+        $this->readOnlyCheck();
         $this->collection[$key] = $value;
     }
     

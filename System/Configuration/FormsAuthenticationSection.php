@@ -2,30 +2,30 @@
 
 namespace System\Configuration;
 
-class FormsAuthenticationSection {
+class FormsAuthenticationSection extends \System\Collections\Dictionary {
 
-    protected $section;
-    
     public function __construct($section){
-        $defaults = new \System\Collections\Dictionary();
-        $defaults->add('cookieName', 'PHPXAUTH')
-            ->add('encryptionKey', '')
-            ->add('validationKey', '');
+
+        $defaults = array(
+            'cookieName' =>'PHPXAUTH',
+            'encryptionKey' => '',
+            'validationKey' => ''
+        );
         
-        $defaults->merge($section);
-        $this->section = $defaults;
+        $this->merge($defaults)->merge($section);
+        $this->isReadOnly = true;
     }
     
     public function getCookieName(){
-        return $this->section->cookieName;
+        return $this->collection['cookieName'];
     }
     
     public function getEncryptionKey(){
-        return $this->section->encryptionKey;
+        return $this->collection['encryptionKey'];
     }
     
     public function getValidationKey(){
-        return $this->section->validationKey;
+        return $this->collection['validationKey'];
     }
 }
 

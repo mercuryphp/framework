@@ -17,11 +17,11 @@ abstract class Session {
     protected $isHttpOnly = true;
     protected $onSaveFunction = null;
     
-    public function setSessionName($name){
+    public function setName($name){
         $this->sessionName = $name;
     }
     
-    public function getSessionName(){
+    public function getName(){
         return $this->sessionName;
     }
     

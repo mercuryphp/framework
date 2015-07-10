@@ -2,23 +2,17 @@
 
 namespace System\Configuration;
 
-class NamespaceSection {
+class NamespaceSection  extends \System\Collections\Dictionary {
 
-    protected $namespaces = array();
-    
     public function __construct($section){
-        if($section instanceof \System\Collections\Dictionary){
-            $array = $section->toArray();
-            foreach($array as $item){
-                $segments = explode('.', $item);
-                $name = array_pop($segments);
-                $this->namespaces[$name] = $item;
-            }
+        $namespaces = array();
+        foreach($section as $item){
+            $segments = explode('.', $item);
+            $name = array_pop($segments);
+            $namespaces[$name] = $item;
         }
-    }
-    
-    public function toArray(){
-        return $this->namespaces;
+        
+        parent::__construct($namespaces);
     }
 }
 

@@ -124,8 +124,8 @@ abstract class HttpApplication {
                 $this->config->getSession()->getExpires(),
                 $this->config->getSession()->getPath(),
                 $this->config->getSession()->getDomain(),
-                $this->config->getSession()->getSecure(),
-                $this->config->getSession()->getHttpOnly()
+                $this->config->getSession()->isSecure(),
+                $this->config->getSession()->isHttpOnly()
             )
         );
 

@@ -52,9 +52,9 @@ abstract class ConfigurationReader {
     
     protected function getItem($key){
         if(array_key_exists($key, $this->config)){
-            return new \System\Collections\Dictionary($this->config[$key]);
+            return $this->config[$key];
         }
-        return new \System\Collections\Dictionary();
+        return array();
     }
 }
 

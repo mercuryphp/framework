@@ -2,16 +2,11 @@
 
 namespace System\Configuration;
 
-class AppSettingSection {
+final class AppSettingSection extends \System\Collections\Dictionary {
 
-    protected $settings;
-    
     public function __construct($section){
-        $this->settings = $section;
-    }
-    
-    public function get($key){
-        return $this->settings->get($key);
+        parent::__construct($section);
+        $this->isReadOnly = true;
     }
 }
 
