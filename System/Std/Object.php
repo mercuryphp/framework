@@ -65,6 +65,15 @@ final class Object{
         }
         return $object;
     }
+   
+    public static function getPropertyValue($object, $propertyName){
+        $refClass = new \ReflectionObject($object);
+        if($refClass->hasProperty($propertyName)){
+            $property = $refClass->getProperty($propertyName);
+            $property->setAccessible(true);
+            return $property->getValue($object);
+        }
+    }
     
     public static function getInstance($name, array $args = array()){
         $name = str_replace(".", "\\", $name);

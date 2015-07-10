@@ -10,6 +10,10 @@ class TextBox extends Element {
     public function __construct($name, $value = '', array $attributes = array(), $textMode = ''){
         parent::__construct();
         
+        if(is_object($value)){
+            $value = \System\Std\Object::getPropertyValue($value, $name);
+        }
+        
         $attributes['value'] = $value;
         $attributes['name'] = $name;
         $attributes['id'] = $name;
