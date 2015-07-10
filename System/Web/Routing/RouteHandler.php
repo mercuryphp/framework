@@ -5,13 +5,7 @@ namespace System\Web\Routing;
 class RouteHandler {
     
     public function execute($httpRequest, $route, $defaults = array()){
-        $routeData = new \System\Collections\Dictionary($defaults);
-        $httpRequest->setRouteData($routeData);
         $uri = $httpRequest->getUri();
-
-        if(!$uri){
-            return $routeData;
-        }
 
         $openParen = false;
         $token = '';
@@ -47,13 +41,26 @@ class RouteHandler {
 
         foreach($tokens as $idx=>$token){
             $value = isset($uriSegments[$idx]) ? $uriSegments[$idx] : null;
-            $routeData->set($token, $value);
+            $httpRequest->getRouteData()->set($token, $value);
             $httpRequest->setParam($token, $value);
-            $route = str_replace('{'.$token.'}', $routeData[$token], $route);
+            
+            $routeValue = $httpRequest->getRouteData()->get($token);
+            $route = str_replace('{'.$token.'}', $routeValue, $route);
         }
 
-        if($uri == $route){
-            return $routeData;
+        if($uri == trim($route, '/')){
+            
+            if(!$httpRequest->getRouteData()->get('controller')){
+                $controller = isset($defaults['controller']) ? $defaults['controller'] : 'Home';
+                $httpRequest->getRouteData()->set('controller', $controller);
+            }
+            
+            if(!$httpRequest->getRouteData()->get('action')){
+                $action = isset($defaults['action']) ? $defaults['action'] : 'index';
+                $httpRequest->getRouteData()->set('action', $action);
+            }
+
+            return $httpRequest->getRouteData();
         }
         return false;
     }

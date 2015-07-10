@@ -36,7 +36,7 @@ class DbSet {
         }
     }
     
-    public function findAll($params){
+    public function findAll($params = array()){
 
         if(is_scalar($params)){
             $params = array($this->meta->getKey() => $params);

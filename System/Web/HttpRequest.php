@@ -79,11 +79,7 @@ final class HttpRequest{
         }
         return $this->uriSegments;
     }
-    
-    public function setRouteData(\System\Collections\Dictionary $routeData){
-        $this->routeData = $routeData;
-    }
-    
+
     public function getRouteData(){
         return $this->routeData;
     }
