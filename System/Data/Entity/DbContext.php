@@ -40,7 +40,6 @@ abstract class DbContext {
     }
     
     public function dbSet($entityName){
-
         if(!array_key_exists($entityName, $this->dbSets)){
             $metaData = MetaReader::getMeta($entityName);
             $this->dbSets[$entityName] = new DbSet($this, $metaData);
@@ -51,6 +50,10 @@ abstract class DbContext {
     
     public function getPersistedEntities(){
         return $this->persistedEntities;
+    }
+    
+    public function getDbSets(){
+        return $this->dbSets;
     }
 
     public function saveChanges(){
@@ -72,21 +75,27 @@ abstract class DbContext {
                         if($this->persistedEntities->hasKey($parentEntityHash)){
                             $parentEntityContext = $this->persistedEntities->get($parentEntityHash);
                             $parentMeta = $this->dbSets[$parentEntityContext->getName()]->getMeta();
-                            $properties[$property] = $this->getEntityPropertyValue($value, $parentMeta->getKey());
+                            $properties[$property] = $this->getEntityPropertyValue($value, $parentMeta->getKey()->getKeyName());
                         }
                     }
                     
-                    $default = $meta->getColumns()->getMeta($property, 'default');
-                    $length = $meta->getColumns()->getMeta($property, 'length');
-                    
-                    if(!$value && $default){
-                        $properties[$property] = $default;
-                        $this->setEntityPropertyValue($entity, $property, $default);
-                    }
+                    $columnAttributes = $meta->getColumnAttributes($property);
 
-                    if(is_string($value) && $length){
-                        if(strlen($value) > $length){
-                            throw new \Exception("opps string length is a lot");
+                    foreach($columnAttributes as $attribute){
+                        
+                        if($attribute instanceof \System\Data\Entity\Annotations\ValidationAttribute){
+                            $attribute->setColumnName($property);
+                            $attribute->setValue($value);
+                            if(!$attribute->isValid()){
+                                throw new Annotations\ValidationAttributeException($attribute->getErrorMessage());
+                            }
+                        }
+                        
+                        if($attribute instanceof \System\Data\Entity\Annotations\DefaultValue){
+                            if(is_null($value)){
+                                $properties[$property] = $attribute->getDefaultValue();
+                                $this->setEntityPropertyValue($entity, $property, $attribute->getDefaultValue());
+                            }
                         }
                     }
                 }
@@ -94,19 +103,19 @@ abstract class DbContext {
                 switch ($entityContext->getState()){
                     case EntityContext::PERSIST:
 
-                        $result = $this->conn->insert($meta->getTable(), $properties);
+                        $result = $this->conn->insert($meta->getTable()->getTableName(), $properties);
                         $log[] = $result;
                         
                         if($result){
-                            $this->setEntityPropertyValue($entity, $meta->getKey(), $this->conn->getInsertId($meta->getKey()));
+                            $this->setEntityPropertyValue($entity, $meta->getKey()->getKeyName(), $this->conn->getInsertId($meta->getKey()->getKeyName()));
                             $entityContext->setState(EntityContext::PERSISTED);
                             $this->persistedEntities->add($entityContext->getHashCode(), $entityContext);
                         }
                         break;
 
                     case EntityContext::PERSISTED: 
-                        $updateParams = array($meta->getKey() => $properties[$meta->getKey()]);
-                        $log[] = $this->conn->update($meta->getTable(), $properties, $updateParams);
+                        $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
+                        $log[] = $this->conn->update($meta->getTable()->getTableName(), $properties, $updateParams);
                         break;
                 }
             }

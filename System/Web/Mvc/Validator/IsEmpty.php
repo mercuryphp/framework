@@ -9,7 +9,7 @@ class IsEmpty extends Validator {
     }
     
     public function isValid(){
-        if($this->value){
+        if($this->value==''){
             return false;
         }
         return true;

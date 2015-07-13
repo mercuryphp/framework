@@ -23,6 +23,16 @@ class Html {
         echo $textbox->render();
     }
     
+    public static function link($title, $href, array $attributes = array(), $params = null){
+        $link = new Link($title, $href, $attributes, $params);
+        echo $link->render();
+    }
+    
+    public static function label($text, array $attributes = array()){
+        $label = new Label($text, $attributes);
+        echo $label->render();
+    }
+    
     public static function selectList(array $source, $dataValue, $dataText, $selectedValue = null){
         return new \System\Web\UI\SelectList($source, $dataValue, $dataText, $selectedValue);
     }

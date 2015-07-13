@@ -12,20 +12,24 @@ class SelectQuery {
     protected $isWhere;
     
     public function __construct(SqlQuery $sqlQuery, $fields, $entityName){
+        
         $this->sqlQuery = $sqlQuery;
         $this->fields = $fields;
-        
-        $metaData = MetaReader::getMeta($entityName);
-        
-        $this->metaCollection[$entityName] = $metaData;
-        
-        $tableAlias = $this->getTableNameAlias($metaData->getTable());
+
+        if(array_key_exists($entityName, $this->metaCollection)){
+            $metaData = $this->metaCollection[$entityName];
+        }else{
+            $metaData = MetaReader::getMeta($entityName);
+            $this->metaCollection[$entityName] = $metaData;
+        }
+
+        $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
         
         $this->sql = \System\Std\String::set('SELECT ')
             ->append($fields)
             ->append(' FROM ')
-            ->append($metaData->getTable())
+            ->append($metaData->getTable()->getTableName())
             ->append(' '.$tableAlias)
             ->append(PHP_EOL);
     }
@@ -103,7 +107,7 @@ class SelectQuery {
     protected function getTableNameAlias($tableName){
         $alias = '';
         
-         if(strpos($tableName, '_') > -1){
+        if(strpos($tableName, '_') > -1){
             $sections = explode('_', $tableName);
 
             foreach($sections as $section){
@@ -116,9 +120,16 @@ class SelectQuery {
     }
     
     private function _join($type, $entityName, $join = null){
-        $metaData = MetaReader::getMeta($entityName);
-        $table = $metaData->getTable();
-        $key = $metaData->getKey();
+        
+        if(array_key_exists($entityName, $this->metaCollection)){
+            $metaData = $this->metaCollection[$entityName];
+        }else{
+            $metaData = MetaReader::getMeta($entityName);
+            $this->metaCollection[$entityName] = $metaData;
+        }
+        
+        $table = $metaData->getTable()->getTableName();
+        $key = $metaData->getKey()->getKeyName();
 
         $this->sql = $this->sql->append("$type ")->append($table);
 

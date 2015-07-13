@@ -10,7 +10,7 @@ class NativeView implements IView{
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
-    protected $viewFilePattern = '@module/Views/@controller/@action';
+    protected $viewFilePattern = '/@module/Views/@controller/@action';
     
     public function addScript($type, $script){
         $this->scripts[$type][] = $script;

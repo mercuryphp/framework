@@ -8,6 +8,9 @@ class ValidationContext {
     protected $errors = array();
     
     public function add($field, $value){
+        if(is_object($value)){
+            $value = \System\Std\Object::getPropertyValue($value, $field);
+        }
         $validationStatck = new ValidationStack($value);
         $this->fields[$field] = $validationStatck;
         return $validationStatck;

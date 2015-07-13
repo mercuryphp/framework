@@ -54,6 +54,7 @@ class SqlQuery {
     }
     
     private function toEntity($data, $entityName, $default = false){
+        
         $class = '\\'.str_replace('.', '\\', $entityName);
         $refClass = new \ReflectionClass($class);
         $entity = $refClass->newInstance();

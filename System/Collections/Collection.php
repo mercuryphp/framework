@@ -40,6 +40,11 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         }
     }
     
+    public function last(){
+        return end($this->collection);
+    }
+
+
     public function merge($array){
         $this->readOnlyCheck();
         if($array instanceof \System\Collections\Collection){

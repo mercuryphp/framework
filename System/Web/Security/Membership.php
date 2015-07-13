@@ -8,11 +8,12 @@ use System\Std\String;
 use System\Std\Date;
 use System\Data\Connection;
 
-
 class Membership {
     
     protected $con;
     protected $params = array();
+    
+    const SHA256 = 'sha256';
     
     public function __construct(\System\Data\Connection $con = null){
         if(!$con){
@@ -26,7 +27,7 @@ class Membership {
         }
     }
     
-    public function initialize(array $params = array(), \System\Data\Connection $con = null){
+    public function setup(array $params = array(), \System\Data\Connection $con = null){
         $this->params['tablePrefix'] = '';
         $this->params = array_merge($this->params,$params);
         
@@ -60,6 +61,14 @@ class Membership {
         $obj = Object::toObject('System.Web.Security.MembershipUser', $membership, $user );
         
         print_R($obj); exit;
+    }
+    
+    public static function createHmac($type, $string, $key){
+        return hash_hmac($type, $string, $key);
+    }
+    
+    public static function createIV($size, $source){
+         return base64_encode(mcrypt_create_iv ($size, $source));
     }
     
     protected function createMembershipSchema(){

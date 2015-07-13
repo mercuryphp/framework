@@ -68,7 +68,10 @@ final class String{
         return $string;
     }
     
-    public function subString($start, $length){
+    public function subString($start, $length = null){
+        if(is_null($length)){
+            return new String(substr($this->string, $start));
+        }
         return new String(substr($this->string, $start, $length));
     }
 
@@ -84,9 +87,32 @@ final class String{
         }
         return new \System\Collections\ArrayList($array);
     }
+    
+    public function indexOf($char){
+        return stripos($this->string, $char);
+    }
+    
+    public function lastIndexOf($char){
+        return strripos($this->string, $char);
+    }
+
+    public function get($fromChar, $toChar, $greedy = false){
+        $pos1 = $this->indexOf($fromChar);
+        
+        if($greedy){
+            $pos2 = $this->lastIndexOf($toChar);
+        }else{
+            $pos2 = $this->indexOf($toChar);
+        }
+
+        if($pos1 >-1 && $pos2 >-1){
+            return new String($this->subString((int)$pos1+1, (int)$pos2-$this->length()));
+        }
+        return new String('');
+    }
 
     public function toString(){
-        return $this->string;
+        return (string)$this->string;
     }
     
     public function __toString(){

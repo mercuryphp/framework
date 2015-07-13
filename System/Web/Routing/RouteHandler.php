@@ -50,6 +50,11 @@ class RouteHandler {
 
         if($uri == trim($route, '/')){
             
+            if(!$httpRequest->getRouteData()->get('module')){
+                $module = isset($defaults['module']) ? $defaults['module'] : 'Index';
+                $httpRequest->getRouteData()->set('module', $module);
+            }
+            
             if(!$httpRequest->getRouteData()->get('controller')){
                 $controller = isset($defaults['controller']) ? $defaults['controller'] : 'Home';
                 $httpRequest->getRouteData()->set('controller', $controller);

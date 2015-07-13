@@ -16,7 +16,7 @@ class DbSet {
     public function find($params, $default = false){
 
         if(is_scalar($params)){
-            $params = array($this->meta->getKey() => $params);
+            $params = array($this->meta->getKey()->getKeyName() => $params);
         }
         
         if(is_array($params)){
@@ -39,16 +39,16 @@ class DbSet {
     public function findAll($params = array()){
 
         if(is_scalar($params)){
-            $params = array($this->meta->getKey() => $params);
+            $params = array($this->meta->getKey()->getKeyName() => $params);
         }
-        
+
         if(is_array($params)){
             $select = $this->dbContext->select('*', $this->meta->getEntityName());
             
             foreach($params as $key=>$param){
                 $select->where($key.'=:'.$key);
             }
-        
+
             $entityCollection = $select->toList($this->meta->getEntityName(), $params);
             
             foreach($entityCollection as $entity){

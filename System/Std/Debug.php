@@ -21,7 +21,7 @@ class Debug {
         for($i=$start; $i<$stop; $i++){
             $selected = ($i == ($errLine-1)) ? 'box-shadow:1px 2px 3px #AAA; margin-bottom:4px; background-color:#E9EFF8; border:1px solid #AAA;' : '';
             echo '<li style="border-bottom:2px solid #FCFCFC; ' . $selected . '">';
-            echo '<span style="background-color:#FCFCFC; display:inline-block; width:40px; text-align:center; font-weight:bold; padding:5px; color:#777;">' . $i .'</span>';
+            echo '<span style="background-color:#FCFCFC; display:inline-block; width:40px; text-align:center; font-weight:bold; padding:5px; color:#777;">' . ($i+1) .'</span>';
             echo '<pre style="border-left: 2px solid #0F0;  display:inline-block; padding:5px; margin:0px; font-family:tahoma; font-size:12px; color:444;">'.htmlspecialchars($code[$i]).'</pre>';
             echo '</li>';
         }

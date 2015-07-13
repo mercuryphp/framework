@@ -3,42 +3,35 @@
 namespace System\Data\Entity;
 
 class EntityMeta {
-    
+
     protected $entityName;
-    protected $table;
-    protected $key;
-    protected $columns = array();
+    protected $meta;
     
-    public function setEntityName($entityName){
+    public function __construct($entityName, $meta){
         $this->entityName = $entityName;
+        $this->meta = $meta;    
     }
     
     public function getEntityName(){
         return $this->entityName;
     }
     
-    public function setTable($tableName){
-        $this->table = $tableName;
-    }
-    
     public function getTable(){
-        return $this->table;
-    }
-    
-    public function setKey($key){
-        $this->key = $key;
+        return $this->meta['Table'];
     }
     
     public function getKey(){
-        return $this->key;
-    }
-    
-    public function setColumns($columns){
-        $this->columns = $columns;
+        return $this->meta['Key'];
     }
     
     public function getColumns(){
-        return $this->columns;
+        return $this->meta['Columns'];
+    }
+    
+    public function getColumnAttributes($columnName){
+        if(array_key_exists($columnName, $this->meta['Columns'])){
+            return $this->meta['Columns'][$columnName];
+        }
     }
 }
 
