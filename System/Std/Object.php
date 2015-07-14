@@ -77,6 +77,16 @@ final class Object{
         }
         return $array;
     }
+    
+    public static function setPropertyValue($object, $propertyName, $value){
+        $refClass = new \ReflectionObject($object);
+        
+        if($refClass->hasProperty($propertyName)){
+            $property = $refClass->getProperty($propertyName);
+            $property->setAccessible(true);
+            $property->setValue($object, $value);
+        }
+    }
    
     public static function getPropertyValue($object, $propertyName){
         $refClass = new \ReflectionObject($object);

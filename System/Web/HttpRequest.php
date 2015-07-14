@@ -14,6 +14,7 @@ final class HttpRequest{
     private $post = array();
     private $params = array();
     private $files = array();
+    private $user;
 
     public function __construct($uri = null){
         
@@ -86,6 +87,14 @@ final class HttpRequest{
     
     public function getUri(){
         return $this->uri;
+    }
+    
+    public function setUser(\System\Web\Security\UserIdentity $identity){
+        $this->user = $identity;
+    }
+    
+    public function getUser(){
+        return $this->user;
     }
     
     public function isGet(){

@@ -32,13 +32,9 @@ abstract class Controller{
     public function getViewBag(){
         return $this->viewBag;
     }
-    
-    public function setUser(\System\Web\Security\UserIdentity $identity){
-        $this->identity = $identity;
-    }
-    
+
     public function getUser(){
-        return $this->identity;
+        return $this->httpContext->getRequest()->getUser();
     }
     
     public function execute(HttpContext $httpContext){

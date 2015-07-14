@@ -154,7 +154,7 @@ abstract class HttpApplication {
             $identity = new UserIdentity('Anonymous');
         }
         
-        $controller->setUser($identity);
+        $this->httpContext->getRequest()->setUser($identity);
     }
     
     /**
