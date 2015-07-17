@@ -79,6 +79,10 @@ abstract class DbContext {
                         }
                     }
                     
+                    if($value instanceof \System\Std\Date){
+                        $properties[$property] = $value->toString('yyyy-MM-dd HH:mm:ss');
+                    }
+                    
                     $columnAttributes = $meta->getColumnAttributes($property);
 
                     foreach($columnAttributes as $attribute){
@@ -113,7 +117,7 @@ abstract class DbContext {
                         }
                         break;
 
-                    case EntityContext::PERSISTED: 
+                    case EntityContext::PERSISTED:
                         $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
                         $log[] = $this->conn->update($meta->getTable()->getTableName(), $properties, $updateParams);
                         break;

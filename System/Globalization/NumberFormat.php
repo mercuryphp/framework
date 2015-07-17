@@ -10,7 +10,7 @@ class NumberFormat {
         $this->formats = $formats;
     }
     
-    public function getCurrencySymbol(){
+    public function getCurrencySymbol(){ 
         return (string)$this->formats->currencySymbol;
     }
     

@@ -28,11 +28,13 @@ class DbSet {
         
             $entity = $select->single($this->meta->getEntityName(), $params, $default);
             
-            $entityContext = $this->add($entity);
-            $entityContext->setState(EntityContext::PERSISTED);
-            $this->dbContext->getPersistedEntities()->add($entityContext->getHashCode(), $entityContext);
-            
-            return $entity;
+            if($entity){
+                $entityContext = $this->add($entity);
+                $entityContext->setState(EntityContext::PERSISTED);
+                $this->dbContext->getPersistedEntities()->add($entityContext->getHashCode(), $entityContext);
+
+                return $entity;
+            }
         }
     }
     

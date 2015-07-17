@@ -4,6 +4,7 @@ namespace System\Web;
 
 final class HttpResponse {
 
+    private $request;
     private $headers = array();
     private $cookies;
     private $redirect;
@@ -60,7 +61,7 @@ final class HttpResponse {
         505 => '505 HTTP Version Not Supported'
     );
     
-    public function __construct(){
+    public function __construct($request){ //print_R($request->getCookies());exit;
         $this->cookies = new HttpCookieCollection(array());
     }
 

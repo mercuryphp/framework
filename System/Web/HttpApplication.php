@@ -113,7 +113,7 @@ abstract class HttpApplication {
         Environment::setDefaultConnectionString($this->config->getConnectionStrings()->get('default'));
 
         $request = new HttpRequest();
-        $response = new HttpResponse();
+        $response = new HttpResponse($request);
         
         $session = Object::getInstance(
             $this->config->getSession()->getHandler(),

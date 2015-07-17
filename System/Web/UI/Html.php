@@ -4,41 +4,55 @@ namespace System\Web\UI;
 
 class Html {
     public static function dropdown($name, $source, $default = null, array $attributes = array()){
-        $dropDown = new DropDown($name, $source, $default, $attributes);
-        echo $dropDown->render();
+        $control = new DropDown($name, $source, $default, $attributes);
+        echo $control->render();
     }
     
     public static function textbox($name, $value = '', array $attributes = array(), $textMode = 'text'){
-        $textbox = new TextBox($name, $value, $attributes, $textMode);
-        echo $textbox->render();
+        $control = new TextBox($name, $value, $attributes, $textMode);
+        echo $control->render();
     }
     
     public static function password($name, $value = '', array $attributes = array(), $textMode = 'password'){
-        $textbox = new TextBox($name, $value, $attributes, $textMode);
-        echo $textbox->render();
+        $control = new TextBox($name, $value, $attributes, $textMode);
+        echo $control->render();
     }
     
     public static function textarea($name, $value = '', array $attributes = array(), $textMode = 'textarea'){
-        $textbox = new TextBox($name, $value, $attributes, $textMode);
-        echo $textbox->render();
+        $control = new TextBox($name, $value, $attributes, $textMode);
+        echo $control->render();
     }
     
     public static function link($title, $href, array $attributes = array(), $params = null){
-        $link = new Link($title, $href, $attributes, $params);
-        echo $link->render();
+        $control = new Link($title, $href, $attributes, $params);
+        echo $control->render();
     }
     
     public static function label($text, array $attributes = array()){
-        $label = new Label($text, $attributes);
-        echo $label->render();
+        $control = new Label($text, $attributes);
+        echo $control->render();
+    }
+    
+    public static function hidden($text, $value, array $attributes = array()){
+        $control = new Hidden($text, $value, $attributes);
+        echo $control->render();
+    }
+    
+    public static function fileUpload($name, array $attributes = array()){
+        $control = new FileUpload($name, $attributes);
+        echo $control->render();
+    }
+    
+    public static function table($source, array $attributes = array()){
+        return new Table($source, $attributes);
     }
     
     public static function selectList(array $source, $dataValue, $dataText, $selectedValue = null){
-        return new \System\Web\UI\SelectList($source, $dataValue, $dataText, $selectedValue);
+        return new SelectList($source, $dataValue, $dataText, $selectedValue);
     }
     
     public static function selectArray(array $source, $selectedValue = null, $useIndexAsValue = false){
-        return new \System\Web\UI\SelectArray($source, $selectedValue, $useIndexAsValue);
+        return new SelectArray($source, $selectedValue, $useIndexAsValue);
     }
 }
 

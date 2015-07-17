@@ -5,6 +5,7 @@ namespace System\Web\UI;
 class Link extends Element {
    
     protected $title;
+    protected $params = array();
     
     public function __construct($title, $href, array $attributes = array(), $params = null){
         parent::__construct();
@@ -13,6 +14,10 @@ class Link extends Element {
         
         $this->title = $title;
         $this->attributes = array_merge($this->attributes, $attributes);
+        $this->params = $params;
+    }
+    
+    public function setParams($params){
         $this->params = $params;
     }
     

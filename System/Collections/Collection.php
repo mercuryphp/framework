@@ -21,7 +21,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     }
     
     public function contains($value){
-        if(array_search($value, $this->collection)){
+        if(in_array($value, $this->collection)){
             return true;
         }
         return false;
@@ -44,7 +44,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         return end($this->collection);
     }
 
-
     public function merge($array){
         $this->readOnlyCheck();
         if($array instanceof \System\Collections\Collection){
@@ -56,7 +55,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
 
     public function remove($key){
         $this->readOnlyCheck();
-        if(array_key_exists($key, $this->collection)){
+        if($this->hasKey($key)){
             unset($this->collection[$key]);
             return true;
         }
@@ -77,11 +76,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
     
     public function each(callable $func){
         $this->readOnlyCheck();
-        $tmp = array();
+
         foreach($this->collection as $k=>$v){
-            $tmp[$k] = $func($k, $v);
+            $this->collection[$k] = $func($k, $v);
         }
-        $this->collection = $tmp;
         return $this;
     }
     

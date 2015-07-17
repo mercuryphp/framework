@@ -41,6 +41,10 @@ final class HttpFile{
         return $this->size;
     }
     
+    public function getFileExtension(){
+        return substr($this->fileName, strripos($this->fileName, '.')+1);
+    }
+    
     public function save($destination){
         return move_uploaded_file($this->tmpFileName, $destination);
     }

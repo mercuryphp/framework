@@ -5,7 +5,9 @@ namespace System\Globalization;
 class CultureInfo {
     
     protected $xml = null;
-    
+    protected $numberFormat;
+
+
     public function __construct($name = ''){
         $dataFile = \System\Std\String::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
         
@@ -14,6 +16,8 @@ class CultureInfo {
         }else{
             throw new \Exception(sprintf("Culture '%s' is not supported", $name));
         }
+        
+        $this->numberFormat = new NumberFormat($this->xml->numberFormat);
     }
     
     public function getDisplayName(){
@@ -36,33 +40,37 @@ class CultureInfo {
         return new MonthNames($this->xml->datetime->monthNames);
     }
     
-    public function numberFormat(){
-        return new NumberFormat($this->xml->numberFormat);
+    public function getNumberFormat(){
+        return $this->numberFormat;
     }
     
-    public function formatCurrency($value){
-        $pattern = $this->numberFormat()->getCurrencyPositivePattern();
+    public function formatCurrency($value, $currencySymbol = true){
+        $pattern = $this->numberFormat->getCurrencyPositivePattern();
 
         $left = '';
         $right = '';
         
         switch ($pattern) {
             case 0:
-                $left = $this->numberFormat()->getCurrencySymbol();
+                $left = $this->numberFormat->getCurrencySymbol();
                 break;
             case 2:
-                $right = $this->numberFormat()->getCurrencySymbol();
+                $right = $this->numberFormat->getCurrencySymbol();
                 break;
+        }
+        
+        if(!$currencySymbol){
+            $left=''; $right ='';
         }
 
         $value = $left.number_format(
-            round($value, (int)$this->numberFormat()->getNumberDecimalDigits()), 
-            (int)$this->numberFormat()->getNumberDecimalDigits(), 
-            $this->numberFormat()->getCurrencyDecimalSeparator(), 
-            $this->numberFormat()->getCurrencyGroupSeparator()
+            round($value, (int)$this->numberFormat->getNumberDecimalDigits()), 
+            (int)$this->numberFormat->getNumberDecimalDigits(), 
+            $this->numberFormat->getCurrencyDecimalSeparator(), 
+            $this->numberFormat->getCurrencyGroupSeparator()
         ).' '.$right;
         
-        return $value;
+        return trim($value);
     }
 }
 

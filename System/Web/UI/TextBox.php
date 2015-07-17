@@ -4,7 +4,6 @@ namespace System\Web\UI;
 
 class TextBox extends Element {
    
-    protected $source;
     protected $textMode;
     
     public function __construct($name, $value = '', array $attributes = array(), $textMode = ''){
@@ -13,12 +12,11 @@ class TextBox extends Element {
         if(is_object($value)){
             $value = \System\Std\Object::getPropertyValue($value, $name);
         }
-        
+
         $attributes['value'] = $value;
-        $attributes['name'] = $name;
-        $attributes['id'] = $name;
+        $attributes['name'] = !array_key_exists('name',$attributes) ? $name : $attributes['name'];
+        $attributes['id'] = !array_key_exists('id',$attributes) ? $name : $attributes['id'];
         
-        $this->name = $name;
         $this->attributes = array_merge($this->attributes, $attributes);
         $this->textMode = $textMode;
     }
@@ -42,7 +40,7 @@ class TextBox extends Element {
             ->append($this->textMode)
             ->append('" ')
             ->append($this->renderAttributes())
-            ->append(' />')
+            ->append('/>')
             ->toString();
     }
 }

@@ -25,6 +25,10 @@ abstract class Element {
     }
     
     public abstract function render();
+    
+    public function __toString(){
+        return $this->render();
+    }
 
 }
 
