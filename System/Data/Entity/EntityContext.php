@@ -11,6 +11,7 @@ class EntityContext {
 
     const PERSIST = 1;
     const PERSISTED = 2;
+    const DELETE = 3;
     
     public function __construct($entity){
         $this->entityHash = spl_object_hash($entity);

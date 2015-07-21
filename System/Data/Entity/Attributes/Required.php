@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Data\Entity\Annotations;
+namespace System\Data\Entity\Attributes;
 
-class Required extends ValidationAttribute {
+class Required extends ConstraintAttribute {
 
     public function __construct($errorMessage = ''){
         $this->errorMessage = $errorMessage;

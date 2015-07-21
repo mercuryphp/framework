@@ -7,12 +7,23 @@ use System\Std\Object;
 
 class MetaReader {
     public static function getMeta($entityName){
-        $class = '\\'.str_replace('.', '\\', $entityName);
-        $refClass = new \ReflectionClass($class);
+        $entityName = \System\Std\String::set($entityName);
+        $tableName = $entityName->toLower();
+
+        if($entityName->indexOf('.') > -1){
+            $tableName = $entityName->split('.')->last();
+            $entityName = $entityName->replace('.','\\');
+        }
+
+        $refClass = new \ReflectionClass((string)$entityName);
 
         $tokens = token_get_all(file_get_contents($refClass->getFileName())); 
 
-        $meta = array('Columns' => array());
+        $meta = array(
+            'Table' => new Attributes\Table((string)$tableName),
+            'Key' => new Attributes\Key((string)$tableName->append('_id')),
+            'Columns' => array()
+        );
         $tmp = array();
         $exitLoop = false;
 
@@ -29,7 +40,7 @@ class MetaReader {
                             $args = String::set($strAttr)->get('(', ')');
 
                             if(!$attribute->indexOf('.')){
-                                $attribute = $attribute->prepend('System.Data.Entity.Annotations.');
+                                $attribute = $attribute->prepend('System.Data.Entity.Attributes.');
                             }
 
                             $meta[$attribute->split('.')->last()] = Object::getInstance($attribute, str_getcsv($args, ','));
@@ -42,7 +53,7 @@ class MetaReader {
                     $args = String::set($token[1])->get('(', ')', true);
 
                     if(!$attribute->indexOf('.')){
-                        $attribute = $attribute->prepend('System.Data.Entity.Annotations.');
+                        $attribute = $attribute->prepend('System.Data.Entity.Attributes.');
                     }
                     
                     if((string)$args){
@@ -68,7 +79,7 @@ class MetaReader {
             }
         }
 
-        $metaData = new EntityMeta($entityName, $meta);
+        $metaData = new EntityMeta((string)$entityName, $meta);
         return $metaData;
     }
 }

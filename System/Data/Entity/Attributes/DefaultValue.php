@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Data\Entity\Annotations;
+namespace System\Data\Entity\Attributes;
 
 class DefaultValue {
     

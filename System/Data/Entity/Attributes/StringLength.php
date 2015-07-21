@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Data\Entity\Annotations;
+namespace System\Data\Entity\Attributes;
 
-class StringLength extends ValidationAttribute {
+class StringLength extends ConstraintAttribute {
     
     protected $length;
     

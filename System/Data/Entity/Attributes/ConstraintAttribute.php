@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Data\Entity\Annotations;
+namespace System\Data\Entity\Attributes;
 
-abstract class ValidationAttribute {
+abstract class ConstraintAttribute {
     
     protected $columnName;
     protected $value;

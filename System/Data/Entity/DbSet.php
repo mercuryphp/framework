@@ -64,9 +64,27 @@ class DbSet {
     }
     
     public function add($entity){
-        $entityContext = new EntityContext($entity);
-        $this->entities[] = $entityContext;
-        return $entityContext;
+        if(is_object($entity)){
+            $entityContext = new EntityContext($entity);
+            $this->entities[$entityContext->getHashCode()] = $entityContext;
+            return $entityContext;
+        }
+    }
+    
+    public function remove($entity){
+        if(is_object($entity)){
+            $objHash = spl_object_hash($entity);
+            if(array_key_exists($objHash, $this->entities)){
+                $this->entities[$objHash]->setState(EntityContext::DELETE);
+            }
+        }
+    }
+    
+    public function detach($entity){
+        if(is_object($entity)){
+            $objHash = spl_object_hash($entity);
+            unset($this->entities[$objHash]);
+        }
     }
     
     public function getEntities(){

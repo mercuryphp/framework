@@ -5,6 +5,7 @@ namespace System\Data;
 class Connection {
     
     protected $pdo;
+    protected $transaction;
     
     public function __construct($connectionString){
         $dbConfig = new \System\Collections\Dictionary();
@@ -33,7 +34,7 @@ class Connection {
             );
 
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
+            $this->transaction = new Transaction($this->pdo);
         }catch(\PDOException $e){
             throw new ConnectionException($e->getMessage());
         }
@@ -137,6 +138,10 @@ class Connection {
     
     public function getAttribute($attribute){
         return $this->pdo->getAttribute($attribute);
+    }
+    
+    public function getTransaction(){
+        return $this->transaction;
     }
     
     public static function getAvailableDrivers(){

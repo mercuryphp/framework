@@ -2,13 +2,14 @@
 
 namespace System\Data\Entity;
 
+use System\Std\Object;
 use System\Data\Connection;
 
 abstract class DbContext {
     
     protected $conn = null;
-    protected $dbSets = array();
-    protected $persistedEntities = null;
+    protected $dbSets;
+    protected $persistedEntities;
     
     public function __construct($connectionString = null){
         
@@ -20,6 +21,7 @@ abstract class DbContext {
         }
         
         $this->conn = new Connection($connectionString);
+        $this->dbSets = new \System\Collections\Dictionary();
         $this->persistedEntities = new \System\Collections\Dictionary();
     }
     
@@ -40,20 +42,19 @@ abstract class DbContext {
     }
     
     public function dbSet($entityName){
-        if(!array_key_exists($entityName, $this->dbSets)){
+        if(!$this->dbSets->hasKey($entityName)){
             $metaData = MetaReader::getMeta($entityName);
             $this->dbSets[$entityName] = new DbSet($this, $metaData);
         }
-        
         return $this->dbSets[$entityName];
-    }
-    
-    public function getPersistedEntities(){
-        return $this->persistedEntities;
     }
     
     public function getDbSets(){
         return $this->dbSets;
+    }
+    
+    public function getPersistedEntities(){
+        return $this->persistedEntities;
     }
 
     public function saveChanges(){
@@ -66,7 +67,7 @@ abstract class DbContext {
             foreach($entities as $entityContext){
                 $entity = $entityContext->getEntity();
                 
-                $properties = $this->getProperties($entity);
+                $properties = Object::getProperties($entity);
 
                 foreach($properties as $property=>$value){
                     if(is_object($value)){
@@ -75,7 +76,7 @@ abstract class DbContext {
                         if($this->persistedEntities->hasKey($parentEntityHash)){
                             $parentEntityContext = $this->persistedEntities->get($parentEntityHash);
                             $parentMeta = $this->dbSets[$parentEntityContext->getName()]->getMeta();
-                            $properties[$property] = $this->getEntityPropertyValue($value, $parentMeta->getKey()->getKeyName());
+                            $properties[$property] = Object::getPropertyValue($value, $parentMeta->getKey()->getKeyName());
                         }
                     }
                     
@@ -87,18 +88,18 @@ abstract class DbContext {
 
                     foreach($columnAttributes as $attribute){
                         
-                        if($attribute instanceof \System\Data\Entity\Annotations\ValidationAttribute){
+                        if($attribute instanceof \System\Data\Entity\Attributes\ConstraintAttribute){
                             $attribute->setColumnName($property);
                             $attribute->setValue($value);
                             if(!$attribute->isValid()){
-                                throw new Annotations\ValidationAttributeException($attribute->getErrorMessage());
+                                throw new Attributes\ConstraintAttributeException($attribute->getErrorMessage());
                             }
                         }
                         
-                        if($attribute instanceof \System\Data\Entity\Annotations\DefaultValue){
+                        if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
                             if(is_null($value)){
                                 $properties[$property] = $attribute->getDefaultValue();
-                                $this->setEntityPropertyValue($entity, $property, $attribute->getDefaultValue());
+                                Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
                             }
                         }
                     }
@@ -111,7 +112,7 @@ abstract class DbContext {
                         $log[] = $result;
                         
                         if($result){
-                            $this->setEntityPropertyValue($entity, $meta->getKey()->getKeyName(), $this->conn->getInsertId($meta->getKey()->getKeyName()));
+                            Object::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->conn->getInsertId($meta->getKey()->getKeyName()));
                             $entityContext->setState(EntityContext::PERSISTED);
                             $this->persistedEntities->add($entityContext->getHashCode(), $entityContext);
                         }
@@ -121,46 +122,18 @@ abstract class DbContext {
                         $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
                         $log[] = $this->conn->update($meta->getTable()->getTableName(), $properties, $updateParams);
                         break;
+                    
+                    case EntityContext::DELETE:
+                        $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
+                        $log[] = $this->conn->delete($meta->getTable()->getTableName(), $properties, $updateParams);
+                        $this->persistedEntities->removeAt($entityContext->getHashCode());
+                        $set->detach($entity);
+                        break;
                 }
             }
         }
         
         return array_sum($log);
-    }
-    
-    private function getProperties($entity){
-        $refClass = new \ReflectionClass($entity);
-        $properties = $refClass->getProperties();
-        
-        $array = array();
-        foreach($properties as $property){
-            $property->setAccessible(true);
-            $name = $property->getName();
-            $value = $property->getValue($entity);
-            
-            $array[$name] = $value;
-        }
-        return $array;
-    }
-    
-    private function setEntityPropertyValue($entity, $propertyName, $value){
-        $refClass = new \ReflectionClass($entity);
-
-        if($refClass->hasProperty($propertyName)){
-            $property = $refClass->getProperty($propertyName);
-            $property->setAccessible(true);
-            $property->setValue($entity , $value);
-        }
-    }
-    
-    private function getEntityPropertyValue($entity, $propertyName){
-        $refClass = new \ReflectionClass($entity);
-
-        if($refClass->hasProperty($propertyName)){
-            $property = $refClass->getProperty($propertyName);
-            $property->setAccessible(true);
-            return $property->getValue($entity);
-        }
     }
 }
 
