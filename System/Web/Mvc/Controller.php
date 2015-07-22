@@ -11,10 +11,7 @@ abstract class Controller{
     protected $viewBag;
     private $registry;
     private $httpContext;
-    private $routeData;
-    private $viewContext;
     private $view;
-    private $identity;
     
     public function __construct(){
         $this->viewBag = new Dictionary();
@@ -40,20 +37,15 @@ abstract class Controller{
     public function execute(HttpContext $httpContext){
        
         $this->httpContext = $httpContext;
-        $this->routeData = $httpContext->getRequest()->getRouteData();
-        $this->viewContext = new ViewContext($this->httpContext, $this->routeData, $this->viewBag);
-        
+        $routeData = $httpContext->getRequest()->getRouteData();
+
         $refClass = new \ReflectionClass(get_class($this));
-        $actionName = $this->routeData->get('action');
+        $actionName = $routeData->get('action');
         
-        if($this->httpContext->getRequest()->isPost() && $refClass->hasMethod($actionName.'Post')){
-            $actionName .= 'Post';
-        }elseif($this->httpContext->getRequest()->isPut() && $refClass->hasMethod($actionName.'Put')){
-            $actionName .= 'Put';
-        }elseif($this->httpContext->getRequest()->isDelete() && $refClass->hasMethod($actionName.'Delete')){
-            $actionName .= 'Delete';
-        }elseif($this->httpContext->getRequest()->isAjax() && $refClass->hasMethod($actionName.'Ajax')){
-            $actionName .= 'Ajax';
+        $requestMethod = $this->httpContext->getRequest()->getHttpMethod();
+        
+        if(in_array($requestMethod, array('POST', 'PUT', 'DELETE', 'AJAX'))){
+            $actionName .= ucfirst(strtolower($requestMethod));
         }
 
         if(!$refClass->hasMethod($actionName)){
@@ -98,7 +90,15 @@ abstract class Controller{
         }
 
         $this->load();
-        $this->render($actionMethod->invokeArgs($this, $args));
+        $actionResult = $actionMethod->invokeArgs($this, $args);
+        
+        if(!$actionResult){
+            $actionResult = new ActionResult();
+        }elseif(!$actionResult instanceof ActionResult){
+            $actionResult = new StringResult($actionResult);
+        }
+            
+        $this->render($actionResult);
     }
     
     public function getRequest(){
@@ -114,25 +114,23 @@ abstract class Controller{
     }
     
     public function redirect($location){
-        $this->httpContext->getResponse()->redirect($location);
-    }
-    
-    public function view($viewName = null){
-        if($viewName){
-            $this->viewContext->getRouteData()->set('action', $viewName);
-        }
-        return $this->view->render($this->viewContext);
+        return new RedirectResult($this->httpContext->getResponse(), $location);
     }
     
     public function json($data, $options = null){
-        $data = json_encode($data, $options);
-        $this->httpContext
-            ->getResponse()
-            ->addHeader('Content-type' , 'application/json; charset=utf-8', false)
-            ->addHeader('Content-length' , strlen($data) , false);
-        return $data;
+        return new JsonResult($this->httpContext->getResponse(), $data, $options);
+    }
+    
+    public function view($viewName = null){
+        return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $viewName));
     }
 
+    public function load(){}
+    
+    public function render($actionResult){
+        $this->httpContext->getResponse()->write($actionResult->execute());
+    }
+    
     public function __set($key, $value){
         $this->registry->set($key, $value);
     }
@@ -142,12 +140,6 @@ abstract class Controller{
             return $this->registry->get($key);
         }
         throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
-    }
-    
-    public function load(){}
-    
-    public function render($output){
-        $this->httpContext->getResponse()->write($output);
     }
 }
 

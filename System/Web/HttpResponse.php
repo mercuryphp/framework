@@ -4,8 +4,7 @@ namespace System\Web;
 
 final class HttpResponse {
 
-    private $request;
-    private $headers = array();
+    private $headers;
     private $cookies;
     private $redirect;
     private $output;
@@ -61,16 +60,17 @@ final class HttpResponse {
         505 => '505 HTTP Version Not Supported'
     );
     
-    public function __construct($request){ //print_R($request->getCookies());exit;
+    public function __construct(){
         $this->cookies = new HttpCookieCollection(array());
+        $this->headers = new \System\Collections\Dictionary();
     }
 
     public function addHeader($header, $value, $override = true){
         if($override){
-            $this->headers[$header] = $value;
+            $this->headers->set($header, $value);
         }else{
-            if(!array_key_exists($header, $this->headers)){
-                $this->headers[$header] = $value;
+            if(!$this->headers->hasKey($header)){
+                $this->headers->add($header, $value);
             }
         }
         return $this;
@@ -88,8 +88,14 @@ final class HttpResponse {
         return $this;
     }
     
-    public function redirect($location){
-        $this->redirect = $location;
+    public function redirect($location, $immediateRedirect = true){
+        if(is_string($location)){
+            if($immediateRedirect){
+                header('Location: ' . $location);
+                exit;
+            }
+            $this->redirect = $location;
+        }
     }
 
     public function setStatusCode($code){
@@ -121,11 +127,12 @@ final class HttpResponse {
             foreach($this->cookies as $cookie){
                 setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpires(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
             }
-            
             if($this->redirect){
                 header('Location: ' . $this->redirect);
+                exit;
             }
         }
+        
         echo $this->output;
         exit;
     }

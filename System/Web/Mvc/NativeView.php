@@ -50,6 +50,8 @@ class NativeView implements IView{
     }
     
     public function render(ViewContext $viewContext){
+        $request = $viewContext->getHttpContext()->getRequest();
+        $response = $viewContext->getHttpContext()->getResponse();
         $routeData = $viewContext->getRouteData();
 
         $viewFile = String::set($this->viewFilePattern)

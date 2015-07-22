@@ -8,13 +8,15 @@ use System\Collections\Dictionary;
 class ViewContext {
     
     protected $httpContext;
-    protected $routeData;
     protected $viewBag;
     
-    public function __construct(HttpContext $httpContext, Dictionary $routeData, Dictionary $viewBag){
+    public function __construct(HttpContext $httpContext, Dictionary $viewBag, $viewName = null){
         $this->httpContext = $httpContext;
-        $this->routeData = $routeData;
         $this->viewBag = $viewBag;
+        
+        if($viewName){
+            $this->httpContext->getRequest()->getRouteData()->set('action', $viewName);
+        }
     }
     
     public function getHttpContext(){
@@ -22,7 +24,7 @@ class ViewContext {
     }
     
     public function getRouteData(){
-        return $this->routeData;
+        return  $this->httpContext->getRequest()->getRouteData();
     }
     
     public function getViewBag(){

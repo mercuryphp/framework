@@ -89,6 +89,13 @@ final class HttpRequest{
         return $this->uri;
     }
     
+    public function getHttpMethod(){
+        if($this->getServer('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'){
+            return 'AJAX';
+        }
+        return $this->getServer('REQUEST_METHOD');
+    }
+    
     public function setUser(\System\Web\Security\UserIdentity $identity){
         $this->user = $identity;
     }
