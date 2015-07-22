@@ -13,7 +13,7 @@ class SessionSection extends \System\Collections\Dictionary {
             'domain' => '',
             'secure' => false,
             'httpOnly' => true,
-            'handler', 'System.Web.Session.FileSystem'
+            'handler' => 'System.Web.Session.FileSystem'
         );
 
         $this->merge($defaults)->merge($section);

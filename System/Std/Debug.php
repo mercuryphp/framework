@@ -5,7 +5,7 @@ namespace System\Std;
 class Debug {
     
     public static function report(\Exception $e){
-        ob_clean();
+        //ob_clean();
         
         echo '<h2 style="font-family:tahoma; font-weight:normal; color:orange; border-bottom:1px solid #EEE; padding-bottom:9px;">'.get_class($e).'</h2>';
         echo '<h3 style="color:#990000; font-style:italic; font-weight:normal; font-family:tahoma;">'.$e->getMessage().'</h3>';

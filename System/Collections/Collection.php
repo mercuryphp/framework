@@ -74,10 +74,11 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
      * @param   mixed $key
      * @return  mixed
      */
-    public function get($key){
+    public function get($key, $default = ''){
         if($this->hasKey($key)){
             return $this->collection[$key];
         }
+        return $default;
     }
     
     /**

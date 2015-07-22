@@ -67,12 +67,8 @@ final class String{
         return strlen($this->string);
     }
 
-    public function split($delimiter, $limit = null){
-        if($limit){
-            $array = explode($delimiter, $this->string, $limit);
-        }else{
-            $array = explode($delimiter, $this->string);
-        }
+    public function split($delimiter, $limit = null, $flags = PREG_SPLIT_NO_EMPTY){
+        $array = preg_split('/'.$delimiter.'/', $this->string, $limit, $flags);
         return new \System\Collections\ArrayList($array);
     }
     

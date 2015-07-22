@@ -196,7 +196,7 @@ abstract class HttpApplication {
                 }
 
                 $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
-                $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst($moduleName), ucfirst($routeData->get('controller'))))
+                $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))))
                         ->replace('.', '\\');
 
                 try{
@@ -245,7 +245,7 @@ abstract class HttpApplication {
                 break;
             }
         }
-        throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $this->httpContext->getRequest()->getUri()));
+        throw new Mvc\MvcException("Unable to dispatch a controller. None of the registered routes matched the request URI.");
     }
 }
 
