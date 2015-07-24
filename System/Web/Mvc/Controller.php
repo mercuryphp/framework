@@ -44,7 +44,7 @@ abstract class Controller{
         
         $requestMethod = $this->httpContext->getRequest()->getHttpMethod();
         
-        if(in_array($requestMethod, array('POST', 'PUT', 'DELETE', 'AJAX'))){
+        if(in_array($requestMethod, array('POST', 'PUT', 'DELETE', 'AJAX')) && $refClass->hasMethod($actionName.$requestMethod)){
             $actionName .= ucfirst(strtolower($requestMethod));
         }
 

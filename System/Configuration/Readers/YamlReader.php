@@ -1,10 +1,8 @@
 <?php
 
-namespace System\Configuration;
+namespace System\Configuration\Readers;
 
-abstract class ConfigurationReader {
-    
-    protected $config = array();
+class YamlReader extends Reader {
     
     public function __construct($fileName = null){
         if($fileName){
@@ -13,13 +11,11 @@ abstract class ConfigurationReader {
     }
     
     public function open($fileName){
-
         if(is_file($fileName)){
             $data = file($fileName);
-
             $nodeName = '';
-
             $idx = 0;
+            
             foreach($data as $line){
                 if ($line[0] != " "){
                     $nodeName = trim($line);
@@ -44,13 +40,12 @@ abstract class ConfigurationReader {
                     $this->config[$nodeName][$key] = $value;
                 }
             }
-            $this->init();
         }else{
             throw new ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
         }
     }
     
-    protected function getItem($key){
+    public function getItem($key){
         if(array_key_exists($key, $this->config)){
             return $this->config[$key];
         }

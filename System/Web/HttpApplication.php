@@ -26,7 +26,7 @@ abstract class HttpApplication {
      *
      * @var System\Configuration\Configuration
      */
-    private $config;
+    private $config = null;
     
     /**
      * Encapsulates Http request/response/server details.
@@ -54,7 +54,16 @@ abstract class HttpApplication {
      *
      * @return System\Configuration\Configuration;
      */
-    public function getConfiguration(){
+    protected function setConfiguration(\System\Configuration\Configuration $config){
+        $this->config = $config;
+    }
+    
+    /**
+     * Configuration.
+     *
+     * @return System\Configuration\Configuration;
+     */
+    protected function getConfiguration(){
         return $this->config;
     }
 
@@ -63,7 +72,7 @@ abstract class HttpApplication {
      *
      * @return System\Web\HttpContext
      */
-    public function getHttpContext(){
+    protected function getHttpContext(){
         return $this->httpContext;
     }
     
@@ -72,7 +81,7 @@ abstract class HttpApplication {
      *
      * @return System\Collections\Dictionary
      */
-    public function getRoutes(){
+    protected function getRoutes(){
         return $this->routes;
     }
     
@@ -81,7 +90,7 @@ abstract class HttpApplication {
      *
      * @return System\Web\Mvc\IView
      */
-    public function getViewEngine(){
+    protected function getViewEngine(){
         return $this->routes;
     }
     
@@ -89,19 +98,15 @@ abstract class HttpApplication {
      * Instantiates the application configuration object.
      */
     public function initConfiguration(){
-        $this->config = new Configuration('config.php'); 
+        $this->config = new Configuration(new \System\Configuration\Readers\JsonReader('xconfig.php')); 
     }
     
     /**
      * Initializes application settings.
      */
-    public function init($rootPath){
+    public final function init($rootPath){
         $this->routes = new RouteCollection();
         $this->view = new NativeView();
-
-        if(!$this->config instanceof \System\Configuration\Configuration){
-            throw new \RuntimeException('Configuration file has not been initialized');
-        }
 
         Environment::setRootPath($rootPath);
         Environment::setAppPath($rootPath);
@@ -178,7 +183,7 @@ abstract class HttpApplication {
     /**
      * Dispatches a controller/action.
      */
-    public function run(){
+    public final function run(){
         
         if($this->routes->count() == 0){
             throw new \RuntimeException('One or more routes must be registered.');

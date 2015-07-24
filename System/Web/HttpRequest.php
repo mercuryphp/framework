@@ -66,6 +66,7 @@ final class HttpRequest{
     }
     
     public function getParam($field = null){
+        $this->params->merge($this->routeData);
         if($field){
             return $this->params->get($field);
         }
