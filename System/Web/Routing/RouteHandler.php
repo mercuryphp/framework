@@ -65,5 +65,3 @@ class RouteHandler {
         return false;
     }
 }
-
-?>

@@ -18,5 +18,3 @@ class MaxLength extends Validator {
         return true;
     }
 }
-
-?>

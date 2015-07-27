@@ -30,5 +30,3 @@ class StringLength extends ConstraintAttribute {
     }
 
 }
-
-?>

@@ -14,5 +14,3 @@ class DataType {
         return $this->dataType;
     }
 }
-
-?>

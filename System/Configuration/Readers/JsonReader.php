@@ -36,5 +36,3 @@ class JsonReader extends Reader {
         return array();
     }
 }
-
-?>

@@ -18,5 +18,3 @@ class RedirectResult extends ActionResult {
         return $this->response->redirect($this->location, false);
     }
 }
-
-?>

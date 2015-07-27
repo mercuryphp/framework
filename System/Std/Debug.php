@@ -5,8 +5,7 @@ namespace System\Std;
 class Debug {
     
     public static function report(\Exception $e){
-        //ob_clean();
-        
+
         echo '<h2 style="font-family:tahoma; font-weight:normal; color:orange; border-bottom:1px solid #EEE; padding-bottom:9px;">'.get_class($e).'</h2>';
         echo '<h3 style="color:#990000; font-style:italic; font-weight:normal; font-family:tahoma;">'.$e->getMessage().'</h3>';
         echo '<p style="font-family:tahoma; font-size:12px; color:444;"><b>'.$e->getFile().'</b> on line <b>'.$e->getLine().'</b></p>';
@@ -31,5 +30,3 @@ class Debug {
         echo '<div style="font-family:tahoma; font-size:12px; color:444;">' . str_replace("\n", "<br/>", $e->getTraceAsString()) . '</b></div>';
     }
 }
-
-?>

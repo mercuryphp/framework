@@ -2,7 +2,6 @@
 
 namespace System\Web\Security;
 
-
 final class AuthenticationTicket {
     
     private $name;
@@ -27,6 +26,3 @@ final class AuthenticationTicket {
         return $this->userData;
     }
 }
-
-
-?>

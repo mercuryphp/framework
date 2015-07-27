@@ -149,5 +149,3 @@ class SelectQuery {
         return $this;
     }
 }
-
-?>

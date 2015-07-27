@@ -107,5 +107,3 @@ final class Object{
         return $refClass->newInstance();
     }
 }
-
-?>

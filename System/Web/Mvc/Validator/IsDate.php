@@ -53,5 +53,3 @@ class IsDate extends Validator {
         return false;
     }
 }
-
-?>

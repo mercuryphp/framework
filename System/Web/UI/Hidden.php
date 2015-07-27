@@ -26,5 +26,3 @@ class Hidden extends TextBox {
             ->toString();
     }
 }
-
-?>

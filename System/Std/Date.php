@@ -165,5 +165,3 @@ class Date extends \DateTime {
         return new Date('NOW', $timeZone);
     }
 }
-
-?>

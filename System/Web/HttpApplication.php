@@ -120,16 +120,20 @@ abstract class HttpApplication {
         $request = new HttpRequest();
         $response = new HttpResponse();
         
-        $session = Object::getInstance(
-            $this->config->getSession()->getHandler(),
-            array($request,$response,$this->config->getSession())
-        );
+        $session = Object::getInstance($this->config->getSession()->getHandler(),array($request,$response));
+        $session->setName($this->config->getSession()->getName());
+        $session->setExpires($this->config->getSession()->getExpires());
+        $session->setPath($this->config->getSession()->getPath());
+        $session->setDomain($this->config->getSession()->getDomain());
+        $session->isSecure($this->config->getSession()->isSecure());
+        $session->isHttpOnly($this->config->getSession()->isHttpOnly());
+        $session->isSliding($this->config->getSession()->isSliding());
 
         $this->httpContext = new HttpContext($request, $response, $session);
         
         FormsAuthentication::setCookieName($this->config->getFormsAuthentication()->getCookieName());
         FormsAuthentication::setEncryptionKey($this->config->getFormsAuthentication()->getEncryptionKey());
-        FormsAuthentication::setValidationKey($this->config->getFormsAuthentication()->getValidationKey());
+        FormsAuthentication::setValidationKey($this->config->getFormsAuthentication()->getValidationKey()); 
     }
     
     /**
@@ -152,7 +156,7 @@ abstract class HttpApplication {
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
             }
         }
-        
+
         $this->httpContext->getRequest()->setUser($identity);
     }
     
@@ -182,7 +186,7 @@ abstract class HttpApplication {
         if($this->routes->count() == 0){
             throw new \RuntimeException('One or more routes must be registered.');
         }
-        
+
         foreach($this->routes as $route){
             $route->setHttpRequest($this->httpContext->getRequest());
             
@@ -208,15 +212,16 @@ abstract class HttpApplication {
                 if(!$controller instanceof Mvc\Controller){
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
-                    
+
                 $controller->setViewEngine($this->view);
 
-                $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))
-                    ->replace('.', '\\');
+                $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))->replace('.', '\\');
+
+                $this->httpContext->getSession()->open();
 
                 $this->authenticateRequest($controller);
                 $this->preAction($controller);
-                
+
                 $moduleInstance = null;
                 try{
                     $refModClass = new \ReflectionClass((string)$moduleClassName);
@@ -239,7 +244,7 @@ abstract class HttpApplication {
                 
                 $this->postAction($controller);
 
-                $this->httpContext->getSession()->writeSession();
+                $this->httpContext->getSession()->write();
                 $this->httpContext->getResponse()->flush();
                 break;
             }
@@ -247,5 +252,3 @@ abstract class HttpApplication {
         throw new Mvc\MvcException("Unable to dispatch a controller. None of the registered routes matched the request URI.");
     }
 }
-
-?>

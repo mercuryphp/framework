@@ -52,5 +52,3 @@ class SelectList {
         return $this->data;
     }
 }
-
-?>

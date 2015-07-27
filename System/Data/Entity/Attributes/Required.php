@@ -27,5 +27,3 @@ class Required extends ConstraintAttribute {
     }
 
 }
-
-?>

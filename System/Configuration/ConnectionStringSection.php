@@ -9,5 +9,3 @@ class ConnectionStringSection extends \System\Collections\Dictionary {
         $this->isReadOnly = true;
     }
 }
-
-?>

@@ -77,5 +77,3 @@ class MetaReader {
         return $metaData;
     }
 }
-
-?>

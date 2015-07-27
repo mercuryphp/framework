@@ -137,5 +137,3 @@ final class HttpResponse {
         exit;
     }
 }
-
-?>

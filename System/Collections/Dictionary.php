@@ -74,5 +74,3 @@ class Dictionary extends Collection implements IDictionary{
         return $this->get($key);
     }
 }
-
-?>

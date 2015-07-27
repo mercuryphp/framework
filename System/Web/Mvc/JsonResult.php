@@ -22,5 +22,3 @@ class JsonResult extends ActionResult {
         return $jsonData;
     }
 }
-
-?>

@@ -43,5 +43,3 @@ class Link extends Element {
             ->toString();
     }
 }
-
-?>

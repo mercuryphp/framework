@@ -87,5 +87,3 @@ class SqlQuery {
         return $entity;
     }
 }
-
-?>

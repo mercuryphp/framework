@@ -349,5 +349,3 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
         }
     }
 }
-
-?>

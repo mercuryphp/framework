@@ -15,5 +15,3 @@ class IsNumeric extends Validator {
         return false;
     }
 }
-
-?>

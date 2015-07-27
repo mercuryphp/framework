@@ -18,5 +18,3 @@ class StringResult extends ActionResult {
         return $this->string;
     }
 }
-
-?>

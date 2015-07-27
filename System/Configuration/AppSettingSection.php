@@ -9,5 +9,3 @@ final class AppSettingSection extends \System\Collections\Dictionary {
         $this->isReadOnly = true;
     }
 }
-
-?>

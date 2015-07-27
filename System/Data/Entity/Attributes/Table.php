@@ -14,5 +14,3 @@ class Table {
         return $this->tableName;
     }
 }
-
-?>

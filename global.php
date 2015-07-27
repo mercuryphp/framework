@@ -20,5 +20,3 @@ class MvcApplication extends HttpApplication {
         print_r($e);
     }
 }
-
-?>

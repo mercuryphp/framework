@@ -38,5 +38,3 @@ class ValidationStack {
         return $this->error;
     }
 }
-
-?>

@@ -31,5 +31,3 @@ class ModuleContext {
         return $this->httpContext;
     }
 }
-
-?>

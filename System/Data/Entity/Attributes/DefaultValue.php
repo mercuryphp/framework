@@ -25,5 +25,3 @@ class DefaultValue {
         return $this->defaultValue;
     }
 }
-
-?>

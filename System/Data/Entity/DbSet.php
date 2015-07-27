@@ -95,5 +95,3 @@ class DbSet {
         return $this->meta;
     }
 }
-
-?>

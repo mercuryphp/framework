@@ -30,5 +30,3 @@ class NumberFormat {
         return (string)$this->formats->currencyPositivePattern;
     }
 }
-
-?>

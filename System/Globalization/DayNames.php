@@ -18,5 +18,3 @@ class DayNames {
         return (string)$this->names->shortName->name[$index];
     }
 }
-
-?>

@@ -52,5 +52,3 @@ class YamlReader extends Reader {
         return array();
     }
 }
-
-?>

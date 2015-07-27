@@ -55,5 +55,3 @@ class Html {
         return new SelectArray($source, $selectedValue, $useIndexAsValue);
     }
 }
-
-?>

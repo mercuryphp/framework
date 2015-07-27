@@ -271,5 +271,3 @@ class Connection {
         return \PDO::getAvailableDrivers();
     }
 }
-
-?>

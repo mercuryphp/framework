@@ -28,5 +28,3 @@ class FormsAuthenticationSection extends \System\Collections\Dictionary {
         return $this->collection['validationKey'];
     }
 }
-
-?>

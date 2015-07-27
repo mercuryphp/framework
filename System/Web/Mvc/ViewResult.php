@@ -16,5 +16,3 @@ class ViewResult extends ActionResult {
         return $this->controller->getViewEngine()->render($this->viewContext);
     }
 }
-
-?>

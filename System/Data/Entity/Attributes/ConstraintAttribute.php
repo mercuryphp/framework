@@ -20,5 +20,3 @@ abstract class ConstraintAttribute {
     
     public abstract function getErrorMessage();
 }
-
-?>

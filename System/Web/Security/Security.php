@@ -32,3 +32,5 @@ final class Security {
         return mcrypt_decrypt($cipher, $key, $data, $mode, $iv);
     }
 }
+
+?>

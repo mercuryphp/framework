@@ -15,5 +15,3 @@ class IsMatch extends Validator {
         return preg_match('/'.$this->pattern.'/', $this->value);    
     }
 }
-
-?>

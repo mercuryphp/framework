@@ -18,5 +18,3 @@ class Compare extends Validator {
         return false;
     }
 }
-
-?>

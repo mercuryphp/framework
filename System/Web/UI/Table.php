@@ -97,5 +97,3 @@ class Table extends Element {
         echo $control;
     }
 }
-
-?>

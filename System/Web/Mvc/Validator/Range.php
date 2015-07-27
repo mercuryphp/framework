@@ -20,5 +20,3 @@ class Range extends Validator {
         return false;
     }
 }
-
-?>

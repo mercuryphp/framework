@@ -15,5 +15,3 @@ class IsEmpty extends Validator {
         return true;
     }
 }
-
-?>

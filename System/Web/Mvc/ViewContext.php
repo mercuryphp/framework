@@ -31,5 +31,3 @@ class ViewContext {
         return $this->viewBag;
     }
 }
-
-?>

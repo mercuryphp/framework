@@ -7,12 +7,13 @@ class SessionSection extends \System\Collections\Dictionary {
     public function __construct($section){
 
         $defaults = array(
-            'name' =>'PHPSESSID',
+            'name' => 'PHPSESSID',
             'expires' => 0,
             'path' => '/',
             'domain' => '',
             'secure' => false,
             'httpOnly' => true,
+            'sliding' => true,
             'handler' => 'System.Web.Session.FileSystem'
         );
 
@@ -67,10 +68,15 @@ class SessionSection extends \System\Collections\Dictionary {
         }
         $this->collection['httpOnly'] = (bool)$bool;
     }
+    
+    public function isSliding($bool = null){
+        if(is_null($bool)){
+            return (bool)$this->collection['sliding'];
+        }
+        $this->collection['sliding'] = (bool)$bool;
+    }
 
     public function getHandler(){
         return $this->collection['handler'];
     }
 }
-
-?>

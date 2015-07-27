@@ -44,5 +44,3 @@ class ArrayList extends Collection implements IList {
         return new ArrayList(array_fill(0, $count, $value));
     }
 }
-
-?>

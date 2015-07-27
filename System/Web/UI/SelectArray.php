@@ -32,5 +32,3 @@ class SelectArray {
         return $this->data;
     }
 }
-
-?>

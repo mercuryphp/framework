@@ -73,5 +73,3 @@ class CultureInfo {
         return trim($value);
     }
 }
-
-?>

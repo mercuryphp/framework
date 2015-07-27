@@ -142,5 +142,3 @@ abstract class Controller{
         throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
     }
 }
-
-?>

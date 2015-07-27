@@ -10,11 +10,17 @@ abstract class Session {
     protected $sessionName;
     protected $sessionStarted = false;
     protected $sessionId;
-    protected $expires = 0;
+    protected $expires;
     protected $path = '/';
     protected $domain = '';
     protected $isSecure = false;
     protected $isHttpOnly = true;
+    protected $sliding;
+    
+    public function __construct($request, $response){
+        $this->httpRequest = $request;
+        $this->httpResponse = $response;
+    }
     
     public function setName($name){
         $this->sessionName = $name;
@@ -49,19 +55,24 @@ abstract class Session {
     }
     
     public function isSecure($bool = null){
-        if(!is_null($bool)){
-            $this->isSecure = $bool;
-        }else{
+        if(is_null($bool)){
             return $this->isSecure;
         }
+        $this->isSecure = (bool)$bool;
     }
 
     public function isHttpOnly($bool = null){
-        if(!is_null($bool)){
-            $this->isHttpOnly = $bool;
-        }else{
+        if(is_null($bool)){
             return $this->isHttpOnly;
         }
+        $this->isHttpOnly = (bool)$bool;
+    }
+    
+    public function isSliding($bool = null){
+        if(is_null($bool)){
+            return $this->sliding;
+        }
+        $this->sliding = (bool)$bool;
     }
 
     public function hasKey($key){
@@ -106,7 +117,5 @@ abstract class Session {
         return $this->get($key);
     }
     
-    public abstract function writeSession();
+    public abstract function write();
 }
-
-?>

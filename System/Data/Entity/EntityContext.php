@@ -39,5 +39,3 @@ class EntityContext {
         return $this->entityHash;
     }
 }
-
-?>

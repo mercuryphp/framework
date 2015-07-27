@@ -15,5 +15,3 @@ class NamespaceSection  extends \System\Collections\Dictionary {
         parent::__construct($namespaces);
     }
 }
-
-?>

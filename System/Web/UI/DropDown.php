@@ -53,5 +53,3 @@ class DropDown extends Element {
         return $control->append('</select>')->toString();
     }
 }
-
-?>

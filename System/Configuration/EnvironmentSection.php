@@ -33,5 +33,3 @@ class EnvironmentSection extends \System\Collections\Dictionary {
         return $this->collection['executionTime'];
     }
 }
-
-?>

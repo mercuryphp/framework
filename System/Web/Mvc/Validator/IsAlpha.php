@@ -15,5 +15,3 @@ class IsAlpha extends Validator {
         return false;
     }
 }
-
-?>

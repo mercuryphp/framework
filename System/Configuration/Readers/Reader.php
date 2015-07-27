@@ -15,5 +15,3 @@ abstract class Reader {
         return array();
     }
 }
-
-?>

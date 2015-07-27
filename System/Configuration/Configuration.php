@@ -44,5 +44,3 @@ class Configuration {
         return $this->appSettings;
     }
 }
-
-?>

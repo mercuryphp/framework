@@ -123,5 +123,3 @@ final class String{
         return new String(trim($join, $glue));
     }
 }
-
-?>

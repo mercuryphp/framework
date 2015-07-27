@@ -22,5 +22,3 @@ class FileUpload extends Element {
             ->toString();
     }
 }
-
-?>

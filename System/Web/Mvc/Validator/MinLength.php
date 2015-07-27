@@ -18,5 +18,3 @@ class MinLength extends Validator {
         return true;
     }
 }
-
-?>

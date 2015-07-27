@@ -22,5 +22,3 @@ class Label extends Element {
             ->toString();
     }
 }
-
-?>

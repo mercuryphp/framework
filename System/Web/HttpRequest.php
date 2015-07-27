@@ -201,5 +201,3 @@ final class HttpRequest{
         return $list;
     }
 }
-
-?>

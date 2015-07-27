@@ -17,5 +17,3 @@ class NotInArray extends Validator {
         return false;
     }
 }
-
-?>

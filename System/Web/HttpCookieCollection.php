@@ -34,5 +34,3 @@ class HttpCookieCollection extends \System\Collections\Collection {
         }
     }
 }
-
-?>

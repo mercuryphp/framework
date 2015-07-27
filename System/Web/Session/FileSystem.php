@@ -6,16 +6,7 @@ class FileSystem extends Session {
     
     protected $sessionFile;
     
-    public function __construct($request, $response, \System\Configuration\SessionSection $section){
-        $this->httpRequest = $request;
-        $this->httpResponse = $response;
-        $this->sessionName = $section->getName();
-        $this->expires = $section->getExpires();
-        $this->path = $section->getPath();
-        $this->domain = $section->getDomain();
-        $this->isSecure = $section->isSecure();
-        $this->isHttpOnly = $section->isHttpOnly();
-
+    public function open(){
         if($this->httpRequest->getCookies()->hasKey($this->sessionName)){
             $this->sessionId = $this->httpRequest->getCookies()->get($this->sessionName)->getValue();
             $this->sessionFile = session_save_path() .'/sess_' . $this->sessionId;
@@ -26,7 +17,7 @@ class FileSystem extends Session {
         }
     }
     
-    public function writeSession(){ 
+    public function write(){ 
         if($this->sessionStarted){
             if(!$this->sessionFile){
                 $this->sessionId = sha1(uniqid(mt_rand()));
@@ -40,5 +31,3 @@ class FileSystem extends Session {
         }
     }
 }
-
-?>

@@ -49,5 +49,3 @@ final class HttpFile{
         return move_uploaded_file($this->tmpFileName, $destination);
     }
 }
-
-?>

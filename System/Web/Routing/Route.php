@@ -27,5 +27,3 @@ class Route {
         return $this->routeHandler->execute($this->httpRequest, $this->route, $this->defaults);
     }
 }
-
-?>

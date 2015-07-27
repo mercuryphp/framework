@@ -136,5 +136,3 @@ abstract class DbContext {
         return array_sum($log);
     }
 }
-
-?>

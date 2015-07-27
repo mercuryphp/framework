@@ -44,5 +44,3 @@ class TextBox extends Element {
             ->toString();
     }
 }
-
-?>
