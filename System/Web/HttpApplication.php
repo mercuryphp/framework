@@ -98,7 +98,7 @@ abstract class HttpApplication {
      * Instantiates the application configuration object.
      */
     public function initConfiguration(){
-        $this->config = new Configuration(new \System\Configuration\Readers\JsonReader('xconfig.php')); 
+        $this->config = new Configuration(new \System\Configuration\Readers\YamlReader('config.php')); 
     }
     
     /**
@@ -122,16 +122,7 @@ abstract class HttpApplication {
         
         $session = Object::getInstance(
             $this->config->getSession()->getHandler(),
-            array(
-                $request,
-                $response,
-                $this->config->getSession()->getName(),
-                $this->config->getSession()->getExpires(),
-                $this->config->getSession()->getPath(),
-                $this->config->getSession()->getDomain(),
-                $this->config->getSession()->isSecure(),
-                $this->config->getSession()->isHttpOnly()
-            )
+            array($request,$response,$this->config->getSession())
         );
 
         $this->httpContext = new HttpContext($request, $response, $session);
@@ -152,11 +143,14 @@ abstract class HttpApplication {
     public function authenticateRequest(\System\Web\Mvc\Controller $controller){
         $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
         
+        $identity = new UserIdentity('Anonymous');
+        
         if($httpAuthCookie){
-            $ticket = FormsAuthentication::decrypt($httpAuthCookie->getValue());
-            $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
-        }else{
-            $identity = new UserIdentity('Anonymous');
+            $ticket = FormsAuthentication::decrypt($httpAuthCookie->getValue()); 
+
+            if(\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()){
+                $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
+            }
         }
         
         $this->httpContext->getRequest()->setUser($identity);

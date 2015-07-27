@@ -32,27 +32,23 @@ class FormsAuthentication {
         );
         
         $string = serialize($data);
-        $hash = hash_hmac('sha512', $string, self::$validationKey);
-        
-        $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC), MCRYPT_DEV_URANDOM);
-        return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, self::$encryptionKey, $hash.'|'.$string, MCRYPT_MODE_CBC, $iv)).'|'.base64_encode($iv);
+        $hash = Security::hmac('sha512', $string, self::$validationKey);
+        $iv = Security::iv(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC, MCRYPT_DEV_URANDOM, false);
+        return Security::encrypt(MCRYPT_RIJNDAEL_256, self::$encryptionKey, $hash.'|'.$string, MCRYPT_MODE_CBC, $iv, true).'|'.base64_encode($iv);
     }
     
     public static function decrypt($string){
         $sections = explode('|', $string);
-        
+
         if(count($sections) == 2){
-            $message = base64_decode($sections[0]);
-            $iv = base64_decode($sections[1]);
+            $output = trim(Security::decrypt(MCRYPT_RIJNDAEL_256, self::$encryptionKey, $sections[0], MCRYPT_MODE_CBC, base64_decode($sections[1])));
+            list($hash, $data) = explode('|', $output, 2);
 
-            $output = trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, self::$encryptionKey, $message, MCRYPT_MODE_CBC, $iv));
-            
-            $sections = explode('|', $output, 2);
+            if($hash && $data){
+                $hashed = Security::hmac('sha512', $data, self::$validationKey);
 
-            if(count($sections) == 2){
-                $hash = hash_hmac('sha512', $sections[1], self::$validationKey);
-                if($hash == $sections[0]){
-                    $data = unserialize($sections[1]);
+                if($hash == $hashed){
+                    $data = unserialize($data);
                     return new AuthenticationTicket($data[0],$data[1],$data[2]);
                 }
             }

@@ -32,7 +32,10 @@ class SessionSection extends \System\Collections\Dictionary {
     }
     
     public function getExpires(){
-        return $this->collection['expires'];
+        if($this->collection['expires'] !=0){
+            return \System\Std\Date::now()->addSeconds($this->collection['expires'])->getTimestamp();
+        }
+        return 0;
     }
     
     public function setPath($path){
@@ -51,18 +54,18 @@ class SessionSection extends \System\Collections\Dictionary {
         return $this->collection['domain'];
     }
     
-    public function isSecure($bool = null){
-        if(is_null($this->collection['secure'])){
+    public function isSecure($bool = null){ 
+        if(is_null($bool)){
             return $this->collection['secure'];
         }
         $this->collection['secure'] = $bool;
     }
     
     public function isHttpOnly($bool = null){
-        if(is_null($this->collection['httpOnly'])){
-            return $this->collection['httpOnly'];
+        if(is_null($bool)){
+            return (bool)$this->collection['httpOnly'];
         }
-        $this->collection['httpOnly'] = $bool;
+        $this->collection['httpOnly'] = (bool)$bool;
     }
 
     public function getHandler(){

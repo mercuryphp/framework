@@ -15,7 +15,6 @@ abstract class Session {
     protected $domain = '';
     protected $isSecure = false;
     protected $isHttpOnly = true;
-    protected $onSaveFunction = null;
     
     public function setName($name){
         $this->sessionName = $name;
@@ -82,12 +81,8 @@ abstract class Session {
     }
     
     public function abandon(){
-        setcookie($this->sessionName, '', time()-86400, '/', '', false, true);
+        $this->httpResponse->getCookies()->add(new \System\Web\HttpCookie($this->sessionName,'',time()-86400, '/', false, true));
         $this->sessionStarted = false;
-    }
-    
-    public function onSave(callable $function){
-        $this->onSaveFunction = $function;
     }
     
     public function set($key, $value){

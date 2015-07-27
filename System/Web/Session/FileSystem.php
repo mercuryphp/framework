@@ -6,15 +6,15 @@ class FileSystem extends Session {
     
     protected $sessionFile;
     
-    public function __construct($request, $response, $sessionName, $expires, $path, $domain, $isSecure, $isHttpOnly){
+    public function __construct($request, $response, \System\Configuration\SessionSection $section){
         $this->httpRequest = $request;
         $this->httpResponse = $response;
-        $this->sessionName = $sessionName;
-        $this->expires = ($expires > 0) ? \System\Std\Date::now()->addSeconds($expires)->getTimestamp() : 0;
-        $this->path = $path;
-        $this->domain = $domain;
-        $this->isSecure = $isSecure;
-        $this->isHttpOnly = $isHttpOnly;
+        $this->sessionName = $section->getName();
+        $this->expires = $section->getExpires();
+        $this->path = $section->getPath();
+        $this->domain = $section->getDomain();
+        $this->isSecure = $section->isSecure();
+        $this->isHttpOnly = $section->isHttpOnly();
 
         if($this->httpRequest->getCookies()->hasKey($this->sessionName)){
             $this->sessionId = $this->httpRequest->getCookies()->get($this->sessionName)->getValue();
@@ -37,11 +37,8 @@ class FileSystem extends Session {
             $this->httpResponse->getCookies()->add($httpCookie);
             
             file_put_contents($this->sessionFile, serialize($this->collection));
-            
-            if(is_callable($this->onSaveFunction)){
-                call_user_func($this->onSaveFunction);
-            }
         }
     }
 }
 
+?>

@@ -17,11 +17,11 @@ class EntityMeta {
     }
     
     public function getTable(){
-        return $this->meta['Table'];
+        return $this->meta['System.Data.Entity.Attributes.Table'];
     }
     
     public function getKey(){
-        return $this->meta['Key'];
+        return $this->meta['System.Data.Entity.Attributes.Key'];
     }
     
     public function getColumns(){

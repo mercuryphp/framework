@@ -7,21 +7,16 @@ use System\Std\Object;
 
 class MetaReader {
     public static function getMeta($entityName){
-        $entityName = \System\Std\String::set($entityName);
-        $tableName = $entityName->toLower();
-
-        if($entityName->indexOf('.') > -1){
-            $tableName = $entityName->split('.')->last();
-            $entityName = $entityName->replace('.','\\');
-        }
+        $tableName = new String(String::set($entityName)->toLower()->split('\.')->last());
+        $entityName = String::set($entityName)->replace('.', '\\');
 
         $refClass = new \ReflectionClass((string)$entityName);
 
         $tokens = token_get_all(file_get_contents($refClass->getFileName())); 
 
         $meta = array(
-            'Table' => new Attributes\Table((string)$tableName),
-            'Key' => new Attributes\Key((string)$tableName->append('_id')),
+            'System.Data.Entity.Attributes.Table' => new Attributes\Table((string)$tableName),
+            'System.Data.Entity.Attributes.Key' => new Attributes\Key((string)$tableName->append('_id')),
             'Columns' => array()
         );
         $tmp = array();
@@ -42,8 +37,7 @@ class MetaReader {
                             if(!$attribute->indexOf('.')){
                                 $attribute = $attribute->prepend('System.Data.Entity.Attributes.');
                             }
-
-                            $meta[$attribute->split('.')->last()] = Object::getInstance($attribute, str_getcsv($args, ','));
+                            $meta[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
                         }
                     }
                     break;
