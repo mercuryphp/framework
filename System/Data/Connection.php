@@ -7,6 +7,7 @@ class Connection {
     protected $dsn = '';
     protected $pdo = null;
     protected $transaction = null;
+    protected $profiler;
     
     /**
      * Constructs a new System.Data.Database instance. Creates a new connection 
@@ -18,6 +19,7 @@ class Connection {
      * @return  void
      */
     public function __construct($connectionString = null){
+        $this->profiler = new Profiler();
         if($connectionString){
             $this->connect($connectionString);
         }
@@ -53,7 +55,9 @@ class Connection {
         $this->dsn = $dbConfig->each(function($k, $v){ return $k.'='.$v.';'; })->join('');
         
         try{
+            $this->profiler->start();
             $this->pdo = new \PDO($this->dsn, $uid, $pwd);
+            $this->profiler->log('Connected to database', $dbConfig->toArray(), Profiler::CONNECT);
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->transaction = new Transaction($this->pdo);
         }catch(\PDOException $e){
@@ -72,13 +76,18 @@ class Connection {
      */
     public function query($sql, array $params = array()){
         if (!$this->pdo) { return false; }
-
+        
+        $this->profiler->start();
+        
         try{
             $stm = $this->pdo->prepare($sql);
             $stm->execute($params);
         }catch (\PDOException $e){
             throw new QueryException($e->getMessage());
         }
+
+        $this->profiler->log($sql, $params);
+
         return $stm;
     }
 	
@@ -259,6 +268,16 @@ class Connection {
      */
     public function getDsn(){
         return $this->dsn;
+    }
+    
+    /**
+     * Gets the profiler object associated with the connection.
+     * 
+     * @method  getProfiler
+     * @return  System.Data.Profiler
+     */
+    public function getProfiler(){
+        return $this->profiler;
     }
     
     /**

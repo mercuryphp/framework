@@ -26,5 +26,3 @@ class Transaction {
         return $this->pdo->inTransaction();
     }
 }
-
-?>

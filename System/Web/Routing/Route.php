@@ -23,6 +23,10 @@ class Route {
         $this->httpRequest = $httpRequest;
     }
     
+    public function getRoute(){
+        return $this->route;
+    }
+    
     public function execute(){
         return $this->routeHandler->execute($this->httpRequest, $this->route, $this->defaults);
     }

@@ -2,6 +2,7 @@
 
 namespace System\Web\Mvc;
 
+use System\Std\Debug;
 use System\Collections\Dictionary;
 use System\Web\HttpContext;
 use System\Web\Mvc\ViewContext;
@@ -89,7 +90,10 @@ abstract class Controller{
             }
         }
 
+        Debug::log(get_called_class() .':load()', Debug::EVENT);
         $this->load();
+        
+        Debug::log(get_called_class() .':'.$actionName.'()', Debug::EVENT);
         $actionResult = $actionMethod->invokeArgs($this, $args);
         
         if(!$actionResult){
@@ -98,6 +102,7 @@ abstract class Controller{
             $actionResult = new StringResult($actionResult);
         }
             
+        Debug::log(get_called_class() .':render()', Debug::EVENT);
         $this->render($actionResult);
     }
     

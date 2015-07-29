@@ -3,6 +3,7 @@
 namespace System\Web;
 
 use System\Std\Environment;
+use System\Std\Debug;
 use System\Std\String;
 use System\Std\Object;
 use System\Globalization\CultureInfo;
@@ -105,6 +106,9 @@ abstract class HttpApplication {
      * Initializes application settings.
      */
     public final function init($rootPath){
+        
+        Debug::log('Application initialization');
+        
         $this->routes = new RouteCollection();
         $this->view = new NativeView();
 
@@ -183,6 +187,8 @@ abstract class HttpApplication {
      */
     public final function run(){
         
+        Debug::log('Running application');
+        
         if($this->routes->count() == 0){
             throw new \RuntimeException('One or more routes must be registered.');
         }
@@ -193,6 +199,9 @@ abstract class HttpApplication {
             $routeData = $route->execute();
 
             if($routeData){
+                
+                Debug::log('Route matched : ' . $route->getRoute());
+                
                 $namespace = '';
                 if(Environment::getRootPath() != Environment::getAppPath()){
                     $namespace = String::set(Environment::getAppPath())->replace(Environment::getRootPath(), "")->trim("/");
@@ -219,7 +228,10 @@ abstract class HttpApplication {
 
                 $this->httpContext->getSession()->open();
 
+                Debug::log(get_called_class() .':authenticateRequest()', Debug::EVENT);
                 $this->authenticateRequest($controller);
+                
+                Debug::log(get_called_class() .':preAction()', Debug::EVENT);
                 $this->preAction($controller);
 
                 $moduleInstance = null;
@@ -230,6 +242,7 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){
+                        Debug::log(get_class($moduleInstance) .':load()', Debug::EVENT);
                         $moduleInstance->load(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
@@ -238,14 +251,18 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){
+                        Debug::log(get_class($moduleInstance) .':unload()', Debug::EVENT);
                         $moduleInstance->unload(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
                 
+                Debug::log(get_class($moduleInstance) .':postAction()', Debug::EVENT);
                 $this->postAction($controller);
 
-                $this->httpContext->getSession()->write();
+                $this->httpContext->getSession()->write();Debug::t();
                 $this->httpContext->getResponse()->flush();
+                
+                
                 break;
             }
         }
