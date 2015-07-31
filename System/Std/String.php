@@ -5,6 +5,11 @@ namespace System\Std;
 final class String{
     
     private $string = '';
+    
+    const FIRST_FIRST = 1;
+    const FIRST_LAST = 2;
+    const LAST_FIRST = 3;
+    const LAST_LAST = 4;
 
     public function __construct($string){
         $this->string = $string;
@@ -80,13 +85,24 @@ final class String{
         return strripos($this->string, $char);
     }
 
-    public function get($fromChar, $toChar, $greedy = false){
-        $pos1 = $this->indexOf($fromChar);
-        
-        if($greedy){
-            $pos2 = $this->lastIndexOf($toChar);
-        }else{
-            $pos2 = $this->indexOf($toChar);
+    public function get($fromChar, $toChar, $mode = String::FIRST_FIRST){
+        switch ($mode){
+            case self::FIRST_FIRST:
+                $pos1 = $this->indexOf($fromChar);
+                $pos2 = $this->indexOf($toChar);
+                break;
+            case self::FIRST_LAST:
+                $pos1 = $this->indexOf($fromChar);
+                $pos2 = $this->lastIndexOf($toChar);
+                break;
+            case self::LAST_FIRST:
+                $pos1 = $this->lastIndexOf($fromChar);
+                $pos2 = $this->indexOf($toChar);
+                break;
+            case self::LAST_LAST:
+                $pos1 = $this->lastIndexOf($fromChar);
+                $pos2 = $this->lastIndexOf($toChar);
+                break;
         }
 
         if($pos1 >-1 && $pos2 >-1){

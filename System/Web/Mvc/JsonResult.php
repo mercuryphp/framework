@@ -15,10 +15,11 @@ class JsonResult extends ActionResult {
     }
     
     public function execute(){
-        $jsonData = json_encode($this->data, $this->options);
+        $jsonData = json_encode($this->data, $this->options); 
         $this->httpResponse
-            ->addHeader('Content-type' , 'application/json; charset=utf-8', false)
-            ->addHeader('Content-length' , strlen($jsonData) , false);
+            ->setContentType('application/json')
+            ->setContentEncoding('UTF-8')
+            ->setContentLength(strlen($jsonData));
         return $jsonData;
     }
 }

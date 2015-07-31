@@ -10,6 +10,14 @@ class YamlReader extends Reader {
         }
     }
     
+    /**
+     * Opens a YAML configuration file.
+     * Throws ConfigurationFileNotFoundException if the file does not exist.
+     * 
+     * @method  open
+     * @param   string $fileName
+     * @return  void
+     */
     public function open($fileName){
         if(is_file($fileName)){
             $data = file($fileName);
@@ -43,12 +51,5 @@ class YamlReader extends Reader {
         }else{
             throw new ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
         }
-    }
-    
-    public function getItem($key){
-        if(array_key_exists($key, $this->config)){
-            return $this->config[$key];
-        }
-        return array();
     }
 }

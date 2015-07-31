@@ -5,12 +5,19 @@ namespace System\Web\Mvc;
 use System\Std\Environment;
 use System\Std\String;
 
-class NativeView implements IView{
+class NativeView implements IView {
 
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
     protected $viewFilePattern = '/@module/Views/@controller/@action';
+    protected $escaper;
+    
+    public function __construct(){
+        $this->setEscaper(function($value){
+            return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
+        });
+    }
     
     public function addScript($type, $script){
         $this->scripts[$type][] = $script;
@@ -24,6 +31,19 @@ class NativeView implements IView{
     public function setLayout($layoutFile){
         $this->layoutFile = $layoutFile;
         return $this;
+    }
+    
+    public function setEscaper(callable $escaper){
+        $this->escaper = $escaper;
+        \System\Web\UI\Html::setEscaper($escaper);
+    }
+    
+    public function getEscaper(){
+        return $this->escaper;
+    }
+    
+    protected function escape($value){
+        return call_user_func_array($this->escaper, array($value));
     }
     
     public function renderScripts(){
@@ -55,13 +75,13 @@ class NativeView implements IView{
         $routeData = $viewContext->getRouteData();
 
         $viewFile = String::set($this->viewFilePattern)
-            ->prepend(Environment::getAppPath())
+            ->prepend(Environment::getControllerPath())
             ->replace('@module', String::set($routeData->module)->toLower()->toUpperFirst())
             ->replace('@controller', String::set($routeData->controller)->toLower()->toUpperFirst())
             ->replace('@action', String::set($routeData->action)->toLower()->toUpperFirst())
             ->append('.php')
-            ->replace('//', '/');
-                
+            ->replace('\\', '/');
+
         if(file_exists($viewFile)){
             extract($viewContext->getViewBag()->toArray());
 
@@ -72,7 +92,7 @@ class NativeView implements IView{
 
             if($this->layoutFile){
                 if(substr($this->layoutFile, 0, 1) == '~'){
-                    $this->layoutFile = \System\Std\Environment::getAppPath() . substr($this->layoutFile, 1);
+                    $this->layoutFile = \System\Std\Environment::getControllerPath() . substr($this->layoutFile, 1);
                 }
                 
                 if (file_exists($this->layoutFile)){

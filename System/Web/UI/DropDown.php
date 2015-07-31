@@ -32,7 +32,7 @@ class DropDown extends Element {
 
         foreach($data as $item){
             $control = $control->append('<option value="')
-                ->append($item[$dataValue])
+                ->append($this->escape($item[$dataValue]))
                 ->append('" ');
             
             if($selectedValue == $item[$dataValue]){

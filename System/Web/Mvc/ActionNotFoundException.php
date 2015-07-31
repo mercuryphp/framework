@@ -2,5 +2,5 @@
 
 namespace System\Web\Mvc;
 
-class ActionNotFoundException extends \Exception {
+class ActionNotFoundException extends HttpException {
 }

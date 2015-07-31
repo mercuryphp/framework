@@ -5,7 +5,7 @@ namespace System\Std;
 final class Environment {
     private static $includes = array();
     private static $rootPath;
-    private static $appPath;
+    private static $controllerPath;
     private static $executionTime;
     private static $namespaces = array();
     private static $cultureInfo;
@@ -36,12 +36,12 @@ final class Environment {
         return self::$rootPath;
     }
     
-    public static function setAppPath($path){
-        self::$appPath = $path;
+    public static function setControllerPath($path){
+        self::$controllerPath = $path;
     }
     
-    public static function getAppPath(){
-        return self::$appPath;
+    public static function getControllerPath(){
+        return self::$controllerPath;
     }
     
     public static function setExecutionTime($seconds){

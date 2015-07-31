@@ -11,7 +11,7 @@ class Cookie extends Session {
         }
     }
     
-    public function write(){ //print "h"; exit;
+    public function write(){
         if($this->sessionStarted || $this->sliding){
             $httpCookie = new \System\Web\HttpCookie($this->sessionName, serialize($this->collection), $this->expires, $this->path, $this->domain, $this->isSecure, $this->isHttpOnly);
             $this->httpResponse->getCookies()->add($httpCookie);

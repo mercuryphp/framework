@@ -3,6 +3,7 @@
 namespace System\Web\Mvc;
 
 use System\Std\Debug;
+use System\Std\String;
 use System\Collections\Dictionary;
 use System\Web\HttpContext;
 use System\Web\Mvc\ViewContext;
@@ -15,6 +16,7 @@ abstract class Controller{
     private $view;
     
     public function __construct(){
+        $this->view = new NativeView();
         $this->viewBag = new Dictionary();
         $this->registry = new Dictionary();
     }
@@ -35,10 +37,13 @@ abstract class Controller{
         return $this->httpContext->getRequest()->getUser();
     }
     
-    public function execute(HttpContext $httpContext){
-       
+    public function execute(HttpContext $httpContext, array $routeData = array()){
+
         $this->httpContext = $httpContext;
-        $routeData = $httpContext->getRequest()->getRouteData();
+        $routeData = $httpContext->getRequest()
+            ->getRouteData()
+            ->set('controller', (string)String::set(get_called_class())->get('\\', 'Controller', String::LAST_LAST)->toLower())
+            ->merge($routeData);
 
         $refClass = new \ReflectionClass(get_class($this));
         $actionName = $routeData->get('action');
@@ -95,15 +100,19 @@ abstract class Controller{
         
         Debug::log(get_called_class() .':'.$actionName.'()', Debug::EVENT);
         $actionResult = $actionMethod->invokeArgs($this, $args);
-        
+
         if(!$actionResult){
             $actionResult = new ActionResult();
         }elseif(!$actionResult instanceof ActionResult){
             $actionResult = new StringResult($actionResult);
         }
-            
+
         Debug::log(get_called_class() .':render()', Debug::EVENT);
         $this->render($actionResult);
+    }
+    
+    public function getHttpContext(){
+        return $this->httpContext;
     }
     
     public function getRequest(){

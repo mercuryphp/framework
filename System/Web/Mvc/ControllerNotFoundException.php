@@ -2,5 +2,5 @@
 
 namespace System\Web\Mvc;
 
-class ControllerNotFoundException extends \Exception {
+class ControllerNotFoundException extends HttpException {
 }

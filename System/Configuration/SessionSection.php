@@ -13,7 +13,6 @@ class SessionSection extends \System\Collections\Dictionary {
             'domain' => '',
             'secure' => false,
             'httpOnly' => true,
-            'sliding' => true,
             'handler' => 'System.Web.Session.FileSystem'
         );
 
@@ -33,10 +32,7 @@ class SessionSection extends \System\Collections\Dictionary {
     }
     
     public function getExpires(){
-        if($this->collection['expires'] !=0){
-            return \System\Std\Date::now()->addSeconds($this->collection['expires'])->getTimestamp();
-        }
-        return 0;
+        return $this->collection['expires'];
     }
     
     public function setPath($path){
@@ -67,13 +63,6 @@ class SessionSection extends \System\Collections\Dictionary {
             return (bool)$this->collection['httpOnly'];
         }
         $this->collection['httpOnly'] = (bool)$bool;
-    }
-    
-    public function isSliding($bool = null){
-        if(is_null($bool)){
-            return (bool)$this->collection['sliding'];
-        }
-        $this->collection['sliding'] = (bool)$bool;
     }
 
     public function getHandler(){

@@ -23,6 +23,10 @@ class FileSystem extends Session {
                 $this->sessionId = sha1(uniqid(mt_rand()));
                 $this->sessionFile = session_save_path() .'/sess_' . $this->sessionId;
             }
+            
+            if($this->expires > 0){
+                $this->expires = \System\Std\Date::now()->addSeconds($this->expires)->getTimestamp();
+            }
 
             $httpCookie = new \System\Web\HttpCookie($this->sessionName, $this->sessionId, $this->expires, $this->path, $this->domain, $this->isSecure, $this->isHttpOnly);
             $this->httpResponse->getCookies()->add($httpCookie);

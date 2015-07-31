@@ -15,7 +15,6 @@ abstract class Session {
     protected $domain = '';
     protected $isSecure = false;
     protected $isHttpOnly = true;
-    protected $sliding;
     
     public function __construct($request, $response){
         $this->httpRequest = $request;
@@ -67,13 +66,6 @@ abstract class Session {
         }
         $this->isHttpOnly = (bool)$bool;
     }
-    
-    public function isSliding($bool = null){
-        if(is_null($bool)){
-            return $this->sliding;
-        }
-        $this->sliding = (bool)$bool;
-    }
 
     public function hasKey($key){
         $this->sessionStarted = true;
@@ -83,7 +75,7 @@ abstract class Session {
         return false;
     }
 
-    public function remove($key) {
+    public function remove($key){
         $this->sessionStarted = true;
         if(array_key_exists($key, $this->collection)){
             unset($this->collection[$key]);
@@ -101,7 +93,7 @@ abstract class Session {
         $this->collection[$key] = $value;
     }
     
-    public function get($key) {
+    public function get($key){
         $this->sessionStarted = true;
         if(array_key_exists($key, $this->collection)){
             return $this->collection[$key];

@@ -11,7 +11,6 @@ use System\Configuration\Configuration;
 use System\Web\Routing\RouteCollection;
 use System\Web\Security\FormsAuthentication;
 use System\Web\Security\UserIdentity;
-use System\Web\Mvc\NativeView;
 
 /**
  * HttpApplication
@@ -87,15 +86,6 @@ abstract class HttpApplication {
     }
     
     /**
-     * Gets the route collection.
-     *
-     * @return System\Web\Mvc\IView
-     */
-    protected function getViewEngine(){
-        return $this->routes;
-    }
-    
-    /**
      * Instantiates the application configuration object.
      */
     public function initConfiguration(){
@@ -110,10 +100,9 @@ abstract class HttpApplication {
         Debug::log('Application initialization');
         
         $this->routes = new RouteCollection();
-        $this->view = new NativeView();
 
         Environment::setRootPath($rootPath);
-        Environment::setAppPath($rootPath);
+        Environment::setControllerPath($rootPath);
         Environment::setExecutionTime($this->config->getEnvironment()->getExecutionTime());
         Environment::setNamespaces($this->config->getNamespaces()->toArray());
         Environment::setCulture(new CultureInfo($this->config->getEnvironment()->getLocale()));
@@ -123,7 +112,7 @@ abstract class HttpApplication {
 
         $request = new HttpRequest();
         $response = new HttpResponse();
-        
+
         $session = Object::getInstance($this->config->getSession()->getHandler(),array($request,$response));
         $session->setName($this->config->getSession()->getName());
         $session->setExpires($this->config->getSession()->getExpires());
@@ -131,7 +120,6 @@ abstract class HttpApplication {
         $session->setDomain($this->config->getSession()->getDomain());
         $session->isSecure($this->config->getSession()->isSecure());
         $session->isHttpOnly($this->config->getSession()->isHttpOnly());
-        $session->isSliding($this->config->getSession()->isSliding());
 
         $this->httpContext = new HttpContext($request, $response, $session);
         
@@ -193,6 +181,7 @@ abstract class HttpApplication {
             throw new \RuntimeException('One or more routes must be registered.');
         }
 
+        $controllerDispacthed = false;
         foreach($this->routes as $route){
             $route->setHttpRequest($this->httpContext->getRequest());
             
@@ -203,8 +192,8 @@ abstract class HttpApplication {
                 Debug::log('Route matched : ' . $route->getRoute());
                 
                 $namespace = '';
-                if(Environment::getRootPath() != Environment::getAppPath()){
-                    $namespace = String::set(Environment::getAppPath())->replace(Environment::getRootPath(), "")->trim("/");
+                if(Environment::getRootPath() != Environment::getControllerPath()){
+                    $namespace = String::set(Environment::getControllerPath())->replace(Environment::getRootPath(), '')->trim('/');
                 }
 
                 $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
@@ -221,8 +210,6 @@ abstract class HttpApplication {
                 if(!$controller instanceof Mvc\Controller){
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
-
-                $controller->setViewEngine($this->view);
 
                 $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))->replace('.', '\\');
 
@@ -258,14 +245,20 @@ abstract class HttpApplication {
                 
                 Debug::log(get_class($moduleInstance) .':postAction()', Debug::EVENT);
                 $this->postAction($controller);
-
-                $this->httpContext->getSession()->write();Debug::t();
-                $this->httpContext->getResponse()->flush();
-                
-                
+                $controllerDispacthed = true;
                 break;
             }
         }
-        throw new Mvc\MvcException("Unable to dispatch a controller. None of the registered routes matched the request URI.");
+        
+        if(false === $controllerDispacthed){
+            throw new Mvc\MvcException("Unable to dispatch a controller. None of the registered routes matched the request URI.");
+        }
+    }
+    
+    public function end(){
+        Debug::log('Exiting application');
+        $this->httpContext->getSession()->write();
+        $this->httpContext->getResponse()->flush();
+        exit;
     }
 }

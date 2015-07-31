@@ -9,7 +9,9 @@ final class HttpResponse {
     private $redirect;
     private $output;
     private $statusCode;
-    private $statusCodes = array(
+    private $contentType;
+    private $encoding;
+    private static $statusCodes = array(
         //Informational 1xx
         100 => '100 Continue',
         101 => '101 Switching Protocols',
@@ -63,6 +65,62 @@ final class HttpResponse {
     public function __construct(){
         $this->cookies = new HttpCookieCollection(array());
         $this->headers = new \System\Collections\Dictionary();
+        $this->setContentType('text/html');
+        $this->setContentEncoding('UTF-8');
+    }
+
+    public function setContentType($contentType){
+        $this->contentType = $contentType;
+        $this->addHeader('Content-type', $this->contentType.';'.$this->encoding, true); 
+        return $this;
+    }
+    
+    public function getContentType(){
+        return $this->contentType;
+    }
+    
+    public function setContentEncoding($encoding){
+        $this->encoding = $encoding;
+        $this->addHeader('Content-type', $this->contentType.';charset='.$this->encoding, true); 
+        return $this;
+    }
+    
+    public function getContentEncoding(){
+        return $this->encoding;
+    }
+    
+    public function setContentLength($length){
+        $this->addHeader('Content-length', $length, true); 
+        return $this;
+    }
+    
+    public function getContentLength(){
+        return $this->headers->get('Content-length');
+    }
+
+    public function setStatusCode($code){
+        if (isset(self::$statusCodes[$code])){
+            $this->statusCode = $code;
+            $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+            header($protocol.' '.self::$statusCodes[$code]);
+        }
+        return $this;
+    }
+    
+    public function getStatusCode(){
+        return $this->statusCode;
+    }
+    
+    public function getHeaders(){
+        return $this->headers;
+    }
+    
+    public function getCookies(){
+        return $this->cookies;
+    }
+    
+    public function getOutput(){
+        return $this->output;
     }
 
     public function addHeader($header, $value, $override = true){
@@ -97,28 +155,7 @@ final class HttpResponse {
             $this->redirect = $location;
         }
     }
-
-    public function setStatusCode($code){
-        if (isset($this->statusCodes[$code])){
-            $this->statusCode = $code;
-            $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-            header($protocol.' '.$this->statusCodes[$code]);
-        }
-        return $this;
-    }
     
-    public function getStatusCode(){
-        return $this->statusCode;
-    }
-    
-    public function getCookies(){
-        return $this->cookies;
-    }
-    
-    public function getOutput(){
-        return $this->output;
-    }
-
     public function flush(){
         if (!headers_sent()){
             foreach($this->headers as $header=>$value){
@@ -132,8 +169,6 @@ final class HttpResponse {
                 exit;
             }
         }
-        
         echo $this->output;
-        exit;
     }
 }
