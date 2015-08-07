@@ -84,7 +84,6 @@ class Profiler {
         $this->onLogAdded = $callback;
     }
 
-
     public function toArray(){
         return $this->logs;
     }

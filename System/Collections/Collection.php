@@ -2,7 +2,7 @@
 
 namespace System\Collections;
 
-abstract class Collection implements \IteratorAggregate, \ArrayAccess{
+abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     
     protected $collection = array();
     protected $isReadOnly = false;
@@ -186,9 +186,8 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
      */
     public function each(callable $func){
         $this->readOnlyCheck();
-
         foreach($this->collection as $k=>$v){
-            $this->collection[$k] = $func($k, $v);
+            $this->collection[$k] = $func($v, $k);
         }
         return $this;
     }
@@ -203,16 +202,11 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
      */
     public function where($value){
         $this->readOnlyCheck();
-        $tmp = array();
-        foreach($this->collection as $item){
-            if(is_scalar($item)){
-                if($item == $value){
-                    $tmp[] = $item;
-                }
+        $this->collection = array_filter($this->collection, function($v) use($value){
+            if($value == $v){
+                return $v;
             }
-        }
-        $this->collection = $tmp;
-        unset($tmp);
+        });
         return $this;
     }
     
@@ -225,17 +219,11 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess{
      * @return  $this
      */
     public function like($regex){
-        $this->readOnlyCheck();
-        $tmp = array(); 
-        foreach($this->collection as $item){
-            if(is_scalar($item)){
-                if(preg_match('@'.$regex.'@', $item)){
-                    $tmp[] = $item;
-                }
+        $this->collection = array_filter($this->collection, function($v) use($regex){
+            if(preg_match($regex, $v)){
+                return $v;
             }
-        }
-        $this->collection = $tmp;
-        unset($tmp);
+        });
         return $this;
     }
     

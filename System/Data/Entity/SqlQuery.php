@@ -45,12 +45,11 @@ class SqlQuery {
             foreach($rows as $row){
                 $array[] = $this->toEntity($row, $entityName);
             }
-            return $array;
+            return new DbListResult($array);
         }else{
             $rows = $stm->fetchAll(\PDO::FETCH_OBJ);
         }
-
-        return $rows;
+        return new DbListResult($rows);
     }
     
     private function toEntity($data, $entityName, $default = false){

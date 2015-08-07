@@ -52,7 +52,7 @@ class Connection {
         unset($dbConfig['uid']);
         unset($dbConfig['pwd']);
 
-        $this->dsn = $dbConfig->each(function($k, $v){ return $k.'='.$v.';'; })->join('');
+        $this->dsn = $dbConfig->each(function($v, $k){ return $k.'='.$v.';'; })->join('');
         
         try{
             $this->profiler->start();
