@@ -3,12 +3,7 @@
 namespace System\Std;
 
 class Debug {
-    
-    protected static $logs = array();
-    
-    const LOG = 1;
-    const EVENT = 2;
-    
+
     public static function report(\Exception $e){
 
         echo '<h2 style="font-family:tahoma; font-weight:normal; color:orange; border-bottom:1px solid #EEE; padding-bottom:9px;">'.get_class($e).'</h2>';
@@ -33,17 +28,5 @@ class Debug {
         echo '</ul></div>';
         echo '<p style="font-family:tahoma; font-size:12px; color:444;"><b>Stacktrace:</b></p>';
         echo '<div style="font-family:tahoma; font-size:12px; color:444;">' . str_replace("\n", "<br/>", $e->getTraceAsString()) . '</b></div>';
-    }
-
-    public static function log($message, $type = Debug::LOG){
-        self::$logs[] = array(
-            'msg' => $message, 
-            'time' => microtime(true),
-            'type' => $type
-        );
-    }
-    
-    public static function t(){ print "test";
-        print_R(self::$logs);
     }
 }

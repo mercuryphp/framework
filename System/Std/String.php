@@ -11,7 +11,7 @@ final class String{
     const LAST_FIRST = 3;
     const LAST_LAST = 4;
 
-    public function __construct($string){
+    public function __construct($string = ''){
         $this->string = $string;
     }
     
@@ -37,6 +37,10 @@ final class String{
     
     public function append($string){
         return new String($this->string.$string);
+    }
+    
+    public function appendLine($string){
+        return new String($this->string.$string.PHP_EOL);
     }
 
     public function prepend($string){

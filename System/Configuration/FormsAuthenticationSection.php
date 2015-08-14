@@ -8,6 +8,8 @@ class FormsAuthenticationSection extends \System\Collections\Dictionary {
 
         $defaults = array(
             'cookieName' =>'PHPXAUTH',
+            'hashAlgorithm' => 'sha256',
+            'cipher' => MCRYPT_RIJNDAEL_256,
             'encryptionKey' => '',
             'validationKey' => ''
         );
@@ -18,6 +20,14 @@ class FormsAuthenticationSection extends \System\Collections\Dictionary {
     
     public function getCookieName(){
         return $this->collection['cookieName'];
+    }
+    
+    public function getHashAlgorithm(){
+        return $this->collection['hashAlgorithm'];
+    }
+    
+    public function getCipher(){
+        return $this->collection['cipher'];
     }
     
     public function getEncryptionKey(){

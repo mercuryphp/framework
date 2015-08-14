@@ -15,7 +15,7 @@ class Route {
         $this->routeHandler = new RouteHandler();
     }
     
-    public function setRouteHandler(RouteHandler $routeHandler){
+    public function setRouteHandler(IRouteHandler $routeHandler){
         $this->routeHandler = $routeHandler;
     }
 

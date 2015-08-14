@@ -3,9 +3,6 @@
 namespace System\Web\Security;
 
 final class Security {
-    
-    const SHA256 = 'sha256';
-    const SHA512 = 'sha512';
 
     public static function hmac($type, $string, $key){
         return hash_hmac($type, $string, $key);
@@ -32,5 +29,3 @@ final class Security {
         return mcrypt_decrypt($cipher, $key, $data, $mode, $iv);
     }
 }
-
-?>

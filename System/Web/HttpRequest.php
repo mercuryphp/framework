@@ -90,11 +90,25 @@ final class HttpRequest{
         return $this->uri;
     }
     
+    public function getUserAgent(){
+        return $this->getServer('HTTP_USER_AGENT');
+    }
+    
+    public function getClientAddr(){
+        return $this->getServer('REMOTE_ADDR');
+    }
+    
     public function getHttpMethod(){
         if($this->getServer('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'){
             return 'AJAX';
         }
         return $this->getServer('REQUEST_METHOD');
+    }
+    
+    public function getServer($key){
+        if(array_key_exists($key, $_SERVER)){
+            return $_SERVER[$key];
+        }
     }
     
     public function setUser(\System\Web\Security\UserIdentity $identity){
@@ -159,15 +173,8 @@ final class HttpRequest{
     public function toArray(){
         return $this->params->toArray();
     }
-
-    private function getServer($key){
-        if(array_key_exists($key, $_SERVER)){
-            return $_SERVER[$key];
-        }
-    }
     
     private function httpFiles(){
-        
         $array = array();
         foreach($_FILES as $name=>$file){
             if(is_array($file['name'])){

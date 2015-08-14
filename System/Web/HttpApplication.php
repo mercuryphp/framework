@@ -3,7 +3,6 @@
 namespace System\Web;
 
 use System\Std\Environment;
-use System\Std\Debug;
 use System\Std\String;
 use System\Std\Object;
 use System\Globalization\CultureInfo;
@@ -41,14 +40,7 @@ abstract class HttpApplication {
      * @var System\Collections\Dictionary.
      */
     private $routes;
-    
-    /**
-     * Default View.
-     *
-     * @var System\Web\Mvc\IView
-     */
-    private $view;
-    
+
     /**
      * Configuration.
      *
@@ -84,7 +76,7 @@ abstract class HttpApplication {
     protected function getRoutes(){
         return $this->routes;
     }
-    
+
     /**
      * Instantiates the application configuration object.
      */
@@ -96,9 +88,7 @@ abstract class HttpApplication {
      * Initializes application settings.
      */
     public final function init($rootPath){
-        
-        Debug::log('Application initialization');
-        
+
         $this->routes = new RouteCollection();
 
         Environment::setRootPath($rootPath);
@@ -124,6 +114,8 @@ abstract class HttpApplication {
         $this->httpContext = new HttpContext($request, $response, $session);
         
         FormsAuthentication::setCookieName($this->config->getFormsAuthentication()->getCookieName());
+        FormsAuthentication::setHashAlgorithm($this->config->getFormsAuthentication()->getHashAlgorithm());
+        FormsAuthentication::setCipher($this->config->getFormsAuthentication()->getCipher());
         FormsAuthentication::setEncryptionKey($this->config->getFormsAuthentication()->getEncryptionKey());
         FormsAuthentication::setValidationKey($this->config->getFormsAuthentication()->getValidationKey()); 
     }
@@ -148,7 +140,6 @@ abstract class HttpApplication {
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
             }
         }
-
         $this->httpContext->getRequest()->setUser($identity);
     }
     
@@ -174,9 +165,7 @@ abstract class HttpApplication {
      * Dispatches a controller/action.
      */
     public final function run(){
-        
-        Debug::log('Running application');
-        
+
         if($this->routes->count() == 0){
             throw new \RuntimeException('One or more routes must be registered.');
         }
@@ -188,9 +177,7 @@ abstract class HttpApplication {
             $routeData = $route->execute();
 
             if($routeData){
-                
-                Debug::log('Route matched : ' . $route->getRoute());
-                
+
                 $namespace = '';
                 if(Environment::getRootPath() != Environment::getControllerPath()){
                     $namespace = String::set(Environment::getControllerPath())->replace(Environment::getRootPath(), '')->trim('/');
@@ -198,7 +185,7 @@ abstract class HttpApplication {
 
                 $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
                 $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))))
-                        ->replace('.', '\\');
+                    ->replace('.', '\\');
 
                 try{
                     $refClass = new \ReflectionClass((string)$class);
@@ -215,10 +202,8 @@ abstract class HttpApplication {
 
                 $this->httpContext->getSession()->open();
 
-                Debug::log(get_called_class() .':authenticateRequest()', Debug::EVENT);
                 $this->authenticateRequest($controller);
-                
-                Debug::log(get_called_class() .':preAction()', Debug::EVENT);
+
                 $this->preAction($controller);
 
                 $moduleInstance = null;
@@ -229,7 +214,6 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){
-                        Debug::log(get_class($moduleInstance) .':load()', Debug::EVENT);
                         $moduleInstance->load(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
@@ -238,12 +222,10 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){
-                        Debug::log(get_class($moduleInstance) .':unload()', Debug::EVENT);
                         $moduleInstance->unload(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
                     }
                 }
                 
-                Debug::log(get_class($moduleInstance) .':postAction()', Debug::EVENT);
                 $this->postAction($controller);
                 $controllerDispacthed = true;
                 break;
@@ -256,7 +238,6 @@ abstract class HttpApplication {
     }
     
     public function end(){
-        Debug::log('Exiting application');
         $this->httpContext->getSession()->write();
         $this->httpContext->getResponse()->flush();
         exit;

@@ -2,7 +2,6 @@
 
 namespace System\Web\Mvc;
 
-use System\Std\Debug;
 use System\Std\String;
 use System\Collections\Dictionary;
 use System\Web\HttpContext;
@@ -95,10 +94,7 @@ abstract class Controller{
             }
         }
 
-        Debug::log(get_called_class() .':load()', Debug::EVENT);
         $this->load();
-        
-        Debug::log(get_called_class() .':'.$actionName.'()', Debug::EVENT);
         $actionResult = $actionMethod->invokeArgs($this, $args);
 
         if(!$actionResult){
@@ -106,8 +102,7 @@ abstract class Controller{
         }elseif(!$actionResult instanceof ActionResult){
             $actionResult = new StringResult($actionResult);
         }
-
-        Debug::log(get_called_class() .':render()', Debug::EVENT);
+        
         $this->render($actionResult);
     }
     

@@ -5,7 +5,7 @@ namespace System\Web\Routing;
 use System\Std\String;
 use System\Collections\Dictionary;
 
-class RouteHandler {
+class RouteHandler implements IRouteHandler {
     
     public function execute($httpRequest, $route, $defaults = array()){
         $defaults = new Dictionary($defaults);
