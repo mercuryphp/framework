@@ -17,7 +17,6 @@
                 <name>torsdag</name>
                 <name>fredag</name>
                 <name>lørdag</name>
-
             </fullName>
             <shortName>
                 <name>sø</name>
@@ -27,7 +26,6 @@
                 <name>to</name>
                 <name>fr</name>
                 <name>lø</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>oktober</name>
                 <name>november</name>
                 <name>december</name>
-
             </fullName>
             <shortName>
                 <name>jan</name>
@@ -59,7 +56,6 @@
                 <name>okt</name>
                 <name>nov</name>
                 <name>dec</name>
-
             </shortName>
         </monthNames>
     </datetime>

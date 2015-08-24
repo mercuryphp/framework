@@ -17,7 +17,6 @@
                 <name>giovedì</name>
                 <name>venerdì</name>
                 <name>sabato</name>
-
             </fullName>
             <shortName>
                 <name>dom</name>
@@ -27,7 +26,6 @@
                 <name>gio</name>
                 <name>ven</name>
                 <name>sab</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>ottobre</name>
                 <name>novembre</name>
                 <name>dicembre</name>
-
             </fullName>
             <shortName>
                 <name>gen</name>
@@ -59,7 +56,6 @@
                 <name>ott</name>
                 <name>nov</name>
                 <name>dic</name>
-
             </shortName>
         </monthNames>
     </datetime>

@@ -17,7 +17,6 @@
                 <name>jeudi</name>
                 <name>vendredi</name>
                 <name>samedi</name>
-
             </fullName>
             <shortName>
                 <name>dim.</name>
@@ -27,7 +26,6 @@
                 <name>jeu.</name>
                 <name>ven.</name>
                 <name>sam.</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>octobre</name>
                 <name>novembre</name>
                 <name>décembre</name>
-
             </fullName>
             <shortName>
                 <name>janv.</name>
@@ -59,7 +56,6 @@
                 <name>oct.</name>
                 <name>nov.</name>
                 <name>déc.</name>
-
             </shortName>
         </monthNames>
     </datetime>

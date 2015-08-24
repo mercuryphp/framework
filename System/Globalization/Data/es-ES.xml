@@ -17,7 +17,6 @@
                 <name>jueves</name>
                 <name>viernes</name>
                 <name>sábado</name>
-
             </fullName>
             <shortName>
                 <name>dom</name>
@@ -27,7 +26,6 @@
                 <name>jue</name>
                 <name>vie</name>
                 <name>sáb</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>octubre</name>
                 <name>noviembre</name>
                 <name>diciembre</name>
-
             </fullName>
             <shortName>
                 <name>ene</name>
@@ -59,7 +56,6 @@
                 <name>oct</name>
                 <name>nov</name>
                 <name>dic</name>
-
             </shortName>
         </monthNames>
     </datetime>

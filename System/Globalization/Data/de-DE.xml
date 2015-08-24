@@ -17,7 +17,6 @@
                 <name>Donnerstag</name>
                 <name>Freitag</name>
                 <name>Samstag</name>
-
             </fullName>
             <shortName>
                 <name>So</name>
@@ -27,7 +26,6 @@
                 <name>Do</name>
                 <name>Fr</name>
                 <name>Sa</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>Oktober</name>
                 <name>November</name>
                 <name>Dezember</name>
-
             </fullName>
             <shortName>
                 <name>Jan</name>
@@ -59,7 +56,6 @@
                 <name>Okt</name>
                 <name>Nov</name>
                 <name>Dez</name>
-
             </shortName>
         </monthNames>
     </datetime>

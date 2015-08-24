@@ -82,7 +82,6 @@ class SqlQuery {
                 }
             }
         }
-        
         return $entity;
     }
 }

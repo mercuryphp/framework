@@ -17,7 +17,6 @@
                 <name>четверг</name>
                 <name>пятница</name>
                 <name>суббота</name>
-
             </fullName>
             <shortName>
                 <name>Вс</name>
@@ -27,7 +26,6 @@
                 <name>Чт</name>
                 <name>Пт</name>
                 <name>Сб</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>Октябрь</name>
                 <name>Ноябрь</name>
                 <name>Декабрь</name>
-
             </fullName>
             <shortName>
                 <name>янв</name>
@@ -59,7 +56,6 @@
                 <name>окт</name>
                 <name>ноя</name>
                 <name>дек</name>
-
             </shortName>
         </monthNames>
     </datetime>
