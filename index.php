@@ -49,12 +49,14 @@
 
     require $rootPath . '/global.php';
 
-    $mvcApplication = new MvcApplication();
+    $mvcApplication = new MvcApplication($rootPath);
     
     try {
-        $mvcApplication->initConfiguration($rootPath);
+        $mvcApplication->start();
+        $mvcApplication->init();
         $mvcApplication->load();
         $mvcApplication->run();
+        $mvcApplication->end();
     }catch(\Exception $e){
         $mvcApplication->error($e);
     }

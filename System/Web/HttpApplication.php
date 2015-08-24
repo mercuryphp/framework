@@ -5,6 +5,7 @@ namespace System\Web;
 use System\Std\Environment;
 use System\Std\String;
 use System\Std\Object;
+use System\Log\Logger;
 use System\Globalization\CultureInfo;
 use System\Configuration\Configuration;
 use System\Web\Routing\RouteCollection;
@@ -19,6 +20,12 @@ use System\Web\Security\UserIdentity;
  * @license http://www.mercuryphp.com/license
  */
 abstract class HttpApplication {
+    
+    /**
+     * Application root path
+     *
+     */
+    private $rootPath;
 
     /**
      * Application configuration.
@@ -26,6 +33,13 @@ abstract class HttpApplication {
      * @var System\Configuration\Configuration
      */
     private $config = null;
+    
+    /**
+     * Application logger.
+     *
+     * @var System\Log\Logger
+     */
+    private $logger = null;
     
     /**
      * Encapsulates Http request/response/server details.
@@ -41,58 +55,26 @@ abstract class HttpApplication {
      */
     private $routes;
 
-    /**
-     * Configuration.
-     *
-     * @return System\Configuration\Configuration;
-     */
-    protected function setConfiguration(\System\Configuration\Configuration $config){
-        $this->config = $config;
-    }
-    
-    /**
-     * Configuration.
-     *
-     * @return System\Configuration\Configuration;
-     */
-    protected function getConfiguration(){
-        return $this->config;
-    }
-
-    /**
-     * Gets the HttpContext for the HTTP request.
-     *
-     * @return System\Web\HttpContext
-     */
-    protected function getHttpContext(){
-        return $this->httpContext;
-    }
-    
-    /**
-     * Gets the route collection.
-     *
-     * @return System\Collections\Dictionary
-     */
-    protected function getRoutes(){
-        return $this->routes;
+    public function __construct($rootPath){
+        $this->rootPath = $rootPath;
+        $this->config = new Configuration(new \System\Configuration\Readers\YmlReader('config.php')); 
+        $this->logger = new Logger(new \System\Log\Handlers\ExceptionHandler);
     }
 
     /**
      * Instantiates the application configuration object.
      */
-    public function initConfiguration(){
-        $this->config = new Configuration(new \System\Configuration\Readers\YamlReader('config.php')); 
-    }
+    public function start(){}
     
     /**
      * Initializes application settings.
      */
-    public final function init($rootPath){
+    public final function init(){
 
         $this->routes = new RouteCollection();
 
-        Environment::setRootPath($rootPath);
-        Environment::setControllerPath($rootPath);
+        Environment::setRootPath($this->rootPath);
+        Environment::setControllerPath($this->rootPath);
         Environment::setExecutionTime($this->config->getEnvironment()->getExecutionTime());
         Environment::setNamespaces($this->config->getNamespaces()->toArray());
         Environment::setCulture(new CultureInfo($this->config->getEnvironment()->getLocale()));
@@ -136,7 +118,7 @@ abstract class HttpApplication {
         if($httpAuthCookie){
             $ticket = FormsAuthentication::decrypt($httpAuthCookie->getValue()); 
 
-            if(\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()){
+            if((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0){
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
             }
         }
@@ -154,13 +136,7 @@ abstract class HttpApplication {
      * postAction event invoked after controller/action executed.
      */
     public function postAction(\System\Web\Mvc\Controller $controller){}
-    
-    /**
-     * Override in global.php
-     * Handle and log errors.
-     */
-    public function error(\Exception $e){}
-    
+
     /**
      * Dispatches a controller/action.
      */
@@ -218,6 +194,7 @@ abstract class HttpApplication {
                     }
                 }
 
+                $controller->getRegistry()->merge(get_object_vars($this));
                 $controller->execute($this->httpContext);
 
                 if($moduleInstance){
@@ -237,9 +214,69 @@ abstract class HttpApplication {
         }
     }
     
+    /**
+     * Override in global.php
+     * Handle and log errors.
+     */
+    public function error(\Exception $e){}
+    
     public function end(){
         $this->httpContext->getSession()->write();
         $this->httpContext->getResponse()->flush();
         exit;
+    }
+    
+    /**
+     * Configuration.
+     *
+     * @return System\Configuration\Configuration;
+     */
+    protected function setConfiguration(\System\Configuration\Configuration $config){
+        $this->config = $config;
+    }
+
+    /**
+     * Configuration.
+     *
+     * @return System\Configuration\Configuration;
+     */
+    protected function getConfiguration(){
+        return $this->config;
+    }
+    
+    /**
+     * Logger.
+     *
+     * @return void
+     */
+    protected function setLogger(\System\Log\Logger $logger){
+        $this->logger = $logger;
+    }
+    
+    /**
+     * Logger.
+     *
+     * @return System\Log\Logger;
+     */
+    protected function getLogger(){
+        return $this->logger;
+    }
+
+    /**
+     * Gets the HttpContext for the HTTP request.
+     *
+     * @return System\Web\HttpContext
+     */
+    protected function getHttpContext(){
+        return $this->httpContext;
+    }
+    
+    /**
+     * Gets the route collection.
+     *
+     * @return System\Collections\Dictionary
+     */
+    protected function getRoutes(){
+        return $this->routes;
     }
 }

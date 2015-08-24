@@ -37,7 +37,12 @@ class MetaReader {
                             if(!$attribute->indexOf('.')){
                                 $attribute = $attribute->prepend('System.Data.Entity.Attributes.');
                             }
-                            $meta[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
+                            
+                            try{
+                                $meta[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
+                            }catch(\Exception $e){
+                                throw new \System\Data\Entity\EntityException('The attribute "'.(string)$attribute.'" does not exist.');
+                            }
                         }
                     }
                     break;

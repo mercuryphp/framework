@@ -32,8 +32,51 @@ abstract class Controller{
         return $this->viewBag;
     }
 
+    public function getRegistry(){
+        return $this->registry;
+    }
+    
     public function getUser(){
         return $this->httpContext->getRequest()->getUser();
+    }
+
+    public function getHttpContext(){
+        return $this->httpContext;
+    }
+    
+    public function getRequest(){
+        return $this->httpContext->getRequest();
+    }
+    
+    public function getResponse(){
+        return $this->httpContext->getResponse();
+    }
+    
+    public function getSession(){
+        return $this->httpContext->getSession();
+    }
+    
+    public function redirect($location){
+        return new RedirectResult($this->httpContext->getResponse(), $location);
+    }
+    
+    public function json($data, $options = null){
+        return new JsonResult($this->httpContext->getResponse(), $data, $options);
+    }
+    
+    public function view($viewName = null){
+        return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $viewName));
+    }
+
+    public function __set($key, $value){
+        $this->registry->set($key, $value);
+    }
+    
+    public function __get($key){
+        if($this->registry->hasKey($key)){
+            return $this->registry->get($key);
+        }
+        throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
     }
     
     public function execute(HttpContext $httpContext, array $routeData = array()){
@@ -106,48 +149,9 @@ abstract class Controller{
         $this->render($actionResult);
     }
     
-    public function getHttpContext(){
-        return $this->httpContext;
-    }
-    
-    public function getRequest(){
-        return $this->httpContext->getRequest();
-    }
-    
-    public function getResponse(){
-        return $this->httpContext->getResponse();
-    }
-    
-    public function getSession(){
-        return $this->httpContext->getSession();
-    }
-    
-    public function redirect($location){
-        return new RedirectResult($this->httpContext->getResponse(), $location);
-    }
-    
-    public function json($data, $options = null){
-        return new JsonResult($this->httpContext->getResponse(), $data, $options);
-    }
-    
-    public function view($viewName = null){
-        return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $viewName));
-    }
-
     public function load(){}
     
     public function render($actionResult){
         $this->httpContext->getResponse()->write($actionResult->execute());
-    }
-    
-    public function __set($key, $value){
-        $this->registry->set($key, $value);
-    }
-    
-    public function __get($key){
-        if($this->registry->hasKey($key)){
-            return $this->registry->get($key);
-        }
-        throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
     }
 }

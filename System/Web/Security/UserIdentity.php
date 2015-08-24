@@ -6,7 +6,7 @@ class UserIdentity {
 
     protected $name;
     protected $userData;
-    protected $isAuthenticated;
+    protected $isAuthenticated = false;
     
     public function __construct($name, $userData = '', $isAuthenticated = false){
         $this->name = $name;

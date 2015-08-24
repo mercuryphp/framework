@@ -15,7 +15,7 @@ abstract class Reader {
      * @param   string $key
      * @return  mixed
      */
-    public function getItem($key){
+    public function get($key){
         if(array_key_exists($key, $this->config)){
             return $this->config[$key];
         }

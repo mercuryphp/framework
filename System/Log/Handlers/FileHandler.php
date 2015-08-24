@@ -10,7 +10,7 @@ class FileHandler {
         $this->path = $path;
     }
     
-    public function write(array $logs, array $extra){
+    public function write(array $logs, array $extra = array()){
         $formatted = new \System\Std\String();
         
         foreach($extra as $key=>$value){

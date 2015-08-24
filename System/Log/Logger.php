@@ -25,6 +25,12 @@ class Logger {
     
     protected $handlers = array();
     
+    public function __construct($handler = null){
+        if($handler){
+            $this->addHandler($handler);
+        }
+    }
+    
     public function debug($message, array $params = array()){
         $this->addLog(static::DEBUG, $message, $params);
         return $this;
