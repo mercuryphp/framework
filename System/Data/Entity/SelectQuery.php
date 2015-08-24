@@ -76,35 +76,23 @@ class SelectQuery {
         return $this;
     }
     
-    public function single($entityName, $params = array(), $default = false){
+    public function single($params = array(), $entityName = '', $default = false){
         return $this->sqlQuery
             ->setQuery($this->sql->toString(), $params)
             ->single($entityName, $default);
     }
 
-    public function toList($entityName, $params = array()){
+    public function toList($params = array(), $entityName = ''){
         return $this->sqlQuery
             ->setQuery($this->sql->toString(), $params)
             ->toList($entityName);
     }
-    
-    public function toObject($params = array()){
-        return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
-            ->single();
-    }
-    
-    public function toObjectList($params = array()){
-        return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
-            ->toList();
-    }
-    
+
     public function sql(){
         return $this->sql->toString();
     }
 
-    protected function getTableNameAlias($tableName){
+    private function getTableNameAlias($tableName){
         $alias = '';
         
         if(strpos($tableName, '_') > -1){
