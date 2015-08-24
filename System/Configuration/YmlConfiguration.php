@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Configuration\Readers;
+namespace System\Configuration;
 
-class YmlReader extends Reader {
+class YmlConfiguration extends Configuration {
     
     public function __construct($fileName = null){
         if($fileName){

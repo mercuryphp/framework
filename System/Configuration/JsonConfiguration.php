@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Configuration\Readers;
+namespace System\Configuration;
 
-class JsonReader extends Reader {
+class JsonConfiguration extends Configuration {
     
     public function __construct($fileName = null){
         if($fileName){

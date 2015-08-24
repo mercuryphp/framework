@@ -57,7 +57,7 @@ abstract class HttpApplication {
 
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
-        $this->config = new Configuration(new \System\Configuration\Readers\YmlReader('config.php')); 
+        $this->config = new \System\Configuration\YmlConfiguration('config.php'); 
         $this->logger = new Logger(new \System\Log\Handlers\ExceptionHandler);
     }
 
@@ -75,31 +75,31 @@ abstract class HttpApplication {
 
         Environment::setRootPath($this->rootPath);
         Environment::setControllerPath($this->rootPath);
-        Environment::setExecutionTime($this->config->getEnvironment()->getExecutionTime());
-        Environment::setNamespaces($this->config->getNamespaces()->toArray());
-        Environment::setCulture(new CultureInfo($this->config->getEnvironment()->getLocale()));
-        Environment::setDateTimeFormat($this->config->getEnvironment()->getDateTimeFormat());
-        Environment::setTimezone($this->config->getEnvironment()->getTimezone());
-        Environment::setDefaultConnectionString($this->config->getConnectionStrings()->get('default'));
+        Environment::setExecutionTime($this->config->get('environment.executionTime', 30));
+        Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
+        Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));
+        Environment::setTimezone($this->config->get('environment.timezone', \System\Std\Date::now()->getTimezone()->getName()));
+        Environment::setNamespaces($this->config->get('namespaces'));
+        Environment::setDefaultConnectionString($this->config->get('connectionStrings.default'));
 
         $request = new HttpRequest();
         $response = new HttpResponse();
 
-        $session = Object::getInstance($this->config->getSession()->getHandler(),array($request,$response));
-        $session->setName($this->config->getSession()->getName());
-        $session->setExpires($this->config->getSession()->getExpires());
-        $session->setPath($this->config->getSession()->getPath());
-        $session->setDomain($this->config->getSession()->getDomain());
-        $session->isSecure($this->config->getSession()->isSecure());
-        $session->isHttpOnly($this->config->getSession()->isHttpOnly());
+        $session = Object::getInstance($this->config->get('session.handler', 'System.Web.Session.FileSystem'),array($request,$response));
+        $session->setName($this->config->get('session.name', 'PHPSESSID'));
+        $session->setExpires($this->config->get('session.expires', 0));
+        $session->setPath($this->config->get('session.path', '/'));
+        $session->setDomain($this->config->get('session.domain', ''));
+        $session->isSecure($this->config->get('session.secure', false));
+        $session->isHttpOnly($this->config->get('session.httpOnly', true));
 
         $this->httpContext = new HttpContext($request, $response, $session);
         
-        FormsAuthentication::setCookieName($this->config->getFormsAuthentication()->getCookieName());
-        FormsAuthentication::setHashAlgorithm($this->config->getFormsAuthentication()->getHashAlgorithm());
-        FormsAuthentication::setCipher($this->config->getFormsAuthentication()->getCipher());
-        FormsAuthentication::setEncryptionKey($this->config->getFormsAuthentication()->getEncryptionKey());
-        FormsAuthentication::setValidationKey($this->config->getFormsAuthentication()->getValidationKey()); 
+        FormsAuthentication::setCookieName($this->config->get('formsAuthentication.cookieName', 'PHPXAUTH'));
+        FormsAuthentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm'));
+        FormsAuthentication::setCipher($this->config->get('formsAuthentication.cipher'));
+        FormsAuthentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
+        FormsAuthentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
     }
     
     /**
