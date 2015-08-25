@@ -6,11 +6,10 @@ class Connection {
     
     protected $dsn = '';
     protected $pdo = null;
-    protected $transaction = null;
     protected $profiler;
     
     /**
-     * Constructs a new System.Data.Database instance. Creates a new connection 
+     * Constructs a new System.Data.Connection instance. Creates a new connection 
      * to a database if connection string is supplied.
      * Throws ConnectionException.
      * 
@@ -59,7 +58,6 @@ class Connection {
             $this->pdo = new \PDO($this->dsn, $uid, $pwd);
             $this->profiler->log('Connected to database', $dbConfig->toArray(), Profiler::CONNECT);
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $this->transaction = new Transaction($this->pdo);
         }catch(\PDOException $e){
             throw new ConnectionException($e->getMessage());
         }
@@ -227,6 +225,46 @@ class Connection {
 
         return $stm->rowCount();
     }
+    
+    /**
+     * Initiates a transaction.
+     * 
+     * @method  beginTransaction
+     * @return  bool
+     */
+    public function beginTransaction(){
+        return $this->pdo->beginTransaction();
+    }
+    
+    /**
+     * Commits a transaction.
+     * 
+     * @method  commit
+     * @return  bool
+     */
+    public function commit(){
+        return $this->pdo->commit();
+    }
+    
+    /**
+     * Rolls back a transaction.
+     * 
+     * @method  rollBack
+     * @return  bool
+     */
+    public function rollBack(){
+        return $this->pdo->rollBack();
+    }
+    
+    /**
+     * Checks if inside a transaction.
+     * 
+     * @method  inTransaction
+     * @return  bool
+     */
+    public function inTransaction(){
+        return $this->pdo->inTransaction();
+    }
 	
     /**
      * Gets the ID of the last inserted row or sequence value.
@@ -249,17 +287,7 @@ class Connection {
     public function getAttribute($attribute){
         return $this->pdo->getAttribute($attribute);
     }
-    
-    /**
-     * Gets a transaction object for the underlying connection. 
-     * 
-     * @method  getTransaction
-     * @return  System.Data.Transaction
-     */
-    public function getTransaction(){
-        return $this->transaction;
-    }
-    
+
     /**
      * Gets the Data Source Name (DSN) used to connect to the database.
      * 

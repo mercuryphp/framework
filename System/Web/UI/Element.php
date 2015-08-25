@@ -44,5 +44,4 @@ abstract class Element {
     public function __toString(){
         return $this->render();
     }
-
 }

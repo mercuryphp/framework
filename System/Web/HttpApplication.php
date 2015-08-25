@@ -79,7 +79,7 @@ abstract class HttpApplication {
         Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
         Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));
         Environment::setTimezone($this->config->get('environment.timezone', \System\Std\Date::now()->getTimezone()->getName()));
-        Environment::setNamespaces($this->config->get('namespaces'));
+        Environment::setNamespaces($this->config->get('namespaces', array()));
         Environment::setDefaultConnectionString($this->config->get('connectionStrings.default'));
 
         $request = new HttpRequest();

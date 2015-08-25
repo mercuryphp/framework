@@ -17,6 +17,6 @@ class MvcApplication extends HttpApplication {
     }
     
     public function error($e){
-        print_r($e);
+        //print_r($e);
     }
 }

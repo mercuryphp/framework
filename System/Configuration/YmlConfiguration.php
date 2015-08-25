@@ -4,6 +4,13 @@ namespace System\Configuration;
 
 class YmlConfiguration extends Configuration {
     
+    /**
+     * Initializes an instance of YmlConfiguration.
+     * Reads configuration data if $fileName is supplied.
+     * 
+     * @method  __construct
+     * @param   string $fileName = null
+     */
     public function __construct($fileName = null){
         if($fileName){
             $this->open($fileName);

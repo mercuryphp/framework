@@ -14,11 +14,26 @@ class Profiler {
     const UPDATE = 4;
     const DELETE = 5;
 
+    /**
+     * Logs the start time of an SQL query.
+     * 
+     * @method  start
+     */
     public function start(){
         ++$this->lastLogId;
         $this->logs['LOG_'.$this->lastLogId]['start_time'] = microtime(true);
     }
 
+    /**
+     * Logs an SQL query and its parameters. If a callback has been supplied to 
+     * the onLogAdded() method, it will be executed after the log has been added. 
+     * The callback can be used to process individual logs.
+     * 
+     * @method  log
+     * @param   string $log
+     * @param   array $params  = array()
+     * @param   string $type = null
+     */
     public function log($log, array $params = array(), $type = null){
         $id = 'LOG_'.$this->lastLogId;
         
@@ -58,20 +73,45 @@ class Profiler {
         }
     }
     
+    /**
+     * Gets a log entry using a log id.
+     * 
+     * @method  get
+     * @param   string $logId
+     * @return  array
+     */
     public function get($logId){
         if(isset($this->logs[$logId])){
             return $this->logs[$logId];
         }
     }
     
+    /**
+     * Gets a count of all log entries.
+     * 
+     * @method  count
+     * @return  int
+     */
     public function count(){
         return count($this->logs);
     }
     
+    /**
+     * Gets the last log entry.
+     * 
+     * @method  last
+     * @return  array
+     */
     public function last(){
         return end($this->logs);
     }
     
+    /**
+     * Gets the total duration of all log entries.
+     * 
+     * @method  getTotalDuration
+     * @return  int
+     */
     public function getTotalDuration(){
         $duration = 0;
         foreach($this->logs as $log){
@@ -80,12 +120,23 @@ class Profiler {
         return $duration;
     }
     
+    /**
+     * Sets a user defined callback that is executed when a log has been added.
+     * 
+     * @method  onLogAdded
+     * @param   callable $callback
+     */
     public function onLogAdded(callable $callback){
         $this->onLogAdded = $callback;
     }
 
+    /**
+     * Gets the underlying log array.
+     * 
+     * @method  toArray
+     * @return  array
+     */
     public function toArray(){
         return $this->logs;
     }
 }
-

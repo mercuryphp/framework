@@ -5,9 +5,13 @@ namespace System\Log\Handlers;
 class FileHandler {
     
     protected $path;
+    protected $singleLog;
+    protected $useLock;
     
-    public function __construct($path){
+    public function __construct($path, $singleLog = false, $useLock = false){
         $this->path = $path;
+        $this->singleLog = $singleLog;
+        $this->useLock = $useLock;
     }
     
     public function write(array $logs, array $extra = array()){
@@ -28,7 +32,18 @@ class FileHandler {
                 ->appendLine('');
         }
         
-        $fp = fopen($this->path.'/'.microtime().'.log', 'w');
+        $logFile = ($this->singleLog) ? \System\Std\Date::now()->toString('dd-mm-yyyy') : \System\Std\Date::now()->getTimestamp();
+
+        $fp = fopen($this->path.'/'.$logFile.'.log', 'a');
+       
+        if ($this->useLock){
+            flock($fp, LOCK_EX);
+        }
+        
         fwrite($fp, (string)$formatted);
+        
+        if ($this->useLock) {
+            flock($fp, LOCK_UN);
+        }
     }
 }
