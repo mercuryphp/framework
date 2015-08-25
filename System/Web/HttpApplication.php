@@ -7,7 +7,7 @@ use System\Std\String;
 use System\Std\Object;
 use System\Log\Logger;
 use System\Globalization\CultureInfo;
-use System\Configuration\Configuration;
+use System\Configuration\YmlConfiguration;
 use System\Web\Routing\RouteCollection;
 use System\Web\Security\FormsAuthentication;
 use System\Web\Security\UserIdentity;
@@ -57,7 +57,7 @@ abstract class HttpApplication {
 
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
-        $this->config = new \System\Configuration\YmlConfiguration('config.php'); 
+        $this->config = new YmlConfiguration('config.php'); 
         $this->logger = new Logger(new \System\Log\Handlers\ExceptionHandler);
     }
 

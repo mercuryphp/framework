@@ -26,7 +26,7 @@ class DbSet {
                 $select->where($key.'=:'.$key);
             }
         
-            $entity = $select->single($this->meta->getEntityName(), $params, $default);
+            $entity = $select->single($params, $this->meta->getEntityName(), $default);
             
             if($entity){
                 $entityContext = $this->add($entity);
