@@ -23,38 +23,35 @@ abstract class HttpApplication {
     
     /**
      * Application root path
-     *
      */
     private $rootPath;
 
     /**
      * Application configuration.
-     *
-     * @var System\Configuration\Configuration
      */
-    private $config = null;
+    protected $config = null;
     
     /**
      * Application logger.
-     *
-     * @var System\Log\Logger
      */
-    private $logger = null;
+    protected $logger = null;
     
     /**
-     * Encapsulates Http request/response/server details.
-     *
-     * @var System\Web\HttpContext
+     * Encapsulates Http request/response/session details.
      */
-    private $httpContext;
+    protected $httpContext;
     
     /**
      * Collection of routes.
-     *
-     * @var System\Collections\Dictionary.
      */
-    private $routes;
+    protected $routes;
 
+    /**
+     * Initializes the application with a root path.
+     * 
+     * @method  __construct
+     * @param   string $rootPath
+     */
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
         $this->config = new YmlConfiguration('config.php'); 
@@ -62,12 +59,19 @@ abstract class HttpApplication {
     }
 
     /**
-     * Instantiates the application configuration object.
+     * The start() method is executed after the application has been instantiated
+     * but before any system settings have been configured. This method is intended
+     * to be overridden. 
+     * 
+     * @method  start
      */
     public function start(){}
     
     /**
-     * Initializes application settings.
+     * Initializes the application with system settings. This method is declared 
+     * final and cannot be overriden.
+     * 
+     * @method  init
      */
     public final function init(){
 
@@ -100,15 +104,25 @@ abstract class HttpApplication {
         FormsAuthentication::setCipher($this->config->get('formsAuthentication.cipher'));
         FormsAuthentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
         FormsAuthentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
+        
+        $this->httpContext->getSession()->open();
     }
     
     /**
-     * Override in global.php to bootstrap application.
+     * The load() method is executed after the init() method. This method must be
+     * overridden to provide user defined functionality such as adding routes to 
+     * the route collection.
+     * 
+     * @method  load
      */
     public function load(){}
 
     /**
-     * Override in global.php to provide custom authentication.
+     * Authenticates a HTTP request using FormsAuthentication and establishes the 
+     * identity of the user.
+     * 
+     * @method  authenticateRequest
+     * @param   System.Web.Mvc.Controller $controller
      */
     public function authenticateRequest(\System\Web\Mvc\Controller $controller){
         $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
@@ -126,19 +140,27 @@ abstract class HttpApplication {
     }
     
     /**
-     * Override in global.php
-     * preAction event invoked before controller/action executed.
+     * The preAction() method is executed before the controller action.
+     * Override to provide functionality that must be invoked before the action method.
+     * 
+     * @method  preAction
+     * @param   System.Web.Mvc.Controller $controller
      */
     public function preAction(\System\Web\Mvc\Controller $controller){}
     
     /**
-     * Override in global.php
-     * postAction event invoked after controller/action executed.
+     * The postAction() method is executed after the controller action.
+     * Override to provide functionality that must be invoked after the action method.
+     * 
+     * @method  postAction
+     * @param   System.Web.Mvc.Controller $controller
      */
     public function postAction(\System\Web\Mvc\Controller $controller){}
 
     /**
-     * Dispatches a controller/action.
+     * Dispatches a controller 
+     * 
+     * @method  run
      */
     public final function run(){
 
@@ -160,12 +182,10 @@ abstract class HttpApplication {
                 }
 
                 $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
-                $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))))
-                    ->replace('.', '\\');
+                $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))));
 
                 try{
-                    $refClass = new \ReflectionClass((string)$class);
-                    $controller = $refClass->newInstanceArgs(array());
+                    $controller = Object::getInstance($class);
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $class));
                 }
@@ -174,19 +194,13 @@ abstract class HttpApplication {
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
 
-                $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'))->replace('.', '\\');
-
-                $this->httpContext->getSession()->open();
+                $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'));
 
                 $this->authenticateRequest($controller);
 
                 $this->preAction($controller);
 
-                $moduleInstance = null;
-                try{
-                    $refModClass = new \ReflectionClass((string)$moduleClassName);
-                    $moduleInstance = $refModClass->newInstanceArgs(array());
-                }catch(\Exception $e){}
+                $moduleInstance = Object::getInstance($moduleClassName, null, false);
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){
@@ -215,8 +229,10 @@ abstract class HttpApplication {
     }
     
     /**
-     * Override in global.php
-     * Handle and log errors.
+     * Executed when an exception is thrown.
+     * 
+     * @method  error
+     * @param   Exception
      */
     public function error(\Exception $e){}
     
@@ -224,59 +240,5 @@ abstract class HttpApplication {
         $this->httpContext->getSession()->write();
         $this->httpContext->getResponse()->flush();
         exit;
-    }
-    
-    /**
-     * Configuration.
-     *
-     * @return System\Configuration\Configuration;
-     */
-    protected function setConfiguration(\System\Configuration\Configuration $config){
-        $this->config = $config;
-    }
-
-    /**
-     * Configuration.
-     *
-     * @return System\Configuration\Configuration;
-     */
-    protected function getConfiguration(){
-        return $this->config;
-    }
-    
-    /**
-     * Logger.
-     *
-     * @return void
-     */
-    protected function setLogger(\System\Log\Logger $logger){
-        $this->logger = $logger;
-    }
-    
-    /**
-     * Logger.
-     *
-     * @return System\Log\Logger;
-     */
-    protected function getLogger(){
-        return $this->logger;
-    }
-
-    /**
-     * Gets the HttpContext for the HTTP request.
-     *
-     * @return System\Web\HttpContext
-     */
-    protected function getHttpContext(){
-        return $this->httpContext;
-    }
-    
-    /**
-     * Gets the route collection.
-     *
-     * @return System\Collections\Dictionary
-     */
-    protected function getRoutes(){
-        return $this->routes;
     }
 }

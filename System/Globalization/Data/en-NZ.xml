@@ -17,7 +17,6 @@
                 <name>Thursday</name>
                 <name>Friday</name>
                 <name>Saturday</name>
-
             </fullName>
             <shortName>
                 <name>Sun</name>
@@ -27,7 +26,6 @@
                 <name>Thu</name>
                 <name>Fri</name>
                 <name>Sat</name>
-
             </shortName>
         </dayNames>
         <monthNames>
@@ -44,7 +42,6 @@
                 <name>October</name>
                 <name>November</name>
                 <name>December</name>
-
             </fullName>
             <shortName>
                 <name>Jan</name>
@@ -59,7 +56,6 @@
                 <name>Oct</name>
                 <name>Nov</name>
                 <name>Dec</name>
-
             </shortName>
         </monthNames>
     </datetime>
