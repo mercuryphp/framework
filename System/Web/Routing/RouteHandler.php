@@ -52,13 +52,13 @@ class RouteHandler implements IRouteHandler {
                 if($tokens[$idx]){
                     $defaults->set((string)$tokenName, $tokens[$idx]);
                 }
-                
                 ++$counter;
             }
         }
         
         if($uri == trim(join('', $tokens), '/')){
             $httpRequest->getRouteData()->merge($defaults);
+            $httpRequest->getParam()->merge($defaults);
             return $httpRequest->getRouteData();
         }
         return false;

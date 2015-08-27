@@ -12,17 +12,10 @@ use System\Web\Routing\RouteCollection;
 use System\Web\Security\FormsAuthentication;
 use System\Web\Security\UserIdentity;
 
-/**
- * HttpApplication
- * 
- * Executes and dispatches controller/action
- *
- * @license http://www.mercuryphp.com/license
- */
 abstract class HttpApplication {
     
     /**
-     * Application root path
+     * Application root path.
      */
     private $rootPath;
 
@@ -158,7 +151,7 @@ abstract class HttpApplication {
     public function postAction(\System\Web\Mvc\Controller $controller){}
 
     /**
-     * Dispatches a controller 
+     * Dispatches a controller. This method is declared final and cannot be overriden.
      * 
      * @method  run
      */
@@ -229,13 +222,20 @@ abstract class HttpApplication {
     }
     
     /**
-     * Executed when an exception is thrown.
+     * Executed when an exception is thrown. Override to provide custom error handling.
+     * 
+     * @method  error
+     * @param   Exception $e
+     */
+    public function error(\Exception $e){}
+    
+    /**
+     * The end() method is executed at the end of the application cycle. 
+     * Any output is sent to the browser.
      * 
      * @method  error
      * @param   Exception
      */
-    public function error(\Exception $e){}
-    
     public function end(){
         $this->httpContext->getSession()->write();
         $this->httpContext->getResponse()->flush();

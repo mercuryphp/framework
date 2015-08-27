@@ -131,12 +131,14 @@ final class String{
         $join = '';
         if(is_array($array)){
             foreach($array as $value){
-                if($removeEmptyEntries){
-                    if((string)$value){
+                if(is_scalar($value)){
+                    if($removeEmptyEntries){
+                        if($value !=''){
+                            $join.= $value.$glue;
+                        }
+                    }else{
                         $join.= $value.$glue;
                     }
-                }else{
-                    $join.= $value.$glue;
                 }
             }
         }

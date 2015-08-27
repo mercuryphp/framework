@@ -4,7 +4,7 @@ namespace System\Web;
 
 use System\Collections\Dictionary;
 
-final class HttpRequest{
+final class HttpRequest {
 
     private $uri;
     private $uriSegments;
@@ -16,6 +16,13 @@ final class HttpRequest{
     private $files = array();
     private $user;
 
+    /**
+     * Initializes a new instance of the HttpRequest class and encapsulates 
+     * information about an individual HTTP request.
+     * 
+     * @method  __construct
+     * @param   string $uri = null
+     */
     public function __construct($uri = null){
         
         $uri = $uri ? $uri : $this->getServer('REQUEST_URI');
@@ -31,48 +38,105 @@ final class HttpRequest{
         $this->routeData = new Dictionary();
         $this->query = new Dictionary($_GET);
         $this->post = new Dictionary($_POST);
-        $this->params = new Dictionary($_REQUEST);
         $this->cookies = new HttpCookieCollection($_COOKIE);
+        $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE, $_SERVER));
         $this->files = $this->httpFiles();
     }
     
-    public function getCookies(){
-        return $this->cookies;
-    }
-    
-    public function getQuery($field = null){
-        if($field){
-            return $this->query->get($field);
+    /**
+     * Gets the specified item by name or gets the cookie collection
+     * if no name is specified.
+     * 
+     * @method  getCookies
+     * @param   string $name = null
+     * @return  mixed
+     */
+    public function getCookies($name = null){
+        if($name){
+            return $this->query->get($name);
         }
         return $this->query;
     }
     
-    public function getPost($field = null){
-        if($field){
-            return $this->post->get($field);
+    /**
+     * Gets the specified item by name or gets a collection of query 
+     * items if no name is specified.
+     * 
+     * @method  getQuery
+     * @param   string $name = null
+     * @return  mixed
+     */
+    public function getQuery($name = null){
+        if($name){
+            return $this->query->get($name);
+        }
+        return $this->query;
+    }
+    
+    /**
+     * Gets the specified item by name or gets a collection of post 
+     * items if no name is specified.
+     * 
+     * @method  getPost
+     * @param   string $name = null
+     * @return  mixed
+     */
+    public function getPost($name = null){
+        if($name){
+            return $this->post->get($name);
         }
         return $this->post;
     }
     
-    public function getFile($field = null){
-        if($field){
-            return $this->files->get($field);
+    /**
+     * Gets the specified HttpFile object by name or gets a collection of files 
+     * if no name is specified.
+     * 
+     * @method  getFile
+     * @param   string $name = null
+     * @return  mixed
+     */
+    public function getFile($name = null){
+        if($name){
+            return $this->files->get($name);
         }
         return $this->files;
     }
     
-    public function setParam($field, $value){
-        $this->params->set($field, $value);
+    /**
+     * Sets an item in the params collection.
+     * 
+     * @method  setParam
+     * @param   string $name
+     * @param   string $value
+     */
+    public function setParam($name, $value){
+        $this->params->set($name, $value);
     }
     
-    public function getParam($field = null){
-        $this->params->merge($this->routeData);
-        if($field){
-            return $this->params->get($field);
+    /**
+     * Gets the specified item by name or gets a combined collection of query, 
+     * post, cookies, and server items if no name is specified.
+     * 
+     * @method  getParam
+     * @param   string $name = null
+     * @return  mixed
+     */
+    public function getParam($name = null){
+        if($name){
+            return $this->params->get($name);
         }
         return $this->params;
     }
     
+    /**
+     * Gets the specified segment from the request URI by name or gets a collection of
+     * segments if no name is specified.
+     * 
+     * @method  getSegment
+     * @param   int $index
+     * @return  string
+     */
     public function getSegment($index = null){
         if($index>-1){
             if(isset($this->uriSegments[$index])){
@@ -82,22 +146,52 @@ final class HttpRequest{
         return $this->uriSegments;
     }
 
+    /**
+     * Gets a collection of route data.
+     * 
+     * @method  getSegment
+     * @return  System.Collections.Dictionary
+     */
     public function getRouteData(){
         return $this->routeData;
     }
     
+    /**
+     * Gets the request URI.
+     * 
+     * @method  getUri
+     * @return  string
+     */
     public function getUri(){
         return $this->uri;
     }
     
+    /**
+     * Gets the request user agent.
+     * 
+     * @method  getUserAgent
+     * @return  string
+     */
     public function getUserAgent(){
         return $this->getServer('HTTP_USER_AGENT');
     }
     
+    /**
+     * Gets the client address.
+     * 
+     * @method  getClientAddr
+     * @return  string
+     */
     public function getClientAddr(){
         return $this->getServer('REMOTE_ADDR');
     }
     
+    /**
+     * Gets the Http method.
+     * 
+     * @method  getHttpMethod
+     * @return  string
+     */
     public function getHttpMethod(){
         if($this->getServer('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'){
             return 'AJAX';
@@ -105,20 +199,45 @@ final class HttpRequest{
         return $this->getServer('REQUEST_METHOD');
     }
     
-    public function getServer($key){
-        if(array_key_exists($key, $_SERVER)){
-            return $_SERVER[$key];
+    /**
+     * Gets the specified server item by name.
+     * 
+     * @method  getServer
+     * @param   int $name
+     * @return  string
+     */
+    public function getServer($name){
+        if(array_key_exists($name, $_SERVER)){
+            return $_SERVER[$name];
         }
     }
     
+    /**
+     * Sets a UserIdentity object for the current request.
+     * 
+     * @method  setUser
+     * @param   System.Web.Security.UserIdentity $identity
+     */
     public function setUser(\System\Web\Security\UserIdentity $identity){
         $this->user = $identity;
     }
     
+    /**
+     * Gets a UserIdentity object for the current request.
+     * 
+     * @method  getUser
+     * @return  System.Web.Security.UserIdentity
+     */
     public function getUser(){
         return $this->user;
     }
     
+    /**
+     * Gets a boolean value indicating if the current request method is a GET.
+     * 
+     * @method  isGet
+     * @return  bool
+     */
     public function isGet(){
         if($this->getServer('REQUEST_METHOD') == 'GET'){
             return true;
@@ -126,6 +245,12 @@ final class HttpRequest{
         return false;
     }
     
+    /**
+     * Gets a boolean value indicating if the current request method is a POST.
+     * 
+     * @method  isPost
+     * @return  bool
+     */
     public function isPost(){
         if($this->getServer('REQUEST_METHOD') == 'POST'){
             return true;
@@ -133,6 +258,12 @@ final class HttpRequest{
         return false;
     }
     
+    /**
+     * Gets a boolean value indicating if the current request method is a PUT.
+     * 
+     * @method  isPut
+     * @return  bool
+     */
     public function isPut(){
         if($this->getServer('REQUEST_METHOD') == 'PUT'){
             return true;
@@ -140,6 +271,12 @@ final class HttpRequest{
         return false;
     }
     
+    /**
+     * Gets a boolean value indicating if the current request method is a DELETE.
+     * 
+     * @method  isDelete
+     * @return  bool
+     */
     public function isDelete(){
         if($this->getServer('REQUEST_METHOD') == 'DELETE'){
             return true;
@@ -147,6 +284,13 @@ final class HttpRequest{
         return false;
     }
     
+    /**
+     * Gets a boolean value indicating if the current request was requested with 
+     * XMLHttpRequest.
+     * 
+     * @method  isAjax
+     * @return  bool
+     */
     public function isAjax(){
         if($this->getServer('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'){
             return true;
@@ -154,6 +298,12 @@ final class HttpRequest{
         return false;
     }
 
+    /**
+     * Binds request params to an object.
+     * 
+     * @method  bindModel
+     * @param   object
+     */
     public function bindModel($object){
         $refClass = new \ReflectionClass($object);
         $properties = $refClass->getProperties();
@@ -170,6 +320,12 @@ final class HttpRequest{
         }
     }
     
+    /**
+     * Gets a PHP array of request params.
+     * 
+     * @method  toArray
+     * @return  array
+     */
     public function toArray(){
         return $this->params->toArray();
     }
@@ -197,13 +353,7 @@ final class HttpRequest{
         $list = new Dictionary();
         
         foreach($array as $key=>$item){
-            $httpFile = new HttpFile();
-            $httpFile->setFileName($item['name']);
-            $httpFile->setTmpFileName($item['tmp_name']);
-            $httpFile->setContentType($item['type']);
-            $httpFile->setSize($item['size']);
-            
-            $list->add($key, $httpFile);
+            $list->add($key, new HttpFile($item['name'], $item['tmp_name'], $item['type'], $item['size']));
         }
         return $list;
     }

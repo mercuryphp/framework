@@ -44,6 +44,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Determines whether an element is in the collection.
      * 
      * @method  contains
+     * @param   mixed $value
      * @return  bool
      */
     public function contains($value){
