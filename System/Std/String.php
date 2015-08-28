@@ -114,6 +114,36 @@ final class String{
         }
         return new String('');
     }
+    
+    public function tokenize($openingChar, $closingChar){
+        $len = strlen($this->string);
+        $token = '';
+        $tokens = array();
+        
+        for($i=0; $i < $len; $i++){
+            $char = $this->string[$i];
+
+            if($char==$openingChar){
+                if($token){
+                    $tokens[] = $token;
+                    $token = '';
+                }
+                continue;
+            }
+            if($char==$closingChar){
+                $tokens[] = $openingChar.$token.$closingChar;
+                $token = '';
+                continue;
+            }
+
+            $token.= $char;
+            
+            if($i==strlen($this->string)-1){
+                $tokens[] = $token;
+            }
+        }
+        return $tokens;
+    }
 
     public function toString(){
         return (string)$this->string;

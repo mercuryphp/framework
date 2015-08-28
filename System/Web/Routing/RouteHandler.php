@@ -11,30 +11,7 @@ class RouteHandler implements IRouteHandler {
         $defaults = new Dictionary($defaults);
         $uri = $httpRequest->getUri();
 
-        $token = '';
-        $tokens = array();
-        
-        for($i=0; $i < strlen($route); $i++){
-            $char = $route[$i];
-
-            if($char=='{'){
-                $tokens[] = $token;
-                $token = '';
-                continue;
-
-            }
-            if($char=='}'){
-                $tokens[] = '{'.$token.'}';
-                $token = '';
-                continue;
-            }
-
-            $token.= $char;
-            
-            if($i==strlen($route)-1){
-                $tokens[] = $token;
-            }
-        }
+        $tokens = String::set($route)->tokenize('{', '}');
 
         $uriPattern = $uri;
         foreach($tokens as $token){
