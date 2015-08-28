@@ -35,7 +35,7 @@ class Dictionary extends Collection implements IDictionary{
     
     /**
      * Adds or replaces an element in the collection using a key.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  set
      * @param   mixed $key
@@ -50,7 +50,7 @@ class Dictionary extends Collection implements IDictionary{
     
     /**
      * Magic method. Dynamically creates collection key/value elements.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  __set
      * @param   mixed $key
@@ -63,12 +63,10 @@ class Dictionary extends Collection implements IDictionary{
     
     /**
      * Magic method. Dynamically gets elements from the collection using the specified key.
-     * Throws ReadOnlyException if then collection is set as read-only.
      * 
      * @method  __get
      * @param   mixed $key
-     * @param   mixed $value
-     * @return  $this
+     * @return  mixed
      */
     public function __get($key){
         return $this->get($key);

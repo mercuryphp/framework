@@ -29,7 +29,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     
     /**
      * Clears the collection.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  clear
      * @return  $this
@@ -73,9 +73,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * 
      * @method  get
      * @param   mixed $key
+     * @param   mixed $default = null
      * @return  mixed
      */
-    public function get($key, $default = ''){
+    public function get($key, $default = null){
         if($this->hasKey($key)){
             return $this->collection[$key];
         }
@@ -94,7 +95,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
 
     /**
      * Merges an array or an instance of System.Collections.Collection with the collection.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  merge
      * @param   mixed $array
@@ -111,7 +112,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
 
     /**
      * Removes the first occurrence of an element from the collection.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  remove
      * @param   mixed $value
@@ -130,7 +131,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     
     /**
      * Removes an element from the collection using the specified key.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  removeAt
      * @param   mixed $key
@@ -179,7 +180,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     
     /**
      * Applies a callback function to all elements in the collection.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  each
      * @param   callable $func
@@ -194,32 +195,54 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Filters the collection where all elements match the specified value.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Filters the collection based on the condition specified in the callback.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  where
+     * @param   callable $callback
+     * @return  $this
+     */
+    public function where(callable $callback){
+        $this->readOnlyCheck();
+        $tmp = array();
+        foreach($this->collection as $k=>$v){
+            $return = $callback($v, $k);
+            if($return){
+                $tmp = array_merge($tmp, $return);
+            }
+        }
+        $this->collection = $tmp;
+        unset($tmp);
+        return $this;
+    }
+    
+    /**
+     * Filters the collection where all element values match the specified value and type.
+     * Throws ReadOnlyException if the collection is set as read-only.
+     * 
+     * @method  whereValue
      * @param   mixed $value
      * @return  $this
      */
-    public function where($value){
+    public function whereValue($value){
         $this->readOnlyCheck();
         $this->collection = array_filter($this->collection, function($v) use($value){
-            if($value == $v){
+            if($value === $v){
                 return $v;
             }
         });
         return $this;
     }
-    
+
     /**
-     * Filters the collection where all elements match the specified regex.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Filters the collection where all element values match the specified regex.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  like
+     * @method  likeValue
      * @param   string $regex
      * @return  $this
      */
-    public function like($regex){
+    public function likeValue($regex){
         $this->collection = array_filter($this->collection, function($v) use($regex){
             if(preg_match($regex, $v)){
                 return $v;

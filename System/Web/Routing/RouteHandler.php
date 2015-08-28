@@ -55,8 +55,8 @@ class RouteHandler implements IRouteHandler {
                 ++$counter;
             }
         }
-        
-        if($uri == trim(join('', $tokens), '/')){
+
+        if($uri == join('', $tokens)){
             $httpRequest->getRouteData()->merge($defaults);
             $httpRequest->getParam()->merge($defaults);
             return $httpRequest->getRouteData();

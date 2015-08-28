@@ -179,6 +179,7 @@ abstract class HttpApplication {
 
                 try{
                     $controller = Object::getInstance($class);
+                    $controller->getRegistry()->merge(get_object_vars($this));
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $class));
                 }
@@ -201,7 +202,6 @@ abstract class HttpApplication {
                     }
                 }
 
-                $controller->getRegistry()->merge(get_object_vars($this));
                 $controller->execute($this->httpContext);
 
                 if($moduleInstance){

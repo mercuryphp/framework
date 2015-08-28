@@ -13,6 +13,7 @@ final class HttpRequest {
     private $query = array();
     private $post = array();
     private $params = array();
+    private $headers = array();
     private $files = array();
     private $user;
 
@@ -40,6 +41,7 @@ final class HttpRequest {
         $this->post = new Dictionary($_POST);
         $this->cookies = new HttpCookieCollection($_COOKIE);
         $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE, $_SERVER));
+        $this->headers = (new Dictionary($_SERVER))->where(function($v, $k){ if (substr($k, 0,4)=='HTTP'){ return array($k => $v); }});
         $this->files = $this->httpFiles();
     }
     
@@ -53,9 +55,9 @@ final class HttpRequest {
      */
     public function getCookies($name = null){
         if($name){
-            return $this->query->get($name);
+            return $this->cookies->get($name);
         }
-        return $this->query;
+        return $this->cookies;
     }
     
     /**
@@ -200,6 +202,16 @@ final class HttpRequest {
     }
     
     /**
+     * Gets a collection of request headers.
+     * 
+     * @method  getHeaders
+     * @return  System.Collections.Dictionary
+     */
+    public function getHeaders(){
+        return $this->headers;
+    }
+    
+    /**
      * Gets the specified server item by name.
      * 
      * @method  getServer
@@ -302,7 +314,7 @@ final class HttpRequest {
      * Binds request params to an object.
      * 
      * @method  bindModel
-     * @param   object
+     * @param   object $object
      */
     public function bindModel($object){
         $refClass = new \ReflectionClass($object);
