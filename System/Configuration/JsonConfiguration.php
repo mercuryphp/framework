@@ -40,8 +40,6 @@ class JsonConfiguration extends Configuration {
             if(!is_array($this->config)){
                 throw new ConfigurationException('Unable to load configuration file. The file maybe corrupt.');
             }
-        }else{
-            throw new ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
         }
     }
 }

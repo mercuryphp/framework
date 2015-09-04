@@ -57,6 +57,7 @@ abstract class HttpApplication {
      * to be overridden. 
      * 
      * @method  start
+     * @return  void
      */
     public function start(){}
     
@@ -65,6 +66,7 @@ abstract class HttpApplication {
      * final and cannot be overriden.
      * 
      * @method  init
+     * @return  void
      */
     public final function init(){
 
@@ -107,6 +109,7 @@ abstract class HttpApplication {
      * the route collection.
      * 
      * @method  load
+     * @return  void
      */
     public function load(){}
 
@@ -116,6 +119,7 @@ abstract class HttpApplication {
      * 
      * @method  authenticateRequest
      * @param   System.Web.Mvc.Controller $controller
+     * @return  void
      */
     public function authenticateRequest(\System\Web\Mvc\Controller $controller){
         $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
@@ -138,6 +142,7 @@ abstract class HttpApplication {
      * 
      * @method  preAction
      * @param   System.Web.Mvc.Controller $controller
+     * @return  void
      */
     public function preAction(\System\Web\Mvc\Controller $controller){}
     
@@ -147,6 +152,7 @@ abstract class HttpApplication {
      * 
      * @method  postAction
      * @param   System.Web.Mvc.Controller $controller
+     * @return  void
      */
     public function postAction(\System\Web\Mvc\Controller $controller){}
 
@@ -154,6 +160,7 @@ abstract class HttpApplication {
      * Dispatches a controller. This method is declared final and cannot be overriden.
      * 
      * @method  run
+     * @return  void
      */
     public final function run(){
 
@@ -198,7 +205,7 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){
-                        $moduleInstance->load(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
+                        $moduleInstance->load($controller);
                     }
                 }
 
@@ -206,7 +213,7 @@ abstract class HttpApplication {
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){
-                        $moduleInstance->unload(new \System\Web\Mvc\ModuleContext($this->config, $controller, $this->httpContext));
+                        $moduleInstance->unload($controller);
                     }
                 }
                 
@@ -226,6 +233,7 @@ abstract class HttpApplication {
      * 
      * @method  error
      * @param   Exception $e
+     * @return  void
      */
     public function error(\Exception $e){}
     
@@ -233,8 +241,8 @@ abstract class HttpApplication {
      * The end() method is executed at the end of the application cycle. 
      * Any output is sent to the browser.
      * 
-     * @method  error
-     * @param   Exception
+     * @method  end
+     * @return  void
      */
     public function end(){
         $this->httpContext->getSession()->write();

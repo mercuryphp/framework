@@ -268,7 +268,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * 
      * @method  isReadOnly
      * @param   bool $bool = null
-     * @return  void
+     * @return  mixed
      */
     public function isReadOnly($bool = null){
         if(is_null($bool)){

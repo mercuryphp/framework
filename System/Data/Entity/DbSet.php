@@ -51,7 +51,7 @@ class DbSet {
                 $select->where($key.'=:'.$key);
             }
 
-            $entityCollection = $select->toList($this->meta->getEntityName(), $params);
+            $entityCollection = $select->toList($params, $this->meta->getEntityName());
             
             foreach($entityCollection as $entity){
                 $entityContext = $this->add($entity);

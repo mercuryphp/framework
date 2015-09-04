@@ -61,8 +61,6 @@ class YmlConfiguration extends Configuration {
 
             }
             $this->parseSection($section);
-        }else{
-            throw new ConfigurationFileNotFoundException('Unable to load configuration file. The file does not exist.');
         }
     }
 

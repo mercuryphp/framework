@@ -2,17 +2,17 @@
 
 namespace System\Collections;
 
-class Dictionary extends Collection implements IDictionary{
+class Dictionary extends Collection {
     
     /**
      * Adds an element to the collection using a key.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * Throws InvalidArgumentException if the key already exists.
      * 
      * @method  add
      * @param   mixed $key
      * @param   mixed $value
-     * @return  $this
+     * @return  System.Collections.Dictionary
      */
     public function add($key, $value){
         $this->readOnlyCheck();
@@ -40,7 +40,7 @@ class Dictionary extends Collection implements IDictionary{
      * @method  set
      * @param   mixed $key
      * @param   mixed $value
-     * @return  $this
+     * @return  System.Collections.Dictionary
      */
     public function set($key, $value){
         $this->readOnlyCheck();
@@ -55,7 +55,7 @@ class Dictionary extends Collection implements IDictionary{
      * @method  __set
      * @param   mixed $key
      * @param   mixed $value
-     * @return  $this
+     * @return  System.Collections.Dictionary
      */
     public function __set($key, $value){
         return $this->set($key, $value);

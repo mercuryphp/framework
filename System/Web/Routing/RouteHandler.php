@@ -33,7 +33,7 @@ class RouteHandler implements IRouteHandler {
             }
         }
 
-        if($uri == join('', $tokens)){
+        if($uri == trim(join('', $tokens), '/')){
             $httpRequest->getRouteData()->merge($defaults);
             $httpRequest->getParam()->merge($defaults);
             return $httpRequest->getRouteData();

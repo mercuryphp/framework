@@ -149,9 +149,7 @@ class Date extends \DateTime {
                     $string .= $token;
                     break;
             }
-            
         }
-        
         return $string; 
     }
     

@@ -2,15 +2,15 @@
 
 namespace System\Collections;
 
-class ArrayList extends Collection implements IList {
+class ArrayList extends Collection {
     
     /**
      * Adds an element to the end of the collection.
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  add
      * @param   mixed $value
-     * @return  $this
+     * @return  System.Collections.ArrayList
      */
     public function add($value){
         $this->readOnlyCheck();
@@ -20,12 +20,12 @@ class ArrayList extends Collection implements IList {
     
     /**
      * Inserts an element into the collection at the specified index. 
-     * Throws ReadOnlyException if then collection is set as read-only.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  insert
      * @param   int $index
      * @param   mixed $value
-     * @return  $this
+     * @return  System.Collections.ArrayList
      */
     public function insert($index, $value){
         $this->readOnlyCheck();
@@ -38,7 +38,7 @@ class ArrayList extends Collection implements IList {
      * @method  repeat
      * @param   mixed $value
      * @param   int $count
-     * @return  $this
+     * @return  System.Collections.ArrayList
      */
     public static function repeat($value, $count){
         return new ArrayList(array_fill(0, $count, $value));
