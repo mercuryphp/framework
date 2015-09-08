@@ -64,6 +64,10 @@ abstract class Controller{
         return new JsonResult($this->httpContext->getResponse(), $data, $options);
     }
     
+    public function xml($data, array $options = array()){
+        return new XmlResult($this->httpContext->getResponse(), $data, $options);
+    }
+    
     public function view($viewName = null){
         return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $viewName));
     }
