@@ -48,7 +48,7 @@ abstract class HttpApplication {
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
         $this->config = new YmlConfiguration('config.php'); 
-        $this->logger = new Logger(new \System\Log\Handlers\ExceptionHandler);
+        $this->logger = new Logger(new \System\Log\Handlers\OutputHandler());
     }
 
     /**
@@ -77,7 +77,7 @@ abstract class HttpApplication {
         Environment::setExecutionTime($this->config->get('environment.executionTime', 30));
         Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
         Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));
-        Environment::setTimezone($this->config->get('environment.timezone', \System\Std\Date::now()->getTimezone()->getName()));
+        Environment::setTimezone($this->config->get('environment.timezone'));
         Environment::setNamespaces($this->config->get('namespaces', array()));
         Environment::setDefaultConnectionString($this->config->get('connectionStrings.default'));
 

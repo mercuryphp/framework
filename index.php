@@ -1,5 +1,9 @@
 <?php
 
+    if(!ob_get_level()){ 
+        ob_start(); 
+    }
+
     $rootPath = str_replace('\\', '/', dirname(__FILE__));
 
     $envClassFile = $rootPath .'/System/Std/Environment.php';

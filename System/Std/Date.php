@@ -6,14 +6,17 @@ class Date extends \DateTime {
     
     protected $cultureInfo;
 
-    public function __construct($string, $timezone){
+    public function __construct($string, $timezone = null){
         
-        if(Environment::getTimezone()){
-            $timezone = new \DateTimeZone(Environment::getTimezone());
+        if($timezone){
+            $timezone = new \DateTimeZone($timezone);
+        }else{
+            if(Environment::getTimezone()){
+                $timezone = new \DateTimeZone(Environment::getTimezone());
+            }
         }
         
         parent::__construct($string, $timezone);
-        
         $this->cultureInfo = Environment::getCulture();
     }
     

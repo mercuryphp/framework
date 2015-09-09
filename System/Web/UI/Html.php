@@ -56,14 +56,15 @@ class Html {
         echo $control->render();
     }
     
-    public static function fileUpload($name, array $attributes = array()){
+    public static function file($name, array $attributes = array()){
         $control = new FileUpload($name, $attributes);
         $control->setEscaper(self::$escaper);
         echo $control->render();
     }
-    
-    public static function table($source, array $attributes = array()){
-        return new Table($source, $attributes);
+
+    public static function build(){
+        $control = new HtmlBuilder();
+        return $control;
     }
     
     public static function selectList(array $source, $dataValue, $dataText, $selectedValue = null){

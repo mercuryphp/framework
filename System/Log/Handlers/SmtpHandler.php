@@ -2,7 +2,7 @@
 
 namespace System\Log\Handlers;
 
-class SmtpHandler {
+class SmtpHandler extends LogHandler {
 
     protected $settings;
     protected $conn;
@@ -17,6 +17,43 @@ class SmtpHandler {
     
     public function write(array $logs, array $extra = array()){
         if(is_resource($this->conn)){
+            
+            $message = (new \System\Std\String())->appendLine('');
+
+            foreach($extra as $key=>$value){
+                $message = $message->appendLine(strtoupper($key).': '.$value);
+            }
+            
+            $send = false;
+            foreach($logs as $log){ 
+                if(count($this->filters) == 0 || (in_array(strtoupper($log['level_name']), array_map('strtoupper',$this->filters)))){
+
+                    $log = $this->executeProcessor($log);
+                    
+                    if($log){
+                        $message = $message->appendLine('LEVEL: '.$log['level_name'])
+                            ->appendLine('DATE: '.$log['time'])
+                            ->appendLine('PARAMS: '.  json_encode($log['params']))
+                            ->appendLine('MESSAGE:')
+                            ->appendLine($log['message'])
+                            ->appendLine('');
+                        $send = true;
+                    }
+                }
+            }
+            
+            if(!$send){
+                return;
+            }
+
+            $email  = "Date: " . date("D, j M Y G:i:s") . PHP_EOL;
+            $email .= "From: " . $this->settings->get('from') . PHP_EOL;
+            $email .= "Subject: " . $this->settings->get('subject') . PHP_EOL;
+            $email .= "MIME-Version: 1.0" . PHP_EOL;
+            $email .= "Content-Type:text/plain;";
+            $email .=  PHP_EOL . (string)$message . PHP_EOL;
+            $email .= "." . PHP_EOL;
+                            
             $greeting = $this->getResponse();
 
             if($greeting->code ==220){ 
@@ -33,9 +70,9 @@ class SmtpHandler {
                 }
 
                 if($response->code == 250){
-
+                    
                     if($this->settings->get('username') && $this->settings->get('password')){
-
+                        
                         $this->sendCommand('AUTH LOGIN');
                         $response = $this->getResponse();
                 
@@ -72,32 +109,6 @@ class SmtpHandler {
                         $response = $this->getResponse();
 
                         if ($response->code == 354){
-
-                            $message = new \System\Std\String();
-
-                            foreach($extra as $key=>$value){
-                                $message = $message->appendLine(strtoupper($key).': '.$value);
-                            }
-
-                            $message = $message->appendLine('');
-
-                            foreach($logs as $log){
-                                $message = $message->appendLine('LEVEL: '.$log['level_name'])
-                                    ->appendLine('DATE: '.$log['time'])
-                                    ->appendLine('PARAMS: '.  json_encode($log['params']))
-                                    ->appendLine('MESSAGE:')
-                                    ->appendLine($log['message'])
-                                    ->appendLine('');
-                            }
-            
-                            $email  = "Date: " . date("D, j M Y G:i:s") . PHP_EOL;
-                            $email .= "From: " . $this->settings->get('from') . PHP_EOL;
-                            $email .= "Subject: " . $this->settings->get('subject') . PHP_EOL;
-                            $email .= "MIME-Version: 1.0" . PHP_EOL;
-                            $email .= "Content-Type:text/plain;";
-                            $email .=  PHP_EOL . (string)$message . PHP_EOL;
-                            $email .= "." . PHP_EOL;
-
                             fputs($this->conn, $email);
                             $response = $this->getResponse();
 
@@ -108,7 +119,7 @@ class SmtpHandler {
                     }
                 }
             }else{
-                throw new SmtpException($response->message);
+                throw new \Exception($greeting->message);
             }
         }
     }
