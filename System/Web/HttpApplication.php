@@ -9,7 +9,7 @@ use System\Log\Logger;
 use System\Globalization\CultureInfo;
 use System\Configuration\YmlConfiguration;
 use System\Web\Routing\RouteCollection;
-use System\Web\Security\FormsAuthentication;
+use System\Web\Security\Authentication;
 use System\Web\Security\UserIdentity;
 
 abstract class HttpApplication {
@@ -94,11 +94,11 @@ abstract class HttpApplication {
 
         $this->httpContext = new HttpContext($request, $response, $session);
         
-        FormsAuthentication::setCookieName($this->config->get('formsAuthentication.cookieName', 'PHPXAUTH'));
-        FormsAuthentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm'));
-        FormsAuthentication::setCipher($this->config->get('formsAuthentication.cipher'));
-        FormsAuthentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
-        FormsAuthentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
+        Authentication::setCookieName($this->config->get('formsAuthentication.cookieName', 'PHPXAUTH'));
+        Authentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm'));
+        Authentication::setCipher($this->config->get('formsAuthentication.cipher'));
+        Authentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
+        Authentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
         
         $this->httpContext->getSession()->open();
     }
@@ -114,7 +114,7 @@ abstract class HttpApplication {
     public function load(){}
 
     /**
-     * Authenticates a HTTP request using FormsAuthentication and establishes the 
+     * Authenticates a HTTP request using Authentication and establishes the 
      * identity of the user.
      * 
      * @method  authenticateRequest
@@ -122,12 +122,12 @@ abstract class HttpApplication {
      * @return  void
      */
     public function authenticateRequest(\System\Web\Mvc\Controller $controller){
-        $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(FormsAuthentication::getCookieName());
+        $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(Authentication::getCookieName());
         
         $identity = new UserIdentity('Anonymous');
         
         if($httpAuthCookie){
-            $ticket = FormsAuthentication::decrypt($httpAuthCookie->getValue()); 
+            $ticket = Authentication::decrypt($httpAuthCookie->getValue()); 
 
             if((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0){
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);

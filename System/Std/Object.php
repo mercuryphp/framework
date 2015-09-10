@@ -15,6 +15,11 @@ final class Object{
             unset($args[0]);
             
             foreach($args as $arg){
+                
+				if(is_object($arg)){
+					$arg = Object::getProperties($arg);
+				}
+                
                 if(is_array($arg)){
                     foreach($arg as $propertyName=>$propertyValue){
                         if($refClass->hasProperty($propertyName)){

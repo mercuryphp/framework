@@ -2,7 +2,7 @@
 
 namespace System\Web\Security;
 
-class FormsAuthentication {
+class Authentication {
     
     private static $cookieName;
     private static $hashAlgor;

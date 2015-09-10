@@ -22,7 +22,7 @@ abstract class LogHandler {
     protected function executeProcessor($log){
         if($this->processor){
             $processor = $this->processor;
-            return $processor($log);
+            return $processor($log, $this);
         }
         return $log;
     }
