@@ -4,8 +4,8 @@ namespace System\Web\Routing;
 
 class RouteCollection extends \System\Collections\Collection {
 
-    public function add($route, $defaults = array()){
-        $route = new Route($route, $defaults);
+    public function add($routeName, $defaults = array()){
+        $route = new Route($routeName, $defaults);
         $this->collection[] = $route;
         return $route;
     }

@@ -28,7 +28,7 @@ class Logger {
      * Initializes an instance of Logger.
      * 
      * @method  __construct
-     * @param   System.Log.Handlers.ILogHandler $handler
+     * @param   System.Log.Handlers.LogHandler $handler
      */
     public function __construct($handler = null){
         if($handler){
@@ -140,7 +140,8 @@ class Logger {
     }
     
     /**
-     * Adds a log handler. 
+     * Sets a callback that can be used to process each log entry before
+     * it is handled by the LogHandler.
      * 
      * @method  setProcessor
      * @param   callable $processor
@@ -152,7 +153,7 @@ class Logger {
     }
     
     /**
-     * Executes all log handlers.
+     * Executes all log handlers and terminates the script.
      * 
      * @method  flush
      * @return  void
@@ -161,7 +162,7 @@ class Logger {
         foreach($this->handlers as $handler){
             $handler['handler']
                 ->setProcessor($this->processor)
-                ->setFilters($handler['filters'])
+                ->setLevelFilters($handler['filters'])
                 ->write($this->logs, $this->extra);
         }
         exit;

@@ -24,9 +24,9 @@ class OutputHandler extends LogHandler {
                 table tr td p { color:#990000; font-style:italic; font-size:15px; }
                 .code { list-style-type:none; padding:0px; margin:0px; border-top:1px solid #EEE; border-right:1px solid #EEE; }
                 .code li { border-bottom:1px solid #EEE; }
-                .code li span { width:40px; text-align:center; font-weight:bold; color:#777; display:inline-block; background-color:#EEE; padding:5px; }
+                .code li span { width:40px; text-align:center; font-weight:bold; color:#777; display:inline-block; background-color:#FCFCFC; padding:5px; }
                 .code li pre { display:inline-block; margin:0px; font-family:tahoma; font-size:12px; color:444; padding:5px;}
-                .code .selected { background-color:#EEE; }
+                .code .selected { background-color:#EEE; border-bottom:2px solid #FCFCFC; box-shadow:1px 2px 3px #AAA; margin-bottom:4px; background-color:#E9EFF8; border:1px solid #AAA; }
             ')
         ->_style();
         

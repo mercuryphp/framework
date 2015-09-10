@@ -5,7 +5,7 @@ namespace System\Web;
 class HttpCookieCollection extends \System\Collections\Collection {
     
     /**
-     * Initializes the cookie collection.
+     * Initializes a new instance of HttpCookieCollection.
      * 
      * @method  __construct
      * @param   array $cookies

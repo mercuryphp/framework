@@ -12,7 +12,20 @@ final class HttpCookie {
     private $isSecure;
     private $isHttpOnly;
     
-    public function __construct($name, $value = '', $expires = 0, $path = '/', $domain = '', $isSecure = false, $isHttpOnly = true ){
+    /**
+     * Initializes a new instance of HttpCookie.
+     * 
+     * @method  __construct
+     * @param   string $name
+     * @param   string $value = ''
+     * @param   mixed $expires = 0
+     * @param   string $path = '/'
+     * @param   string $domain = ''
+     * @param   bool $isSecure = false
+     * @param   bool $isHttpOnly = true
+     * 
+     */
+    public function __construct($name, $value = '', $expires = 0, $path = '/', $domain = '', $isSecure = false, $isHttpOnly = true){
         $this->name = $name;
         $this->value = $value;
         $this->expires = $expires;
@@ -27,6 +40,7 @@ final class HttpCookie {
      * 
      * @method  setName
      * @param   string $name
+     * @return  void
      */
     public function setName($name){
         $this->name = $name;
@@ -47,6 +61,7 @@ final class HttpCookie {
      * 
      * @method  setValue
      * @param   string $value
+     * @return  void
      */
     public function setValue($value){
         $this->value = $value;
@@ -67,6 +82,7 @@ final class HttpCookie {
      * 
      * @method  setExpires
      * @param   string $expires
+     * @return  void
      */
     public function setExpires($expires){
         $this->expires = $expires;
@@ -87,6 +103,7 @@ final class HttpCookie {
      * 
      * @method  setPath
      * @param   string $path
+     * @return  void
      */
     public function setPath($path){
         $this->path = $path;
@@ -107,6 +124,7 @@ final class HttpCookie {
      * 
      * @method  setDomain
      * @param   string $domain
+     * @return  void
      */
     public function setDomain($domain){
         $this->domain = $domain;

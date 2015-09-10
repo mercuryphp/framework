@@ -7,6 +7,12 @@ class SmtpHandler extends LogHandler {
     protected $settings;
     protected $conn;
 
+    /**
+     * Initializes an instance of SmtpHandler.
+     * 
+     * @method  __construct
+     * @param   array $settings
+     */
     public function __construct(array $settings){
         $this->settings = new \System\Collections\Dictionary($settings);
         $useSSL = (bool)$this->settings->get('useSSL');
@@ -15,6 +21,14 @@ class SmtpHandler extends LogHandler {
         $this->conn = fsockopen($host, $this->settings->get('port'), $errno, $errstr);
     }
     
+    /**
+     * Sends all logs via email. 
+     * 
+     * @method  write
+     * @param   array $logs
+     * @param   array $extra
+     * @return  void
+     */
     public function write(array $logs, array $extra = array()){
         if(is_resource($this->conn)){
             

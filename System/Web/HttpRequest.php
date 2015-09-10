@@ -110,7 +110,7 @@ final class HttpRequest {
      * 
      * @method  setParam
      * @param   string $name
-     * @param   string $value
+     * @param   mixed $value
      */
     public function setParam($name, $value){
         $this->params->set($name, $value);
@@ -340,6 +340,16 @@ final class HttpRequest {
      */
     public function toArray(){
         return $this->params->toArray();
+    }
+    
+    /**
+     * Gets an item from the params collection using a dynamic property.
+     * 
+     * @method  __get
+     * @return  mixed
+     */
+    public function __get($name){
+        return $this->getParam($name);
     }
     
     private function httpFiles(){
