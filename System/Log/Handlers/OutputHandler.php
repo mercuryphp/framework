@@ -49,13 +49,19 @@ class OutputHandler extends LogHandler {
                         ->tr()
                             ->td(array('width' => '100'))->text('Time')->_td()
                             ->td()->text($log['time'])->_td()
-                        ->_tr()
-                        ->tr()
-                            ->td()->text('Message')->_td();
-
+                        ->_tr();
+                       
                             if($log['level'] == \System\Log\Logger::EXCEPTION){
                                 $e = $log['message'];
-                                $html->td()->p()->text($e->getMessage())->_p()->_td()->_tr()
+                                
+                                $html->tr()
+                                        ->td()->text('Exception Type')->_td()
+                                        ->td()->text(get_class($e))->_td()
+                                    ->_tr()
+                                    ->tr()
+                                        ->td()->text('Message')->_td()
+                                        ->td()->p()->text($e->getMessage())->_p()->_td()
+                                    ->_tr()
                                     ->tr()
                                         ->td()->text('Line')->_td()
                                         ->td()->text($e->getLine())->_td()
@@ -81,14 +87,17 @@ class OutputHandler extends LogHandler {
                                             ->_li();
                                     }
 
-                                    $html->_td()->_tr()
+                                    $html->_ul()->_td()->_tr()
                                     ->tr()
                                         ->td()->text('Stacktrace')->_td()
                                         ->td()->html(str_replace("\n", "<br/>", $e->getTraceAsString()))->_td()
                                     ->_tr();     
 
                             }else{
-                                $html->td()->p()->text($log['message'])->_p()->_td()->_tr();
+                                $html->tr()
+                                        ->td()->text('Message')->_td()
+                                        ->td()->p()->text($log['message'])->_p()->_td()
+                                    ->_tr();
                             }
 
                         $html->tr()

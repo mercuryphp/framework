@@ -30,30 +30,25 @@ class HttpCookieCollection extends \System\Collections\Collection {
     }
     
     /**
-     * Removes a HttpCookie from the cookie collection using the cookie name.
+     * Gets a cookie from the cookie collection. Creates a new cookie if the cookie does not exist.
+     * If the cookie does not exist but default has been specified, then the value of default is returned
+     * and no cookie is created.
      * 
-     * @method  remove
-     * @param   string $key
+     * @method  get
+     * @param   mixed $key
+     * @param   mixed $default = null
+     * @return  mixed
      */
-    public function remove($key){
-        $this->readOnlyCheck();
+    public function get($key, $default = null){
         if($this->hasKey($key)){
-            $httpCookie = $this->collection[$key];
-            $httpCookie->setExpires(\System\Std\Date::now()->sub(new \DateInterval('P1Y')));
-            return true;
+            return $this->collection[$key];
+        }else{
+            if($default){
+                return $default;
+            }
         }
-        return false;
-    }
-    
-    /**
-     * Clears the cookie collection.
-     * 
-     * @method  clear
-     */
-    public function clear(){
-        $this->readOnlyCheck();
-        foreach($this->collection as $httpCookie){
-            $httpCookie->setExpires(\System\Std\Date::now()->sub(new \DateInterval('P1Y')));
-        }
+        $httpCookie = new HttpCookie($key);
+        $this->collection[$key] = $httpCookie;
+        return $httpCookie;
     }
 }

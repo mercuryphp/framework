@@ -62,67 +62,158 @@ final class HttpResponse {
         505 => '505 HTTP Version Not Supported'
     );
     
+    /**
+     * Initializes a new instance of the HttpResponse class.
+     * 
+     * @method  __construct
+     */
     public function __construct(){
         $this->cookies = new HttpCookieCollection(array());
         $this->headers = new \System\Collections\Dictionary();
         $this->setContentType('text/html');
         $this->setContentEncoding('UTF-8');
+        $this->setStatusCode(200);
     }
 
+    /**
+     * Sets the HTTP content type of the output.
+     * 
+     * @method  setContentType
+     * @param   string $contentType
+     * @return  System.Web.HttpResponse
+     */
     public function setContentType($contentType){
         $this->contentType = $contentType;
         $this->addHeader('Content-type', $this->contentType.';'.$this->encoding, true); 
         return $this;
     }
     
+    /**
+     * Gets the HTTP content type of the output.
+     * 
+     * @method  getContentType
+     * @return  string
+     */
     public function getContentType(){
         return $this->contentType;
     }
     
+    /**
+     * Sets the HTTP character set of the output.
+     * 
+     * @method  setContentEncoding
+     * @param   string $encoding
+     * @return  System.Web.HttpResponse
+     */
     public function setContentEncoding($encoding){
         $this->encoding = $encoding;
         $this->addHeader('Content-type', $this->contentType.';charset='.$this->encoding, true); 
         return $this;
     }
     
+    /**
+     * Gets the HTTP character set of the output.
+     * 
+     * @method  getContentEncoding
+     * @return  string
+     */
     public function getContentEncoding(){
         return $this->encoding;
     }
     
+    /**
+     * Sets the content length of the output.
+     * 
+     * @method  setContentLength
+     * @param   int $length
+     * @return  System.Web.HttpResponse
+     */
     public function setContentLength($length){
         $this->addHeader('Content-length', $length, true); 
         return $this;
     }
     
+    /**
+     * Gets the content length of the output.
+     * 
+     * @method  getContentLength
+     * @return  int
+     */
     public function getContentLength(){
-        return $this->headers->get('Content-length');
+        return (int)$this->headers->get('Content-length');
     }
 
+    /**
+     * Sets the HTTP status code of the output.
+     * 
+     * @method  setStatusCode
+     * @param   int $code
+     * @return  System.Web.HttpResponse
+     */
     public function setStatusCode($code){
         if (isset(self::$statusCodes[$code])){
-            $this->statusCode = $code;
+            $this->statusCode = (int)$code;
             $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
             header($protocol.' '.self::$statusCodes[$code]);
         }
         return $this;
     }
     
+    /**
+     * Gets the HTTP status code of the output.
+     * 
+     * @method  getStatusCode
+     * @return  int
+     */
     public function getStatusCode(){
         return $this->statusCode;
     }
     
+    /**
+     * Gets the HTTP header collection.
+     * 
+     * @method  getHeaders
+     * @return  System.Collections.Dictionary
+     */
     public function getHeaders(){
         return $this->headers;
     }
     
-    public function getCookies(){
+    /**
+     * Gets a cookie from the cookie collection. Creates a new cookie if the cookie does not exist.
+     * Gets the cookie collection if no name is specified.
+     * 
+     * @method  getCookies
+     * @param   string $name
+     * @return  mixed
+     */
+    public function getCookies($name = null){
+        if($name){
+            return $this->cookies->get($name);
+        }
         return $this->cookies;
     }
     
+    /**
+     * Gets the HTTP response output.
+     * 
+     * @method  getOutput
+     * @return  string
+     */
     public function getOutput(){
         return $this->output;
     }
 
+    /**
+     * Adds a HTTP header to the header collection. Overrides an existing header 
+     * if $override is set to true.
+     * 
+     * @method  addHeader
+     * @param   string $header
+     * @param   string $value
+     * @param   bool $override = true
+     * @return  System.Web.HttpResponse
+     */
     public function addHeader($header, $value, $override = true){
         if($override){
             $this->headers->set($header, $value);
@@ -134,11 +225,37 @@ final class HttpResponse {
         return $this;
     }
     
+    /**
+     * Writes a string to the response output.
+     * 
+     * @method  write
+     * @param   string $output
+     * @return  System.Web.HttpResponse
+     */
     public function write($output){
         $this->output = $output;
         return $this;
     }
     
+    /**
+     * Appends a string to the response output.
+     * 
+     * @method  append
+     * @param   string $output
+     * @return  System.Web.HttpResponse
+     */
+    public function append($output){
+        $this->output .= $output;
+        return $this;
+    }
+    
+    /**
+     * Writes the string contents of the specified file to the response output.
+     * 
+     * @method  writeFile
+     * @param   string $file
+     * @return  System.Web.HttpResponse
+     */
     public function writeFile($file){
         if(is_file($file)){
             $this->output = file_get_contents($file);
@@ -146,6 +263,16 @@ final class HttpResponse {
         return $this;
     }
     
+    /**
+     * Redirects a client to a new URL. Immediately does a redirect if $immediateRedirect is set to true.
+     * Setting $immediateRedirect to false will result in the script continuing execution until 
+     * the application cycle is complete and the response objects flush() method has been called.
+     * 
+     * @method  redirect
+     * @param   string $location
+     * @param   bool $immediateRedirect
+     * @return  void
+     */
     public function redirect($location, $immediateRedirect = true){
         if(is_string($location)){
             if($immediateRedirect){
@@ -156,6 +283,12 @@ final class HttpResponse {
         }
     }
     
+    /**
+     * Sends all output and headers to the client.
+     * 
+     * @method  flush
+     * @return  string
+     */
     public function flush(){
         if (!headers_sent()){
             foreach($this->headers as $header=>$value){

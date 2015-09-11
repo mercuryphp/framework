@@ -129,7 +129,7 @@ abstract class HttpApplication {
         if($httpAuthCookie){
             $ticket = Authentication::decrypt($httpAuthCookie->getValue()); 
 
-            if((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0){
+            if($ticket && ((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0)){
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
             }
         }
@@ -186,6 +186,7 @@ abstract class HttpApplication {
 
                 try{
                     $controller = Object::getInstance($class);
+                    $controller->setHttpContext($this->httpContext);
                     $controller->getRegistry()->merge(get_object_vars($this));
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $class));
@@ -209,7 +210,7 @@ abstract class HttpApplication {
                     }
                 }
 
-                $controller->execute($this->httpContext);
+                $controller->execute();
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'unload')){

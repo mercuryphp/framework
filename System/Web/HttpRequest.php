@@ -46,11 +46,11 @@ final class HttpRequest {
     }
     
     /**
-     * Gets the specified item by name or gets the cookie collection
-     * if no name is specified.
+     * Gets a cookie from the cookie collection. Creates a new cookie if the cookie does not exist.
+     * Gets the cookie collection if no name is specified.
      * 
      * @method  getCookies
-     * @param   string $name = null
+     * @param   string $name
      * @return  mixed
      */
     public function getCookies($name = null){

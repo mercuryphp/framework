@@ -81,7 +81,7 @@ final class HttpCookie {
      * Sets the expiration date and time for the cookie.
      * 
      * @method  setExpires
-     * @param   string $expires
+     * @param   int $expires
      * @return  void
      */
     public function setExpires($expires){

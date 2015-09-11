@@ -3,7 +3,7 @@
 namespace System\Data\Entity;
 
 use System\Std\Object;
-use System\Data\Connection;
+use System\Data\Database;
 
 abstract class DbContext {
     
@@ -20,25 +20,25 @@ abstract class DbContext {
             $connectionString = sprintf("driver=mysql;host=127.0.0.1;dbname=%s;charset=utf8;uid=root;pwd=", $dbName);
         }
         
-        $this->conn = new Connection($connectionString);
+        $this->db = new Database($connectionString);
         $this->dbSets = new \System\Collections\Dictionary();
         $this->persistedEntities = new \System\Collections\Dictionary();
     }
     
-    public function getConnection(){
-        return $this->conn;
+    public function getDatabase(){
+        return $this->db;
     }
     
     public function query($sql, $params = array()){
-        return new SqlQuery($this->conn, $sql, $params);
+        return new SqlQuery($this->db, $sql, $params);
     }
     
     public function select($fields, $entityName){
-        return new SelectQuery(new SqlQuery($this->conn), $fields, $entityName);
+        return new SelectQuery(new SqlQuery($this->db), $fields, $entityName);
     }
     
     public function table($tableName, $params = array()){
-        return new SqlQuery($this->conn, 'SELECT * FROM '.$tableName, $params);
+        return new SqlQuery($this->db, 'SELECT * FROM '.$tableName, $params);
     }
     
     public function dbSet($entityName){
@@ -108,11 +108,11 @@ abstract class DbContext {
                 switch ($entityContext->getState()){
                     case EntityContext::PERSIST:
 
-                        $result = $this->conn->insert($meta->getTable()->getTableName(), $properties);
+                        $result = $this->db->insert($meta->getTable()->getTableName(), $properties);
                         $log[] = $result;
                         
                         if($result){
-                            Object::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->conn->getInsertId($meta->getKey()->getKeyName()));
+                            Object::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->db->getInsertId($meta->getKey()->getKeyName()));
                             $entityContext->setState(EntityContext::PERSISTED);
                             $this->persistedEntities->add($entityContext->getHashCode(), $entityContext);
                         }
@@ -120,12 +120,12 @@ abstract class DbContext {
 
                     case EntityContext::PERSISTED:
                         $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
-                        $log[] = $this->conn->update($meta->getTable()->getTableName(), $properties, $updateParams);
+                        $log[] = $this->db->update($meta->getTable()->getTableName(), $properties, $updateParams);
                         break;
                     
                     case EntityContext::DELETE:
                         $updateParams = array($meta->getKey()->getKeyName() => $properties[$meta->getKey()->getKeyName()]);
-                        $log[] = $this->conn->delete($meta->getTable()->getTableName(), $properties, $updateParams);
+                        $log[] = $this->db->delete($meta->getTable()->getTableName(), $properties, $updateParams);
                         $this->persistedEntities->removeAt($entityContext->getHashCode());
                         $set->detach($entity);
                         break;

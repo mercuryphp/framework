@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Configuration\Readers;
+namespace System\Configuration;
 
 class ConfigurationException extends \Exception {
 }

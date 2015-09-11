@@ -2,7 +2,7 @@
 
 namespace System\Data;
 
-class Connection {
+class Database {
     
     protected $dsn = '';
     protected $pdo = null;
@@ -15,12 +15,14 @@ class Connection {
      * 
      * @method  __construct
      * @param   string $connectionString
+     * @param   string $uid = ''
+     * @param   string $pwd = ''
      * @return  void
      */
-    public function __construct($connectionString = null){
+    public function __construct($connectionString = null, $uid = '', $pwd = ''){
         $this->profiler = new Profiler();
         if($connectionString){
-            $this->connect($connectionString);
+            $this->connect($connectionString, $uid, $pwd);
         }
     }
     
@@ -30,9 +32,11 @@ class Connection {
      * 
      * @method  connect
      * @param   string $connectionString
+     * @param   string $uid = ''
+     * @param   string $pwd = ''
      * @return  void
      */
-    public function connect($connectionString){
+    public function connect($connectionString, $uid = '', $pwd = ''){
         $dbConfig = new \System\Collections\Dictionary();
         
         if(strpos($connectionString, ';')){
@@ -45,8 +49,8 @@ class Connection {
             }
         }
         
-        $uid = $dbConfig['uid'];
-        $pwd = $dbConfig['pwd'];
+        $uid = isset($dbConfig['uid']) ? $dbConfig['uid'] : $uid;
+        $pwd = isset($dbConfig['pwd']) ? $dbConfig['pwd'] : $pwd;
         
         unset($dbConfig['uid']);
         unset($dbConfig['pwd']);
@@ -59,7 +63,7 @@ class Connection {
             $this->profiler->log('Connected to database', $dbConfig->toArray(), Profiler::CONNECT);
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }catch(\PDOException $e){
-            throw new ConnectionException($e->getMessage());
+            throw new DatabaseException($e->getMessage());
         }
     }
     
@@ -144,7 +148,7 @@ class Connection {
      */
     public function insert($tableName, $data){
         if(is_object($data)){
-            $data = get_object_vars($data);
+            $data = \System\Std\Object::getProperties($data);
         }
 
         $placeHolders = trim(str_repeat('?,', count($data)), ',');
@@ -289,12 +293,12 @@ class Connection {
     }
 
     /**
-     * Gets the Data Source Name (DSN) used to connect to the database.
+     * Gets the connection string used to connect to the database.
      * 
-     * @method  getDsn
+     * @method  getConnectionString
      * @return  string
      */
-    public function getDsn(){
+    public function getConnectionString(){
         return $this->dsn;
     }
     

@@ -4,7 +4,6 @@ namespace System\Web\Mvc;
 
 use System\Std\String;
 use System\Collections\Dictionary;
-use System\Web\HttpContext;
 use System\Web\Mvc\ViewContext;
 
 abstract class Controller{
@@ -38,6 +37,10 @@ abstract class Controller{
     
     public function getUser(){
         return $this->httpContext->getRequest()->getUser();
+    }
+    
+    public function setHttpContext(\System\Web\HttpContext $httpContext){
+        $this->httpContext = $httpContext;
     }
 
     public function getHttpContext(){
@@ -83,10 +86,9 @@ abstract class Controller{
         throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
     }
     
-    public function execute(HttpContext $httpContext, array $routeData = array()){
-
-        $this->httpContext = $httpContext;
-        $routeData = $httpContext->getRequest()
+    public function execute(array $routeData = array()){
+        
+        $routeData = $this->httpContext->getRequest()
             ->getRouteData()
             ->set('controller', (string)String::set(get_called_class())->get('\\', 'Controller', String::LAST_LAST)->toLower())
             ->merge($routeData);

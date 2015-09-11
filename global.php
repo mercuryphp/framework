@@ -9,5 +9,8 @@ class MvcApplication extends HttpApplication {
             array('controller' => 'Home', 'action' => 'index')
         );
     }
+    
+    public function error(\Exception $e) {
+        $this->logger->exception($e)->flush();
+    }
 }
-// add comment
