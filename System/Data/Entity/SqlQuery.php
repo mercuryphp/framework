@@ -8,7 +8,7 @@ class SqlQuery {
     protected $sql;
     protected $params;
     
-    public function __construct(\System\Data\Connection $conn, $sql = null, $params = null){
+    public function __construct(\System\Data\Database $conn, $sql = null, $params = null){
         $this->conn = $conn;
         $this->sql = $sql;
         $this->params = $params;

@@ -9,7 +9,7 @@ class SelectQuery {
     protected $metaCollection = array();
     protected $sql;
     protected $lastTableAlias;
-    protected $isWhere;
+    protected $isWhere = false;
     
     public function __construct(SqlQuery $sqlQuery, $fields, $entityName){
         

@@ -32,11 +32,7 @@ abstract class DbContext {
     public function query($sql, $params = array()){
         return new SqlQuery($this->db, $sql, $params);
     }
-    
-    public function select($fields, $entityName){
-        return new SelectQuery(new SqlQuery($this->db), $fields, $entityName);
-    }
-    
+
     public function table($tableName, $params = array()){
         return new SqlQuery($this->db, 'SELECT * FROM '.$tableName, $params);
     }

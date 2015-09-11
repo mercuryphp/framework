@@ -13,6 +13,10 @@ class DbSet {
         $this->meta = $meta;
     }
     
+    public function select($fields = '*'){
+        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase()), $fields, $this->meta->getEntityName());
+    }
+    
     public function find($params, $default = false){
 
         if(is_scalar($params)){
@@ -20,7 +24,7 @@ class DbSet {
         }
         
         if(is_array($params)){
-            $select = $this->dbContext->select('*', $this->meta->getEntityName());
+            $select = $this->select('*', $this->meta->getEntityName());
             
             foreach($params as $key=>$param){
                 $select->where($key.'=:'.$key);
@@ -45,7 +49,7 @@ class DbSet {
         }
 
         if(is_array($params)){
-            $select = $this->dbContext->select('*', $this->meta->getEntityName());
+            $select = $this->select('*', $this->meta->getEntityName());
             
             foreach($params as $key=>$param){
                 $select->where($key.'=:'.$key);

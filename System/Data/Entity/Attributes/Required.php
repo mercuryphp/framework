@@ -25,5 +25,4 @@ class Required extends ConstraintAttribute {
         }
         return sprintf('%s is required', $this->columnName);
     }
-
 }
