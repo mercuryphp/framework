@@ -13,6 +13,11 @@ abstract class Controller{
     private $httpContext;
     private $view;
     
+    /**
+     * Initializes a new instance of the Controller class.
+     * 
+     * @method  __construct
+     */
     public function __construct(){
         $this->view = new NativeView();
         $this->viewBag = new Dictionary();
