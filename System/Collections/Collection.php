@@ -257,10 +257,10 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * @method  join
      * @param   string $glue
      * @param   bool $removeEmptyEntries = true
-     * @return  System.Std.String
+     * @return  System.Std.Str
      */
     public function join($glue, $removeEmptyEntries = true){
-        return \System\Std\String::join($glue, $this->collection, $removeEmptyEntries);
+        return \System\Std\Str::join($glue, $this->collection, $removeEmptyEntries);
     }
     
     /**

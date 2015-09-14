@@ -2,7 +2,7 @@
 
 namespace System\Web\Mvc;
 
-use System\Std\String;
+use System\Std\Str;
 use System\Collections\Dictionary;
 use System\Web\Mvc\ViewContext;
 
@@ -95,7 +95,7 @@ abstract class Controller{
         
         $routeData = $this->httpContext->getRequest()
             ->getRouteData()
-            ->set('controller', (string)String::set(get_called_class())->get('\\', 'Controller', String::LAST_LAST)->toLower())
+            ->set('controller', (string)Str::set(get_called_class())->get('\\', 'Controller', Str::LAST_LAST)->toLower())
             ->merge($routeData);
 
         $refClass = new \ReflectionClass(get_class($this));

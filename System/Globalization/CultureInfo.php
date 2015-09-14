@@ -9,7 +9,7 @@ class CultureInfo {
 
 
     public function __construct($name = ''){
-        $dataFile = \System\Std\String::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
+        $dataFile = \System\Std\Str::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
         
         if(is_file($dataFile)){
             $this->xml = simplexml_load_file($dataFile);

@@ -26,7 +26,7 @@ class SelectQuery {
         $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
         
-        $this->sql = \System\Std\String::set('SELECT ')
+        $this->sql = \System\Std\Str::set('SELECT ')
             ->append($fields)
             ->append(' FROM ')
             ->append($metaData->getTable()->getTableName())

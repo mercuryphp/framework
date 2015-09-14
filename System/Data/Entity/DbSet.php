@@ -29,7 +29,7 @@ class DbSet {
             foreach($params as $key=>$param){
                 $select->where($key.'=:'.$key);
             }
-        
+
             $entity = $select->single($params, $this->meta->getEntityName(), $default);
             
             if($entity){

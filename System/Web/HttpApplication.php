@@ -3,7 +3,7 @@
 namespace System\Web;
 
 use System\Std\Environment;
-use System\Std\String;
+use System\Std\Str;
 use System\Std\Object;
 use System\Log\Logger;
 use System\Globalization\CultureInfo;
@@ -178,11 +178,11 @@ abstract class HttpApplication {
 
                 $namespace = '';
                 if(Environment::getRootPath() != Environment::getControllerPath()){
-                    $namespace = String::set(Environment::getControllerPath())->replace(Environment::getRootPath(), '')->trim('/');
+                    $namespace = Str::set(Environment::getControllerPath())->replace(Environment::getRootPath(), '')->trim('/');
                 }
 
                 $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
-                $class = String::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))));
+                $class = Str::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))));
 
                 try{
                     $controller = Object::getInstance($class);
@@ -196,7 +196,7 @@ abstract class HttpApplication {
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
 
-                $moduleClassName = String::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'));
+                $moduleClassName = Str::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'));
 
                 $this->authenticateRequest($controller);
 

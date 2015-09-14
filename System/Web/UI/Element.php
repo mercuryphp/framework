@@ -10,8 +10,8 @@ abstract class Element {
     protected $escaper = null;
     
     public function __construct(){
-        $this->control = new \System\Std\String('');
-        $this->attributeString = new \System\Std\String('');
+        $this->control = new \System\Std\Str('');
+        $this->attributeString = new \System\Std\Str('');
     }
     
     public function setEscaper(callable $callback){

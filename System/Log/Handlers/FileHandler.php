@@ -31,7 +31,7 @@ class FileHandler extends LogHandler {
      * @return  void
      */
     public function write(array $logs, array $extra = array()){
-        $formatted = (new \System\Std\String())->appendLine('');
+        $formatted = (new \System\Std\Str())->appendLine('');
         
         foreach($extra as $key=>$value){
             $formatted = $formatted->appendLine(strtoupper($key).': '.$value);

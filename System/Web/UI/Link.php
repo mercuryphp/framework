@@ -29,7 +29,7 @@ class Link extends Element {
         if(is_array($this->params)){
             $href = $this->attributes['href'];
             foreach($this->params as $param=>$val){
-                $href = \System\Std\String::set($href)->replace('@'.$param, $val);
+                $href = \System\Std\Str::set($href)->replace('@'.$param, $val);
             }
             $this->attributes['href'] = $href;
         }

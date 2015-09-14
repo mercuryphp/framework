@@ -15,7 +15,7 @@ class EntityContext {
     
     public function __construct($entity){
         $this->entityHash = spl_object_hash($entity);
-        $this->entityName = \System\Std\String::set(get_class($entity))->trim('\\')->replace('\\', '.')->toString();
+        $this->entityName = \System\Std\Str::set(get_class($entity))->trim('\\')->replace('\\', '.')->toString();
         $this->entity = $entity;
     }
     

@@ -32,7 +32,7 @@ class SmtpHandler extends LogHandler {
     public function write(array $logs, array $extra = array()){
         if(is_resource($this->conn)){
             
-            $message = (new \System\Std\String())->appendLine('');
+            $message = (new \System\Std\Str())->appendLine('');
 
             foreach($extra as $key=>$value){
                 $message = $message->appendLine(strtoupper($key).': '.$value);

@@ -3,7 +3,7 @@
 namespace System\Web\Mvc;
 
 use System\Std\Environment;
-use System\Std\String;
+use System\Std\Str;
 
 class NativeView implements IView {
 
@@ -74,11 +74,11 @@ class NativeView implements IView {
         $response = $viewContext->getHttpContext()->getResponse();
         $routeData = $viewContext->getRouteData();
 
-        $viewFile = String::set($this->viewFilePattern)
+        $viewFile = Str::set($this->viewFilePattern)
             ->prepend(Environment::getControllerPath())
-            ->replace('@module', String::set($routeData->module)->toLower()->toUpperFirst())
-            ->replace('@controller', String::set($routeData->controller)->toLower()->toUpperFirst())
-            ->replace('@action', String::set($routeData->action)->toLower()->toUpperFirst())
+            ->replace('@module', Str::set($routeData->module)->toLower()->toUpperFirst())
+            ->replace('@controller', Str::set($routeData->controller)->toLower()->toUpperFirst())
+            ->replace('@action', Str::set($routeData->action)->toLower()->toUpperFirst())
             ->append('.php')
             ->replace('\\', '/');
 

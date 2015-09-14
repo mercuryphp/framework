@@ -2,7 +2,7 @@
 
 namespace System\Std;
 
-final class String{
+final class Str{
     
     private $string = '';
     
@@ -16,39 +16,39 @@ final class String{
     }
     
     public function toUpper(){
-        return new String(strtoupper($this->string));
+        return new Str(strtoupper($this->string));
     }
     
     public function toLower(){
-        return new String(strtolower($this->string));
+        return new Str(strtolower($this->string));
     }
     
     public function toUpperFirst(){
-        return new String(ucfirst($this->string));
+        return new Str(ucfirst($this->string));
     }
     
     public function toLowerFirst(){
-        return new String(lcfirst($this->string));
+        return new Str(lcfirst($this->string));
     }
     
     public function replace($search, $replace){
-        return new String(str_replace($search, $replace, $this->string));
+        return new Str(str_replace($search, $replace, $this->string));
     }
     
     public function append($string){
-        return new String($this->string.$string);
+        return new Str($this->string.$string);
     }
     
     public function appendLine($string){
-        return new String($this->string.$string.PHP_EOL);
+        return new Str($this->string.$string.PHP_EOL);
     }
 
     public function prepend($string){
-        return new String($string.$this->string);
+        return new Str($string.$this->string);
     }
 
     public function trim($char = null){
-        return new String(trim($this->string, $char));
+        return new Str(trim($this->string, $char));
     }
     
     public function truncate($length, $append = null){
@@ -56,7 +56,7 @@ final class String{
         if(strlen($this->string) > $length){
             $string = $this->subString(0,$length);
         }else{
-            return new String($this->string);
+            return new Str($this->string);
         }
 
         if($append){
@@ -67,9 +67,9 @@ final class String{
     
     public function subString($start, $length = null){
         if(is_null($length)){
-            return new String(substr($this->string, $start));
+            return new Str(substr($this->string, $start));
         }
-        return new String(substr($this->string, $start, $length));
+        return new Str(substr($this->string, $start, $length));
     }
 
     public function length(){
@@ -89,7 +89,7 @@ final class String{
         return strripos($this->string, $char);
     }
 
-    public function get($fromChar, $toChar, $mode = String::FIRST_FIRST){
+    public function get($fromChar, $toChar, $mode = Str::FIRST_FIRST){
         switch ($mode){
             case self::FIRST_FIRST:
                 $pos1 = $this->indexOf($fromChar);
@@ -110,9 +110,9 @@ final class String{
         }
 
         if($pos1 >-1 && $pos2 >-1){
-            return new String($this->subString((int)$pos1+1, (int)$pos2-$this->length()));
+            return new Str($this->subString((int)$pos1+1, (int)$pos2-$this->length()));
         }
-        return new String('');
+        return new Str('');
     }
     
     public function tokenize($openingChar, $closingChar){
@@ -154,7 +154,7 @@ final class String{
     }
     
     public static function set($string){
-        return new String($string);
+        return new Str($string);
     }
     
     public static function join($glue, $array, $removeEmptyEntries = true){
@@ -172,6 +172,6 @@ final class String{
                 }
             }
         }
-        return new String(trim($join, $glue));
+        return new Str(trim($join, $glue));
     }
 }
