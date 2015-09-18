@@ -11,6 +11,7 @@ abstract class Configuration {
      * 
      * @method  open
      * @param   string $fileName
+     * @return  void
      */
     public abstract function open($fileName);
     

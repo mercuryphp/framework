@@ -76,8 +76,8 @@ abstract class Controller{
         return new XmlResult($this->httpContext->getResponse(), $data, $options);
     }
     
-    public function view($viewName = null){
-        return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $viewName));
+    public function view($arg = null){
+        return new ViewResult($this, new ViewContext($this->httpContext, $this->viewBag, $arg));
     }
 
     public function __set($key, $value){

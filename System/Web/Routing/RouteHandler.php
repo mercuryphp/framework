@@ -15,7 +15,7 @@ class RouteHandler implements IRouteHandler {
 
         $uriPattern = $uri;
         foreach($tokens as $token){
-            $uriPattern = str_replace($token, '@', $uriPattern);
+            $uriPattern = preg_replace('#'.$token.'#', '@', $uriPattern, 1);
         }
 
         $uriSegments = Str::set($uriPattern)->split('@');

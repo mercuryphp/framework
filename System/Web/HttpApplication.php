@@ -79,7 +79,6 @@ abstract class HttpApplication {
         Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));
         Environment::setTimezone($this->config->get('environment.timezone'));
         Environment::setNamespaces($this->config->get('namespaces', array()));
-        Environment::setDefaultConnectionString($this->config->get('connectionStrings.default'));
 
         $request = new HttpRequest();
         $response = new HttpResponse();
@@ -202,7 +201,7 @@ abstract class HttpApplication {
 
                 $this->preAction($controller);
 
-                $moduleInstance = Object::getInstance($moduleClassName, null, false);
+                $moduleInstance = Object::getInstance($moduleClassName, array(), false);
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){

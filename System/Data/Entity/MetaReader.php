@@ -8,7 +8,7 @@ use System\Std\Object;
 class MetaReader {
     public static function getMeta($entityName){
         $tableName = new Str(Str::set($entityName)->toLower()->split('\.')->last());
-        $entityName = String::set($entityName)->replace('.', '\\');
+        $entityName = Str::set($entityName)->replace('.', '\\');
 
         $refClass = new \ReflectionClass((string)$entityName);
 

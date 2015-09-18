@@ -11,7 +11,7 @@ class Date extends \DateTime {
      * 
      * @method  __construct
      * @param   string $string
-     * @param   DateTimeZone $timeZone = null
+     * @param   string $timeZone = null
      * @return  void
      */
     public function __construct($string, $timeZone = null){
@@ -269,7 +269,7 @@ class Date extends \DateTime {
      * 
      * @method  parse
      * @param   string $string
-     * @param   DateTimeZone $timeZone = null
+     * @param   string $timeZone = null
      * @return  System.Std.Date
      */
     public static function parse($string, $timeZone = null){ 
@@ -282,7 +282,7 @@ class Date extends \DateTime {
      * Gets a Date object that is set to the current date and time.
      * 
      * @method  now
-     * @param   DateTimeZone $timeZone = null
+     * @param   string $timeZone = null
      * @return  System.Std.Date
      */
     public static function now($timeZone = null){

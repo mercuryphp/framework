@@ -18,15 +18,13 @@ class YmlConfiguration extends Configuration {
     }
     
     /**
-     * Opens a YAML like configuration file.
-     * Throws ConfigurationFileNotFoundException if the file does not exist.
+     * Opens a YML like configuration file.
      * 
      * @method  open
      * @param   string $fileName
      * @return  void
      */
     public function open($fileName){
-        $config = array();
         if(is_file($fileName)){
             $data = file($fileName);
             $section = array();
@@ -65,13 +63,13 @@ class YmlConfiguration extends Configuration {
     }
 
     protected function parseSection($section){
-        $config = end($section);
+        $data = end($section);
         $section = array_reverse($section);
         $idx = 0;
         foreach($section as $key=>$val) {
-            $config = array($key => ($idx > 0) ? array_merge($config, $val) : $val);
+            $data = array($key => ($idx > 0) ? array_merge($data, $val) : $val);
             $idx++;
         }
-        $this->config = array_merge($this->config, $config);
+        $this->config = array_merge($this->config, $data);
     }
 }

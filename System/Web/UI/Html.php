@@ -13,6 +13,18 @@ class Html {
     public static function getEscaper(){
         return self::$escaper;
     }
+    
+    public static function button($name, $default = null, array $attributes = array()){
+        $control = new Button($name, $default, $attributes, 'button');
+        $control->setEscaper(self::$escaper);
+        echo $control->render();
+    }
+    
+    public static function submit($name, $default = null, array $attributes = array()){
+        $control = new Button($name, $default, $attributes, 'submit');
+        $control->setEscaper(self::$escaper);
+        echo $control->render();
+    }
 
     public static function dropdown($name, $source, $default = null, array $attributes = array()){
         $control = new DropDown($name, $source, $default, $attributes);

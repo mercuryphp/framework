@@ -4,6 +4,15 @@ namespace System\Std;
 
 final class Object{
 
+    /**
+     * A variadic method that converts key/value arrays or objects to an object
+     * specified by $toClass name.
+     * 
+     * @method  toObject
+     * @param   string $toClass
+     * @param   array|object $data1, $data2...
+     * @return  object
+     */
     public static function toObject(){
         $args = func_get_args();
         
@@ -34,6 +43,14 @@ final class Object{
         }
     }
     
+    /**
+     * Sets the property values of an object using an array.
+     * 
+     * @method  setProperties
+     * @param   object $object
+     * @param   array $properties
+     * @return  object
+     */
     public static function setProperties($object, array $properties){
         $refClass = new \ReflectionObject($object);
         
@@ -45,6 +62,13 @@ final class Object{
         return $object;
     }
     
+    /**
+     * Gets the properties of an object as an array.
+     * 
+     * @method  getProperties
+     * @param   object $object
+     * @return  array
+     */
     public static function getProperties($object){
         $refClass = new \ReflectionObject($object);
         $properties = $refClass->getProperties();
@@ -57,6 +81,15 @@ final class Object{
         return $array;
     }
     
+    /**
+     * Sets the property value of an object.
+     * 
+     * @method  setPropertyValue
+     * @param   object $object
+     * @param   string $propertyName
+     * @param   mixed $value
+     * @return  void
+     */
     public static function setPropertyValue($object, $propertyName, $value){
         $refClass = new \ReflectionObject($object);
         
@@ -67,6 +100,14 @@ final class Object{
         }
     }
    
+    /**
+     * Gets the property value of an object.
+     * 
+     * @method  getPropertyValue
+     * @param   object $object
+     * @param   string $propertyName
+     * @return  mixed
+     */
     public static function getPropertyValue($object, $propertyName){
         $refClass = new \ReflectionObject($object);
         if($refClass->hasProperty($propertyName)){
@@ -76,12 +117,21 @@ final class Object{
         }
     }
     
-    public static function getInstance($name, $args = null, $throwException = true){
+    /**
+     * Gets a new instance of a class.
+     * 
+     * @method  getInstance
+     * @param   string $name
+     * @param   array $args
+     * @param   bool $throwException = true
+     * @return  object
+     */
+    public static function getInstance($name, array $args = array(), $throwException = true){
         try{
             $name = str_replace(".", "\\", $name);
             $refClass = new \ReflectionClass($name);
 
-            if($args){
+            if(count($args) > 0){
                 $instance = $refClass->newInstanceArgs($args);
             }else{
                 $instance = $refClass->newInstance();

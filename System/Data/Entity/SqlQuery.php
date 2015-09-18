@@ -29,7 +29,7 @@ class SqlQuery {
         $stm = $this->conn->query($this->sql, $this->params);
 
         if($entityName){
-            $row = $stm->fetch(\PDO::FETCH_ASSOC);
+            $row = $stm->fetch(\PDO::FETCH_OBJ);
             return $this->toEntity($row, $entityName, $default);
         }
         
@@ -40,8 +40,8 @@ class SqlQuery {
         $stm = $this->conn->query($this->sql, $this->params);
         
         if($entityName){
-            $rows = $stm->fetchAll(\PDO::FETCH_ASSOC);
             $array = array();
+            $rows = $stm->fetchAll(\PDO::FETCH_OBJ);
             foreach($rows as $row){
                 $array[] = $this->toEntity($row, $entityName);
             }
@@ -53,35 +53,43 @@ class SqlQuery {
     }
     
     private function toEntity($data, $entityName, $default = false){
-        
-        $class = '\\'.str_replace('.', '\\', $entityName);
-        $refClass = new \ReflectionClass($class);
-        $entity = $refClass->newInstance();
 
-        if(!$data){
-            if($default){ 
-                return $entity;
-            }
-            return false;
+        if(is_callable($entityName)){
+            return $entityName($data);
         }
+        
+        if(is_string($entityName)){
+            $class = '\\'.str_replace('.', '\\', $entityName);
+            $refClass = new \ReflectionClass($class);
+            $entity = $refClass->newInstance();
+
+            if(!$data){
+                if($default){ 
+                    return $entity;
+                }
+                return false;
+            }
             
-        if(is_array($data)){
-            $properties = $refClass->getProperties();
+            $data = get_object_vars($data);
 
-            foreach($properties as $property){
-                $property->setAccessible(true);
-                $propertyName = $property->getName();
+            if(is_array($data)){
+                $properties = $refClass->getProperties();
 
-                if(substr($propertyName, 0,1) != '_'){
-                    if(array_key_exists($propertyName, $data)){ 
-                        $value = $data[$propertyName];
-                        $property->setValue($entity, $value);
-                    }else{
-                        throw new \System\Data\Entity\EntityException(sprintf("The entity property '%s.%s' could not be mapped to the database result.", $entityName, $propertyName));
+                foreach($properties as $property){
+                    $property->setAccessible(true);
+                    $propertyName = $property->getName();
+
+                    if(substr($propertyName, 0,1) != '_'){
+                        if(array_key_exists($propertyName, $data)){ 
+                            $value = $data[$propertyName];
+                            $property->setValue($entity, $value);
+                        }else{
+                            throw new \System\Data\Entity\EntityException(sprintf("The entity property '%s.%s' could not be mapped to the database result.", $entityName, $propertyName));
+                        }
                     }
                 }
             }
+            return $entity;
         }
-        return $entity;
     }
 }
