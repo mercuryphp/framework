@@ -42,7 +42,7 @@ class Authentication {
         );
         
         $string = serialize($data);
-        $hash = Security::hmac('sha256', $string, self::$validationKey);
+        $hash = Security::hmac(self::$hashAlgor, $string, self::$validationKey);
         $iv = Security::iv(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC, MCRYPT_DEV_URANDOM, false);
         return Security::encrypt(self::$cipher, self::$encryptionKey, $hash.'|'.$string, MCRYPT_MODE_CBC, $iv, true).'|'.base64_encode($iv);
     }

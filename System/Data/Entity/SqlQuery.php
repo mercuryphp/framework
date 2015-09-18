@@ -52,6 +52,11 @@ class SqlQuery {
         return new DbListResult($rows);
     }
     
+    public function nonQuery(){
+        $stm = $this->conn->query($this->sql, $this->params);
+        return $stm->rowCount();
+    }
+    
     private function toEntity($data, $entityName, $default = false){
 
         if(is_callable($entityName)){

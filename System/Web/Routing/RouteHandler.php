@@ -7,7 +7,7 @@ use System\Collections\Dictionary;
 
 class RouteHandler implements IRouteHandler {
     
-    public function execute(\System\Web\HttpRequest $httpRequest, $route, $defaults = array()){
+    public function execute(\System\Web\HttpRequest $httpRequest, $route, $defaults = array(), $constraints = array()){
         $defaults = new Dictionary($defaults);
         $uri = $httpRequest->getUri();
 
@@ -25,8 +25,19 @@ class RouteHandler implements IRouteHandler {
             if(substr($token, 0,1) == '{'){
                 $tokenName = Str::set($token)->get('{', '}');
                 $tokens[$idx] = $uriSegments->get($counter);
-                
+
                 if($tokens[$idx]){
+                    
+                    if(array_key_exists((string)$tokenName, $constraints)){
+                        $constraint = $constraints[(string)$tokenName];
+                        
+                        if(is_string($constraint)){
+                            if(!preg_match($constraint, $tokens[$idx])){
+                                return false;
+                            }
+                        }
+                    }
+                    
                     $defaults->set((string)$tokenName, $tokens[$idx]);
                 }
                 ++$counter;

@@ -94,8 +94,8 @@ abstract class HttpApplication {
         $this->httpContext = new HttpContext($request, $response, $session);
         
         Authentication::setCookieName($this->config->get('formsAuthentication.cookieName', 'PHPXAUTH'));
-        Authentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm'));
-        Authentication::setCipher($this->config->get('formsAuthentication.cipher'));
+        Authentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm', 'sha256'));
+        Authentication::setCipher($this->config->get('formsAuthentication.cipher', MCRYPT_RIJNDAEL_256));
         Authentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
         Authentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
         

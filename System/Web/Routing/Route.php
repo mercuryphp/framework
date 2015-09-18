@@ -6,12 +6,14 @@ class Route {
     
     protected $route;
     protected $defaults;
+    protected $constraints;
     protected $routeHandler;
     protected $httpRequest;
     
-    public function __construct($route, $defaults = array()){
+    public function __construct($route, $defaults = array(), $constraints = array()){
         $this->route = $route;
         $this->defaults = $defaults;
+        $this->constraints = $constraints;
         $this->routeHandler = new RouteHandler();
     }
     
@@ -28,6 +30,6 @@ class Route {
     }
     
     public function execute(){
-        return $this->routeHandler->execute($this->httpRequest, $this->route, $this->defaults);
+        return $this->routeHandler->execute($this->httpRequest, $this->route, $this->defaults, $this->constraints);
     }
 }
