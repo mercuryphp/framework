@@ -11,6 +11,12 @@ abstract class DbContext {
     protected $dbSets;
     protected $persistedEntities;
     
+    /**
+     * Initializes an instance of DbContext.
+     * 
+     * @method  __construct
+     * @param   string $connectionString = null
+     */
     public function __construct($connectionString = null){
         
         if($connectionString == null){
@@ -25,18 +31,35 @@ abstract class DbContext {
         $this->persistedEntities = new \System\Collections\Dictionary();
     }
     
+    /**
+     * Gets the underlying database instance.
+     * 
+     * @method  getDatabase
+     * @return  System.Data.Database
+     */
     public function getDatabase(){
         return $this->db;
     }
     
+    /**
+     * Issues an SQL query and returns a new SqlQuery instance.
+     * 
+     * @method  query
+     * @param   string $sql
+     * @param   array $params
+     * @return  System.Data.Entity.SqlQuery
+     */
     public function query($sql, $params = array()){
         return new SqlQuery($this->db, $sql, $params);
     }
-
-    public function table($tableName, $params = array()){
-        return new SqlQuery($this->db, 'SELECT * FROM '.$tableName, $params);
-    }
     
+    /**
+     * Registers an entity type in the DbSet collection.
+     * 
+     * @method  dbSet
+     * @param   string $entityName
+     * @return  System.Data.Entity.DbSet
+     */
     public function dbSet($entityName){
         if(!$this->dbSets->hasKey($entityName)){
             $metaData = MetaReader::getMeta($entityName);
@@ -45,14 +68,32 @@ abstract class DbContext {
         return $this->dbSets[$entityName];
     }
     
+    /**
+     * Gets the DbSet collection.
+     * 
+     * @method  getDbSets
+     * @return  System.Collections.Dictionary
+     */
     public function getDbSets(){
         return $this->dbSets;
     }
     
+    /**
+     * Gets a collection of persisted entities.
+     * 
+     * @method  getPersistedEntities
+     * @return  System.Collections.Dictionary
+     */
     public function getPersistedEntities(){
         return $this->persistedEntities;
     }
 
+    /**
+     * Applys all changes made in this context to the underlying database.
+     * 
+     * @method  saveChanges
+     * @return  int
+     */
     public function saveChanges(){
         $log = array();
         

@@ -18,6 +18,7 @@ class Profiler {
      * Logs the start time of an SQL query.
      * 
      * @method  start
+     * @return  void
      */
     public function start(){
         ++$this->lastLogId;
@@ -33,6 +34,7 @@ class Profiler {
      * @param   string $log
      * @param   array $params  = array()
      * @param   string $type = null
+     * @return  void
      */
     public function log($log, array $params = array(), $type = null){
         $id = 'LOG_'.$this->lastLogId;
@@ -125,6 +127,7 @@ class Profiler {
      * 
      * @method  onLogAdded
      * @param   callable $callback
+     * @return  void
      */
     public function onLogAdded(callable $callback){
         $this->onLogAdded = $callback;

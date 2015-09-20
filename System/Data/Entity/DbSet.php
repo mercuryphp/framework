@@ -8,19 +8,42 @@ class DbSet {
     protected $meta = array();
     protected $entities = array();
     
+    /**
+     * Initializes an instance of DbSet.
+     * 
+     * @method  __construct
+     * @param   System.Data.Entity.DbContext $dbContext
+     * @param   System.Data.Entity.EntityMeta $meta
+     */
     public function __construct(DbContext $dbContext, EntityMeta $meta){
         $this->dbContext = $dbContext;
         $this->meta = $meta;
     }
     
+    /**
+     * Gets a new SelectQuery instance.
+     * 
+     * @method  select
+     * @param   string $fields = '*'
+     * @return  System.Data.Entity.SelectQuery
+     */
     public function select($fields = '*'){
         return new SelectQuery(new SqlQuery($this->dbContext->getDatabase()), $fields, $this->meta->getEntityName());
     }
     
+    /**
+     * Finds an entity using the specified $params. If the entity is found it is
+     * attached to the context.
+     * 
+     * @method  select
+     * @param   mixed $params
+     * @param   bool $default = false
+     * @return  System.Data.Entity.SelectQuery
+     */
     public function find($params, $default = false){
 
         if(is_scalar($params)){
-            $params = array($this->meta->getKey()->getKeyName() => $params);
+            $params = array($this->meta->getKey()->getKeyName() => $params); 
         }
         
         if(is_array($params)){
@@ -42,6 +65,14 @@ class DbSet {
         }
     }
     
+    /**
+     * Finds all entities using the specified $params. If the entities are 
+     * found they are attached to the context.
+     * 
+     * @method  select
+     * @param   string $fields = '*'
+     * @return  System.Data.Entity.SelectQuery
+     */
     public function findAll($params = array()){
 
         if(is_scalar($params)){

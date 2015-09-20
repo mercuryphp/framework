@@ -28,7 +28,7 @@ class Logger {
      * Initializes an instance of Logger.
      * 
      * @method  __construct
-     * @param   System.Log.Handlers.LogHandler $handler
+     * @param   System.Log.Handlers.LogHandler $handler = null
      */
     public function __construct($handler = null){
         if($handler){
