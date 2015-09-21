@@ -1,15 +1,15 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
-class IsNumeric extends Validator {
+class IsAlpha extends Validator {
 
     public function __construct($errMessage){
         $this->errMessage = $errMessage;
     }
     
     public function isValid(){
-        if(is_numeric($this->value)){
+        if(ctype_alpha($this->value)){
             return true;
         }
         return false;

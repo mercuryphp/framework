@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
 class ValidationStack {
     
@@ -17,6 +17,10 @@ class ValidationStack {
         if(count($arrgs) > 0){
             $this->validators = $arrgs;
         }
+    }
+    
+    public function add(\System\Web\Mvc\Validators\IValidator $validator){
+        $this->validators[] = $validator;
     }
     
     public function isValid(){

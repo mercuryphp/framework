@@ -1,17 +1,17 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
-class IsAlpha extends Validator {
+class IsEmpty extends Validator {
 
     public function __construct($errMessage){
         $this->errMessage = $errMessage;
     }
     
     public function isValid(){
-        if(ctype_alpha($this->value)){
-            return true;
+        if($this->value==''){
+            return false;
         }
-        return false;
+        return true;
     }
 }

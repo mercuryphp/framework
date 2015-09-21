@@ -19,7 +19,7 @@ class SelectQuery {
         if(array_key_exists($entityName, $this->metaCollection)){
             $metaData = $this->metaCollection[$entityName];
         }else{
-            $metaData = MetaReader::getMeta($entityName);
+            $metaData = $sqlQuery->getMetaReader()->read($entityName);
             $this->metaCollection[$entityName] = $metaData;
         }
 
@@ -112,7 +112,7 @@ class SelectQuery {
         if(array_key_exists($entityName, $this->metaCollection)){
             $metaData = $this->metaCollection[$entityName];
         }else{
-            $metaData = MetaReader::getMeta($entityName);
+            $metaData = $this->sqlQuery->getMetaReader()->read($entityName);
             $this->metaCollection[$entityName] = $metaData;
         }
         

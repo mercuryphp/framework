@@ -5,11 +5,13 @@ namespace System\Data\Entity;
 class SqlQuery {
     
     protected $conn;
+    protected $metaReader;
     protected $sql;
     protected $params;
     
-    public function __construct(\System\Data\Database $conn, $sql = null, $params = null){
+    public function __construct(\System\Data\Database $conn, \System\Data\Entity\MetaReaders\IMetaReader $metaReader, $sql = null, $params = null){
         $this->conn = $conn;
+        $this->metaReader = $metaReader;
         $this->sql = $sql;
         $this->params = $params;
     }
@@ -55,6 +57,10 @@ class SqlQuery {
     public function nonQuery(){
         $stm = $this->conn->query($this->sql, $this->params);
         return $stm->rowCount();
+    }
+    
+    public function getMetaReader(){
+        return $this->metaReader;
     }
     
     private function toEntity($data, $entityName, $default = false){

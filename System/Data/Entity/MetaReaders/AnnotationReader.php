@@ -1,12 +1,13 @@
 <?php
 
-namespace System\Data\Entity;
+namespace System\Data\Entity\MetaReaders;
 
 use System\Std\Str;
 use System\Std\Object;
 
-class MetaReader {
-    public static function getMeta($entityName){
+class AnnotationReader extends MetaReader {
+    
+    public function read($entityName){
         $tableName = new Str(Str::set($entityName)->toLower()->split('\.')->last());
         $entityName = Str::set($entityName)->replace('.', '\\');
 
@@ -15,8 +16,8 @@ class MetaReader {
         $tokens = token_get_all(file_get_contents($refClass->getFileName())); 
 
         $meta = array(
-            'System.Data.Entity.Attributes.Table' => new Attributes\Table((string)$tableName),
-            'System.Data.Entity.Attributes.Key' => new Attributes\Key((string)$tableName->append('_id')),
+            'System.Data.Entity.Attributes.Table' => new \System\Data\Entity\Attributes\Table((string)$tableName),
+            'System.Data.Entity.Attributes.Key' => new \System\Data\Entity\Attributes\Key((string)$tableName->append('_id')),
             'Columns' => array()
         );
         $tmp = array();
@@ -39,7 +40,7 @@ class MetaReader {
                             }
                             
                             try{
-                                $meta[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
+                                $meta[(string)$attribute] = Object::getInstance($attribute, $this->getArgs($args));
                             }catch(\Exception $e){
                                 throw new \System\Data\Entity\EntityException('The attribute "'.(string)$attribute.'" does not exist.');
                             }
@@ -56,9 +57,9 @@ class MetaReader {
                     }
                     
                     if((string)$args){
-                        $tmp[] = Object::getInstance($attribute, str_getcsv($args, ','));
+                        $tmp[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
                     }else{
-                        $tmp[] = Object::getInstance($attribute);
+                        $tmp[(string)$attribute] = Object::getInstance($attribute);
                     }
                     break;
                 
@@ -78,7 +79,7 @@ class MetaReader {
             }
         }
 
-        $metaData = new EntityMeta((string)$entityName, $meta);
+        $metaData = new \System\Data\Entity\EntityMeta((string)$entityName, $meta);
         return $metaData;
     }
 }

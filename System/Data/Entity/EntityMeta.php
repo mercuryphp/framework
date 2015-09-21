@@ -33,4 +33,20 @@ class EntityMeta {
             return $this->meta['Columns'][$columnName];
         }
     }
+    
+    public function getValidators($fieldName = ''){
+        $tmp = array();
+        
+        foreach($this->meta['Columns'] as $columnName => $attributes){
+            foreach($attributes as $attribute){
+                if($attribute instanceof \System\Web\Mvc\Validators\IValidator){
+                    $tmp[$columnName][] = $attribute;
+                }
+            }
+            if($fieldName && ($columnName == $fieldName)){
+                return $tmp[$columnName];
+            }
+        }
+        return $tmp;
+    }
 }

@@ -21,24 +21,27 @@ class DbSet {
     }
     
     /**
-     * Gets a new SelectQuery instance.
+     * Gets a new SelectQuery instance that has been initilazied to select 
+     * from the database table represented by the entity type for this DbSet.
      * 
      * @method  select
      * @param   string $fields = '*'
      * @return  System.Data.Entity.SelectQuery
      */
     public function select($fields = '*'){
-        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase()), $fields, $this->meta->getEntityName());
+        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaReader()), $fields, $this->meta->getEntityName());
     }
     
     /**
-     * Finds an entity using the specified $params. If the entity is found it is
-     * attached to the context.
+     * Finds an entity using the specified $params. If the entity is found, it is
+     * attached to the context. Returns false if the entity is not found. 
+     * The optional $default argument determines if a default entity should be 
+     * returned with empty property values.
      * 
-     * @method  select
+     * @method  find
      * @param   mixed $params
      * @param   bool $default = false
-     * @return  System.Data.Entity.SelectQuery
+     * @return  mixed
      */
     public function find($params, $default = false){
 
@@ -63,15 +66,16 @@ class DbSet {
                 return $entity;
             }
         }
+        return false;
     }
     
     /**
      * Finds all entities using the specified $params. If the entities are 
-     * found they are attached to the context.
+     * found, they are attached to the context.
      * 
-     * @method  select
-     * @param   string $fields = '*'
-     * @return  System.Data.Entity.SelectQuery
+     * @method  findAll
+     * @param   mixed $params
+     * @return  System.Data.Entity.DbListResult
      */
     public function findAll($params = array()){
 
@@ -98,6 +102,14 @@ class DbSet {
         }
     }
     
+    /**
+     * Adds an entity to the DbSet collection by creating a new EntityContext
+     * object. The EntityContext object is then returned.
+     * 
+     * @method  add
+     * @param   mixed $entity
+     * @return  System.Data.Entity.EntityContext
+     */
     public function add($entity){
         if(is_object($entity)){
             $entityContext = new EntityContext($entity);
@@ -106,6 +118,14 @@ class DbSet {
         }
     }
     
+    /**
+     * Changes the state of an entity such that when saveChanges() is called, the
+     * entity will be deleted from the data store.
+     * 
+     * @method  remove
+     * @param   mixed $entity
+     * @return  void
+     */
     public function remove($entity){
         if(is_object($entity)){
             $objHash = spl_object_hash($entity);
@@ -115,17 +135,38 @@ class DbSet {
         }
     }
     
+    /**
+     * Removes an entity from the DbSet collection.
+     * 
+     * @method  detach
+     * @param   mixed $entity
+     * @return  bool
+     */
     public function detach($entity){
         if(is_object($entity)){
             $objHash = spl_object_hash($entity);
             unset($this->entities[$objHash]);
+            return true;
         }
+        return false;
     }
     
+    /**
+     * Gets the underlying array that holds the entities.
+     * 
+     * @method  getEntities
+     * @return  array
+     */
     public function getEntities(){
         return $this->entities;
     }
     
+    /**
+     * Gets the EntityMeta object for the DbSet.
+     * 
+     * @method  getMeta
+     * @return  System.Data.Entity.EntityMeta
+     */
     public function getMeta(){
         return $this->meta;
     }

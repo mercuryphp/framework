@@ -1,17 +1,17 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
-class IsEmpty extends Validator {
+class IsNumeric extends Validator {
 
     public function __construct($errMessage){
         $this->errMessage = $errMessage;
     }
     
     public function isValid(){
-        if($this->value==''){
-            return false;
+        if(is_numeric($this->value)){
+            return true;
         }
-        return true;
+        return false;
     }
 }

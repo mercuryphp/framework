@@ -10,9 +10,11 @@ abstract class DbContext {
     protected $conn = null;
     protected $dbSets;
     protected $persistedEntities;
+    protected $metaReader = null;
     
     /**
-     * Initializes an instance of DbContext.
+     * Initializes an instance of DbContext. If a connection string is not specified
+     * then default settings will be used.
      * 
      * @method  __construct
      * @param   string $connectionString = null
@@ -29,6 +31,7 @@ abstract class DbContext {
         $this->db = new Database($connectionString);
         $this->dbSets = new \System\Collections\Dictionary();
         $this->persistedEntities = new \System\Collections\Dictionary();
+        $this->metaReader = new \System\Data\Entity\MetaReaders\AnnotationReader();
     }
     
     /**
@@ -50,7 +53,7 @@ abstract class DbContext {
      * @return  System.Data.Entity.SqlQuery
      */
     public function query($sql, $params = array()){
-        return new SqlQuery($this->db, $sql, $params);
+        return new SqlQuery($this->db, $this->metaReader, $sql, $params);
     }
     
     /**
@@ -62,7 +65,7 @@ abstract class DbContext {
      */
     public function dbSet($entityName){
         if(!$this->dbSets->hasKey($entityName)){
-            $metaData = MetaReader::getMeta($entityName);
+            $metaData = $this->metaReader->read($entityName);
             $this->dbSets[$entityName] = new DbSet($this, $metaData);
         }
         return $this->dbSets[$entityName];
@@ -79,13 +82,34 @@ abstract class DbContext {
     }
     
     /**
-     * Gets a collection of persisted entities.
+     * Gets a collection of persisted entities stored in this context.
      * 
      * @method  getPersistedEntities
      * @return  System.Collections.Dictionary
      */
     public function getPersistedEntities(){
         return $this->persistedEntities;
+    }
+    
+    /**
+     * Sets the MetaReader instance for this context.
+     * 
+     * @method  setMetaReader
+     * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
+     * @return  void
+     */
+    public function setMetaReader(\System\Data\Entity\MetaReaders\MetaReader $metaReader){
+        $this->metaReader = $metaReader;
+    }
+
+    /**
+     * Gets the MetaReader object for this context.
+     * 
+     * @method  getMetaReader
+     * @return  System.Data.Entity.MetaReader.MetaReader
+     */
+    public function getMetaReader(){
+        return $this->metaReader;
     }
 
     /**
@@ -123,20 +147,21 @@ abstract class DbContext {
                     
                     $columnAttributes = $meta->getColumnAttributes($property);
 
-                    foreach($columnAttributes as $attribute){
-                        
-                        if($attribute instanceof \System\Data\Entity\Attributes\ConstraintAttribute){
-                            $attribute->setColumnName($property);
-                            $attribute->setValue($value);
-                            if(!$attribute->isValid()){
-                                throw new Attributes\ConstraintAttributeException($attribute->getErrorMessage());
+                    if(is_array($columnAttributes)){
+                        foreach($columnAttributes as $attribute){
+                            if($attribute instanceof \System\Data\Entity\Attributes\ConstraintAttribute){
+                                $attribute->setColumnName($property);
+                                $attribute->setValue($value);
+                                if(!$attribute->isValid()){
+                                    throw new Attributes\ConstraintAttributeException($attribute->getErrorMessage());
+                                }
                             }
-                        }
-                        
-                        if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
-                            if(is_null($value)){
-                                $properties[$property] = $attribute->getDefaultValue();
-                                Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
+
+                            if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
+                                if(is_null($value)){
+                                    $properties[$property] = $attribute->getDefaultValue();
+                                    Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
+                                }
                             }
                         }
                     }

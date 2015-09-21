@@ -19,7 +19,7 @@ class Required extends ConstraintAttribute {
         return true;
     }
     
-    public function getErrorMessage(){
+    public function getMessage(){
         if($this->errorMessage){
             return $this->errorMessage;
         }

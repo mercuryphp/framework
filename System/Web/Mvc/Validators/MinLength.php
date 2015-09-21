@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
 class MinLength extends Validator {
     

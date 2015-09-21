@@ -1,8 +1,8 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
-abstract class Validator {
+abstract class Validator implements Validator {
     
     protected $value;
     protected $errMessage;

@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Web\Mvc\Validator;
+namespace System\Web\Mvc\Validators;
 
 class ValidationContext {
     
@@ -11,9 +11,20 @@ class ValidationContext {
         if(is_object($value)){
             $value = \System\Std\Object::getPropertyValue($value, $field);
         }
-        $validationStatck = new ValidationStack($value);
-        $this->fields[$field] = $validationStatck;
-        return $validationStatck;
+        if(array_key_exists($field, $this->fields)){
+            $validationStack = $this->fields[$field];
+        }else{
+            $validationStack = new ValidationStack($value);
+            $this->fields[$field] = $validationStack;
+        }
+        return $validationStack;
+    }
+    
+    public function addRange($field, $value, array $validators){
+        foreach($validators as $validator){
+            $validator->setColumnName($field);
+            $this->add($field, $value)->add($validator);
+        }
     }
     
     public function addError($fieldName, $errMessage){
@@ -32,7 +43,7 @@ class ValidationContext {
         }
         return true;
     }
-    
+
     public function getErrors(){
         return $this->errors;
     }

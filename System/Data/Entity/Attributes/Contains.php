@@ -2,12 +2,12 @@
 
 namespace System\Data\Entity\Attributes;
 
-class StringLength extends ConstraintAttribute {
+class Contains extends ConstraintAttribute {
     
-    protected $length;
-    
-    public function __construct($length, $errorMessage = ''){
-        $this->length = $length;
+    protected $list = array();
+
+    public function __construct(array $list, $errorMessage = ''){
+        $this->list = $list;
         $this->errorMessage = $errorMessage;
     }
     
@@ -16,7 +16,7 @@ class StringLength extends ConstraintAttribute {
     }
     
     public function isValid(){
-        if(is_string($this->value) && strlen($this->value) > $this->length){
+        if(!in_array($this->value, $this->list)){
             return false;
         }
         return true;
@@ -26,7 +26,6 @@ class StringLength extends ConstraintAttribute {
         if($this->errorMessage){
             return $this->errorMessage;
         }
-        return sprintf('%s must be less than %s characters', $this->columnName, $this->length);
+        return sprintf('%s does not contain the specified values %s', $this->columnName, json_encode($this->list));
     }
-
 }

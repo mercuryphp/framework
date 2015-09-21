@@ -51,6 +51,14 @@ final class Str{
         return new Str(trim($this->string, $char));
     }
     
+    public function leftTrim($char = null){
+        return new Str(ltrim($this->string, $char));
+    }
+    
+    public function rightTrim($char = null){
+        return new Str(rtrim($this->string, $char));
+    }
+    
     public function truncate($length, $append = null){
 
         if(strlen($this->string) > $length){

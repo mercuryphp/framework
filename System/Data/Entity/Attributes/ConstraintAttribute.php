@@ -2,7 +2,7 @@
 
 namespace System\Data\Entity\Attributes;
 
-abstract class ConstraintAttribute {
+abstract class ConstraintAttribute implements \System\Web\Mvc\Validators\IValidator {
     
     protected $columnName;
     protected $value;
@@ -15,8 +15,5 @@ abstract class ConstraintAttribute {
     public function setValue($value){
         $this->value = $value;
     }
-
-    public abstract function isValid();
-    
-    public abstract function getErrorMessage();
+    public abstract function getMessage();
 }

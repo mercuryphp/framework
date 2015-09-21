@@ -6,10 +6,24 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     
     protected $collection = array();
     
+    /**
+     * Initializes an instance of DbListResult with the results of a database 
+     * query that returns more than one row.
+     * 
+     * @method  __construct
+     * @param   array $result
+     */
     public function __construct(array $result){
         $this->collection = $result;
     }
     
+    /**
+     * Applys a callback function to every row in the result set.
+     * 
+     * @method  each
+     * @param   callable $func
+     * @return  System.Data.Entity.DbListResult
+     */
     public function each(callable $func){
         foreach($this->collection as $k=>$v){
             $this->collection[$k] = $func($v, $k);
@@ -17,11 +31,25 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return $this;
     }
     
+    /**
+     * Applys a callback function to every row that filters the result set.
+     * 
+     * @method  where
+     * @param   callable $func
+     * @return  System.Data.Entity.DbListResult
+     */
     public function where(callable $func){
         $this->collection = array_filter($this->collection, $func);
         return $this;
     }
     
+    /**
+     * Groups the result set using the specified $field name.
+     * 
+     * @method  groupBy
+     * @param   string $field
+     * @return  System.Data.Entity.DbListResult
+     */
     public function groupBy($field){
         $tmp = array();
         foreach($this->collection as $v){
@@ -33,6 +61,13 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return $this;
     }
     
+    /**
+     * Sorts the result set using the specified $field name.
+     * 
+     * @method  sortBy
+     * @param   string $field
+     * @return  System.Data.Entity.DbListResult
+     */
     public function sortBy($field){
         usort($this->collection, function($a, $b) use($field) {
             $array1 = \System\Std\Object::getProperties($a);
@@ -43,21 +78,37 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Reverses the order of the elements in the collection.
+     * Reverses the order of the result set.
      * 
      * @method  reverse
-     * @return  $this
+     * @return  System.Data.Entity.DbListResult
      */
     public function reverse(){
         $this->collection = array_reverse($this->collection);
         return $this;
     }
     
+    /**
+     * Limits the result set using the specified $limit. If $offset is supplied, 
+     * then limits the result set from the start of $offset.
+     * 
+     * @method  limit
+     * @param   int $limit
+     * @param   int $offset = 0
+     * @return  System.Data.Entity.DbListResult
+     */
     public function limit($limit, $offset = 0){
         $this->collection = array_slice($this->collection, $offset, $limit);
         return $this;
     }
     
+    /**
+     * Gets the sum of the result set for a column using the specified $field.
+     * 
+     * @method  sum
+     * @param   string $field
+     * @return  int
+     */
     public function sum($field){
         $sum = 0;
         foreach($this->collection as $v){
@@ -67,6 +118,13 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return $sum;
     }
     
+    /**
+     * Gets the average of the result set for a column using the specified $field.
+     * 
+     * @method  avg
+     * @param   string $field
+     * @return  int
+     */
     public function avg($field){
         $sum = 0;
         foreach($this->collection as $v){
@@ -76,6 +134,13 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return $sum / count($this->collection);
     }
     
+    /**
+     * Gets the minimum value for a column using the specified $field.
+     * 
+     * @method  min
+     * @param   string $field
+     * @return  mixed
+     */
     public function min($field){
         $this->sortBy($field);
 
@@ -85,6 +150,13 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         }
     }
     
+    /**
+     * Gets the maximum value for a column using the specified $field.
+     * 
+     * @method  max
+     * @param   string $field
+     * @return  mixed
+     */
     public function max($field){
         $this->sortBy($field);
         $count = $this->count()-1;
@@ -94,6 +166,13 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         }
     }
     
+    /**
+     * Gets a count of all rows in the result set.
+     * 
+     * @method  max
+     * @param   string $field
+     * @return  mixed
+     */
     public function count(){
         return count($this->collection);
     }
