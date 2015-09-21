@@ -9,24 +9,60 @@ class SqlQuery {
     protected $sql;
     protected $params;
     
-    public function __construct(\System\Data\Database $conn, \System\Data\Entity\MetaReaders\IMetaReader $metaReader, $sql = null, $params = null){
+    /**
+     * Initializes an instance of SqlQuery with a database connection, entity 
+     * meta data, query and parameters.
+     * 
+     * @method  __construct
+     * @param   System.Data.Database $conn
+     * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
+     * @param   string $sql = null
+     * @param   array $params = null
+     */   
+    public function __construct(\System\Data\Database $conn, \System\Data\Entity\MetaReaders\MetaReader $metaReader, $sql = null, $params = null){
         $this->conn = $conn;
         $this->metaReader = $metaReader;
         $this->sql = $sql;
         $this->params = $params;
     }
     
+     /**
+     * Sets the query and parameters
+     * 
+     * @method  setQuery
+     * @param   string $sql
+     * @param   array $param = array
+     * @return  System.Data.Entity.SqlQuery
+     */
     public function setQuery($sql, $param = array()){
         $this->sql = $sql;
         $this->params = $param;
         return $this;
     }
     
-    public function column(){
+     /**
+     * Gets the value from the first column of the result set. If $columnNumber
+     * is specified, then gets the value from the indexed column.
+     * 
+     * @method  column
+     * @param   int $columnNumber
+     * @return  mixed
+     */
+    public function column($columnNumber = 0){
         $stm = $this->conn->query($this->sql, $this->params);
-        return $stm->fetchColumn();
+        return $stm->fetchColumn($columnNumber);
     }
     
+     /**
+     * Gets a single row as an object. If $entityName is specified, then an 
+     * instance of $entityName is created and returned where all column names 
+     * are mapped to the entity's properties.
+     *
+     * @method  single
+     * @param   string $entityName = null
+     * @param   bool $default = false
+     * @return  mixed
+     */
     public function single($entityName = null, $default = false){
         $stm = $this->conn->query($this->sql, $this->params);
 
@@ -38,6 +74,15 @@ class SqlQuery {
         return $stm->fetch(\PDO::FETCH_OBJ);
     }
     
+    /**
+     * Gets a collection of rows as a DbListResult where each row is respresented 
+     * as an object. If $entityName is specified, then an instance of $entityName 
+     * is created for each row where all column names are mapped to the entity's properties.
+     * 
+     * @method  toList
+     * @param   string $entityName = null
+     * @return  System.Data.Entity.DbListResult
+     */
     public function toList($entityName = null){
         $stm = $this->conn->query($this->sql, $this->params);
         
@@ -54,15 +99,36 @@ class SqlQuery {
         return new DbListResult($rows);
     }
     
+     /**
+     * Executes a non query statement and returns the number of affected rows.
+     * 
+     * @method  nonQuery
+     * @return  int
+     */  
     public function nonQuery(){
         $stm = $this->conn->query($this->sql, $this->params);
         return $stm->rowCount();
     }
     
+     /**
+     * Get the MetaReader object for this instance.
+     * 
+     * @method  getMetaReader
+     * @return  System.Data.Entity.MetaReaders.MetaReader
+     */
     public function getMetaReader(){
         return $this->metaReader;
     }
     
+    /**
+     * Returns an entity
+     * Throws EntityException if a property name cannot be mapped to the db.
+     * 
+     * @method  toEntity
+     * @param   string $data
+     * @param   string $entityName
+     * @param   string $default = false
+     */ 
     private function toEntity($data, $entityName, $default = false){
 
         if(is_callable($entityName)){
