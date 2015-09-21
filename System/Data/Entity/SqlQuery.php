@@ -8,23 +8,50 @@ class SqlQuery {
     protected $sql;
     protected $params;
     
+    /**
+     * Sets the connection, query and parameters
+     * 
+     * @method  __construct
+     * @param   System.Data.Connection $conn
+     * @param   string $sql
+     * @param   array $params
+     */   
     public function __construct(\System\Data\Database $conn, $sql = null, $params = null){
         $this->conn = $conn;
         $this->sql = $sql;
         $this->params = $params;
     }
     
+     /**
+     * Sets the query and parameters
+     * 
+     * @method  setQuery
+     * @param   string $sql
+     * @param   array $param
+     */
     public function setQuery($sql, $param = array()){
         $this->sql = $sql;
         $this->params = $param;
         return $this;
     }
     
+     /**
+     * Returns the first column of the query
+     * 
+     * @method  column
+     */
     public function column(){
         $stm = $this->conn->query($this->sql, $this->params);
         return $stm->fetchColumn();
     }
     
+     /**
+     * Returns a single entity by specified name
+     * 
+     * @method  single
+     * @param   string $entityName = null
+     * @param   string $default = null
+     */
     public function single($entityName = null, $default = false){
         $stm = $this->conn->query($this->sql, $this->params);
 
@@ -36,6 +63,12 @@ class SqlQuery {
         return $stm->fetch(\PDO::FETCH_OBJ);
     }
     
+     /**
+     * Returns the entity with the specified view
+     * 
+     * @method  toList
+     * @param   string $entityName = null
+     */
     public function toList($entityName = null){
         $stm = $this->conn->query($this->sql, $this->params);
         
@@ -52,11 +85,25 @@ class SqlQuery {
         return new DbListResult($rows);
     }
     
+     /**
+     * Returns number of rows
+     * 
+     * @method  nonQuery
+     */  
     public function nonQuery(){
         $stm = $this->conn->query($this->sql, $this->params);
         return $stm->rowCount();
     }
     
+    /**
+     * Returns entity
+     * Throws EntityException if a property name cannot be mapped to the db.
+     * 
+     * @method  toEntity
+     * @param   string $data
+     * @param   string $entityName
+     * @param   string $default = false
+     */ 
     private function toEntity($data, $entityName, $default = false){
 
         if(is_callable($entityName)){
