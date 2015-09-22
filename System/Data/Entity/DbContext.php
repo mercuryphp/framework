@@ -153,7 +153,7 @@ abstract class DbContext {
                                 $attribute->setColumnName($property);
                                 $attribute->setValue($value);
                                 if(!$attribute->isValid()){
-                                    throw new Attributes\ConstraintAttributeException($attribute->getErrorMessage());
+                                    throw new Attributes\ConstraintAttributeException($attribute->getMessage());
                                 }
                             }
 
