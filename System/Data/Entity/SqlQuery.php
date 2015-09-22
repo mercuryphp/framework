@@ -41,16 +41,20 @@ class SqlQuery {
     }
     
      /**
-     * Gets the value from the first column of the result set. If $columnNumber
-     * is specified, then gets the value from the indexed column.
+     * Gets the value from the first column of the result set. If $columnName
+     * is specified, then gets the value from the named column.
      * 
      * @method  column
-     * @param   int $columnNumber
+     * @param   string $columnName
      * @return  mixed
      */
-    public function column($columnNumber = 0){
+    public function column($columnName = ''){
         $stm = $this->conn->query($this->sql, $this->params);
-        return $stm->fetchColumn($columnNumber);
+        $row = $stm->fetch(\PDO::FETCH_ASSOC);
+        if($columnName){
+            return $row[$columnName];
+        }
+        return reset($row);
     }
     
      /**
