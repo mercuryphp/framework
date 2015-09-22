@@ -41,7 +41,7 @@ class SqlQuery {
     }
     
      /**
-     * Gets the value from the first column of the result set. If $columnName
+     * Gets the value from the first column of the rowset. If $columnName
      * is specified, then gets the value from the named column.
      * 
      * @method  column
@@ -129,9 +129,10 @@ class SqlQuery {
      * Throws EntityException if a property name cannot be mapped to the db.
      * 
      * @method  toEntity
-     * @param   string $data
+     * @param   mixed $data
      * @param   string $entityName
-     * @param   string $default = false
+     * @param   bool $default = false
+     * @return  mixed
      */ 
     private function toEntity($data, $entityName, $default = false){
 

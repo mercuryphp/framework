@@ -71,6 +71,11 @@ class SelectQuery {
         return $this;
     }
     
+    public function orderBy($orderBy){
+        $this->sql = $this->sql->append("ORDER BY ")->append($orderBy.' '.PHP_EOL);
+        return $this;
+    }
+    
     public function raw($sql){
         $this->sql = $this->sql->append($sql.' '.PHP_EOL);
         return $this;

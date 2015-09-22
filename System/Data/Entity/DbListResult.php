@@ -18,7 +18,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Applys a callback function to every row in the result set.
+     * Applys a callback function to every row in the rowset.
      * 
      * @method  each
      * @param   callable $func
@@ -32,7 +32,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Applys a callback function to every row that filters the result set.
+     * Applys a callback function to every row that filters the rowset.
      * 
      * @method  where
      * @param   callable $func
@@ -44,7 +44,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Groups the result set using the specified $field name.
+     * Groups the rowset using the specified $field name.
      * 
      * @method  groupBy
      * @param   string $field
@@ -62,7 +62,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Sorts the result set using the specified $field name.
+     * Sorts the rowset using the specified $field name.
      * 
      * @method  sortBy
      * @param   string $field
@@ -78,7 +78,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Reverses the order of the result set.
+     * Reverses the order of the rowset.
      * 
      * @method  reverse
      * @return  System.Data.Entity.DbListResult
@@ -89,8 +89,8 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Limits the result set using the specified $limit. If $offset is supplied, 
-     * then limits the result set from the start of $offset.
+     * Limits the rowset using the specified $limit. If $offset is supplied, 
+     * then limits the rowset from the start of $offset.
      * 
      * @method  limit
      * @param   int $limit
@@ -103,7 +103,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Gets the sum of the result set for a column using the specified $field.
+     * Gets the sum of the rowset for a column using the specified $field.
      * 
      * @method  sum
      * @param   string $field
@@ -119,7 +119,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Gets the average of the result set for a column using the specified $field.
+     * Gets the average of the rowset for a column using the specified $field.
      * 
      * @method  avg
      * @param   string $field
@@ -167,7 +167,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Gets a count of all rows in the result set.
+     * Gets a count of all rows in the rowset.
      * 
      * @method  max
      * @param   string $field
