@@ -5,7 +5,7 @@ namespace System\Data\Entity;
 class DbSet {
     
     protected $dbContext;
-    protected $meta = array();
+    protected $meta;
     protected $entities = array();
     
     /**
@@ -29,7 +29,7 @@ class DbSet {
      * @return  System.Data.Entity.SelectQuery
      */
     public function select($fields = '*'){
-        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaReader()), $fields, $this->meta->getEntityName());
+        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $fields, $this->meta->getEntityName());
     }
     
     /**

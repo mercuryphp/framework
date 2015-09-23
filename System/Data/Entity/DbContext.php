@@ -7,10 +7,11 @@ use System\Data\Database;
 
 abstract class DbContext {
     
-    protected $conn = null;
+    protected $db;
     protected $dbSets;
     protected $persistedEntities;
-    protected $metaReader = null;
+    protected $metaReader;
+    protected $metaCollection;
     
     /**
      * Initializes an instance of DbContext. If a connection string is not specified
@@ -31,7 +32,8 @@ abstract class DbContext {
         $this->db = new Database($connectionString);
         $this->dbSets = new \System\Collections\Dictionary();
         $this->persistedEntities = new \System\Collections\Dictionary();
-        $this->metaReader = new \System\Data\Entity\MetaReaders\AnnotationReader();
+        $this->metaReader = new MetaReaders\AnnotationReader();
+        $this->metaCollection = new EntityMetaCollection($this->metaReader);
     }
     
     /**
@@ -53,7 +55,7 @@ abstract class DbContext {
      * @return  System.Data.Entity.SqlQuery
      */
     public function query($sql, $params = array()){
-        return new SqlQuery($this->db, $this->metaReader, $sql, $params);
+        return new SqlQuery($this->getDatabase(), $this->metaCollection, $sql, $params);
     }
     
     /**
@@ -65,14 +67,14 @@ abstract class DbContext {
      */
     public function dbSet($entityName){
         if(!$this->dbSets->hasKey($entityName)){
-            $metaData = $this->metaReader->read($entityName);
+            $metaData = $this->metaCollection->read($entityName);
             $this->dbSets[$entityName] = new DbSet($this, $metaData);
         }
         return $this->dbSets[$entityName];
     }
     
     /**
-     * Gets the DbSet collection.
+     * Gets the DbSet collection for the context.
      * 
      * @method  getDbSets
      * @return  System.Collections.Dictionary
@@ -82,7 +84,7 @@ abstract class DbContext {
     }
     
     /**
-     * Gets a collection of persisted entities stored in this context.
+     * Gets a collection of persisted entities stored in the context.
      * 
      * @method  getPersistedEntities
      * @return  System.Collections.Dictionary
@@ -92,7 +94,7 @@ abstract class DbContext {
     }
     
     /**
-     * Sets the MetaReader instance for this context.
+     * Sets the MetaReader instance for the context.
      * 
      * @method  setMetaReader
      * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
@@ -103,13 +105,13 @@ abstract class DbContext {
     }
 
     /**
-     * Gets the MetaReader object for this context.
+     * Gets the EntityMetaCollection object for the context.
      * 
-     * @method  getMetaReader
-     * @return  System.Data.Entity.MetaReader.MetaReader
+     * @method  getMetaCollection
+     * @return  System.Data.Entity.EntityMetaCollection
      */
-    public function getMetaReader(){
-        return $this->metaReader;
+    public function getMetaCollection(){
+        return $this->metaCollection;
     }
 
     /**

@@ -16,7 +16,7 @@ class Dictionary extends Collection {
      */
     public function add($key, $value){
         $this->readOnlyCheck();
-        if(array_key_exists($key, $this->collection)){
+        if($this->hasKey($key)){
             throw new \InvalidArgumentException('An item with the same key has already been added.');
         }
         $this->collection[$key] = $value;
@@ -24,15 +24,22 @@ class Dictionary extends Collection {
     }
     
     /**
-     * Gets an stdClass object of the collection.
+     * Adds an element to the collection using a unique key.
+     * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  toObject
-     * @return  stdClass
+     * @method  addUnique
+     * @param   mixed $key
+     * @param   mixed $value
+     * @return  System.Collections.Dictionary
      */
-    public function toObject(){
-        return json_decode(json_encode($this->collection), false);
+    public function addUnique($key, $value){
+        $this->readOnlyCheck();
+        if(!$this->hasKey($key)){
+            $this->collection[$key] = $value;
+        }
+        return $this;
     }
-    
+
     /**
      * Adds or replaces an element in the collection using a key.
      * Throws ReadOnlyException if the collection is set as read-only.
@@ -46,6 +53,16 @@ class Dictionary extends Collection {
         $this->readOnlyCheck();
         $this->collection[$key] = $value;
         return $this;
+    }
+    
+    /**
+     * Gets an stdClass object of the collection.
+     * 
+     * @method  toObject
+     * @return  stdClass
+     */
+    public function toObject(){
+        return json_decode(json_encode($this->collection), false);
     }
     
     /**

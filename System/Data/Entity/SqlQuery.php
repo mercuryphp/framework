@@ -4,24 +4,23 @@ namespace System\Data\Entity;
 
 class SqlQuery {
     
-    protected $conn;
-    protected $metaReader;
+    protected $db;
     protected $sql;
     protected $params;
     
     /**
-     * Initializes an instance of SqlQuery with a database connection, entity 
-     * meta data, query and parameters.
+     * Initializes an instance of SqlQuery with a database connection, an entity 
+     * meta data collection, query and parameters.
      * 
      * @method  __construct
-     * @param   System.Data.Database $conn
-     * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
+     * @param   System.Data.Database $db
+     * @param   System.Data.Entity.EntityMetaCollection $metaCollection
      * @param   string $sql = null
      * @param   array $params = null
      */   
-    public function __construct(\System\Data\Database $conn, \System\Data\Entity\MetaReaders\MetaReader $metaReader, $sql = null, $params = null){
-        $this->conn = $conn;
-        $this->metaReader = $metaReader;
+    public function __construct(\System\Data\Database $db, \System\Data\Entity\EntityMetaCollection $metaCollection, $sql = null, array $params = array()){
+        $this->db = $db;
+        $this->metaCollection = $metaCollection;
         $this->sql = $sql;
         $this->params = $params;
     }
@@ -49,7 +48,7 @@ class SqlQuery {
      * @return  mixed
      */
     public function column($columnName = ''){
-        $stm = $this->conn->query($this->sql, $this->params);
+        $stm = $this->db->query($this->sql, $this->params);
         $row = $stm->fetch(\PDO::FETCH_ASSOC);
         if($columnName){
             return $row[$columnName];
@@ -68,7 +67,7 @@ class SqlQuery {
      * @return  mixed
      */
     public function single($entityName = null, $default = false){
-        $stm = $this->conn->query($this->sql, $this->params);
+        $stm = $this->db->query($this->sql, $this->params);
 
         if($entityName){
             $row = $stm->fetch(\PDO::FETCH_OBJ);
@@ -88,7 +87,7 @@ class SqlQuery {
      * @return  System.Data.Entity.DbListResult
      */
     public function toList($entityName = null){
-        $stm = $this->conn->query($this->sql, $this->params);
+        $stm = $this->db->query($this->sql, $this->params);
         
         if($entityName){
             $array = array();
@@ -110,18 +109,18 @@ class SqlQuery {
      * @return  int
      */  
     public function nonQuery(){
-        $stm = $this->conn->query($this->sql, $this->params);
+        $stm = $this->db->query($this->sql, $this->params);
         return $stm->rowCount();
     }
-    
-     /**
-     * Get the MetaReader object for this instance.
+
+    /**
+     * Get the EntityMetaCollection object for this instance.
      * 
-     * @method  getMetaReader
-     * @return  System.Data.Entity.MetaReaders.MetaReader
+     * @method  getMetaCollection
+     * @return  System.Data.Entity.EntityMetaCollection
      */
-    public function getMetaReader(){
-        return $this->metaReader;
+    public function getMetaCollection(){
+        return $this->metaCollection;
     }
     
     /**
@@ -130,18 +129,43 @@ class SqlQuery {
      * 
      * @method  toEntity
      * @param   mixed $data
-     * @param   string $entityName
+     * @param   string $entityType
      * @param   bool $default = false
      * @return  mixed
      */ 
-    private function toEntity($data, $entityName, $default = false){
+    private function toEntity($data, $entityType, $default = false){
 
-        if(is_callable($entityName)){
-            return $entityName($data);
+        $relationships = array();
+        
+        if(is_callable($entityType)){
+            return $entityType($data);
         }
         
-        if(is_string($entityName)){
-            $class = '\\'.str_replace('.', '\\', $entityName);
+        if(is_array($entityType)){
+            foreach($entityType as $entity => $relationship){
+                if($entity){
+                    if($relationship instanceof Relations\Relationship){
+                        $segments = explode(':', (string)$entity, 2);
+
+                        if(count($segments) == 2){
+                            list($entityName, $propertyName) = $segments;
+                            $relationship->setDbContext($this->dbContext);
+                            $relationships[$propertyName] = $relationship;
+                        }else{
+                            $entityName = $entity;
+                        }
+                    }else{
+                        throw new \InvalidArgumentException(sprintf('Invalid argument specified for "%s". Supplied argument must be an instance of System\Data\Entity\Relations\Relationship', $entity));
+                    }
+                }else{
+                    throw new \InvalidArgumentException(sprintf('Invalid argument specified for relationship mapping. The array must contain keys that represent an entity class and the mapping property name.', $entity));
+                }
+            }
+            $entityType = $entityName;
+        }
+        
+        if(is_string($entityType)){
+            $class = '\\'.str_replace('.', '\\', $entityType);
             $refClass = new \ReflectionClass($class);
             $entity = $refClass->newInstance();
 
@@ -166,8 +190,15 @@ class SqlQuery {
                             $value = $data[$propertyName];
                             $property->setValue($entity, $value);
                         }else{
-                            throw new \System\Data\Entity\EntityException(sprintf("The entity property '%s.%s' could not be mapped to the database result.", $entityName, $propertyName));
+                            throw new \System\Data\Entity\EntityException(sprintf("The entity property '%s.%s' could not be mapped to the database result.", $entityType, $propertyName));
                         }
+                    }
+                }
+                
+                if(count($relationships) > 0){
+                    foreach($relationships as $propertyName => $relationship){
+                        $relationship->setParentEntity($entity);
+                        \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->bind());
                     }
                 }
             }

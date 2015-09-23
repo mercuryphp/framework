@@ -133,6 +133,17 @@ class Profiler {
         $this->onLogAdded = $callback;
     }
 
+    public function where(array $conditions){
+        return new \System\Collections\Dictionary(array_filter($this->logs, function ($log) use($conditions){
+            foreach($conditions as $key => $value){
+                if(array_key_exists($key, $log) && $log[$key] == $value){
+                    return $log;
+                }
+            }
+        }));
+    }
+    
+    
     /**
      * Gets the underlying log array.
      * 

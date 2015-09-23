@@ -9,10 +9,9 @@ class AnnotationReader extends MetaReader {
     
     public function read($entityName){
         $tableName = new Str(Str::set($entityName)->toLower()->split('\.')->last());
-        $entityName = Str::set($entityName)->replace('.', '\\');
+        $className = Str::set($entityName)->replace('.', '\\');
 
-        $refClass = new \ReflectionClass((string)$entityName);
-
+        $refClass = new \ReflectionClass((string)$className);
         $tokens = token_get_all(file_get_contents($refClass->getFileName())); 
 
         $meta = array(

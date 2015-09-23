@@ -16,13 +16,7 @@ class SelectQuery {
         $this->sqlQuery = $sqlQuery;
         $this->fields = $fields;
 
-        if(array_key_exists($entityName, $this->metaCollection)){
-            $metaData = $this->metaCollection[$entityName];
-        }else{
-            $metaData = $sqlQuery->getMetaReader()->read($entityName);
-            $this->metaCollection[$entityName] = $metaData;
-        }
-
+        $metaData = $this->sqlQuery->getMetaCollection()->read($entityName);
         $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
         
@@ -96,6 +90,10 @@ class SelectQuery {
     public function sql(){
         return $this->sql->toString();
     }
+    
+    public function getLastTableAlias(){
+        return $this->lastTableAlias;
+    }
 
     private function getTableNameAlias($tableName){
         $alias = '';
@@ -111,16 +109,10 @@ class SelectQuery {
         }
         return $alias;
     }
-    
+
     private function _join($type, $entityName, $join = null){
         
-        if(array_key_exists($entityName, $this->metaCollection)){
-            $metaData = $this->metaCollection[$entityName];
-        }else{
-            $metaData = $this->sqlQuery->getMetaReader()->read($entityName);
-            $this->metaCollection[$entityName] = $metaData;
-        }
-        
+        $metaData = $this->sqlQuery->getMetaCollection()->read($entityName);
         $table = $metaData->getTable()->getTableName();
         $key = $metaData->getKey()->getKeyName();
 
@@ -138,7 +130,8 @@ class SelectQuery {
             ->append(" $alias ")
             ->append('ON ')
             ->append($join.' '.PHP_EOL);
-            
+        
+        $this->lastTableAlias = $alias;
         return $this;
     }
 }
