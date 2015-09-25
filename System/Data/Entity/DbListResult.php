@@ -10,7 +10,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Initializes an instance of DbListResult with the results of a database 
      * query that returns more than one row.
      * 
-     * @method  __construct
      * @param   array $result
      */
     public function __construct(array $result){
@@ -20,7 +19,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Applys a callback function to every row in the rowset.
      * 
-     * @method  each
      * @param   callable $func
      * @return  System.Data.Entity.DbListResult
      */
@@ -34,7 +32,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Applys a callback function to every row that filters the rowset.
      * 
-     * @method  where
      * @param   callable $func
      * @return  System.Data.Entity.DbListResult
      */
@@ -46,7 +43,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Groups the rowset using the specified $field name.
      * 
-     * @method  groupBy
      * @param   string $field
      * @return  System.Data.Entity.DbListResult
      */
@@ -64,7 +60,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Sorts the rowset using the specified $field name.
      * 
-     * @method  sortBy
      * @param   string $field
      * @return  System.Data.Entity.DbListResult
      */
@@ -80,7 +75,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Reverses the order of the rowset.
      * 
-     * @method  reverse
      * @return  System.Data.Entity.DbListResult
      */
     public function reverse(){
@@ -92,7 +86,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Limits the rowset using the specified $limit. If $offset is supplied, 
      * then limits the rowset from the start of $offset.
      * 
-     * @method  limit
      * @param   int $limit
      * @param   int $offset = 0
      * @return  System.Data.Entity.DbListResult
@@ -105,7 +98,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the sum of the rowset for a column using the specified $field.
      * 
-     * @method  sum
      * @param   string $field
      * @return  int
      */
@@ -121,7 +113,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the average of the rowset for a column using the specified $field.
      * 
-     * @method  avg
      * @param   string $field
      * @return  int
      */
@@ -137,7 +128,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the minimum value for a column using the specified $field.
      * 
-     * @method  min
      * @param   string $field
      * @return  mixed
      */
@@ -153,7 +143,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the maximum value for a column using the specified $field.
      * 
-     * @method  max
      * @param   string $field
      * @return  mixed
      */
@@ -169,7 +158,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets a count of all rows in the rowset.
      * 
-     * @method  max
      * @param   string $field
      * @return  mixed
      */
@@ -180,7 +168,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets an ArrayIterator.
      * 
-     * @method  getIterator
      * @return  ArrayIterator
      */
     public function getIterator(){
@@ -191,7 +178,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Gets a boolean value indicating if the collection offset exists.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetExists
      * @param   mixed $offset
      * @return  bool
      */
@@ -206,7 +192,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Gets an element from the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetGet
      * @param   mixed $offset
      * @return  mixed
      */
@@ -218,7 +203,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Sets an element in the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetSet
      * @param   mixed $offset
      * @param   mixed $value
      * @return  mixed
@@ -231,7 +215,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Removes an element from the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetUnset
      * @param   mixed $offset
      * @return  void
      */

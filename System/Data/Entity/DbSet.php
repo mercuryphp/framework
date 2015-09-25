@@ -11,7 +11,6 @@ class DbSet {
     /**
      * Initializes an instance of DbSet.
      * 
-     * @method  __construct
      * @param   System.Data.Entity.DbContext $dbContext
      * @param   System.Data.Entity.EntityMeta $meta
      */
@@ -24,7 +23,6 @@ class DbSet {
      * Gets a new SelectQuery instance that has been initilazied to select 
      * from the database table represented by the entity type for this DbSet.
      * 
-     * @method  select
      * @param   string $fields = '*'
      * @return  System.Data.Entity.SelectQuery
      */
@@ -38,7 +36,6 @@ class DbSet {
      * The optional $default argument determines if a default entity should be 
      * returned with empty property values.
      * 
-     * @method  find
      * @param   mixed $params
      * @param   bool $default = false
      * @return  mixed
@@ -73,7 +70,6 @@ class DbSet {
      * Finds all entities using the specified $params. If the entities are 
      * found, they are attached to the context.
      * 
-     * @method  findAll
      * @param   mixed $params
      * @return  System.Data.Entity.DbListResult
      */
@@ -106,7 +102,6 @@ class DbSet {
      * Adds an entity to the DbSet collection by creating a new EntityContext
      * object. The EntityContext object is then returned.
      * 
-     * @method  add
      * @param   mixed $entity
      * @return  System.Data.Entity.EntityContext
      */
@@ -122,7 +117,6 @@ class DbSet {
      * Changes the state of an entity such that when saveChanges() is called, the
      * entity will be deleted from the data store.
      * 
-     * @method  remove
      * @param   mixed $entity
      * @return  void
      */
@@ -138,7 +132,6 @@ class DbSet {
     /**
      * Removes an entity from the DbSet collection.
      * 
-     * @method  detach
      * @param   mixed $entity
      * @return  bool
      */
@@ -154,7 +147,6 @@ class DbSet {
     /**
      * Gets the underlying array that holds the entities.
      * 
-     * @method  getEntities
      * @return  array
      */
     public function getEntities(){
@@ -164,7 +156,6 @@ class DbSet {
     /**
      * Gets the EntityMeta object for the DbSet.
      * 
-     * @method  getMeta
      * @return  System.Data.Entity.EntityMeta
      */
     public function getMeta(){

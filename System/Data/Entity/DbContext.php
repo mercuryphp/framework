@@ -17,7 +17,6 @@ abstract class DbContext {
      * Initializes an instance of DbContext. If a connection string is not specified
      * then default settings will be used.
      * 
-     * @method  __construct
      * @param   string $connectionString = null
      */
     public function __construct($connectionString = null){
@@ -39,7 +38,6 @@ abstract class DbContext {
     /**
      * Gets the underlying database instance.
      * 
-     * @method  getDatabase
      * @return  System.Data.Database
      */
     public function getDatabase(){
@@ -49,7 +47,6 @@ abstract class DbContext {
     /**
      * Issues an SQL query and returns a new SqlQuery instance.
      * 
-     * @method  query
      * @param   string $sql
      * @param   array $params
      * @return  System.Data.Entity.SqlQuery
@@ -61,7 +58,6 @@ abstract class DbContext {
     /**
      * Registers an entity type in the DbSet collection.
      * 
-     * @method  dbSet
      * @param   string $entityName
      * @return  System.Data.Entity.DbSet
      */
@@ -76,7 +72,6 @@ abstract class DbContext {
     /**
      * Gets the DbSet collection for the context.
      * 
-     * @method  getDbSets
      * @return  System.Collections.Dictionary
      */
     public function getDbSets(){
@@ -86,7 +81,6 @@ abstract class DbContext {
     /**
      * Gets a collection of persisted entities stored in the context.
      * 
-     * @method  getPersistedEntities
      * @return  System.Collections.Dictionary
      */
     public function getPersistedEntities(){
@@ -96,18 +90,17 @@ abstract class DbContext {
     /**
      * Sets the MetaReader instance for the context.
      * 
-     * @method  setMetaReader
      * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
      * @return  void
      */
     public function setMetaReader(\System\Data\Entity\MetaReaders\MetaReader $metaReader){
         $this->metaReader = $metaReader;
+        $this->metaCollection->setMetaReader($metaReader);
     }
 
     /**
      * Gets the EntityMetaCollection object for the context.
      * 
-     * @method  getMetaCollection
      * @return  System.Data.Entity.EntityMetaCollection
      */
     public function getMetaCollection(){
@@ -117,7 +110,6 @@ abstract class DbContext {
     /**
      * Applys all changes made in this context to the underlying database.
      * 
-     * @method  saveChanges
      * @return  int
      */
     public function saveChanges(){
@@ -138,7 +130,7 @@ abstract class DbContext {
                         
                         if($this->persistedEntities->hasKey($parentEntityHash)){
                             $parentEntityContext = $this->persistedEntities->get($parentEntityHash);
-                            $parentMeta = $this->dbSets[$parentEntityContext->getName()]->getMeta();
+                            $parentMeta = $this->dbSets[$parentEntityContext->getEntityName()]->getMeta();
                             $properties[$property] = Object::getPropertyValue($value, $parentMeta->getKey()->getKeyName());
                         }
                     }
@@ -196,7 +188,6 @@ abstract class DbContext {
                 }
             }
         }
-        
         return array_sum($log);
     }
 }

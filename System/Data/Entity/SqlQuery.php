@@ -13,7 +13,6 @@ class SqlQuery {
      * Initializes an instance of SqlQuery with a database connection, an entity 
      * meta data collection, query and parameters.
      * 
-     * @method  __construct
      * @param   System.Data.Database $db
      * @param   System.Data.Entity.EntityMetaCollection $metaCollection
      * @param   string $sql = null
@@ -29,7 +28,6 @@ class SqlQuery {
      /**
      * Sets the query and parameters
      * 
-     * @method  setQuery
      * @param   string $sql
      * @param   array $param = array
      * @return  System.Data.Entity.SqlQuery
@@ -44,7 +42,6 @@ class SqlQuery {
      * Gets the value from the first column of the rowset. If $columnName
      * is specified, then gets the value from the named column.
      * 
-     * @method  column
      * @param   string $columnName
      * @return  mixed
      */
@@ -59,11 +56,11 @@ class SqlQuery {
     
      /**
      * Gets a single row as an object. If $entityType is specified as a string,
-     * then an instance of $entityType is created and returned where all column names 
-     * are mapped to the entity's properties.
+     * then an instance of $entityType is created and returned where all column 
+     * names are mapped to the entity's properties. If $default is specified and 
+     * $entityType is a string, then gets a default object if no record is found.
      *
-     * @method  single
-     * @param   string $entityType = null
+     * @param   mixed $entityType = null
      * @param   bool $default = false
      * @return  mixed
      */
@@ -83,8 +80,7 @@ class SqlQuery {
      * as an object. If $entityType is specified as a string, then an instance of $entityType 
      * is created for each row where all column names are mapped to the entity's properties.
      * 
-     * @method  toList
-     * @param   string $entityType = null
+     * @param   mixed $entityType = null
      * @return  System.Data.Entity.DbListResult
      */
     public function toList($entityType = null){
@@ -106,7 +102,6 @@ class SqlQuery {
      /**
      * Executes a non query statement and returns the number of affected rows.
      * 
-     * @method  nonQuery
      * @return  int
      */  
     public function nonQuery(){
@@ -117,7 +112,6 @@ class SqlQuery {
     /**
      * Gets the EntityMetaCollection object.
      * 
-     * @method  getMetaCollection
      * @return  System.Data.Entity.EntityMetaCollection
      */
     public function getMetaCollection(){
