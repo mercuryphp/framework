@@ -43,7 +43,7 @@ abstract class Relationship {
         
         $params = array();
         $sqlSelect = new \System\Data\Entity\SelectQuery(new \System\Data\Entity\SqlQuery($this->db, $this->metaCollection), '*', $this->principalEntityName);
-        $meta = $this->metaCollection->read(str_replace('\\','.',get_class($this->dependantEntity)));
+        $meta = $this->metaCollection->get(str_replace('\\','.',get_class($this->dependantEntity)));
         $dependantKeyName = $meta->getKey()->getKeyName();
         
         if(count($this->bindingParams) == 0){

@@ -23,7 +23,7 @@ class SelectQuery {
         $this->sqlQuery = $sqlQuery;
         $this->fields = $fields;
 
-        $metaData = $this->sqlQuery->getMetaCollection()->read($entityName);
+        $metaData = $this->sqlQuery->getMetaCollection()->get($entityName);
         $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
         
@@ -202,7 +202,7 @@ class SelectQuery {
 
     private function _join($type, $entityName, $join = null){
         
-        $metaData = $this->sqlQuery->getMetaCollection()->read($entityName);
+        $metaData = $this->sqlQuery->getMetaCollection()->get($entityName);
         $table = $metaData->getTable()->getTableName();
         $key = $metaData->getKey()->getKeyName();
 

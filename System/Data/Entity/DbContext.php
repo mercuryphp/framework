@@ -63,7 +63,7 @@ abstract class DbContext {
      */
     public function dbSet($entityName){
         if(!$this->dbSets->hasKey($entityName)){
-            $metaData = $this->metaCollection->read($entityName);
+            $metaData = $this->metaCollection->get($entityName);
             $this->dbSets[$entityName] = new DbSet($this, $metaData);
         }
         return $this->dbSets[$entityName];
