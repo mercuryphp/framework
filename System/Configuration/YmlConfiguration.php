@@ -8,7 +8,6 @@ class YmlConfiguration extends Configuration {
      * Initializes an instance of YmlConfiguration.
      * Reads configuration data if $fileName is supplied.
      * 
-     * @method  __construct
      * @param   string $fileName = null
      */
     public function __construct($fileName = null){
@@ -20,7 +19,6 @@ class YmlConfiguration extends Configuration {
     /**
      * Opens a YML like configuration file.
      * 
-     * @method  open
      * @param   string $fileName
      * @return  void
      */

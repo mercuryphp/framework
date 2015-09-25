@@ -10,7 +10,6 @@ class SmtpHandler extends LogHandler {
     /**
      * Initializes an instance of SmtpHandler.
      * 
-     * @method  __construct
      * @param   array $settings
      */
     public function __construct(array $settings){
@@ -24,7 +23,6 @@ class SmtpHandler extends LogHandler {
     /**
      * Sends all logs via email. 
      * 
-     * @method  write
      * @param   array $logs
      * @param   array $extra
      * @return  void

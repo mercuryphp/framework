@@ -8,9 +8,8 @@ class ArrayList extends Collection {
      * Adds an element to the end of the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  add
      * @param   mixed $value
-     * @return  System.Collections.ArrayList
+     * @return  @this
      */
     public function add($value){
         $this->readOnlyCheck();
@@ -22,10 +21,9 @@ class ArrayList extends Collection {
      * Inserts an element into the collection at the specified index. 
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  insert
      * @param   int $index
      * @param   mixed $value
-     * @return  System.Collections.ArrayList
+     * @return  @this
      */
     public function insert($index, $value){
         $this->readOnlyCheck();
@@ -35,10 +33,9 @@ class ArrayList extends Collection {
     /**
      * Returns an ArrayList whose elements are copies of the specified value.
      * 
-     * @method  repeat
      * @param   mixed $value
      * @param   int $count
-     * @return  System.Collections.ArrayList
+     * @return  @this
      */
     public static function repeat($value, $count){
         return new ArrayList(array_fill(0, $count, $value));

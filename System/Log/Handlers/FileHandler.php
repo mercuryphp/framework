@@ -11,7 +11,6 @@ class FileHandler extends LogHandler {
     /**
      * Initializes an instance of FileHandler.
      * 
-     * @method  __construct
      * @param   string $path
      * @param   bool $singleLog = false
      * @param   bool $useLock = false
@@ -25,7 +24,6 @@ class FileHandler extends LogHandler {
     /**
      * Writes all logs to a file.
      * 
-     * @method  write
      * @param   array $logs
      * @param   array $extra
      * @return  void

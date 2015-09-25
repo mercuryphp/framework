@@ -8,7 +8,6 @@ class JsonConfiguration extends Configuration {
      * Initializes an instance of JsonConfiguration.
      * Reads configuration data if $fileName is supplied.
      * 
-     * @method  __construct
      * @param   string $fileName = null
      */
     public function __construct($fileName = null){
@@ -20,7 +19,6 @@ class JsonConfiguration extends Configuration {
     /**
      * Opens a JSON configuration file.
      * 
-     * @method  open
      * @param   string $fileName
      * @return  void
      */

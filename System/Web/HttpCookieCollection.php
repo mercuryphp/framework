@@ -7,7 +7,6 @@ class HttpCookieCollection extends \System\Collections\Collection {
     /**
      * Initializes a new instance of HttpCookieCollection.
      * 
-     * @method  __construct
      * @param   array $cookies
      */
     public function __construct(array $cookies){
@@ -20,7 +19,6 @@ class HttpCookieCollection extends \System\Collections\Collection {
     /**
      * Adds a HttpCookie to the cookie collection.
      * 
-     * @method  add
      * @param   HttpCookie $httpCookie
      */
     public function add(HttpCookie $httpCookie){
@@ -34,7 +32,6 @@ class HttpCookieCollection extends \System\Collections\Collection {
      * If the cookie does not exist but default has been specified, then the value of default is returned
      * and no cookie is created.
      * 
-     * @method  get
      * @param   mixed $key
      * @param   mixed $default = null
      * @return  mixed

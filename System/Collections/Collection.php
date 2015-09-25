@@ -10,7 +10,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Initializes the collection with an array.
      * 
-     * @method  __construct
      * @param   array $collection = array()
      */
     public function __construct(array $collection = array()){
@@ -20,7 +19,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the number of elements in the collection.
      * 
-     * @method  count
      * @return  int
      */
     public function count(){
@@ -31,8 +29,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Clears the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  clear
-     * @return  $this
+     * @return  @this
      */
     public function clear(){
         $this->readOnlyCheck();
@@ -43,7 +40,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Determines whether an element is in the collection.
      * 
-     * @method  contains
      * @param   mixed $value
      * @return  bool
      */
@@ -57,7 +53,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Determines if the collection contains the specified key.
      * 
-     * @method  hasKey
      * @param   mixed $key
      * @return  bool
      */
@@ -69,9 +64,9 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
-     * Gets an element from the collection by key name.
+     * Gets an element from the collection using the specified $key. If $default 
+     * is specified and element is not found then get $default. 
      * 
-     * @method  get
      * @param   mixed $key
      * @param   mixed $default = null
      * @return  mixed
@@ -86,7 +81,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the last element from the collection.
      * 
-     * @method  last
      * @return  mixed
      */
     public function last(){
@@ -97,7 +91,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Merges an array or an instance of System.Collections.Collection with the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  merge
      * @param   mixed $array
      * @return  mixed
      */
@@ -114,7 +107,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Removes the first occurrence of an element from the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  remove
      * @param   mixed $value
      * @return  bool
      */
@@ -133,7 +125,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Removes an element from the collection using the specified key.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  removeAt
      * @param   mixed $key
      * @return  bool
      */
@@ -149,8 +140,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Reverses the order of the elements in the collection.
      * 
-     * @method  reverse
-     * @return  $this
+     * @return  @this
      */
     public function reverse(){
         $this->collection = array_reverse($this->collection);
@@ -160,8 +150,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Sorts the elements in the collection.
      * 
-     * @method  sort
-     * @return  $this
+     * @return  @this
      */
     public function sort(){
         asort($this->collection);
@@ -171,7 +160,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets an ArrayList of all keys in the collection.
      * 
-     * @method  getKeys
      * @return  System.Collections.ArrayList
      */
     public function getKeys(){
@@ -182,9 +170,8 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Applies a callback function to all elements in the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  each
      * @param   callable $func
-     * @return  $this
+     * @return  @this
      */
     public function each(callable $func){
         $this->readOnlyCheck();
@@ -198,9 +185,8 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Filters the collection based on the condition specified in the callback.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  where
      * @param   callable $callback
-     * @return  $this
+     * @return  @this
      */
     public function where(callable $callback){
         $this->readOnlyCheck();
@@ -220,9 +206,8 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Filters the collection where all element values match the specified value and type.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  whereValue
      * @param   mixed $value
-     * @return  $this
+     * @return  @this
      */
     public function whereValue($value){
         $this->readOnlyCheck();
@@ -238,9 +223,8 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Filters the collection where all element values match the specified regex.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  likeValue
      * @param   string $regex
-     * @return  $this
+     * @return  @this
      */
     public function likeValue($regex){
         $this->collection = array_filter($this->collection, function($v) use($regex){
@@ -254,7 +238,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets a System.Std.String where all elements are join using the specified glue.
      * 
-     * @method  join
      * @param   string $glue
      * @param   bool $removeEmptyEntries = true
      * @return  System.Std.Str
@@ -266,7 +249,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets or sets a boolean value indicating if the collection is read-only.
      * 
-     * @method  isReadOnly
      * @param   bool $bool = null
      * @return  mixed
      */
@@ -280,7 +262,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets the internal PHP array.
      * 
-     * @method  toArray
      * @return  array
      */
     public function toArray(){
@@ -290,7 +271,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets an ArrayIterator.
      * 
-     * @method  getIterator
      * @return  ArrayIterator
      */
     public function getIterator(){
@@ -301,7 +281,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Gets a boolean value indicating if the collection offset exists.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetExists
      * @param   mixed $offset
      * @return  bool
      */
@@ -316,7 +295,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Gets an element from the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetGet
      * @param   mixed $offset
      * @return  mixed
      */
@@ -328,7 +306,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Sets an element in the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetSet
      * @param   mixed $offset
      * @param   mixed $value
      * @return  mixed
@@ -341,7 +318,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      * Removes an element from the collection using an offset.
      * This method is not intended to be used directly.
      * 
-     * @method  offsetUnset
      * @param   mixed $offset
      * @return  void
      */
@@ -352,7 +328,6 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     /**
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  readOnlyCheck
      * @return  void
      */
     protected function readOnlyCheck(){

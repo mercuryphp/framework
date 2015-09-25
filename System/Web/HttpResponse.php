@@ -65,7 +65,6 @@ final class HttpResponse {
     /**
      * Initializes a new instance of the HttpResponse class.
      * 
-     * @method  __construct
      */
     public function __construct(){
         $this->cookies = new HttpCookieCollection(array());
@@ -78,7 +77,6 @@ final class HttpResponse {
     /**
      * Sets the HTTP content type of the output.
      * 
-     * @method  setContentType
      * @param   string $contentType
      * @return  System.Web.HttpResponse
      */
@@ -91,7 +89,6 @@ final class HttpResponse {
     /**
      * Gets the HTTP content type of the output.
      * 
-     * @method  getContentType
      * @return  string
      */
     public function getContentType(){
@@ -101,7 +98,6 @@ final class HttpResponse {
     /**
      * Sets the HTTP character set of the output.
      * 
-     * @method  setContentEncoding
      * @param   string $encoding
      * @return  System.Web.HttpResponse
      */
@@ -114,7 +110,6 @@ final class HttpResponse {
     /**
      * Gets the HTTP character set of the output.
      * 
-     * @method  getContentEncoding
      * @return  string
      */
     public function getContentEncoding(){
@@ -124,7 +119,6 @@ final class HttpResponse {
     /**
      * Sets the content length of the output.
      * 
-     * @method  setContentLength
      * @param   int $length
      * @return  System.Web.HttpResponse
      */
@@ -136,7 +130,6 @@ final class HttpResponse {
     /**
      * Gets the content length of the output.
      * 
-     * @method  getContentLength
      * @return  int
      */
     public function getContentLength(){
@@ -146,7 +139,6 @@ final class HttpResponse {
     /**
      * Sets the HTTP status code of the output.
      * 
-     * @method  setStatusCode
      * @param   int $code
      * @return  System.Web.HttpResponse
      */
@@ -162,7 +154,6 @@ final class HttpResponse {
     /**
      * Gets the HTTP status code of the output.
      * 
-     * @method  getStatusCode
      * @return  int
      */
     public function getStatusCode(){
@@ -172,7 +163,6 @@ final class HttpResponse {
     /**
      * Gets the HTTP header collection.
      * 
-     * @method  getHeaders
      * @return  System.Collections.Dictionary
      */
     public function getHeaders(){
@@ -183,7 +173,6 @@ final class HttpResponse {
      * Gets a cookie from the cookie collection. Creates a new cookie if the cookie does not exist.
      * Gets the cookie collection if no name is specified.
      * 
-     * @method  getCookies
      * @param   string $name
      * @return  mixed
      */
@@ -197,7 +186,6 @@ final class HttpResponse {
     /**
      * Gets the HTTP response output.
      * 
-     * @method  getOutput
      * @return  string
      */
     public function getOutput(){
@@ -208,7 +196,6 @@ final class HttpResponse {
      * Adds a HTTP header to the header collection. Overrides an existing header 
      * if $override is set to true.
      * 
-     * @method  addHeader
      * @param   string $header
      * @param   string $value
      * @param   bool $override = true
@@ -228,7 +215,6 @@ final class HttpResponse {
     /**
      * Writes a string to the response output.
      * 
-     * @method  write
      * @param   string $output
      * @return  System.Web.HttpResponse
      */
@@ -240,7 +226,6 @@ final class HttpResponse {
     /**
      * Appends a string to the response output.
      * 
-     * @method  append
      * @param   string $output
      * @return  System.Web.HttpResponse
      */
@@ -252,7 +237,6 @@ final class HttpResponse {
     /**
      * Writes the string contents of the specified file to the response output.
      * 
-     * @method  writeFile
      * @param   string $file
      * @return  System.Web.HttpResponse
      */
@@ -268,7 +252,6 @@ final class HttpResponse {
      * Setting $immediateRedirect to false will result in the script continuing execution until 
      * the application cycle is complete and the response objects flush() method has been called.
      * 
-     * @method  redirect
      * @param   string $location
      * @param   bool $immediateRedirect
      * @return  void
@@ -286,7 +269,6 @@ final class HttpResponse {
     /**
      * Sends all output and headers to the client.
      * 
-     * @method  flush
      * @return  string
      */
     public function flush(){

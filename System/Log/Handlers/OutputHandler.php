@@ -7,7 +7,6 @@ class OutputHandler extends LogHandler {
     /**
      * Outputs all logs to the browser. 
      * 
-     * @method  write
      * @param   array $logs
      * @param   array $extra
      * @return  void

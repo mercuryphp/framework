@@ -9,10 +9,9 @@ class Dictionary extends Collection {
      * Throws ReadOnlyException if the collection is set as read-only.
      * Throws InvalidArgumentException if the key already exists.
      * 
-     * @method  add
      * @param   mixed $key
      * @param   mixed $value
-     * @return  System.Collections.Dictionary
+     * @return  @this
      */
     public function add($key, $value){
         $this->readOnlyCheck();
@@ -28,10 +27,9 @@ class Dictionary extends Collection {
      * added if the key already exists.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  addUnique
      * @param   mixed $key
      * @param   mixed $value
-     * @return  System.Collections.Dictionary
+     * @return  @this
      */
     public function addUnique($key, $value){
         $this->readOnlyCheck();
@@ -45,10 +43,9 @@ class Dictionary extends Collection {
      * Adds or replaces an element in the collection using a key.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  set
      * @param   mixed $key
      * @param   mixed $value
-     * @return  System.Collections.Dictionary
+     * @return  @this
      */
     public function set($key, $value){
         $this->readOnlyCheck();
@@ -59,7 +56,6 @@ class Dictionary extends Collection {
     /**
      * Gets an stdClass object of the collection.
      * 
-     * @method  toObject
      * @return  stdClass
      */
     public function toObject(){
@@ -70,10 +66,9 @@ class Dictionary extends Collection {
      * Magic method. Dynamically creates collection key/value elements.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
-     * @method  __set
      * @param   mixed $key
      * @param   mixed $value
-     * @return  System.Collections.Dictionary
+     * @return  @this
      */
     public function __set($key, $value){
         return $this->set($key, $value);
@@ -82,7 +77,6 @@ class Dictionary extends Collection {
     /**
      * Magic method. Dynamically gets elements from the collection using the specified key.
      * 
-     * @method  __get
      * @param   mixed $key
      * @return  mixed
      */

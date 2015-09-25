@@ -27,7 +27,6 @@ class Logger {
     /**
      * Initializes an instance of Logger.
      * 
-     * @method  __construct
      * @param   System.Log.Handlers.LogHandler $handler = null
      */
     public function __construct($handler = null){
@@ -39,7 +38,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to debug. 
      * 
-     * @method  debug
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -52,7 +50,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to info. 
      * 
-     * @method  info
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -65,7 +62,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to notice. 
      * 
-     * @method  notice
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -78,7 +74,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to warning.  
      * 
-     * @method  warning
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -91,7 +86,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to error. 
      * 
-     * @method  error
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -104,7 +98,6 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to critical. 
      * 
-     * @method  critical
      * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
@@ -117,21 +110,20 @@ class Logger {
     /**
      * Adds a message to the logger and sets the log level to exception. 
      * 
-     * @method  exception
-     * @param   string $e
+     * @param   string $message
      * @param   array $params
      * @return  System.Log.Logger
      */
-    public function exception(\Exception $e, array $params = array()){
-        $this->addLog(static::EXCEPTION, $e, $params);
+    public function exception($message, array $params = array()){
+        $this->addLog(static::EXCEPTION, $message, $params);
         return $this;
     }
     
     /**
      * Adds a log handler. 
      * 
-     * @method  addHandler
      * @param   System.Log.Handlers.LogHandler $handler
+     * @param   array $filters
      * @return  System.Log.Logger
      */
     public function addHandler(\System\Log\Handlers\LogHandler $handler, array $filters = array()){
@@ -140,10 +132,9 @@ class Logger {
     }
     
     /**
-     * Sets a callback that can be used to process each log entry before
+     * Sets a callback function that can be used to process each log entry before
      * it is handled by the LogHandler.
      * 
-     * @method  setProcessor
      * @param   callable $processor
      * @return  System.Log.Logger
      */
@@ -155,7 +146,6 @@ class Logger {
     /**
      * Executes all log handlers and terminates the script.
      * 
-     * @method  flush
      * @return  void
      */
     public function flush(){
@@ -171,7 +161,6 @@ class Logger {
     /**
      * Adds extra information to the log.
      * 
-     * @method  add
      * @param   string $key
      * @param   string $value
      * @return  System.Log.Logger

@@ -13,7 +13,6 @@ class Database {
      * to a database if connection string is supplied.
      * Throws DatabaseException if the connection to the database failed.
      * 
-     * @method  __construct
      * @param   string $connectionString
      * @param   string $uid = ''
      * @param   string $pwd = ''
@@ -30,7 +29,6 @@ class Database {
      * Creates a new connection to a database using the specified connection string.
      * Throws ConnectionException.
      * 
-     * @method  connect
      * @param   string $connectionString
      * @param   string $uid = ''
      * @param   string $pwd = ''
@@ -71,7 +69,6 @@ class Database {
      * Executes an SQL query and returns a PDOStatement object.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  query
      * @param   string $sql
      * @param   array $params = array()
      * @return  PDOStatement
@@ -97,7 +94,6 @@ class Database {
      * Executes an SQL query and returns a single row.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  fetch
      * @param   string $sql
      * @param   array $params = array()
      * @param   int $fetchSytle = PDO::FETCH_OBJ
@@ -112,7 +108,6 @@ class Database {
      * Executes an SQL query and returns a collection of rows.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  fetchAll
      * @param   string $sql
      * @param   array $params = array()
      * @param   int $fetchSytle = PDO::FETCH_OBJ
@@ -127,7 +122,6 @@ class Database {
      * Executes an SQL query and returns the first column from the first row.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  fetchOne
      * @param   string $sql
      * @param   array $params = array()
      * @return  mixed
@@ -141,7 +135,6 @@ class Database {
      * Inserts data into a table and returns the number of rows affected.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  insert
      * @param   string $tableName
      * @param   mixed $data
      * @return  int
@@ -163,7 +156,6 @@ class Database {
      * Updates table rows and returns the number of rows affected.
      * Throws QueryException if an SQL exception occursed.
      * 
-     * @method  update
      * @param   string $tableName
      * @param   mixed $data
      * @param   array $conditions
@@ -204,7 +196,6 @@ class Database {
      * Deletes table rows and returns the number of rows affected.
      * Throws QueryException if an SQL exception occured.
      * 
-     * @method  delete
      * @param   string $tableName
      * @param   array $conditions
      * @return  int
@@ -233,7 +224,6 @@ class Database {
     /**
      * Initiates a transaction.
      * 
-     * @method  beginTransaction
      * @return  bool
      */
     public function beginTransaction(){
@@ -243,7 +233,6 @@ class Database {
     /**
      * Commits a transaction.
      * 
-     * @method  commit
      * @return  bool
      */
     public function commit(){
@@ -253,7 +242,6 @@ class Database {
     /**
      * Rolls back a transaction.
      * 
-     * @method  rollBack
      * @return  bool
      */
     public function rollBack(){
@@ -263,7 +251,6 @@ class Database {
     /**
      * Checks if inside a transaction.
      * 
-     * @method  inTransaction
      * @return  bool
      */
     public function inTransaction(){
@@ -273,7 +260,6 @@ class Database {
     /**
      * Gets the ID of the last inserted row or sequence value.
      * 
-     * @method  getInsertId
      * @param   string $field
      * @return  mixed
      */
@@ -284,7 +270,6 @@ class Database {
     /**
      * Gets a database connection attribute.
      * 
-     * @method  getAttribute
      * @param   int $attribute
      * @return  mixed
      */
@@ -295,7 +280,6 @@ class Database {
     /**
      * Gets the connection string used to connect to the database.
      * 
-     * @method  getConnectionString
      * @return  string
      */
     public function getConnectionString(){
@@ -305,7 +289,6 @@ class Database {
     /**
      * Gets the profiler object associated with the connection.
      * 
-     * @method  getProfiler
      * @return  System.Data.Profiler
      */
     public function getProfiler(){
@@ -315,7 +298,6 @@ class Database {
     /**
      * Gets an array of available PDO drivers.
      * 
-     * @method  getAvailableDrivers
      * @return  array
      */
     public static function getAvailableDrivers(){

@@ -9,17 +9,17 @@ abstract class Configuration {
     /**
      * Abstract method to open a configuration file for processing.
      * 
-     * @method  open
      * @param   string $fileName
      * @return  void
      */
     public abstract function open($fileName);
     
     /**
-     * Gets a configuration element using a configuration path.
+     * Gets a configuration element using a configuration path. If no element is
+     * found and $default is specified, then gets $default. 
      * 
-     * @method  get
      * @param   string $path
+     * @param   mixed $default = null
      * @return  mixed
      */
     public function get($path, $default = null){

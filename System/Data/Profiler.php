@@ -17,7 +17,6 @@ class Profiler {
     /**
      * Logs the start time of an SQL query.
      * 
-     * @method  start
      * @return  void
      */
     public function start(){
@@ -30,7 +29,6 @@ class Profiler {
      * the onLogAdded() method, it will be executed after the log has been added. 
      * The callback can be used to process individual logs.
      * 
-     * @method  log
      * @param   string $log
      * @param   array $params  = array()
      * @param   string $type = null
@@ -76,9 +74,8 @@ class Profiler {
     }
     
     /**
-     * Gets a log entry using a log id.
+     * Gets a log entry using the specified $logId.
      * 
-     * @method  get
      * @param   string $logId
      * @return  array
      */
@@ -91,7 +88,6 @@ class Profiler {
     /**
      * Gets a count of all log entries.
      * 
-     * @method  count
      * @return  int
      */
     public function count(){
@@ -101,7 +97,6 @@ class Profiler {
     /**
      * Gets the last log entry.
      * 
-     * @method  last
      * @return  array
      */
     public function last(){
@@ -111,7 +106,6 @@ class Profiler {
     /**
      * Gets the total duration of all log entries.
      * 
-     * @method  getTotalDuration
      * @return  int
      */
     public function getTotalDuration(){
@@ -123,16 +117,22 @@ class Profiler {
     }
     
     /**
-     * Sets a user defined callback that is executed when a log has been added.
+     * Sets a user defined callback function that is executed when a 
+     * log has been added.
      * 
-     * @method  onLogAdded
-     * @param   callable $callback
+     * @param   callable $func
      * @return  void
      */
-    public function onLogAdded(callable $callback){
-        $this->onLogAdded = $callback;
+    public function onLogAdded(callable $func){
+        $this->onLogAdded = $func;
     }
 
+    /**
+     * Gets a filtered result using the specified $conditions.
+     * 
+     * @param   array $conditions
+     * @return  System.Collections.Dictionary
+     */
     public function where(array $conditions){
         return new \System\Collections\Dictionary(array_filter($this->logs, function ($log) use($conditions){
             foreach($conditions as $key => $value){
@@ -142,12 +142,10 @@ class Profiler {
             }
         }));
     }
-    
-    
+
     /**
      * Gets the underlying log array.
      * 
-     * @method  toArray
      * @return  array
      */
     public function toArray(){

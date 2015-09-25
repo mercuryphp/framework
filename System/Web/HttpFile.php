@@ -13,7 +13,6 @@ final class HttpFile {
      * Initializes a new instance of the HttpFile class and encapsulates 
      * information about an individual file that has been uploaded by a client.
      * 
-     * @method  __construct
      * @param   string $fileName
      * @param   string $tmpName
      * @param   string $contentType
@@ -29,7 +28,6 @@ final class HttpFile {
     /**
      * Gets the name of the file being uploaded.
      * 
-     * @method  getFileName
      * @return  string
      */
     public function getFileName(){
@@ -39,7 +37,6 @@ final class HttpFile {
     /**
      * Gets the temporary name of the file being uploaded.
      * 
-     * @method  getTmpFileName
      * @return  string
      */
     public function getTmpFileName(){
@@ -49,7 +46,6 @@ final class HttpFile {
     /**
      * Gets the content type of the file being uploaded.
      * 
-     * @method  getContentType
      * @return  string
      */
     public function getContentType(){
@@ -59,7 +55,6 @@ final class HttpFile {
     /**
      * Gets the size of the file being uploaded.
      * 
-     * @method  getSize
      * @return  int
      */
     public function getSize(){
@@ -69,7 +64,6 @@ final class HttpFile {
     /**
      * Gets the file extension of the file being uploaded.
      * 
-     * @method  getFileExtension
      * @return  string
      */
     public function getFileExtension(){
@@ -79,7 +73,6 @@ final class HttpFile {
     /**
      * Saves the file being uploaded.
      * 
-     * @method  save
      * @param   string $destination
      */
     public function save($destination){

@@ -21,7 +21,6 @@ final class HttpRequest {
      * Initializes a new instance of the HttpRequest class and encapsulates 
      * information about an individual HTTP request.
      * 
-     * @method  __construct
      * @param   string $uri = null
      */
     public function __construct($uri = null){
@@ -49,7 +48,6 @@ final class HttpRequest {
      * Gets a cookie from the cookie collection. Creates a new cookie if the cookie does not exist.
      * Gets the cookie collection if no name is specified.
      * 
-     * @method  getCookies
      * @param   string $name
      * @return  mixed
      */
@@ -64,7 +62,6 @@ final class HttpRequest {
      * Gets the specified item by name or gets a collection of query 
      * items if no name is specified.
      * 
-     * @method  getQuery
      * @param   string $name = null
      * @return  mixed
      */
@@ -79,7 +76,6 @@ final class HttpRequest {
      * Gets the specified item by name or gets a collection of post 
      * items if no name is specified.
      * 
-     * @method  getPost
      * @param   string $name = null
      * @return  mixed
      */
@@ -94,7 +90,6 @@ final class HttpRequest {
      * Gets the specified HttpFile object by name or gets a collection of files 
      * if no name is specified.
      * 
-     * @method  getFile
      * @param   string $name = null
      * @return  mixed
      */
@@ -108,7 +103,6 @@ final class HttpRequest {
     /**
      * Sets an item in the params collection.
      * 
-     * @method  setParam
      * @param   string $name
      * @param   mixed $value
      */
@@ -120,7 +114,6 @@ final class HttpRequest {
      * Gets the specified item by name or gets a combined collection of query, 
      * post, cookies, and server items if no name is specified.
      * 
-     * @method  getParam
      * @param   string $name = null
      * @return  mixed
      */
@@ -135,7 +128,6 @@ final class HttpRequest {
      * Gets the specified segment from the request URI by name or gets a collection of
      * segments if no name is specified.
      * 
-     * @method  getSegment
      * @param   int $index
      * @return  string
      */
@@ -151,7 +143,6 @@ final class HttpRequest {
     /**
      * Gets a collection of route data.
      * 
-     * @method  getSegment
      * @return  System.Collections.Dictionary
      */
     public function getRouteData(){
@@ -161,7 +152,6 @@ final class HttpRequest {
     /**
      * Gets the request URI.
      * 
-     * @method  getUri
      * @return  string
      */
     public function getUri(){
@@ -171,7 +161,6 @@ final class HttpRequest {
     /**
      * Gets the request user agent.
      * 
-     * @method  getUserAgent
      * @return  string
      */
     public function getUserAgent(){
@@ -181,7 +170,6 @@ final class HttpRequest {
     /**
      * Gets the client address.
      * 
-     * @method  getClientAddr
      * @return  string
      */
     public function getClientAddr(){
@@ -191,7 +179,6 @@ final class HttpRequest {
     /**
      * Gets the Http method.
      * 
-     * @method  getHttpMethod
      * @return  string
      */
     public function getHttpMethod(){
@@ -204,7 +191,6 @@ final class HttpRequest {
     /**
      * Gets a collection of request headers.
      * 
-     * @method  getHeaders
      * @return  System.Collections.Dictionary
      */
     public function getHeaders(){
@@ -214,7 +200,6 @@ final class HttpRequest {
     /**
      * Gets the specified server item by name.
      * 
-     * @method  getServer
      * @param   int $name
      * @return  string
      */
@@ -227,7 +212,6 @@ final class HttpRequest {
     /**
      * Sets a UserIdentity object for the current request.
      * 
-     * @method  setUser
      * @param   System.Web.Security.UserIdentity $identity
      */
     public function setUser(\System\Web\Security\UserIdentity $identity){
@@ -237,7 +221,6 @@ final class HttpRequest {
     /**
      * Gets a UserIdentity object for the current request.
      * 
-     * @method  getUser
      * @return  System.Web.Security.UserIdentity
      */
     public function getUser(){
@@ -247,7 +230,6 @@ final class HttpRequest {
     /**
      * Gets a boolean value indicating if the current request method is a GET.
      * 
-     * @method  isGet
      * @return  bool
      */
     public function isGet(){
@@ -260,7 +242,6 @@ final class HttpRequest {
     /**
      * Gets a boolean value indicating if the current request method is a POST.
      * 
-     * @method  isPost
      * @return  bool
      */
     public function isPost(){
@@ -273,7 +254,6 @@ final class HttpRequest {
     /**
      * Gets a boolean value indicating if the current request method is a PUT.
      * 
-     * @method  isPut
      * @return  bool
      */
     public function isPut(){
@@ -286,7 +266,6 @@ final class HttpRequest {
     /**
      * Gets a boolean value indicating if the current request method is a DELETE.
      * 
-     * @method  isDelete
      * @return  bool
      */
     public function isDelete(){
@@ -300,7 +279,6 @@ final class HttpRequest {
      * Gets a boolean value indicating if the current request was requested with 
      * XMLHttpRequest.
      * 
-     * @method  isAjax
      * @return  bool
      */
     public function isAjax(){
@@ -313,7 +291,6 @@ final class HttpRequest {
     /**
      * Binds request params to an object.
      * 
-     * @method  bindModel
      * @param   object $object
      */
     public function bindModel($object){
@@ -335,7 +312,6 @@ final class HttpRequest {
     /**
      * Gets a PHP array of request params.
      * 
-     * @method  toArray
      * @return  array
      */
     public function toArray(){
@@ -345,7 +321,6 @@ final class HttpRequest {
     /**
      * Gets an item from the params collection using a dynamic property.
      * 
-     * @method  __get
      * @return  mixed
      */
     public function __get($name){

@@ -42,7 +42,6 @@ abstract class HttpApplication {
     /**
      * Initializes the application with a root path.
      * 
-     * @method  __construct
      * @param   string $rootPath
      */
     public function __construct($rootPath){
@@ -56,7 +55,6 @@ abstract class HttpApplication {
      * but before any system settings have been configured. This method is intended
      * to be overridden. 
      * 
-     * @method  start
      * @return  void
      */
     public function start(){}
@@ -65,7 +63,6 @@ abstract class HttpApplication {
      * Initializes the application with system settings. This method is declared 
      * final and cannot be overriden.
      * 
-     * @method  init
      * @return  void
      */
     public final function init(){
@@ -107,7 +104,6 @@ abstract class HttpApplication {
      * overridden to provide user defined functionality such as adding routes to 
      * the route collection.
      * 
-     * @method  load
      * @return  void
      */
     public function load(){}
@@ -116,7 +112,6 @@ abstract class HttpApplication {
      * Authenticates a HTTP request using Authentication and establishes the 
      * identity of the user.
      * 
-     * @method  authenticateRequest
      * @param   System.Web.Mvc.Controller $controller
      * @return  void
      */
@@ -139,7 +134,6 @@ abstract class HttpApplication {
      * The preAction() method is executed before the controller action.
      * Override to provide functionality that must be invoked before the action method.
      * 
-     * @method  preAction
      * @param   System.Web.Mvc.Controller $controller
      * @return  void
      */
@@ -149,7 +143,6 @@ abstract class HttpApplication {
      * The postAction() method is executed after the controller action.
      * Override to provide functionality that must be invoked after the action method.
      * 
-     * @method  postAction
      * @param   System.Web.Mvc.Controller $controller
      * @return  void
      */
@@ -158,7 +151,6 @@ abstract class HttpApplication {
     /**
      * Dispatches a controller. This method is declared final and cannot be overriden.
      * 
-     * @method  run
      * @return  void
      */
     public final function run(){
@@ -231,7 +223,6 @@ abstract class HttpApplication {
     /**
      * Executed when an exception is thrown. Override to provide custom error handling.
      * 
-     * @method  error
      * @param   Exception $e
      * @return  void
      */
@@ -241,7 +232,6 @@ abstract class HttpApplication {
      * The end() method is executed at the end of the application cycle. 
      * Any output is sent to the browser.
      * 
-     * @method  end
      * @return  void
      */
     public function end(){

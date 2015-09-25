@@ -12,7 +12,6 @@ class HttpContext {
      * Initializes a new instance of the HttpContext class that encapsulates 
      * information about an HTTP request.
      * 
-     * @method  __construct
      * @param   System.Web.HttpRequest $request
      * @param   System.Web.HttpResponse $response
      * @param   System.Web.Session.Session $session
@@ -26,7 +25,6 @@ class HttpContext {
     /**
      * Sets an HttpRequest object.
      * 
-     * @method  setRequest
      * @param   System.Web.HttpRequest $request
      */
     public function setRequest(HttpRequest $request){
@@ -36,7 +34,6 @@ class HttpContext {
     /**
      * Gets the HttpRequest object for this context.
      * 
-     * @method  getRequest
      * @return  System.Web.HttpRequest
      */
     public function getRequest(){
@@ -46,7 +43,6 @@ class HttpContext {
     /**
      * Sets an HttpResponse object.
      * 
-     * @method  setResponse
      * @param   System.Web.HttpResponse $response
      */
     public function setResponse(HttpResponse $response){
@@ -56,7 +52,6 @@ class HttpContext {
     /**
      * Gets the HttpResponse object for this context.
      * 
-     * @method  getResponse
      * @return  System.Web.HttpResponse
      */
     public function getResponse(){
@@ -66,7 +61,6 @@ class HttpContext {
     /**
      * Sets the Session store for this context.
      * 
-     * @method  setSession
      * @param   System.Web.Session.Session $session
      */
     public function setSession(Session\Session $session){
@@ -76,7 +70,6 @@ class HttpContext {
     /**
      * Gets the Session store object for this context.
      * 
-     * @method  getSession
      * @return  System.Web.Session.Session
      */
     public function getSession(){

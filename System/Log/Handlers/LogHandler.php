@@ -11,9 +11,8 @@ abstract class LogHandler {
      * Sets a callback that can be used to process each log entry before
      * it is handled by the LogHandler.
      * 
-     * @method  setProcessor
      * @param   callable $processor
-     * @return  System.Log.Handlers.LogHandler
+     * @return  @this
      */
     public function setProcessor($processor){
         $this->processor = $processor;
@@ -23,9 +22,8 @@ abstract class LogHandler {
     /**
      * Sets an array of level filters.
      * 
-     * @method  setFilters
      * @param   array $filters
-     * @return  System.Log.Handlers.LogHandler
+     * @return  @this
      */
     public function setLevelFilters(array $filters){
         $this->filters = $filters;
@@ -35,7 +33,6 @@ abstract class LogHandler {
     /**
      * Abstract method that must be implemented in derived classes.
      * 
-     * @method  write
      * @param   array $logs
      * @param   array $extra
      * @return  void

@@ -15,7 +15,6 @@ final class HttpCookie {
     /**
      * Initializes a new instance of HttpCookie.
      * 
-     * @method  __construct
      * @param   string $name
      * @param   string $value = ''
      * @param   mixed $expires = 0
@@ -38,7 +37,6 @@ final class HttpCookie {
     /**
      * Sets the cookie name.
      * 
-     * @method  setName
      * @param   string $name
      * @return  void
      */
@@ -49,7 +47,6 @@ final class HttpCookie {
     /**
      * Gets the cookie name.
      * 
-     * @method  getName
      * @return  string
      */
     public function getName(){
@@ -59,7 +56,6 @@ final class HttpCookie {
     /**
      * Sets the cookie value.
      * 
-     * @method  setValue
      * @param   string $value
      * @return  void
      */
@@ -70,7 +66,6 @@ final class HttpCookie {
     /**
      * Gets the cookie value.
      * 
-     * @method  getValue
      * @return  mixed
      */
     public function getValue(){
@@ -80,7 +75,6 @@ final class HttpCookie {
     /**
      * Sets the expiration date and time for the cookie.
      * 
-     * @method  setExpires
      * @param   int $expires
      * @return  void
      */
@@ -91,7 +85,6 @@ final class HttpCookie {
     /**
      * Gets the expiration date and time for the cookie.
      * 
-     * @method  getExpires
      * @return  string
      */
     public function getExpires(){
@@ -101,7 +94,6 @@ final class HttpCookie {
     /**
      * Sets the path on the server where the cookie will be available.
      * 
-     * @method  setPath
      * @param   string $path
      * @return  void
      */
@@ -112,7 +104,6 @@ final class HttpCookie {
     /**
      * Gets the path on the server where the cookie will be available.
      * 
-     * @method  getPath
      * @return  string
      */
     public function getPath(){
@@ -122,7 +113,6 @@ final class HttpCookie {
     /**
      * Sets the domain to associate the cookie with.
      * 
-     * @method  setDomain
      * @param   string $domain
      * @return  void
      */
@@ -133,7 +123,6 @@ final class HttpCookie {
     /**
      * Gets the domain to associate the cookie with.
      * 
-     * @method  getDomain
      * @return  string
      */
     public function getDomain(){
@@ -144,7 +133,6 @@ final class HttpCookie {
      * Gets or sets a value indicating that the cookie should only be transmitted 
      * over a secure HTTPS connection from the client.
      * 
-     * @method  isSecure
      * @param   bool $bool = null
      * @return  bool
      */
@@ -160,7 +148,6 @@ final class HttpCookie {
      * Gets or sets a value indicating that the cookie should be accessible only 
      * through the HTTP protocol.
      * 
-     * @method  isHttpOnly
      * @param   bool $bool = null
      * @return  bool
      */
