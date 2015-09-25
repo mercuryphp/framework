@@ -5,6 +5,7 @@ namespace System\Data\Entity;
 class SqlQuery {
     
     protected $db;
+    protected $metaCollection;
     protected $sql;
     protected $params;
     
@@ -57,21 +58,21 @@ class SqlQuery {
     }
     
      /**
-     * Gets a single row as an object. If $entityName is specified, then an 
-     * instance of $entityName is created and returned where all column names 
+     * Gets a single row as an object. If $entityType is specified as a string,
+     * then an instance of $entityType is created and returned where all column names 
      * are mapped to the entity's properties.
      *
      * @method  single
-     * @param   string $entityName = null
+     * @param   string $entityType = null
      * @param   bool $default = false
      * @return  mixed
      */
-    public function single($entityName = null, $default = false){
+    public function single($entityType = null, $default = false){
         $stm = $this->db->query($this->sql, $this->params);
 
-        if($entityName){
+        if($entityType){
             $row = $stm->fetch(\PDO::FETCH_OBJ);
-            return $this->toEntity($row, $entityName, $default);
+            return $this->toEntity($row, $entityType, $default);
         }
         
         return $stm->fetch(\PDO::FETCH_OBJ);
@@ -79,21 +80,21 @@ class SqlQuery {
     
     /**
      * Gets a collection of rows as a DbListResult where each row is respresented 
-     * as an object. If $entityName is specified, then an instance of $entityName 
+     * as an object. If $entityType is specified as a string, then an instance of $entityType 
      * is created for each row where all column names are mapped to the entity's properties.
      * 
      * @method  toList
-     * @param   string $entityName = null
+     * @param   string $entityType = null
      * @return  System.Data.Entity.DbListResult
      */
-    public function toList($entityName = null){
+    public function toList($entityType = null){
         $stm = $this->db->query($this->sql, $this->params);
         
-        if($entityName){
+        if($entityType){
             $array = array();
             $rows = $stm->fetchAll(\PDO::FETCH_OBJ);
             foreach($rows as $row){
-                $array[] = $this->toEntity($row, $entityName);
+                $array[] = $this->toEntity($row, $entityType);
             }
             return new DbListResult($array);
         }else{
@@ -114,7 +115,7 @@ class SqlQuery {
     }
 
     /**
-     * Get the EntityMetaCollection object for this instance.
+     * Gets the EntityMetaCollection object.
      * 
      * @method  getMetaCollection
      * @return  System.Data.Entity.EntityMetaCollection
@@ -122,17 +123,27 @@ class SqlQuery {
     public function getMetaCollection(){
         return $this->metaCollection;
     }
-    
+
     /**
-     * Returns an entity
-     * Throws EntityException if a property name cannot be mapped to the db.
+     * The toEntity method returns an entity of a specified type. If no type is 
+     * specified, the row data is returned as an stdClass object. The type can be
+     * specified as a string e.g Models.User where Models is the namespace 
+     * and User is the entity class. The type can also be specified as a callback
+     * function. The function is supplied with row data. You are required to create 
+     * your own model instance then return it.
      * 
-     * @method  toEntity
-     * @param   mixed $data
-     * @param   string $entityType
-     * @param   bool $default = false
-     * @return  mixed
-     */ 
+     *  function($data){
+     *      $user = new \Models\User();
+     *      $user->setFirstName($data->first_name);
+     *      $user->setlastName($data->last_name);
+     *      return $user;
+     *  }
+     *
+     * The callback function provides more flexibility allowing you to manipulate
+     * the data before it is returned. An array maybe passed as the type, which
+     * allows you to construct relationships. For more information on relationships
+     * consult the API library.
+     */
     private function toEntity($data, $entityType, $default = false){
 
         $relationships = array();
@@ -149,7 +160,8 @@ class SqlQuery {
 
                         if(count($segments) == 2){
                             list($entityName, $propertyName) = $segments;
-                            $relationship->setDbContext($this->dbContext);
+                            $relationship->setDatabase($this->db);
+                            $relationship->setMetaCollection($this->metaCollection);
                             $relationships[$propertyName] = $relationship;
                         }else{
                             $entityName = $entity;
@@ -197,7 +209,7 @@ class SqlQuery {
                 
                 if(count($relationships) > 0){
                     foreach($relationships as $propertyName => $relationship){
-                        $relationship->setParentEntity($entity);
+                        $relationship->setDependantEntity($entity);
                         \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->bind());
                     }
                 }

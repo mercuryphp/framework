@@ -20,4 +20,8 @@ class EntityMetaCollection {
         }
         return $metaData;
     }
+    
+    public function toArray(){
+        return $this->metaCollection;
+    }
 }

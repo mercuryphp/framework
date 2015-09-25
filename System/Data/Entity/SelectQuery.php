@@ -6,7 +6,6 @@ class SelectQuery {
     
     protected $sqlQuery;
     protected $fields;
-    protected $metaCollection = array();
     protected $sql;
     protected $lastTableAlias;
     protected $isWhere = false;
@@ -89,10 +88,6 @@ class SelectQuery {
 
     public function sql(){
         return $this->sql->toString();
-    }
-    
-    public function getLastTableAlias(){
-        return $this->lastTableAlias;
     }
 
     private function getTableNameAlias($tableName){

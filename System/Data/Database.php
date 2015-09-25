@@ -9,9 +9,9 @@ class Database {
     protected $profiler;
     
     /**
-     * Constructs a new System.Data.Connection instance. Creates a new connection 
+     * Constructs a new System.Data.Database instance. Creates a new connection 
      * to a database if connection string is supplied.
-     * Throws ConnectionException.
+     * Throws DatabaseException if the connection to the database failed.
      * 
      * @method  __construct
      * @param   string $connectionString
@@ -69,7 +69,7 @@ class Database {
     
     /**
      * Executes an SQL query and returns a PDOStatement object.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  query
      * @param   string $sql
@@ -95,7 +95,7 @@ class Database {
 	
     /**
      * Executes an SQL query and returns a single row.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  fetch
      * @param   string $sql
@@ -110,7 +110,7 @@ class Database {
     
     /**
      * Executes an SQL query and returns a collection of rows.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  fetchAll
      * @param   string $sql
@@ -125,7 +125,7 @@ class Database {
     
     /**
      * Executes an SQL query and returns the first column from the first row.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  fetchOne
      * @param   string $sql
@@ -139,7 +139,7 @@ class Database {
 	
     /**
      * Inserts data into a table and returns the number of rows affected.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  insert
      * @param   string $tableName
@@ -161,7 +161,7 @@ class Database {
 	
     /**
      * Updates table rows and returns the number of rows affected.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occursed.
      * 
      * @method  update
      * @param   string $tableName
@@ -202,7 +202,7 @@ class Database {
     
     /**
      * Deletes table rows and returns the number of rows affected.
-     * Throws QueryException if an SQL exception occurs.
+     * Throws QueryException if an SQL exception occured.
      * 
      * @method  delete
      * @param   string $tableName

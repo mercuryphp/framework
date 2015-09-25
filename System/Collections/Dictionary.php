@@ -24,7 +24,8 @@ class Dictionary extends Collection {
     }
     
     /**
-     * Adds an element to the collection using a unique key.
+     * Adds an element to the collection using a unique key. The element is not
+     * added if the key already exists.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @method  addUnique
