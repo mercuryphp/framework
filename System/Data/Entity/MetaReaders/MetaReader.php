@@ -4,6 +4,13 @@ namespace System\Data\Entity\MetaReaders;
 
 abstract class MetaReader {
     
+    /**
+     * An abstract method that must be implemented in derived classes. Must
+     * return an instance of System.Data.Entity.EntityMeta.
+     * 
+     * @param   string $entityName
+     * @return  System.Data.Entity.EntityMeta
+     */
     public abstract function read($entityName);
     
     protected function getArgs($args){

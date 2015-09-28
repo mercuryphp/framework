@@ -9,10 +9,22 @@ class JsonReader extends MetaReader {
     
     protected $path;
     
+    /**
+     * Initializes an instance of JsonReader with a path to the entity meta file.
+     * 
+     * @param   string $path
+     */
+    
     public function __construct($path){
         $this->path = $path;
     }
     
+    /**
+     * Gets a EntityMeta object for the specified $entityName.  
+     * 
+     * @param   string $entityName
+     * @return  System.Data.Entity.EntityMeta
+     */
     public function read($entityName){
         $path = Str::set($this->path)
                 ->replace('\\', '/')

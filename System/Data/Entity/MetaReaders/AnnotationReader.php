@@ -7,6 +7,12 @@ use System\Std\Object;
 
 class AnnotationReader extends MetaReader {
     
+    /**
+     * Gets a EntityMeta object for the specified $entityName.  
+     * 
+     * @param   string $entityName
+     * @return  System.Data.Entity.EntityMeta
+     */
     public function read($entityName){
         $tableName = new Str(Str::set($entityName)->toLower()->split('\.')->last());
         $className = Str::set($entityName)->replace('.', '\\');
