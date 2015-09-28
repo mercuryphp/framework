@@ -14,7 +14,6 @@ class JsonReader extends MetaReader {
      * 
      * @param   string $path
      */
-    
     public function __construct($path){
         $this->path = $path;
     }
