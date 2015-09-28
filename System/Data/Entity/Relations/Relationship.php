@@ -34,6 +34,24 @@ abstract class Relationship {
     public function setDependantEntity($dependantEntity){
         $this->dependantEntity = $dependantEntity;
     }
+
+    /**
+     * Gets an array of child relationships.
+     * 
+     * @return  array
+     */
+    public function getChildRelationships(){
+        return $this->relationships;
+    }
+    
+    /**
+     * Gets the principal entity name.
+     * 
+     * @return  array
+     */
+    public function getPrincipalEntityName(){
+        return $this->principalEntityName;
+    }
     
     /**
      * Gets or sets a value indicating if eager loading should be used.
@@ -56,9 +74,9 @@ abstract class Relationship {
      * @return  void
      */
     public function add($propertyName, \System\Data\Entity\Relations\Relationship $relationship){
-        $this->relationships[$this->principalEntityName.':'.$propertyName] = $relationship;
+        $this->relationships[$propertyName] = $relationship;
     }
-
+    
     /**
      * Binds the result 
      * 
@@ -72,12 +90,12 @@ abstract class Relationship {
         $sqlSelect = new \System\Data\Entity\SelectQuery(new \System\Data\Entity\SqlQuery($this->db, $this->metaCollection), '*', $this->principalEntityName);
         $meta = $this->metaCollection->get(str_replace('\\','.',get_class($this->dependantEntity)));
         $dependantKeyName = $meta->getKey()->getKeyName();
-        
+
         if(count($this->bindingParams) == 0){
             $this->bindingParams = array($dependantKeyName => $dependantKeyName);
         }
-        
-        $dependantEntityProperties = \System\Std\Object::getProperties($this->dependantEntity);
+ 
+        $dependantEntityProperties = \System\Std\Object::getProperties($this->dependantEntity); 
         foreach($this->bindingParams as $principalProperty => $dependantProperty){
             if(array_key_exists($dependantProperty, $dependantEntityProperties)){ 
                 $value = $dependantEntityProperties[$dependantProperty];
@@ -86,7 +104,7 @@ abstract class Relationship {
             }
         }
 
-        $entityType = (count($this->relationships) > 0) ? $this->relationships : $this->principalEntityName;
+        $entityType = (count($this->relationships) > 0) ? $this : $this->principalEntityName;
 
         switch($this->relationshipType){
             case 1:

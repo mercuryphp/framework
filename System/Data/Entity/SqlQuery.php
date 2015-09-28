@@ -122,7 +122,7 @@ class SqlQuery {
 
     /**
      * The toEntity method returns an entity of a specified type. If no type is 
-     * specified, the row data is returned as an stdClass object. The type can be
+     * specified, then the row data is returned as an stdClass object. The type can be
      * specified as a string e.g Models.User where Models is the namespace 
      * and User is the entity class. The type can also be specified as a callback
      * function. The function is supplied with row data. You are required to create 
@@ -136,7 +136,8 @@ class SqlQuery {
      *  }
      *
      * The callback function provides more flexibility allowing you to manipulate
-     * the data before it is returned. An array maybe passed as the type, which
+     * the data before it is returned. An instance of 
+     * System.Data.Entity.Relations.Relationship maybe passed as the type, which
      * allows you to construct relationships. For more information on relationships
      * consult the API library.
      */
@@ -148,30 +149,13 @@ class SqlQuery {
             return $entityType($data);
         }
         
-        if(is_array($entityType)){
-            foreach($entityType as $entity => $relationship){
-                if($entity){
-                    if($relationship instanceof Relations\Relationship){
-                        $segments = explode(':', (string)$entity, 2);
-
-                        if(count($segments) == 2){
-                            list($entityName, $propertyName) = $segments;
-                            $relationship->setDatabase($this->db);
-                            $relationship->setMetaCollection($this->metaCollection);
-                            $relationships[$propertyName] = $relationship;
-                        }else{
-                            $entityName = $entity;
-                        }
-                    }else{
-                        throw new \InvalidArgumentException(sprintf('Invalid argument specified for "%s". Supplied argument must be an instance of System\Data\Entity\Relations\Relationship', $entity));
-                    }
-                }else{
-                    throw new \InvalidArgumentException(sprintf('Invalid argument specified for relationship mapping. The array must contain keys that represent an entity class and the mapping property name.', $entity));
-                }
-            }
-            $entityType = $entityName;
+        if($entityType instanceof Relations\Relationship){
+            $entityType->setDatabase($this->db);
+            $entityType->setMetaCollection($this->metaCollection);
+            $relationships = $entityType->getChildRelationships();
+            $entityType = $entityType->getPrincipalEntityName();
         }
-        
+
         if(is_string($entityType)){
             $class = '\\'.str_replace('.', '\\', $entityType);
             $refClass = new \ReflectionClass($class);
@@ -202,9 +186,11 @@ class SqlQuery {
                         }
                     }
                 }
-                
+
                 if(count($relationships) > 0){
                     foreach($relationships as $propertyName => $relationship){
+                        $relationship->setDatabase($this->db);
+                        $relationship->setMetaCollection($this->metaCollection);
                         $relationship->setDependantEntity($entity);
                         \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->execute());
                     }
