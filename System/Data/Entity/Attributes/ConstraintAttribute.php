@@ -12,6 +12,7 @@ abstract class ConstraintAttribute implements \System\Web\Mvc\Validators\IValida
      * Sets the column name for an entity property that requires validation.
      * 
      * @param   string $columnName
+     * @return  void
      */
     public function setColumnName($columnName){
         $this->columnName = $columnName;
@@ -21,6 +22,7 @@ abstract class ConstraintAttribute implements \System\Web\Mvc\Validators\IValida
      * Sets the value for an entity property that requires validation.
      * 
      * @param   string $value
+     * @return  void
      */
     public function setValue($value){
         $this->value = $value;

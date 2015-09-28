@@ -12,7 +12,6 @@ class Contains extends ConstraintAttribute {
      * 
      * @param   array $list
      * @param   string $errorMessage
-     * @return  bool
      */
     public function __construct(array $list, $errorMessage = ''){
         $this->list = $list;
