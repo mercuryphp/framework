@@ -7,13 +7,19 @@ abstract class Relationship {
     protected $db;
     protected $principalEntityName;
     protected $dependantEntity;
-    protected $bindingParams;
+    protected $bindingProperties;
     protected $relationships;
     protected $relationshipType;
     protected $singleOrDefault = false;
     protected $eagerLoading = true;
-    
-    public function setDatabase($db){
+
+    /**
+     * Sets the database instance.
+     * 
+     * @param   System.Data.Database $db
+     * @return  void
+     */
+    public function setDatabase(\System\Data\Database $db){
         $this->db = $db;
     }
     
@@ -91,12 +97,12 @@ abstract class Relationship {
         $meta = $this->metaCollection->get(str_replace('\\','.',get_class($this->dependantEntity)));
         $dependantKeyName = $meta->getKey()->getKeyName();
 
-        if(count($this->bindingParams) == 0){
-            $this->bindingParams = array($dependantKeyName => $dependantKeyName);
+        if(count($this->bindingProperties) == 0){
+            $this->bindingProperties = array($dependantKeyName => $dependantKeyName);
         }
  
         $dependantEntityProperties = \System\Std\Object::getProperties($this->dependantEntity); 
-        foreach($this->bindingParams as $principalProperty => $dependantProperty){
+        foreach($this->bindingProperties as $principalProperty => $dependantProperty){
             if(array_key_exists($dependantProperty, $dependantEntityProperties)){ 
                 $value = $dependantEntityProperties[$dependantProperty];
                 $sqlSelect->where($principalProperty.'=:'.$principalProperty);
