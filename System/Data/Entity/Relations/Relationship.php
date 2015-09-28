@@ -18,28 +18,55 @@ abstract class Relationship {
     }
     
     /**
-     * Sets the EntityMetaCollection object for this instance.
+     * Sets the EntityMetaCollection.
      * 
-     * @method  setMetaCollection
      * @return  void
      */
     public function setMetaCollection(\System\Data\Entity\EntityMetaCollection $metaCollection){
         $this->metaCollection = $metaCollection;
     }
 
+    /**
+     * Sets the dependant entity object.
+     * 
+     * @return  void
+     */
     public function setDependantEntity($dependantEntity){
         $this->dependantEntity = $dependantEntity;
     }
     
-    public function setEagerLoading($bool){
+    /**
+     * Gets or sets a value indicating if eager loading should be used.
+     * 
+     * @param   $bool = null
+     * @return  mixed
+     */
+    public function isEagerLoading($bool = null){
+        if($bool == null){
+            return $this->eagerLoading;
+        }
         $this->eagerLoading = $bool;
     }
     
-    public function add($propertyName, $relationships){
-        $this->relationships[$this->principalEntityName.':'.$propertyName] = $relationships;
+    /**
+     * Adds a child relationship that is mapped to a dependant property.
+     * 
+     * @param   string $propertyName
+     * @param   System.Data.Entity.Relations.Relationship $relationship
+     * @return  void
+     */
+    public function add($propertyName, \System\Data\Entity\Relations\Relationship $relationship){
+        $this->relationships[$this->principalEntityName.':'.$propertyName] = $relationship;
     }
 
-    public function bind(){
+    /**
+     * Binds the result 
+     * 
+     * @param   string $propertyName
+     * @param   System.Data.Entity.Relations.Relationship $relationship
+     * @return  mixed
+     */
+    public function execute(){
         
         $params = array();
         $sqlSelect = new \System\Data\Entity\SelectQuery(new \System\Data\Entity\SqlQuery($this->db, $this->metaCollection), '*', $this->principalEntityName);

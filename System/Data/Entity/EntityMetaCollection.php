@@ -34,8 +34,8 @@ class EntityMetaCollection {
      * the MetaReader object. Subsequent calls for the same meta data will be 
      * retrieved from the collection.
      * 
-     * @param   System.Data.Entity.MetaReaders.MetaReader $metaReader
-     * @return  void
+     * @param   string $entityName
+     * @return  System.Data.Entity.EntityMeta
      */
     public function get($entityName){
         if(array_key_exists($entityName, $this->metaCollection)){

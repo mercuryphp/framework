@@ -47,11 +47,13 @@ class SqlQuery {
      */
     public function column($columnName = ''){
         $stm = $this->db->query($this->sql, $this->params);
-        $row = $stm->fetch(\PDO::FETCH_ASSOC);
+        $row = $stm->fetch(\PDO::FETCH_ASSOC); print_R($row); 
         if($columnName){
             return $row[$columnName];
         }
-        return reset($row);
+        if(is_array($row)){
+            return reset($row);
+        }
     }
     
      /**
@@ -204,7 +206,7 @@ class SqlQuery {
                 if(count($relationships) > 0){
                     foreach($relationships as $propertyName => $relationship){
                         $relationship->setDependantEntity($entity);
-                        \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->bind());
+                        \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->execute());
                     }
                 }
             }

@@ -6,10 +6,20 @@ class DefaultValue {
     
     protected $defaultValue;
     
+    /**
+     * Initializes an instance of DefaultValue with a value.
+     * 
+     * @param   string $defaultValue
+     */
     public function __construct($defaultValue){
         $this->defaultValue = $defaultValue;
     }
     
+    /**
+     * Gets the default value.
+     * 
+     * @return  mixed
+     */
     public function getDefaultValue(){
         
         if(strtolower($this->defaultValue) == '@now'){

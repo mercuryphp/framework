@@ -6,15 +6,24 @@ class Contains extends ConstraintAttribute {
     
     protected $list = array();
 
+    /**
+     * Initializes an instance of Contains with an array list and an error message.
+     * 
+     * 
+     * @param   array $list
+     * @param   string $errorMessage
+     * @return  bool
+     */
     public function __construct(array $list, $errorMessage = ''){
         $this->list = $list;
         $this->errorMessage = $errorMessage;
     }
     
-    public function getLength(){
-        return $this->length;
-    }
-    
+    /**
+     * Gets a boolean value that determines if validation failed.
+     * 
+     * @return  bool
+     */
     public function isValid(){
         if(!in_array($this->value, $this->list)){
             return false;
@@ -22,6 +31,12 @@ class Contains extends ConstraintAttribute {
         return true;
     }
     
+    /**
+     * Gets the validation error message. If a user defined error message has not
+     * been set, then gets a default error message.
+     * 
+     * @return  bool
+     */
     public function getMessage(){
         if($this->errorMessage){
             return $this->errorMessage;
