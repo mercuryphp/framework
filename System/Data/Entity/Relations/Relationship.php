@@ -84,10 +84,11 @@ abstract class Relationship {
     }
     
     /**
-     * Binds the result 
+     * Gets the result of the current relationship query. If eager loading is 
+     * set to true, then the return type is an object, which contains the result 
+     * data. If eager loading is set to false, then gets a cloure, which 
+     * encapsulates an instance of SelectQuery.
      * 
-     * @param   string $propertyName
-     * @param   System.Data.Entity.Relations.Relationship $relationship
      * @return  mixed
      */
     public function execute(){
