@@ -18,7 +18,7 @@ class DefaultValue {
     /**
      * Gets the default value.
      * 
-     * @return  mixed
+     * @return  string
      */
     public function getDefaultValue(){
         

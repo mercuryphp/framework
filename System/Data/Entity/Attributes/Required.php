@@ -5,7 +5,7 @@ namespace System\Data\Entity\Attributes;
 class Required extends ConstraintAttribute {
 
     /**
-     * Initializes an instance of Requied.
+     * Initializes an instance of Requied with an optional error message.
      * 
      * @param   string $errorMessage
      */
@@ -14,7 +14,7 @@ class Required extends ConstraintAttribute {
     }
     
     /**
-     * Gets a boolean value that determines if validation failed.
+     * Gets a boolean value that determines if validation was successful.
      * 
      * @return  bool
      */
@@ -29,7 +29,7 @@ class Required extends ConstraintAttribute {
      * Gets the validation error message. If a user defined error message has not
      * been set, then gets a default error message.
      * 
-     * @return  bool
+     * @return  string
      */
     public function getMessage(){
         if($this->errorMessage){
