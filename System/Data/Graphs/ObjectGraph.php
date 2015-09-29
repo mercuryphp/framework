@@ -5,7 +5,7 @@ namespace System\Data\Graphs;
 class ObjectGraph extends NodeList {
     
     /**
-     * Initializes an instance of ObjectGraph with a data set that is traversable.
+     * Initializes an instance of ObjectGraph with data that is traversable.
      * 
      * @param   Traversable $data
      * @param   string $nodeName = 'id'
