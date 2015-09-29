@@ -29,6 +29,14 @@ abstract class ConstraintAttribute implements \System\Web\Mvc\Validators\IValida
     }
     
     /**
+     * An abstract method that must be implemented to provide the validation 
+     * logic and return the result.
+     * 
+     * @return  bool
+     */
+    public abstract function isValid();
+    
+    /**
      * An abstract method that must be implemented to return an error message
      * when validation fails.
      * 
