@@ -79,8 +79,10 @@ class SqlQuery {
     
     /**
      * Gets a collection of rows as a DbListResult where each row is respresented 
-     * as an object. If $entityType is specified as a string, then an instance of $entityType 
-     * is created for each row where all column names are mapped to the entity's properties.
+     * as an object. If $entityType is specified as a string, then an instance of 
+     * $entityType is created for each row where all column names are mapped to 
+     * the entity's properties. $entityType can also be a callback function that 
+     * is passed a row set or an instance of System.Data.Entity.Relations.Relationship.
      * 
      * @param   mixed $entityType = null
      * @return  System.Data.Entity.DbListResult
