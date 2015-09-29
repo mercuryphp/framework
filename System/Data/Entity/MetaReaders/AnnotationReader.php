@@ -8,7 +8,7 @@ use System\Std\Object;
 class AnnotationReader extends MetaReader {
     
     /**
-     * Gets a EntityMeta object for the specified $entityName.  
+     * Gets an EntityMeta object for the specified $entityName.  
      * 
      * @param   string $entityName
      * @return  System.Data.Entity.EntityMeta

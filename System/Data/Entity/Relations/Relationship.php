@@ -14,7 +14,8 @@ abstract class Relationship {
     protected $eagerLoading = true;
 
     /**
-     * Sets the database instance.
+     * Sets the database instance. This method is not intended to be 
+     * used directly.
      * 
      * @param   System.Data.Database $db
      * @return  void
@@ -24,7 +25,8 @@ abstract class Relationship {
     }
     
     /**
-     * Sets the EntityMetaCollection.
+     * Sets the EntityMetaCollection. This method is not intended to be 
+     * used directly.
      * 
      * @return  void
      */
@@ -33,7 +35,8 @@ abstract class Relationship {
     }
 
     /**
-     * Sets the dependant entity object.
+     * Sets the dependant entity object. This method is not intended to be 
+     * used directly.
      * 
      * @return  void
      */
