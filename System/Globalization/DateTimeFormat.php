@@ -8,6 +8,11 @@ class DateTimeFormat {
     protected $dayNames;
     protected $monthNames;
     
+    /**
+     * Initializes an instance of DateTimeFormat.
+     * 
+     * @param   object $formats
+     */
     public function __construct($formats){
         $this->formats = $formats;
         $this->dayNames = new Names($formats->dayNames);

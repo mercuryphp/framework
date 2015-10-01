@@ -7,8 +7,11 @@ class Cultures {
     protected static $cultures = array();
 
     /**
-     * Adds an instance of CultureInfo. 
+     * Adds an instance of CultureInfo. This method is not intended to be used
+     * directly. The add() method is called when a user defined culture is loaded
+     * using the CultureInfo class.
      * 
+     * @param   System.Globalization.CultureInfo $cultureInfo
      * @return  void
      */
     public static function add(CultureInfo $cultureInfo){

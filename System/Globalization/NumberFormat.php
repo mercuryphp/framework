@@ -25,7 +25,7 @@ class NumberFormat {
     }
     
     /**
-     * Gets the decimal separator used in numberic values.
+     * Gets the decimal separator used in numeric values.
      * 
      * @return  string
      */
@@ -34,7 +34,7 @@ class NumberFormat {
     }
     
     /**
-     * Gets the group separator used in numberic values.
+     * Gets the group separator used in numeric values.
      * 
      * @return  string
      */
@@ -149,7 +149,7 @@ class NumberFormat {
     }
     
     /**
-     * Get a formatted numberic value.
+     * Get a formatted numeric value.
      * 
      * @return  string
      */
