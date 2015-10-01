@@ -16,15 +16,6 @@ class NumberFormat {
     }
     
     /**
-     * Gets the currency symbol for the culture.
-     * 
-     * @return  string
-     */
-    public function getCurrencySymbol(){ 
-        return (string)$this->formats->currencySymbol;
-    }
-    
-    /**
      * Gets the number of decimal places to use in numeric values.
      * 
      * @return  string
@@ -34,26 +25,82 @@ class NumberFormat {
     }
     
     /**
-     * Gets the number of decimal places to use in numeric values.
+     * Gets the decimal separator used in numberic values.
+     * 
+     * @return  string
+     */
+    public function getNumberDecimalSeparator(){
+        return (string)$this->formats->numberDecimalSeparator;
+    }
+    
+    /**
+     * Gets the group separator used in numberic values.
+     * 
+     * @return  string
+     */
+    public function getNumberGroupSeparator(){
+        return (string)$this->formats->numberGroupSeparator;
+    }
+
+    /**
+     * Gets the currency symbol for the culture.
+     * 
+     * @return  string
+     */
+    public function getCurrencySymbol(){ 
+        return (string)$this->formats->currencySymbol;
+    }
+    
+    /**
+     * Gets the number of decimal places to use in currency values.
+     * 
+     * @return  string
+     */
+    public function getCurrencyDecimalDigits(){
+        return (string)$this->formats->currencyDecimalDigits;
+    }
+
+    /**
+     * Gets the decimal separator used in currency values.
+     * 
+     * @return  string
+     */
+    public function getCurrencyDecimalSeparator(){
+        return (string)$this->formats->currencyDecimalSeparator;
+    }
+    
+    /**
+     * Gets the group separator used in currency values.
      * 
      * @return  string
      */
     public function getCurrencyGroupSeparator(){
         return (string)$this->formats->currencyGroupSeparator;
     }
-    
-    public function getCurrencyDecimalSeparator(){
-        return (string)$this->formats->currencyDecimalSeparator;
-    }
-    
+
+    /**
+     * Gets the negative pattern used in currency values.
+     * 
+     * @return  string
+     */
     public function getCurrencyNegativePattern(){
         return (string)$this->formats->currencyNegativePattern;
     }
     
+    /**
+     * Gets the positive pattern used in currency values.
+     * 
+     * @return  string
+     */
     public function getCurrencyPositivePattern(){
         return (string)$this->formats->currencyPositivePattern;
     }
-    
+
+    /**
+     * Get a formatted currency value.
+     * 
+     * @return  string
+     */
     public function formatCurrency($value){
         $positivePattern = $this->getCurrencyPositivePattern();
         $negativePattern = $this->getCurrencyNegativePattern();
@@ -92,15 +139,26 @@ class NumberFormat {
                 break;
         }
       
-        return $oBracket.$ns[1].$ns[5].$ns[9].$left.$ns[8].$ns[12].$this->formatNumber(abs($value)).$ns[6].$ns[13].$right.$ns[3].$ns[7].$ns[10].$ns[11].$cBracket;
+        return $oBracket.$ns[1].$ns[5].$ns[9].$left.$ns[8].$ns[12].
+            number_format(
+                round(abs($value), (int)$this->getCurrencyDecimalDigits()), 
+                (int)$this->getCurrencyDecimalDigits(), 
+                $this->getCurrencyDecimalSeparator(), 
+                $this->getCurrencyGroupSeparator()
+            ).$ns[6].$ns[13].$right.$ns[3].$ns[7].$ns[10].$ns[11].$cBracket;
     }
     
+    /**
+     * Get a formatted numberic value.
+     * 
+     * @return  string
+     */
     public function formatNumber($value){
         return number_format(
             round($value, (int)$this->getNumberDecimalDigits()), 
             (int)$this->getNumberDecimalDigits(), 
-            $this->getCurrencyDecimalSeparator(), 
-            $this->getCurrencyGroupSeparator()
+            $this->getNumberDecimalSeparator(), 
+            $this->getNumberGroupSeparator()
         );
     }
 }
