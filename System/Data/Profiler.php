@@ -25,13 +25,14 @@ class Profiler {
     }
 
     /**
-     * Logs an SQL query and its parameters. If a callback has been supplied to 
+     * Logs an SQL query and its parameters. The start() method must be called each 
+     * time this method is called. If a callback has been supplied to 
      * the onLogAdded() method, it will be executed after the log has been added. 
      * The callback can be used to process individual logs.
      * 
      * @param   string $log
-     * @param   array $params  = array()
-     * @param   string $type = null
+     * @param   array $params = array()
+     * @param   mixed $type = null
      * @return  void
      */
     public function log($log, array $params = array(), $type = null){
