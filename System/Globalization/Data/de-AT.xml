@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>de-DE</name>
-    <displayName>German (Germany)</displayName>
+    <name>de-AT</name>
+    <displayName>German (Austria)</displayName>
     <datetime>
         <nativeCalendar>Gregorianischer Kalender</nativeCalendar>
         <shortDatePattern>dd.MM.yyyy</shortDatePattern>
-        <longDatePattern>dddd, d. MMMM yyyy</longDatePattern>
+        <longDatePattern>dddd, dd. MMMM yyyy</longDatePattern>
         <dateSeparator>.</dateSeparator>
         <timeSeparator>:</timeSeparator>
         <dayNames>
@@ -30,7 +30,7 @@
         </dayNames>
         <monthNames>
             <fullName>
-                <name>Januar</name>
+                <name>Jänner</name>
                 <name>Februar</name>
                 <name>März</name>
                 <name>April</name>
@@ -44,9 +44,9 @@
                 <name>Dezember</name>
             </fullName>
             <shortName>
-                <name>Jan</name>
+                <name>Jän</name>
                 <name>Feb</name>
-                <name>Mrz</name>
+                <name>Mär</name>
                 <name>Apr</name>
                 <name>Mai</name>
                 <name>Jun</name>
@@ -66,7 +66,7 @@
         <currencySymbol>€</currencySymbol>
         <currencyDecimalSeparator>,</currencyDecimalSeparator>
         <currencyGroupSeparator>.</currencyGroupSeparator>
-        <currencyNegativePattern>8</currencyNegativePattern>
-        <currencyPositivePattern>3</currencyPositivePattern>
+        <currencyNegativePattern>9</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
     </numberFormat>
 </locale>

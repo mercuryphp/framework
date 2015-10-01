@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>en-CA</name>
-    <displayName>English (Canada)</displayName>
+    <name>en-ZW</name>
+    <displayName>English (Zimbabwe)</displayName>
     <datetime>
         <nativeCalendar>Gregorian Calendar</nativeCalendar>
-        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
-        <longDatePattern>MMMM-dd-yy</longDatePattern>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
         <dateSeparator>/</dateSeparator>
         <timeSeparator>:</timeSeparator>
         <dayNames>
@@ -63,10 +63,10 @@
         <numberDecimalDigits>2</numberDecimalDigits>
         <numberDecimalSeparator>.</numberDecimalSeparator>
         <numberGroupSeparator>,</numberGroupSeparator>
-        <currencySymbol>$</currencySymbol>
+        <currencySymbol>Z$</currencySymbol>
         <currencyDecimalSeparator>.</currencyDecimalSeparator>
         <currencyGroupSeparator>,</currencyGroupSeparator>
-        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyNegativePattern>0</currencyNegativePattern>
         <currencyPositivePattern>0</currencyPositivePattern>
     </numberFormat>
 </locale>

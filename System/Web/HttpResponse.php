@@ -219,21 +219,10 @@ final class HttpResponse {
      * @return  System.Web.HttpResponse
      */
     public function write($output){
-        $this->output = $output;
-        return $this;
-    }
-    
-    /**
-     * Appends a string to the response output.
-     * 
-     * @param   string $output
-     * @return  System.Web.HttpResponse
-     */
-    public function append($output){
         $this->output .= $output;
         return $this;
     }
-    
+
     /**
      * Writes the string contents of the specified file to the response output.
      * 

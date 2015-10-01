@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>it-IT</name>
-    <displayName>Italian (Italy)</displayName>
+    <name>it</name>
+    <displayName>Italian</displayName>
     <datetime>
         <nativeCalendar>calendario gregoriano</nativeCalendar>
         <shortDatePattern>dd/MM/yyyy</shortDatePattern>

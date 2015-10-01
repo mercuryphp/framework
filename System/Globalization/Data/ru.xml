@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>ru-RU</name>
-    <displayName>Russian (Russia)</displayName>
+    <name>ru</name>
+    <displayName>Russian</displayName>
     <datetime>
         <nativeCalendar>григорианский календарь</nativeCalendar>
         <shortDatePattern>dd.MM.yyyy</shortDatePattern>

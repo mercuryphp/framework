@@ -60,10 +60,13 @@
         </monthNames>
     </datetime>
     <numberFormat>
-        <currencySymbol>€</currencySymbol>
         <numberDecimalDigits>2</numberDecimalDigits>
-        <currencyGroupSeparator> </currencyGroupSeparator>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
         <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
         <currencyPositivePattern>3</currencyPositivePattern>
     </numberFormat>
 </locale>

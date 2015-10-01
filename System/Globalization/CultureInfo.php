@@ -4,28 +4,43 @@ namespace System\Globalization;
 
 class CultureInfo {
     
+    protected $cultureName;
     protected $xml = null;
-    protected $dayNames;
-    protected $monthNames;
+    protected $dateTimeFormat;
     protected $numberFormat;
 
     /**
-     * Initializes an instance of CultureInfo with a culture name.
+     * Initializes an instance of CultureInfo with a culture name or a path to 
+     * a culture file.
      * 
      * @param   string $name
      */
-    public function __construct($name = ''){
-        $dataFile = \System\Std\Str::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
+    public function __construct($name){
+        $this->cultureName = $name;
+        $dataFile = (string)\System\Std\Str::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
         
         if(is_file($dataFile)){
             $this->xml = simplexml_load_file($dataFile);
+        }elseif(is_file($name)){
+            $name = \System\Std\Str::set($name)->replace('\\', '/');
+            $this->xml = simplexml_load_file($name);
+            $this->cultureName = (string)$name->get('/', '.', \System\Std\Str::LAST_FIRST);
+            Cultures::add($this);
         }else{
             throw new \Exception(sprintf("Culture '%s' is not supported", $name));
         }
         
-        $this->dayNames = new Names($this->xml->datetime->dayNames);
-        $this->monthNames = new Names($this->xml->datetime->monthNames);
+        $this->dateTimeFormat = new DateTimeFormat($this->xml->datetime);
         $this->numberFormat = new NumberFormat($this->xml->numberFormat);
+    }
+    
+    /**
+     * Gets the culture name.
+     * 
+     * @return  string
+     */
+    public function getName(){
+        return $this->cultureName;
     }
     
     /**
@@ -38,43 +53,16 @@ class CultureInfo {
     }
     
     /**
-     * Gets the short date pattern.
+     * Gets a DateTimeFormat object for displaying dates and times.
      * 
-     * @return  string
+     * @return  System.Globalization.DateTimeFormat
      */
-    public function getShortDateString(){
-        return (string)$this->xml->datetime->shortDatePattern;
+    public function getDateTimeFormat(){
+        return $this->dateTimeFormat;
     }
-    
+
     /**
-     * Gets the long date pattern.
-     * 
-     * @return  string
-     */
-    public function getLongDatePattern(){
-        return (string)$this->xml->datetime->longDatePattern;
-    }
-    
-    /**
-     * Gets a Names object that contains a collection of day names.
-     * 
-     * @return  System.Globalization.Names
-     */
-    public function getDayNames(){
-        return $this->dayNames;
-    }
-    
-    /**
-     * Gets a Names object that contains a collection of month names.
-     * 
-     * @return  System.Globalization.Names
-     */
-    public function getMonthNames(){
-        return $this->monthNames;
-    }
-    
-    /**
-     * Gets a NumberFormat object.
+     * Gets a NumberFormat object for displaying numbers and currencies.
      * 
      * @return  System.Globalization.NumberFormat
      */

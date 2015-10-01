@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>es-ES</name>
-    <displayName>Spanish (Spain)</displayName>
+    <name>es-PA</name>
+    <displayName>Spanish (Panama)</displayName>
     <datetime>
         <nativeCalendar>calendario gregoriano</nativeCalendar>
-        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <shortDatePattern>MM/dd/yyyy</shortDatePattern>
         <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
         <dateSeparator>/</dateSeparator>
         <timeSeparator>:</timeSeparator>
@@ -61,12 +61,12 @@
     </datetime>
     <numberFormat>
         <numberDecimalDigits>2</numberDecimalDigits>
-        <numberDecimalSeparator>,</numberDecimalSeparator>
-        <numberGroupSeparator>.</numberGroupSeparator>
-        <currencySymbol>€</currencySymbol>
-        <currencyDecimalSeparator>,</currencyDecimalSeparator>
-        <currencyGroupSeparator>.</currencyGroupSeparator>
-        <currencyNegativePattern>8</currencyNegativePattern>
-        <currencyPositivePattern>3</currencyPositivePattern>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>B/.</currencySymbol>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>14</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
     </numberFormat>
 </locale>

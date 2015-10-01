@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>ru-RU</name>
-    <displayName>Russian (Russia)</displayName>
+    <name>tt</name>
+    <displayName>Tatar</displayName>
     <datetime>
-        <nativeCalendar>григорианский календарь</nativeCalendar>
+        <nativeCalendar>Григориан календаре</nativeCalendar>
         <shortDatePattern>dd.MM.yyyy</shortDatePattern>
-        <longDatePattern>d MMMM yyyy 'г.'</longDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
         <dateSeparator>.</dateSeparator>
         <timeSeparator>:</timeSeparator>
         <dayNames>
             <fullName>
-                <name>воскресенье</name>
-                <name>понедельник</name>
-                <name>вторник</name>
-                <name>среда</name>
-                <name>четверг</name>
-                <name>пятница</name>
-                <name>суббота</name>
+                <name>Якшәмбе</name>
+                <name>Дүшәмбе</name>
+                <name>Сишәмбе</name>
+                <name>Чәршәмбе</name>
+                <name>Пәнҗешәмбе</name>
+                <name>Җомга</name>
+                <name>Шимбә</name>
             </fullName>
             <shortName>
-                <name>Вс</name>
-                <name>Пн</name>
-                <name>Вт</name>
-                <name>Ср</name>
-                <name>Чт</name>
-                <name>Пт</name>
-                <name>Сб</name>
+                <name>Якш</name>
+                <name>Дүш</name>
+                <name>Сиш</name>
+                <name>Чәрш</name>
+                <name>Пәнҗ</name>
+                <name>Җом</name>
+                <name>Шим</name>
             </shortName>
         </dayNames>
         <monthNames>
             <fullName>
-                <name>Январь</name>
+                <name>Гыйнвар</name>
                 <name>Февраль</name>
                 <name>Март</name>
                 <name>Апрель</name>
@@ -44,18 +44,18 @@
                 <name>Декабрь</name>
             </fullName>
             <shortName>
-                <name>янв</name>
-                <name>фев</name>
-                <name>мар</name>
-                <name>апр</name>
-                <name>май</name>
-                <name>июн</name>
-                <name>июл</name>
-                <name>авг</name>
-                <name>сен</name>
-                <name>окт</name>
-                <name>ноя</name>
-                <name>дек</name>
+                <name>Гыйн.</name>
+                <name>Фев.</name>
+                <name>Мар.</name>
+                <name>Апр.</name>
+                <name>Май</name>
+                <name>Июнь</name>
+                <name>Июль</name>
+                <name>Авг.</name>
+                <name>Сен.</name>
+                <name>Окт.</name>
+                <name>Нояб.</name>
+                <name>Дек.</name>
             </shortName>
         </monthNames>
     </datetime>

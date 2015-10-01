@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>es-ES</name>
-    <displayName>Spanish (Spain)</displayName>
+    <name>es-CL</name>
+    <displayName>Spanish (Chile)</displayName>
     <datetime>
         <nativeCalendar>calendario gregoriano</nativeCalendar>
-        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
         <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
-        <dateSeparator>/</dateSeparator>
+        <dateSeparator>-</dateSeparator>
         <timeSeparator>:</timeSeparator>
         <dayNames>
             <fullName>
@@ -63,10 +63,10 @@
         <numberDecimalDigits>2</numberDecimalDigits>
         <numberDecimalSeparator>,</numberDecimalSeparator>
         <numberGroupSeparator>.</numberGroupSeparator>
-        <currencySymbol>€</currencySymbol>
+        <currencySymbol>$</currencySymbol>
         <currencyDecimalSeparator>,</currencyDecimalSeparator>
         <currencyGroupSeparator>.</currencyGroupSeparator>
-        <currencyNegativePattern>8</currencyNegativePattern>
-        <currencyPositivePattern>3</currencyPositivePattern>
+        <currencyNegativePattern>9</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
     </numberFormat>
 </locale>

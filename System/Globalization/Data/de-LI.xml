@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>de-DE</name>
-    <displayName>German (Germany)</displayName>
+    <name>de-LI</name>
+    <displayName>German (Liechtenstein)</displayName>
     <datetime>
         <nativeCalendar>Gregorianischer Kalender</nativeCalendar>
         <shortDatePattern>dd.MM.yyyy</shortDatePattern>
@@ -61,12 +61,12 @@
     </datetime>
     <numberFormat>
         <numberDecimalDigits>2</numberDecimalDigits>
-        <numberDecimalSeparator>,</numberDecimalSeparator>
-        <numberGroupSeparator>.</numberGroupSeparator>
-        <currencySymbol>€</currencySymbol>
-        <currencyDecimalSeparator>,</currencyDecimalSeparator>
-        <currencyGroupSeparator>.</currencyGroupSeparator>
-        <currencyNegativePattern>8</currencyNegativePattern>
-        <currencyPositivePattern>3</currencyPositivePattern>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>'</numberGroupSeparator>
+        <currencySymbol>CHF</currencySymbol>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>'</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
     </numberFormat>
 </locale>

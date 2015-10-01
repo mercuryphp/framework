@@ -93,13 +93,13 @@ abstract class Controller{
     
     public function execute(array $routeData = array()){
         
-        $routeData = $this->httpContext->getRequest()
+        $this->httpContext->getRequest()
             ->getRouteData()
             ->set('controller', (string)Str::set(get_called_class())->get('\\', 'Controller', Str::LAST_LAST)->toLower())
             ->merge($routeData);
 
         $refClass = new \ReflectionClass(get_class($this));
-        $actionName = $routeData->get('action');
+        $actionName = $this->httpContext->getRequest()->getRouteData()->get('action');
         
         $requestMethod = $this->httpContext->getRequest()->getHttpMethod();
         

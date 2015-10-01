@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>da-DK</name>
-    <displayName>Danish (Denmark)</displayName>
+    <name>da</name>
+    <displayName>Danish</displayName>
     <datetime>
         <nativeCalendar>Den gregorianske kalender</nativeCalendar>
         <shortDatePattern>dd-MM-yyyy</shortDatePattern>

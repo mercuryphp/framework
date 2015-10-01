@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>it-IT</name>
-    <displayName>Italian (Italy)</displayName>
+    <name>es-PY</name>
+    <displayName>Spanish (Paraguay)</displayName>
     <datetime>
         <nativeCalendar>calendario gregoriano</nativeCalendar>
         <shortDatePattern>dd/MM/yyyy</shortDatePattern>
-        <longDatePattern>dddd d MMMM yyyy</longDatePattern>
+        <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
         <dateSeparator>/</dateSeparator>
         <timeSeparator>:</timeSeparator>
         <dayNames>
             <fullName>
-                <name>domenica</name>
-                <name>lunedì</name>
-                <name>martedì</name>
-                <name>mercoledì</name>
-                <name>giovedì</name>
-                <name>venerdì</name>
-                <name>sabato</name>
+                <name>domingo</name>
+                <name>lunes</name>
+                <name>martes</name>
+                <name>miércoles</name>
+                <name>jueves</name>
+                <name>viernes</name>
+                <name>sábado</name>
             </fullName>
             <shortName>
                 <name>dom</name>
                 <name>lun</name>
                 <name>mar</name>
-                <name>mer</name>
-                <name>gio</name>
-                <name>ven</name>
-                <name>sab</name>
+                <name>mié</name>
+                <name>jue</name>
+                <name>vie</name>
+                <name>sáb</name>
             </shortName>
         </dayNames>
         <monthNames>
             <fullName>
-                <name>gennaio</name>
-                <name>febbraio</name>
+                <name>enero</name>
+                <name>febrero</name>
                 <name>marzo</name>
-                <name>aprile</name>
-                <name>maggio</name>
-                <name>giugno</name>
-                <name>luglio</name>
+                <name>abril</name>
+                <name>mayo</name>
+                <name>junio</name>
+                <name>julio</name>
                 <name>agosto</name>
-                <name>settembre</name>
-                <name>ottobre</name>
-                <name>novembre</name>
-                <name>dicembre</name>
+                <name>septiembre</name>
+                <name>octubre</name>
+                <name>noviembre</name>
+                <name>diciembre</name>
             </fullName>
             <shortName>
-                <name>gen</name>
+                <name>ene</name>
                 <name>feb</name>
                 <name>mar</name>
-                <name>apr</name>
-                <name>mag</name>
-                <name>giu</name>
-                <name>lug</name>
+                <name>abr</name>
+                <name>may</name>
+                <name>jun</name>
+                <name>jul</name>
                 <name>ago</name>
-                <name>set</name>
-                <name>ott</name>
+                <name>sep</name>
+                <name>oct</name>
                 <name>nov</name>
                 <name>dic</name>
             </shortName>
@@ -63,10 +63,10 @@
         <numberDecimalDigits>2</numberDecimalDigits>
         <numberDecimalSeparator>,</numberDecimalSeparator>
         <numberGroupSeparator>.</numberGroupSeparator>
-        <currencySymbol>€</currencySymbol>
+        <currencySymbol>Gs</currencySymbol>
         <currencyDecimalSeparator>,</currencyDecimalSeparator>
         <currencyGroupSeparator>.</currencyGroupSeparator>
-        <currencyNegativePattern>9</currencyNegativePattern>
+        <currencyNegativePattern>14</currencyNegativePattern>
         <currencyPositivePattern>2</currencyPositivePattern>
     </numberFormat>
 </locale>

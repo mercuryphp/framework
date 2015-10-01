@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <locale>
-    <name>de-DE</name>
-    <displayName>German (Germany)</displayName>
+    <name>de-LU</name>
+    <displayName>German (Luxembourg)</displayName>
     <datetime>
         <nativeCalendar>Gregorianischer Kalender</nativeCalendar>
         <shortDatePattern>dd.MM.yyyy</shortDatePattern>

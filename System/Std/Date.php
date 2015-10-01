@@ -9,10 +9,8 @@ class Date extends \DateTime {
     /**
      * Initializes a new instance of the Date class.
      * 
-     * @method  __construct
      * @param   string $string
      * @param   string $timeZone = null
-     * @return  void
      */
     public function __construct($string, $timeZone = null){
         
@@ -31,7 +29,6 @@ class Date extends \DateTime {
     /**
      * Gets the year component of the date represented by this instance.
      * 
-     * @method  getYear
      * @return  int
      */
     public function getYear(){
@@ -41,7 +38,6 @@ class Date extends \DateTime {
     /**
      * Gets the month component of the date represented by this instance.
      * 
-     * @method  getYear
      * @return  int
      */
     public function getMonth(){
@@ -51,7 +47,6 @@ class Date extends \DateTime {
     /**
      * Gets the day component of the date represented by this instance.
      * 
-     * @method  getDay
      * @return  int
      */
     public function getDay(){
@@ -61,7 +56,6 @@ class Date extends \DateTime {
     /**
      * Gets the hour component of the date represented by this instance.
      * 
-     * @method  getHour
      * @return  int
      */
     public function getHour(){
@@ -71,7 +65,6 @@ class Date extends \DateTime {
     /**
      * Gets the minute component of the date represented by this instance.
      * 
-     * @method  getMinute
      * @return  string
      */
     public function getMinute(){
@@ -81,7 +74,6 @@ class Date extends \DateTime {
      /**
      * Gets the second component of the date represented by this instance.
      * 
-     * @method  getSecond
      * @return  int
      */
     public function getSecond(){
@@ -91,7 +83,6 @@ class Date extends \DateTime {
      /**
      * Gets the day index component of the date represented by this instance.
      * 
-     * @method  getDayIndex
      * @return  int
      */
     public function getDayIndex(){
@@ -101,7 +92,6 @@ class Date extends \DateTime {
      /**
      * Gets the week index component of the date represented by this instance.
      * 
-     * @method  getWeekIndex
      * @return  int
      */
     public function getWeekIndex(){
@@ -112,7 +102,6 @@ class Date extends \DateTime {
      * Returns a new System.Std.Date that adds the value of $days to the 
      * value of this instance.
      * 
-     * @method  addDays
      * @param   int $days
      * @return  System.Std.Date
      */
@@ -122,12 +111,35 @@ class Date extends \DateTime {
     }
     
     /**
+     * Returns a new System.Std.Date that adds the value of $months to the 
+     * value of this instance.
+     * 
+     * @param   int $months
+     * @return  System.Std.Date
+     */
+    public function addMonths($months){
+        $this->modify('+'.$months.' month');
+        return $this;
+    }
+    
+    /**
+     * Returns a new System.Std.Date that adds the value of $years to the 
+     * value of this instance.
+     * 
+     * @param   int $years
+     * @return  System.Std.Date
+     */
+    public function addYears($years){
+        $this->modify('+'.$years.' year');
+        return $this;
+    }
+    
+    /**
      * Returns a new System.Std.Date that adds the value of $hours to the 
      * value of this instance.
      * 
-     * @method  addHours
      * @param   int $hours
-     * @return  \System\Std\Date
+     * @return  System.Std.Date
      */
     public function addHours($hours){
         $this->modify('+'.$hours.' hour');
@@ -138,7 +150,6 @@ class Date extends \DateTime {
      * Returns a new System.Std.Date that adds the value of $minutes to the 
      * value of this instance.
      * 
-     * @method  addMinutes
      * @param   int $minutes
      * @return  System.Std.Date
      */
@@ -151,7 +162,6 @@ class Date extends \DateTime {
      * Returns a new System.Std.Date that adds the value of $seconds to the 
      * value of this instance.
      * 
-     * @method  addSeconds
      * @param   int $seconds
      * @return  System.Std.Date
      */
@@ -163,28 +173,25 @@ class Date extends \DateTime {
     /**
      * Gets a formatted date string based on the current cultures longDatePattern.
      * 
-     * @method  toLongDateString
      * @return  string
      */
     public function toLongDateString(){
-        return $this->toString($this->cultureInfo->getLongDatePattern());
+        return $this->toString($this->cultureInfo->getDateTimeFormat()->getLongDatePattern());
     }
     
     /**
      * Gets a formatted date string based on the current cultures shortDatePattern.
      * 
-     * @method  toShortDateString
      * @return  string
      */
     public function toShortDateString(){
-        return $this->toString($this->cultureInfo->getShortDateString());
+        return $this->toString($this->cultureInfo->getDateTimeFormat()->getShortDateString());
     }
     
     /**
      * Gets a formatted date string specified by $format. If $format is not specified,
      * then the default format from the environment setting is used.
      * 
-     * @method  toString
      * @param   string $format
      * @return  string
      */
@@ -227,10 +234,10 @@ class Date extends \DateTime {
                     $string .= $this->getDay();
                     break;
                 case 'ddd':
-                    $string .= $this->cultureInfo->getDayNames()->getShortName((int)$this->getDayIndex());
+                    $string .= $this->cultureInfo->getDateTimeFormat()->getDayNames()->getShortName((int)$this->getDayIndex());
                     break;
                 case 'dddd':
-                    $string .= $this->cultureInfo->getDayNames()->getFullName((int)$this->getDayIndex());
+                    $string .= $this->cultureInfo->getDateTimeFormat()->getDayNames()->getFullName((int)$this->getDayIndex());
                     break;
                 case 'M':
                     $string .= (int)$this->getMonth();
@@ -239,10 +246,10 @@ class Date extends \DateTime {
                     $string .= $this->getMonth();
                     break;
                 case 'MMM':
-                    $string .= $this->cultureInfo->getMonthNames()->getShortName((int)$this->getMonth()-1);
+                    $string .= $this->cultureInfo->getDateTimeFormat()->getMonthNames()->getShortName((int)$this->getMonth()-1);
                     break;
                 case 'MMMM':
-                    $string .= $this->cultureInfo->getMonthNames()->getFullName((int)$this->getMonth()-1);
+                    $string .= $this->cultureInfo->getDateTimeFormat()->getMonthNames()->getFullName((int)$this->getMonth()-1);
                     break;
                 case 'yyyy':
                     $string .= $this->getYear();
@@ -267,7 +274,6 @@ class Date extends \DateTime {
     /**
      * Converts a date string to a System.Std.Date
      * 
-     * @method  parse
      * @param   string $string
      * @param   string $timeZone = null
      * @return  System.Std.Date
@@ -281,7 +287,6 @@ class Date extends \DateTime {
     /**
      * Gets a Date object that is set to the current date and time.
      * 
-     * @method  now
      * @param   string $timeZone = null
      * @return  System.Std.Date
      */
