@@ -7,8 +7,8 @@ use System\Collections\Dictionary;
 
 class RouteHandler implements IRouteHandler {
     
-    public function execute(\System\Web\HttpRequest $httpRequest, $route, $defaults = array(), $constraints = array()){
-        $defaults = new Dictionary($defaults);
+    public function execute(\System\Web\HttpRequest $httpRequest, $route, $defaultArray = array(), $constraints = array()){
+        $defaults = new Dictionary($defaultArray);
         $uri = $httpRequest->getUri();
 
         $tokens = Str::set($route)->tokenize('{', '}');
@@ -44,7 +44,7 @@ class RouteHandler implements IRouteHandler {
             }
         }
 
-        if($uri == trim(join('', $tokens), '/')){
+        if($uri == trim($tokens->join(''), '/')){
             $httpRequest->getRouteData()->merge($defaults);
             $httpRequest->getParam()->merge($defaults);
             return $httpRequest->getRouteData();

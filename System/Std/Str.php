@@ -184,6 +184,9 @@ final class Str{
      * Splits a string into substrings using the $delimiter and returns a 
      * System.Collections.ArrayList containing the substrings.
      * 
+     * @param   string $delimiter
+     * @param   int $limit = null
+     * @param   int $flags
      * @return  System.Collections.ArrayList
      */
     public function split($delimiter, $limit = null, $flags = PREG_SPLIT_NO_EMPTY){
@@ -195,26 +198,31 @@ final class Str{
      * Gets the zero-based index of the first occurrence of the specified $char
      * in the current instance.
      * 
+     * @param   string $string
      * @return  int
      */
-    public function indexOf($char){
-        return stripos($this->string, $char);
+    public function indexOf($string){
+        return stripos($this->string, $string);
     }
     
     /**
      * Gets the zero-based index of the last occurrence of the specified $char
      * in the current instance.
      * 
+     * @param   string $string
      * @return  int
      */
-    public function lastIndexOf($char){
-        return strripos($this->string, $char);
+    public function lastIndexOf($string){
+        return strripos($this->string, $string);
     }
 
     /**
      * Gets a new Str instance which is a substring of this instance using a 
      * $fromChar and a $toChar.
      * 
+     * @param   string $fromChar
+     * @param   string $toChar
+     * @param   string $mode
      * @return  System.Std.Str
      */
     public function get($fromChar, $toChar, $mode = Str::FIRST_FIRST){
@@ -247,6 +255,8 @@ final class Str{
      * Tokenizes the current instance and returns an instance of 
      * System.Collections.ArrayList that contains all the tokens.
      * 
+     * @param   string $openingChar
+     * @param   string $closingChar
      * @return  System.Collections.ArrayList
      */
     public function tokenize($openingChar, $closingChar){
@@ -300,6 +310,7 @@ final class Str{
     /**
      * Sets the string and gets a new instance of Str.
      * 
+     * @param   string $string
      * @return  System.Std.Str
      */
     public static function set($string){
@@ -310,9 +321,12 @@ final class Str{
      * Joins all elements in the array using the specified $glue and returns a 
      * new instance of System.Std.Str
      * 
+     * @param   string $glue
+     * @param   array $array
+     * @param   bool $removeEmptyEntries = true
      * @return  System.Std.Str
      */
-    public static function join($glue, $array, $removeEmptyEntries = true){
+    public static function join($glue, array $array, $removeEmptyEntries = true){
         $join = '';
         if(is_array($array)){
             foreach($array as $value){
