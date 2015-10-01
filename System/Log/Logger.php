@@ -25,7 +25,7 @@ class Logger {
     const EXCEPTION = 6;
 
     /**
-     * Initializes an instance of Logger.
+     * Initializes an instance of Logger with an optional LogHandler.
      * 
      * @param   System.Log.Handlers.LogHandler $handler = null
      */
