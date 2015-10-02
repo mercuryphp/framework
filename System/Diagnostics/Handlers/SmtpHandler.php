@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Log\Handlers;
+namespace System\Diagnostics\Handlers;
 
 class SmtpHandler extends LogHandler {
 

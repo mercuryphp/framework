@@ -290,7 +290,9 @@ final class Str{
     }
 
     /**
-     * Gets the string for this instance.
+     * Gets the string for this instance. If $format is specified then formats the 
+     * string based on the specified $cultureInfo object. If $cultureInfo is not
+     * specified, then the culture from the environment setting is used.
      * 
      * @param   string $format = null
      * @param   System.Globalization.CultureInfo $cultureInfo = null

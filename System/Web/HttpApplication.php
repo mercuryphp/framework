@@ -5,7 +5,7 @@ namespace System\Web;
 use System\Std\Environment;
 use System\Std\Str;
 use System\Std\Object;
-use System\Log\Logger;
+use System\Diagnostics\Logger;
 use System\Globalization\CultureInfo;
 use System\Configuration\YmlConfiguration;
 use System\Web\Routing\RouteCollection;
@@ -47,7 +47,7 @@ abstract class HttpApplication {
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
         $this->config = new YmlConfiguration('config.php'); 
-        $this->logger = new Logger(new \System\Log\Handlers\OutputHandler());
+        $this->logger = new Logger(new \System\Diagnostics\Handlers\OutputHandler());
     }
 
     /**

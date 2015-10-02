@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Log;
+namespace System\Diagnostics;
 
 class Logger {
     
@@ -27,9 +27,9 @@ class Logger {
     /**
      * Initializes an instance of Logger with an optional LogHandler.
      * 
-     * @param   System.Log.Handlers.LogHandler $handler = null
+     * @param   System.Diagnostics.Handlers.LogHandler $handler = null
      */
-    public function __construct($handler = null){
+    public function __construct(\System\Diagnostics\Handlers\LogHandler $handler = null){
         if($handler){
             $this->addHandler($handler);
         }
@@ -40,7 +40,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function debug($message, array $params = array()){
         $this->addLog(static::DEBUG, $message, $params);
@@ -52,7 +52,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function info($message, array $params = array()){
         $this->addLog(static::INFO, $message, $params);
@@ -64,7 +64,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function notice($message, array $params = array()){
         $this->addLog(static::NOTICE, $message, $params);
@@ -76,7 +76,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function warning($message, array $params = array()){
         $this->addLog(static::WARNING, $message, $params);
@@ -88,7 +88,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function error($message, array $params = array()){
         $this->addLog(static::ERROR, $message, $params);
@@ -100,7 +100,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function critical($message, array $params = array()){
         $this->addLog(static::CRITICAL, $message, $params);
@@ -112,7 +112,7 @@ class Logger {
      * 
      * @param   string $message
      * @param   array $params
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function exception($message, array $params = array()){
         $this->addLog(static::EXCEPTION, $message, $params);
@@ -122,11 +122,11 @@ class Logger {
     /**
      * Adds a log handler. 
      * 
-     * @param   System.Log.Handlers.LogHandler $handler
+     * @param   System.Diagnostics.Handlers.LogHandler $handler
      * @param   array $filters
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
-    public function addHandler(\System\Log\Handlers\LogHandler $handler, array $filters = array()){
+    public function addHandler(\System\Diagnostics\Handlers\LogHandler $handler, array $filters = array()){
         $this->handlers[] = array('handler' => $handler, 'filters' => $filters);
         return $this;
     }
@@ -136,7 +136,7 @@ class Logger {
      * it is handled by the LogHandler.
      * 
      * @param   callable $processor
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function setProcessor(callable $processor){
         $this->processor = $processor;
@@ -163,7 +163,7 @@ class Logger {
      * 
      * @param   string $key
      * @param   string $value
-     * @return  System.Log.Logger
+     * @return  System.Diagnostics.Logger
      */
     public function add($key, $value){ 
         $this->extra[$key] = $value; 

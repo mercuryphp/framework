@@ -69,4 +69,9 @@ class CultureInfo {
     public function getNumberFormat(){
         return $this->numberFormat;
     }
+    
+    public function __debugInfo() {
+        return [
+        ];
+    }
 }

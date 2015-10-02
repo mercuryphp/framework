@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Log\Handlers;
+namespace System\Diagnostics\Handlers;
 
 abstract class LogHandler {
     
