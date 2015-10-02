@@ -117,6 +117,30 @@ final class Object{
         }
     }
     
+    public static function getMethodAnnotations($object, $methodName){
+        $refClass = new \ReflectionObject($object);
+        $tokens = token_get_all(file_get_contents($refClass->getFileName()));
+
+        $comments = array();
+        foreach($tokens as $idx=>$token){
+
+            if(isset($token[1]) && $token[0] == T_COMMENT){
+                $comments[] = $token[1];
+            }
+            
+            if(isset($token[1]) && trim($token[1]) ==''){ print_R($comments);
+                $comments = array();
+            }
+            
+            if(isset($token[1]) && ($token[1] == $methodName) && ($tokens[$idx -2][0] == T_FUNCTION)){
+               print_R($comments);
+            }
+           
+        }
+       // print_R($tokens);
+    }
+
+
     /**
      * Gets a new instance of a class.
      * 

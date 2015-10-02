@@ -5,9 +5,7 @@
     }
 
     $rootPath = str_replace('\\', '/', dirname(__FILE__));
-
     $envClassFile = $rootPath .'/System/Std/Environment.php';
-    
     require $envClassFile;
     
     \System\Std\Environment::addClassFile($envClassFile);
@@ -47,7 +45,7 @@
 
     function classFile($path, $class){
         $namespacePath = str_replace(array('\\', '.'), '/', $class);
-        $file = $path . '/' . $namespacePath . '.php';
+        $file = str_replace('\\', '/', $path) . '/' . $namespacePath . '.php';
         return $file;
     }
 

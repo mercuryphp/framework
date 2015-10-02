@@ -50,7 +50,7 @@ class OutputHandler extends LogHandler {
                             ->td()->text($log['time'])->_td()
                         ->_tr();
                        
-                            if($log['level'] == \System\Log\Logger::EXCEPTION){
+                            if($log['level'] == \System\Diagnostics\Logger::EXCEPTION){
                                 $e = $log['message'];
                                 
                                 $html->tr()
