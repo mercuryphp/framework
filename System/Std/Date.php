@@ -22,7 +22,11 @@ class Date extends \DateTime {
             }
         }
         
-        parent::__construct($string, $timeZone);
+        try{
+            parent::__construct($string, $timeZone);
+        }catch(\Exception $e){
+            throw new \Exception(sprintf('Date::__construct(): Failed to parse datetime string (%s).', $string));
+        }
         $this->cultureInfo = Environment::getCulture();
     }
     
@@ -185,7 +189,36 @@ class Date extends \DateTime {
      * @return  string
      */
     public function toShortDateString(){
-        return $this->toString($this->cultureInfo->getDateTimeFormat()->getShortDateString());
+        return $this->toString($this->cultureInfo->getDateTimeFormat()->getShortDatePattern());
+    }
+    
+    /**
+     * Gets a formatted time string based on the current cultures longTimePattern.
+     * 
+     * @return  string
+     */
+    public function toLongTimeString(){
+        return $this->toString($this->cultureInfo->getDateTimeFormat()->getLongTimePattern());
+    }
+    
+    /**
+     * Gets a formatted time string based on the current cultures shortTimePattern.
+     * 
+     * @return  string
+     */
+    public function toShortTimeString(){
+        return $this->toString($this->cultureInfo->getDateTimeFormat()->getShortTimePattern());
+    }
+    
+    /**
+     * Sets a System.Globalization.CultureInfo object for this instance.
+     * 
+     * @param   System.Globalization.CultureInfo $cultureInfo
+     * @return  System.Std.Date
+     */
+    public function setCulture(\System\Globalization\CultureInfo $cultureInfo){ 
+        $this->cultureInfo = $cultureInfo;
+        return $this;
     }
     
     /**

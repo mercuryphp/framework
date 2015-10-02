@@ -292,19 +292,52 @@ final class Str{
     /**
      * Gets the string for this instance.
      * 
+     * @param   string $format = null
+     * @param   System.Globalization.CultureInfo $cultureInfo = null
      * @return  string
      */
-    public function toString(){
+    public function toString($format = null, \System\Globalization\CultureInfo $cultureInfo = null){
+        if(!is_null($format)){
+            if(is_null($cultureInfo)){
+                $cultureInfo = \System\Std\Environment::getCulture();
+            }
+            
+            $arg = null;
+            if(stripos($format, ':') > -1){
+                list($format, $arg) = explode(':', $format, 2);
+            }
+
+            switch($format){
+                case 'C':
+                    return $cultureInfo->getNumberFormat()->formatCurrency($this->string);
+                case 'N':
+                    return $cultureInfo->getNumberFormat()->formatNumber($this->string);
+                case 'X':
+                    return dechex((float)$this->string);
+                case 'R':
+                    return round((float)$this->string, $arg);
+                case 'd':
+                    return Date::parse($this->string)->setCulture($cultureInfo)->toShortDateString();
+                case 'D':
+                    return Date::parse($this->string)->setCulture($cultureInfo)->toLongDateString();
+                case 't':
+                    return Date::parse($this->string)->setCulture($cultureInfo)->toShortTimeString();
+                case 'T':
+                    return Date::parse($this->string)->setCulture($cultureInfo)->toLongTimeString();
+            }
+        }
         return (string)$this->string;
     }
     
     /**
      * Gets the string for this instance by calling the toString() method.
      * 
+     * @param   string $format = null
+     * @param   System.Globalization.CultureInfo $cultureInfo = null
      * @return  string
      */
-    public function __toString(){
-        return $this->toString();
+    public function __toString($format = null, \System\Globalization\CultureInfo $cultureInfo = null){
+        return $this->toString($format, $cultureInfo);
     }
     
     /**

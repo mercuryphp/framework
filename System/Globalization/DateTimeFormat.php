@@ -24,7 +24,7 @@ class DateTimeFormat {
      * 
      * @return  string
      */
-    public function getShortDateString(){
+    public function getShortDatePattern(){
         return (string)$this->formats->shortDatePattern;
     }
     
@@ -35,6 +35,42 @@ class DateTimeFormat {
      */
     public function getLongDatePattern(){
         return (string)$this->formats->longDatePattern;
+    }
+    
+    /**
+     * Gets the date separator.
+     * 
+     * @return  string
+     */
+    public function getDateSeparator(){
+        return (string)$this->formats->dateSeparator;
+    }
+    
+    /**
+     * Gets the short time pattern.
+     * 
+     * @return  string
+     */
+    public function getShortTimePattern(){
+        return (string)$this->formats->shortTimePattern;
+    }
+    
+    /**
+     * Gets the time separator.
+     * 
+     * @return  string
+     */
+    public function getLongTimePattern(){
+        return (string)$this->formats->longTimePattern;
+    }
+    
+    /**
+     * Gets the date separator.
+     * 
+     * @return  string
+     */
+    public function getTimeSeparator(){
+        return (string)$this->formats->timeSeparator;
     }
     
     /**

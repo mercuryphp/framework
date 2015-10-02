@@ -138,7 +138,7 @@ class NumberFormat {
                 $right = ' '.$this->getCurrencySymbol();
                 break;
         }
-      
+
         return $oBracket.$ns[1].$ns[5].$ns[9].$left.$ns[8].$ns[12].
             number_format(
                 round(abs($value), (int)$this->getCurrencyDecimalDigits()), 
