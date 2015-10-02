@@ -336,8 +336,8 @@ final class Str{
      * @param   System.Globalization.CultureInfo $cultureInfo = null
      * @return  string
      */
-    public function __toString($format = null, \System\Globalization\CultureInfo $cultureInfo = null){
-        return $this->toString($format, $cultureInfo);
+    public function __toString(){
+        return $this->toString();
     }
     
     /**
