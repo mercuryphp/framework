@@ -62,7 +62,7 @@ class AnnotationReader extends MetaReader {
                     }
                     
                     if((string)$args){
-                        $tmp[(string)$attribute] = Object::getInstance($attribute, str_getcsv($args, ','));
+                        $tmp[(string)$attribute] = Object::getInstance($attribute, $this->getArgs($args));
                     }else{
                         $tmp[(string)$attribute] = Object::getInstance($attribute);
                     }

@@ -25,9 +25,9 @@ final class Object{
             
             foreach($args as $arg){
                 
-				if(is_object($arg)){
-					$arg = Object::getProperties($arg);
-				}
+                if(is_object($arg)){
+                    $arg = Object::getProperties($arg);
+                }
                 
                 if(is_array($arg)){
                     foreach($arg as $propertyName=>$propertyValue){
@@ -125,19 +125,29 @@ final class Object{
         foreach($tokens as $idx=>$token){
 
             if(isset($token[1]) && $token[0] == T_COMMENT){
-                $comments[] = $token[1];
-            }
-            
-            if(isset($token[1]) && trim($token[1]) ==''){ print_R($comments);
-                $comments = array();
+                $comments[$token[2]] = $token[1];
             }
             
             if(isset($token[1]) && ($token[1] == $methodName) && ($tokens[$idx -2][0] == T_FUNCTION)){
-               print_R($comments);
+                $keys = array_reverse(array_keys($comments));
+                foreach ($keys as $i => $key) { 
+                    if($token[2] - ($i+$key+1) == 0){
+                        $attribute = Str::set($comments[$key])->get('@', '(');
+
+                        if((string)$attribute){
+                            $args = (string)Str::set($comments[$key])->get('(', ')');
+                            $args = $args ? str_getcsv($args, ',') : array();
+                            $comments[$key] = Object::getInstance((string)$attribute->append('Attribute'), $args);
+                        }else{
+                            unset($comments[$key]);
+                        }
+                    }else{
+                        unset($comments[$key]);
+                    }
+                }
             }
-           
         }
-       // print_R($tokens);
+        return $comments;
     }
 
 

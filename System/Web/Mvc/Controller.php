@@ -101,14 +101,16 @@ abstract class Controller{
         $refClass = new \ReflectionClass(get_class($this));
         $actionName = $this->httpContext->getRequest()->getRouteData()->get('action');
         
-        $requestMethod = $this->httpContext->getRequest()->getHttpMethod();
-        
-        if(in_array($requestMethod, array('POST', 'PUT', 'DELETE', 'AJAX')) && $refClass->hasMethod($actionName.$requestMethod)){
-            $actionName .= ucfirst(strtolower($requestMethod));
-        }
-
         if(!$refClass->hasMethod($actionName)){
             throw new ActionNotFoundException(sprintf("The action '%s' does not exist in '%s'", $actionName, get_called_class()));
+        }
+        
+        $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
+
+        foreach($attributes as $attribute){
+            if($attribute instanceof ReturnAttribute && !$attribute->isValid($this->httpContext)){
+                return;
+            }
         }
 
         $actionMethod = $refClass->getMethod($actionName);
