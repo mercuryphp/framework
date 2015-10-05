@@ -239,4 +239,4 @@ abstract class HttpApplication {
         $this->httpContext->getResponse()->flush();
         exit;
     }
-}
+} //
