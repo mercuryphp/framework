@@ -146,8 +146,8 @@ class SqlQuery {
     private function toEntity($data, $entityType, $default = false){
 
         $relationships = array();
-        
-        if(is_callable($entityType)){
+
+        if(is_callable($entityType) && $data){
             return $entityType($data);
         }
         
