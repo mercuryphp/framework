@@ -2,7 +2,7 @@
 
 namespace System\Web\Mvc;
 
-class HttpMethodAttribute extends ReturnAttribute {
+class HttpMethodAttribute extends FilterAttribute {
     
     protected $methods = array();
     
@@ -11,10 +11,9 @@ class HttpMethodAttribute extends ReturnAttribute {
     }
     
     public function isValid(\System\Web\HttpContext $httpContext){
-        if(in_array($httpContext->getRequest()->getHttpMethod(), $this->methods)){
-            return true;
+        if(!in_array($httpContext->getRequest()->getHttpMethod(), $this->methods)){
+            throw new ActionNotFoundException($httpContext);
         }
-        return false;
     }
 }
 

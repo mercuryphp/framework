@@ -31,7 +31,7 @@ class Link extends Element {
             foreach($this->params as $param=>$val){
                 $href = \System\Std\Str::set($href)->replace('@'.$param, $val);
             }
-            $this->attributes['href'] = $href;
+            $this->attributes['href'] = (string)$href;
         }
         
         return $this->control

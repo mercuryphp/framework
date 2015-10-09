@@ -39,7 +39,7 @@ final class HttpRequest {
         $this->query = new Dictionary($_GET);
         $this->post = new Dictionary($_POST);
         $this->cookies = new HttpCookieCollection($_COOKIE);
-        $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE, $_SERVER));
+        $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE));
         $this->headers = (new Dictionary($_SERVER))->where(function($v, $k){ if (substr($k, 0,4)=='HTTP'){ return array($k => $v); }});
         $this->files = $this->httpFiles();
     }

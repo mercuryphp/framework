@@ -237,6 +237,16 @@ final class HttpResponse {
     }
     
     /**
+     * Clears the response output.
+     * 
+     * @return  @this
+     */
+    public function clear(){
+        $this->output = '';
+        return $this;
+    }
+    
+    /**
      * Redirects a client to a new URL. Immediately does a redirect if $immediateRedirect is set to true.
      * Setting $immediateRedirect to false will result in the script continuing execution until 
      * the application cycle is complete and the response objects flush() method has been called.
@@ -256,9 +266,19 @@ final class HttpResponse {
     }
     
     /**
+     * Sends all output and headers to the client then terminates execution.
+     * 
+     * @return  void
+     */
+    public function endFlush(){
+        $this->flush();
+        exit;
+    }
+
+    /**
      * Sends all output and headers to the client.
      * 
-     * @return  string
+     * @return  void
      */
     public function flush(){
         if (!headers_sent()){
@@ -274,5 +294,6 @@ final class HttpResponse {
             }
         }
         echo $this->output;
+        $this->output = '';
     }
 }

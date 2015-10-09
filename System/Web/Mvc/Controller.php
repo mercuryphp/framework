@@ -63,11 +63,11 @@ abstract class Controller{
     public function getSession(){
         return $this->httpContext->getSession();
     }
-    
+
     public function redirect($location){
         return new RedirectResult($this->httpContext->getResponse(), $location);
     }
-    
+
     public function json($data, $options = null){
         return new JsonResult($this->httpContext->getResponse(), $data, $options);
     }
@@ -92,66 +92,57 @@ abstract class Controller{
     }
     
     public function execute(array $routeData = array()){
-        
+        $controllerClass = Str::set(get_called_class())->get('\\', 'Controller', Str::LAST_LAST);
         $this->httpContext->getRequest()
             ->getRouteData()
-            ->set('controller', (string)Str::set(get_called_class())->get('\\', 'Controller', Str::LAST_LAST)->toLower())
+            ->set('controller', (string)$controllerClass->toLower())
             ->merge($routeData);
 
         $refClass = new \ReflectionClass(get_class($this));
         $actionName = $this->httpContext->getRequest()->getRouteData()->get('action');
-        
-        if(!$refClass->hasMethod($actionName)){
-            throw new ActionNotFoundException(sprintf("The action '%s' does not exist in '%s'", $actionName, get_called_class()));
-        }
-        
-        $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
 
+        if(!$refClass->hasMethod($actionName)){
+            throw new ActionNotFoundException($this->httpContext);
+        }
+
+        $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
+        $modelBinders = new \System\Collections\Dictionary();
+        
         foreach($attributes as $attribute){
-            if($attribute instanceof ReturnAttribute && !$attribute->isValid($this->httpContext)){
+            if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
                 return;
+            }
+            elseif($attribute instanceof ModelBinderAttribute){
+                $modelBinders->add($attribute->getParameterName(), $attribute);
             }
         }
 
         $actionMethod = $refClass->getMethod($actionName);
         $methodParams = $actionMethod->getParameters();
-        $requestParams = $this->httpContext->getRequest()->getParam();
-
-        $args = array();
-
+        $methodArgs = array();
+        
         foreach($methodParams as $param){
             $object = $param->getClass();
 
             if(is_object($object)){
-                $modelName = $object->getName();
-                $params = $this->httpContext->getRequest()->toArray();
-
-                $refClass = new \ReflectionClass($modelName);
-                $modelInstance = $refClass->newInstanceArgs(array());
-                $properties = $refClass->getProperties();
-
-                foreach($properties as $property){
-                    $property->setAccessible(true);
-                    $name = $property->getName();
-
-                    if (array_key_exists($name, $params)){
-                        $property->setValue($modelInstance, $params[$name]);
-                    }
+                try {
+                    $modelBinder = $modelBinders->get($param->getName(), new DefaultModelBinder());
+                    $methodArgs[] = $modelBinder->bind(new ModelBindingContext($this->httpContext->getRequest(), $object->getName(), $param->isOptional(), null));
+                }catch(\Exception $e){
+                    throw new ModelBinderException(sprintf("Model binding on parameter '%s' failed. %s", $param->getName(), $e->getMessage()));
                 }
-                $args[] = $modelInstance;
             }else{
-
-                $value = $requestParams->get($param->getName());
+                $value = $this->httpContext->getRequest()->getParam($param->getName());
 
                 if(strlen($value) == 0 && $param->isOptional()){
                     $value = $param->getDefaultValue();
                 }
-                $args[] = $value;
+                $methodArgs[] = $value;
             }
         }
 
         $this->load();
-        $actionResult = $actionMethod->invokeArgs($this, $args);
+        $actionResult = $actionMethod->invokeArgs($this, $methodArgs);
 
         if(!$actionResult){
             $actionResult = new ActionResult();
@@ -160,6 +151,12 @@ abstract class Controller{
         }
         
         $this->render($actionResult);
+        
+        foreach($attributes as $attribute){
+            if($attribute instanceof PostActionAttribute){
+                $attribute->execute($this);
+            }
+        }
     }
     
     public function load(){}

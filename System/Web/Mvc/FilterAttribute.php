@@ -2,8 +2,7 @@
 
 namespace System\Web\Mvc;
 
-abstract class ReturnAttribute {
-    
+abstract class FilterAttribute {
     public abstract function isValid(\System\Web\HttpContext $httpContext);
 }
 

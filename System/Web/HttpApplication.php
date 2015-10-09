@@ -176,11 +176,11 @@ abstract class HttpApplication {
                 $class = Str::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))));
 
                 try{
-                    $controller = Object::getInstance($class);
+                    $controller = Object::getInstance((string)$class);
                     $controller->setHttpContext($this->httpContext);
                     $controller->getRegistry()->merge(get_object_vars($this));
                 }catch(\ReflectionException $e){
-                    throw new Mvc\ControllerNotFoundException(sprintf("The controller '%s' does not exist.", $class));
+                    throw new Mvc\ControllerNotFoundException($this->httpContext);
                 }
                 
                 if(!$controller instanceof Mvc\Controller){
@@ -236,7 +236,6 @@ abstract class HttpApplication {
      */
     public function end(){
         $this->httpContext->getSession()->write();
-        $this->httpContext->getResponse()->flush();
-        exit;
+        $this->httpContext->getResponse()->endFlush();
     }
-} //
+}

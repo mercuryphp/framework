@@ -43,6 +43,11 @@ final class Object{
         }
     }
     
+    public static function hasProperties($object, $properties){
+        $properties = Object::getProperties($object);
+    }
+
+
     /**
      * Sets the property values of an object using an array.
      * 
@@ -136,7 +141,7 @@ final class Object{
 
                         if((string)$attribute){
                             $args = (string)Str::set($comments[$key])->get('(', ')');
-                            $args = $args ? str_getcsv($args, ',') : array();
+                            $args = $args ? str_getcsv($args, ',', '"') : array();
                             $comments[$key] = Object::getInstance((string)$attribute->append('Attribute'), $args);
                         }else{
                             unset($comments[$key]);
@@ -149,7 +154,6 @@ final class Object{
         }
         return $comments;
     }
-
 
     /**
      * Gets a new instance of a class.

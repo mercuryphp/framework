@@ -120,6 +120,18 @@ class Logger {
     }
     
     /**
+     * Adds extra information to the log.
+     * 
+     * @param   string $key
+     * @param   string $value
+     * @return  System.Diagnostics.Logger
+     */
+    public function add($key, $value){ 
+        $this->extra[$key] = $value; 
+        return $this;
+    }
+    
+    /**
      * Adds a log handler. 
      * 
      * @param   System.Diagnostics.Handlers.LogHandler $handler
@@ -128,6 +140,16 @@ class Logger {
      */
     public function addHandler(\System\Diagnostics\Handlers\LogHandler $handler, array $filters = array()){
         $this->handlers[] = array('handler' => $handler, 'filters' => $filters);
+        return $this;
+    }
+    
+    /**
+     * Clears the LogHandler collection.
+     * 
+     * @return  System.Diagnostics.Logger
+     */
+    public function clearHandlers(){
+        $this->handlers = array();
         return $this;
     }
     
@@ -144,7 +166,7 @@ class Logger {
     }
     
     /**
-     * Executes all log handlers and terminates the script.
+     * Executes all log handlers.
      * 
      * @return  void
      */
@@ -155,21 +177,17 @@ class Logger {
                 ->setLevelFilters($handler['filters'])
                 ->write($this->logs, $this->extra);
         }
-        exit;
     }
     
     /**
-     * Adds extra information to the log.
+     * Gets a combined array of logs and extra.
      * 
-     * @param   string $key
-     * @param   string $value
-     * @return  System.Diagnostics.Logger
+     * @return  array
      */
-    public function add($key, $value){ 
-        $this->extra[$key] = $value; 
-        return $this;
+    public function toArray(){
+        return array('extra' => $this->extra, 'logs' => $this->logs);
     }
-    
+
     protected function addLog($level, $message, $params){
         $this->logs[] = array(
             'message' => $message, 

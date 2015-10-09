@@ -58,9 +58,8 @@
         $mvcApplication->init();
         $mvcApplication->load();
         $mvcApplication->run();
-        $mvcApplication->end();
     }catch(\Exception $e){
         $mvcApplication->error($e);
     }
- 
+    $mvcApplication->end();
 ?>
