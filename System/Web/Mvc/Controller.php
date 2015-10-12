@@ -24,46 +24,103 @@ abstract class Controller{
         $this->registry = new Dictionary();
     }
     
+    /**
+     * Sets the view engine.
+     * 
+     * @param   System.Web.Mvc.IView
+     * @return  void
+     */
     public function setViewEngine(IView $view){
         $this->view = $view;
     }
     
+    /**
+     * Gets the view engine.
+     * 
+     * @return  System.Web.Mvc.IView
+     */
     public function getViewEngine(){
         return $this->view;
     }
     
+    /**
+     * Get a collection of view data.
+     * 
+     * @return  System.Collection.Dictionary
+     */
     public function getViewBag(){
         return $this->viewBag;
     }
 
+    /**
+     * Get a collection of dynamic controller properties.
+     * 
+     * @return  System.Collection.Dictionary
+     */
     public function getRegistry(){
         return $this->registry;
     }
     
+    /**
+     * Gets the user for the current request.
+     * 
+     * @return  System.Web.Security.UserIdentity
+     */
     public function getUser(){
         return $this->httpContext->getRequest()->getUser();
     }
     
+    /**
+     * Sets the HttpContext.
+     * 
+     * @param   System.Web.HttpContext
+     */
     public function setHttpContext(\System\Web\HttpContext $httpContext){
         $this->httpContext = $httpContext;
     }
 
+    /**
+     * Gets the HttpContext.
+     * 
+     * @return  System.Web.HttpContext
+     */
     public function getHttpContext(){
         return $this->httpContext;
     }
     
+    /**
+     * Gets the HttpRequest.
+     * 
+     * @return  System.Web.HttpRequest
+     */
     public function getRequest(){
         return $this->httpContext->getRequest();
     }
     
+    /**
+     * Gets the HttpResponse.
+     * 
+     * @return  System.Web.HttpResponse
+     */
     public function getResponse(){
         return $this->httpContext->getResponse();
     }
     
+    /**
+     * Gets the session handler.
+     * 
+     * @return  System.Web.Session.Session
+     */
     public function getSession(){
         return $this->httpContext->getSession();
     }
 
+    /**
+     * Creates and gets a RedirectResult object that redirects to the 
+     * specified $location.
+     * 
+     * @return  System.Web.Session.Session
+     */
     public function redirect($location){
         return new RedirectResult($this->httpContext->getResponse(), $location);
     }

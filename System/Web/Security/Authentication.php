@@ -55,7 +55,7 @@ class Authentication {
             list($hash, $data) = explode('|', $output, 2);
 
             if($hash && $data){
-                $hashed = Security::hmac('sha256', $data, self::$validationKey);
+                $hashed = Security::hmac(self::$hashAlgor, $data, self::$validationKey);
 
                 if($hash == $hashed){
                     $data = unserialize($data);

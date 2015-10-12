@@ -148,9 +148,22 @@ class Logger {
      * 
      * @return  System.Diagnostics.Logger
      */
-    public function clearHandlers(){
+    public function clear(){
         $this->handlers = array();
         return $this;
+    }
+    
+    /**
+     * Removes a LogHandler from the collection using the specified $index.
+     * 
+     * @return  bool
+     */
+    public function removeAt($index){
+        if(isset($this->handlers[$index])){
+            unset($this->handlers[$index]);
+            return true;
+        }
+        return false;
     }
     
     /**
