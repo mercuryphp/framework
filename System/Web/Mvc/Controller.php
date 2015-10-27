@@ -60,16 +60,7 @@ abstract class Controller{
     public function getRegistry(){
         return $this->registry;
     }
-    
-    /**
-     * Gets the user for the current request.
-     * 
-     * @return  System.Web.Security.UserIdentity
-     */
-    public function getUser(){
-        return $this->httpContext->getRequest()->getUser();
-    }
-    
+
     /**
      * Sets the HttpContext.
      * 
@@ -168,6 +159,9 @@ abstract class Controller{
         foreach($attributes as $attribute){
             if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
                 return;
+            }
+            elseif($attribute instanceof PreActionAttribute){
+                $attribute->execute($this);
             }
             elseif($attribute instanceof ModelBinderAttribute){
                 $modelBinders->add($attribute->getParameterName(), $attribute);

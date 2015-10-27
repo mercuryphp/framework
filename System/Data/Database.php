@@ -144,10 +144,20 @@ class Database {
             $data = \System\Std\Object::getProperties($data);
         }
 
-        $placeHolders = trim(str_repeat('?,', count($data)), ',');
-        $sql = 'INSERT INTO ' . $tableName . ' (' . implode(',', array_keys($data)) . ') VALUES (' . $placeHolders . ')';
+        $params = array();
+        $sql = 'INSERT INTO ' . $tableName . '(' . join(',', array_keys($data)) . ') VALUES (';
+        
+        foreach($data as $field=>$value){
+            if($value instanceof DbFunction){
+                $sql.= $value->toString().',';
+            }else{
+                $sql.= ':'.$field.',';
+                $params[':'.$field] = $value;
+            }
+        }
 
-        $stm = $this->query($sql, array_values($data));
+        $sql = trim($sql, ',').')';
+        $stm = $this->query($sql, $params);
 
         return $stm->rowCount();
     }

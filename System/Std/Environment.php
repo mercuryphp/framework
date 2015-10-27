@@ -3,49 +3,13 @@
 namespace System\Std;
 
 final class Environment {
-    private static $includes = array();
     private static $rootPath;
     private static $controllerPath;
     private static $executionTime;
-    private static $namespaces = array();
     private static $cultureInfo;
     private static $dateTimeFormat;
     private static $timezone;
     
-    /**
-     * Adds an autoloaded file to the includes collection.
-     * 
-     * @method  addClassFile
-     * @param   string $file
-     * @return  void
-     */
-    public static function addClassFile($file){
-        self::$includes[] = $file;
-    }
-    
-    /**
-     * Determines if a class file exists in the includes collection.
-     * 
-     * @method  hasClassFile
-     * @param   string $file
-     * @return  bool
-     */
-    public static function hasClassFile($file){
-        if(in_array($file, self::$includes)){
-            return true;
-        }
-        return false;
-    }
-    
-    /**
-     * Gets an array of all included files.
-     * 
-     * @method  getLoadedClassFiles
-     * @return  array
-     */
-    public static function getLoadedClassFiles(){
-        return self::$includes;
-    }
 
     /**
      * Sets the application root path.
@@ -109,14 +73,6 @@ final class Environment {
      */
     public static function getExecutionTime(){
         return sef::$executionTime;
-    }
-    
-    public static function setNamespaces(array $namespaces){
-        self::$namespaces = $namespaces;
-    }
-    
-    public static function getNamespaces(){
-        return self::$namespaces;
     }
     
     /**

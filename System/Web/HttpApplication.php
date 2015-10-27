@@ -9,8 +9,6 @@ use System\Diagnostics\Logger;
 use System\Globalization\CultureInfo;
 use System\Configuration\YmlConfiguration;
 use System\Web\Routing\RouteCollection;
-use System\Web\Security\Authentication;
-use System\Web\Security\UserIdentity;
 
 abstract class HttpApplication {
     
@@ -75,7 +73,6 @@ abstract class HttpApplication {
         Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
         Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));
         Environment::setTimezone($this->config->get('environment.timezone'));
-        Environment::setNamespaces($this->config->get('namespaces', array()));
 
         $request = new HttpRequest();
         $response = new HttpResponse();
@@ -89,12 +86,11 @@ abstract class HttpApplication {
         $session->isHttpOnly($this->config->get('session.httpOnly', true));
 
         $this->httpContext = new HttpContext($request, $response, $session);
-        
-        Authentication::setCookieName($this->config->get('formsAuthentication.cookieName', 'PHPXAUTH'));
-        Authentication::setHashAlgorithm($this->config->get('formsAuthentication.hashAlgorithm', 'sha256'));
-        Authentication::setCipher($this->config->get('formsAuthentication.cipher', MCRYPT_RIJNDAEL_256));
-        Authentication::setEncryptionKey($this->config->get('formsAuthentication.encryptionKey'));
-        Authentication::setValidationKey($this->config->get('formsAuthentication.validationKey')); 
+
+        $classAlias = $this->config->get('classAlias', array());
+        foreach($classAlias as $alias=>$class){
+            class_alias(str_replace('.', '\\', $class), $alias, false);
+        }
         
         $this->httpContext->getSession()->open();
     }
@@ -108,28 +104,6 @@ abstract class HttpApplication {
      */
     public function load(){}
 
-    /**
-     * Authenticates a HTTP request using Authentication and establishes the 
-     * identity of the user.
-     * 
-     * @param   System.Web.Mvc.Controller $controller
-     * @return  void
-     */
-    public function authenticateRequest(\System\Web\Mvc\Controller $controller){
-        $httpAuthCookie = $this->httpContext->getRequest()->getCookies()->get(Authentication::getCookieName());
-        
-        $identity = new UserIdentity('Anonymous');
-        
-        if($httpAuthCookie){
-            $ticket = Authentication::decrypt($httpAuthCookie->getValue()); 
-
-            if($ticket && ((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0)){
-                $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
-            }
-        }
-        $this->httpContext->getRequest()->setUser($identity);
-    }
-    
     /**
      * The preAction() method is executed before the controller action.
      * Override to provide functionality that must be invoked before the action method.
@@ -188,8 +162,6 @@ abstract class HttpApplication {
                 }
 
                 $moduleClassName = Str::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'));
-
-                $this->authenticateRequest($controller);
 
                 $this->preAction($controller);
 

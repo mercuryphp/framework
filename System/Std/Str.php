@@ -91,6 +91,10 @@ final class Str{
     public function appendLine($string){
         return new Str($this->string.$string.PHP_EOL);
     }
+    
+    public function glue($glue, $array, $removeEmptyEntries = true){
+        return new Str($this->string.Str::join($glue, $array, $removeEmptyEntries));
+    }
 
     /**
      * Gets a new Str instance with the specified string prepended to this instance.
@@ -366,6 +370,7 @@ final class Str{
         if(is_array($array)){
             foreach($array as $value){
                 if(is_scalar($value)){
+                    $value = trim($value);
                     if($removeEmptyEntries){
                         if($value !=''){
                             $join.= $value.$glue;

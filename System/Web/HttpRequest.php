@@ -15,7 +15,6 @@ final class HttpRequest {
     private $params = array();
     private $headers = array();
     private $files = array();
-    private $user;
 
     /**
      * Initializes a new instance of the HttpRequest class and encapsulates 
@@ -207,24 +206,6 @@ final class HttpRequest {
         if(array_key_exists($name, $_SERVER)){
             return $_SERVER[$name];
         }
-    }
-    
-    /**
-     * Sets a UserIdentity object for the current request.
-     * 
-     * @param   System.Web.Security.UserIdentity $identity
-     */
-    public function setUser(\System\Web\Security\UserIdentity $identity){
-        $this->user = $identity;
-    }
-    
-    /**
-     * Gets a UserIdentity object for the current request.
-     * 
-     * @return  System.Web.Security.UserIdentity
-     */
-    public function getUser(){
-        return $this->user;
     }
     
     /**

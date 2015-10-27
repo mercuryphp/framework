@@ -5,42 +5,22 @@
     }
 
     $rootPath = str_replace('\\', '/', dirname(__FILE__));
-    $envClassFile = $rootPath .'/System/Std/Environment.php';
-    require $envClassFile;
+    $envClassFile = $rootPath .'/System/Std/Loader.php';
+    //require $envClassFile;
     
-    \System\Std\Environment::addClassFile($envClassFile);
+    //\System\Std\Environment::addClassFile($envClassFile);
+    
+    if(is_file('autoload.php')){
+        require autoload.php;
+    }
+    
+    exit;
+    spl_autoload_register(function($class){
+        //System\Std\Loader::load(dirname(__FILE__), $class);
+    });
     
     set_error_handler(function($errno, $errstr, $errfile, $errline){
         throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
-    });
-
-    spl_autoload_register(function($class){
-
-        $path = str_replace('\\', '/', dirname(__FILE__));
-        $file = classFile($path, $class);
-
-        if (is_file($file)){
-            \System\Std\Environment::addClassFile($file);
-            require $file;
-        }else{
-            $namespaces = \System\Std\Environment::getNamespaces();
-            $namespaceClass = ''; 
-            
-            $segments = explode('\\',$class);
-            $class = array_pop($segments);
-            
-            if(isset($namespaces[$class])){
-                $namespaceClass = $namespaces[$class];
-            }
-            $file = classFile($path, $namespaceClass);
-
-            if(is_file($file)){ 
-                if(!\System\Std\Environment::hasClassFile($file)){
-                    require $file;
-                }
-                class_alias(str_replace('.', '\\', $namespaceClass), $class);
-            }
-        }
     });
 
     function classFile($path, $class){
