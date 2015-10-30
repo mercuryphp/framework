@@ -27,7 +27,6 @@ class RouteHandler implements IRouteHandler {
                 $tokens[$idx] = $uriSegments->get($counter);
 
                 if($tokens[$idx]){
-                    
                     if(array_key_exists((string)$tokenName, $constraints)){ 
                         $constraint = $constraints[(string)$tokenName];
 

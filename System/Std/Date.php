@@ -233,7 +233,7 @@ class Date extends \DateTime {
         if($format==null){
             $format = Environment::getDateTimeFormat();
         }
-        
+
         $len = strlen($format);
         $j = 0;
         $tokens = array();

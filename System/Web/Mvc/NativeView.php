@@ -10,7 +10,7 @@ class NativeView implements IView {
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
-    protected $viewFilePattern = '/@module/Views/@controller/@action';
+    protected $viewFilePattern = '/@namespace/Views/@controller/@action';
     protected $escaper;
     
     public function __construct(){
@@ -75,8 +75,8 @@ class NativeView implements IView {
         $routeData = $viewContext->getRouteData();
 
         $viewFile = Str::set($this->viewFilePattern)
-            ->prepend(Environment::getControllerPath())
-            ->replace('@module', Str::set($routeData->module)->toLower()->toUpperFirst())
+            ->prepend(Environment::getRootPath())
+            ->replace('@namespace', Str::set($routeData->namespace)->replace('.', '/'))
             ->replace('@controller', Str::set($routeData->controller)->toLower()->toUpperFirst())
             ->replace('@action', Str::set($routeData->action)->toLower()->toUpperFirst())
             ->append('.php')

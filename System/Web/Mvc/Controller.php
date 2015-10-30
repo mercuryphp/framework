@@ -8,10 +8,13 @@ use System\Web\Mvc\ViewContext;
 
 abstract class Controller{
     
-    protected $viewBag;
     private $registry;
+    private $config;
+    private $logger;
     private $httpContext;
+    private $authenticationHandler;
     private $view;
+    protected $viewBag;
     
     /**
      * Initializes a new instance of the Controller class.
@@ -19,9 +22,18 @@ abstract class Controller{
      * @method  __construct
      */
     public function __construct(){
+        $this->registry = new Dictionary();
         $this->view = new NativeView();
         $this->viewBag = new Dictionary();
-        $this->registry = new Dictionary();
+    }
+    
+    /**
+     * Get a collection of dynamic controller properties.
+     * 
+     * @return  System.Collection.Dictionary
+     */
+    public function getRegistry(){
+        return $this->registry;
     }
     
     /**
@@ -51,14 +63,43 @@ abstract class Controller{
     public function getViewBag(){
         return $this->viewBag;
     }
-
+    
     /**
-     * Get a collection of dynamic controller properties.
+     * Sets the configuration object.
      * 
-     * @return  System.Collection.Dictionary
+     * @param   System.Configuration.Configuration
+     * @return  void
      */
-    public function getRegistry(){
-        return $this->registry;
+    public function setConfig(\System\Configuration\Configuration $config){
+        $this->config = $config;
+    }
+    
+    /**
+     * Gets the configuration object.
+     * 
+     * @return  System.Configuration.Configuration
+     */
+    public function getConfig(){
+        return $this->config;
+    }
+    
+    /**
+     * Sets the logger object.
+     * 
+     * @param   System.Diagnostics.Logger
+     * @return  void
+     */
+    public function setLogger(\System\Diagnostics\Logger $logger){
+        $this->logger;
+    }
+    
+    /**
+     * Gets the logger object.
+     * 
+     * @return  System.Diagnostics.Logger
+     */
+    public function getLogger(){
+        return $this->logger;
     }
 
     /**
@@ -105,12 +146,29 @@ abstract class Controller{
     public function getSession(){
         return $this->httpContext->getSession();
     }
+    
+    public function setAuthenticationHandler(\System\Web\Security\AuthenticationHandler $authenticationHandler){
+        return $this->authenticationHandler = $authenticationHandler;
+    }
+    
+    public function getAuthenticationHandler(){
+        return $this->authenticationHandler;
+    }
+    
+    /**
+     * Get the user for the current request.
+     * 
+     * @return  System.Web.Security.UserIdentity
+     */
+    public function getUser(){
+        return $this->getRequest()->getUser();
+    }
 
     /**
      * Creates and gets a RedirectResult object that redirects to the 
      * specified $location.
      * 
-     * @return  System.Web.Session.Session
+     * @return  System.Web.Mvc.RedirectResult
      */
     public function redirect($location){
         return new RedirectResult($this->httpContext->getResponse(), $location);
@@ -158,7 +216,7 @@ abstract class Controller{
         
         foreach($attributes as $attribute){
             if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
-                return;
+                return false;
             }
             elseif($attribute instanceof PreActionAttribute){
                 $attribute->execute($this);

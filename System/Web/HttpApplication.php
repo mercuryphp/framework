@@ -20,22 +20,27 @@ abstract class HttpApplication {
     /**
      * Application configuration.
      */
-    protected $config = null;
+    private $config = null;
     
     /**
      * Application logger.
      */
-    protected $logger = null;
+    private $logger = null;
     
     /**
      * Encapsulates Http request/response/session details.
      */
-    protected $httpContext;
+    private $httpContext;
     
     /**
      * Collection of routes.
      */
-    protected $routes;
+    private $routes;
+    
+    /**
+     * Collection of routes.
+     */
+    private $authenticationHandler;
 
     /**
      * Initializes the application with a root path.
@@ -45,7 +50,37 @@ abstract class HttpApplication {
     public function __construct($rootPath){
         $this->rootPath = $rootPath;
         $this->config = new YmlConfiguration('config.php'); 
+        $this->routes = new RouteCollection();
         $this->logger = new Logger(new \System\Diagnostics\Handlers\OutputHandler());
+        $this->authenticationHandler = new \System\Web\Security\SessionAuthenticationHandler();
+    }
+    
+    public function setConfig(\System\Configuration\Configuration $config){
+        $this->config = $config;
+    }
+    
+    public function getConfig(){
+        return $this->config;
+    }   
+
+    public function getRoutes(){
+        return $this->routes;
+    }
+    
+    public function getLogger(){
+        return $this->logger;
+    }
+    
+    public function getHttpContext(){
+        return $this->httpContext;
+    }
+    
+    public function setAuthenticationHandler(\System\Web\Security\AuthenticationHandler $authenticationHandler){
+        return $this->authenticationHandler = $authenticationHandler;
+    }
+    
+    public function getAuthenticationHandler(){
+        return $this->authenticationHandler;
     }
 
     /**
@@ -64,9 +99,6 @@ abstract class HttpApplication {
      * @return  void
      */
     public final function init(){
-
-        $this->routes = new RouteCollection();
-
         Environment::setRootPath($this->rootPath);
         Environment::setControllerPath($this->rootPath);
         Environment::setExecutionTime($this->config->get('environment.executionTime', 30));
@@ -89,7 +121,7 @@ abstract class HttpApplication {
 
         $classAlias = $this->config->get('classAlias', array());
         foreach($classAlias as $alias=>$class){
-            class_alias(str_replace('.', '\\', $class), $alias, false);
+            class_alias(str_replace('.', '\\', $class), $alias, true);
         }
         
         $this->httpContext->getSession()->open();
@@ -103,6 +135,17 @@ abstract class HttpApplication {
      * @return  void
      */
     public function load(){}
+    
+    /**
+     * The load() method is executed after the init() method. This method must be
+     * overridden to provide user defined functionality such as adding routes to 
+     * the route collection.
+     * 
+     * @return  void
+     */
+    public function authenticateRequest(){
+        $this->authenticationHandler->authenticate();
+    }
 
     /**
      * The preAction() method is executed before the controller action.
@@ -136,23 +179,21 @@ abstract class HttpApplication {
         $controllerDispacthed = false;
         foreach($this->routes as $route){
             $route->setHttpRequest($this->httpContext->getRequest());
-            
             $routeData = $route->execute();
 
             if($routeData){
 
-                $namespace = '';
-                if(Environment::getRootPath() != Environment::getControllerPath()){
-                    $namespace = Str::set(Environment::getControllerPath())->replace(Environment::getRootPath(), '')->trim('/');
-                }
-
-                $moduleName = $routeData->get('module') ? $routeData->get('module').'.' : '';
-                $class = Str::set(sprintf('%s.%sControllers.%sController', $namespace, ucfirst(strtolower($moduleName)), ucfirst(strtolower($routeData->get('controller')))));
+                $class = Str::set(sprintf('%s.Controllers.%sController', $route->getNamespace(), ucfirst(strtolower($routeData->get('controller')))));
+                $this->httpContext->getRequest()->getRouteData()->set('namespace', $route->getNamespace());
 
                 try{
                     $controller = Object::getInstance((string)$class);
+                    $controller->setConfig($this->config);
+                    $controller->setLogger($this->logger);
                     $controller->setHttpContext($this->httpContext);
-                    $controller->getRegistry()->merge(get_object_vars($this));
+                    $controller->setAuthenticationHandler($this->authenticationHandler);
+                    $controller->getRegistry()->merge(Object::getProperties($this, \ReflectionProperty::IS_PUBLIC |  \ReflectionProperty::IS_PROTECTED));
+
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException($this->httpContext);
                 }
@@ -160,11 +201,13 @@ abstract class HttpApplication {
                 if(!$controller instanceof Mvc\Controller){
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
-
-                $moduleClassName = Str::set(sprintf('%s.%sControllers.%s', $namespace, ucfirst($moduleName), 'Module'));
-
+                
+                $this->authenticationHandler->setHttpContext($this->httpContext);
+                
+                $this->authenticateRequest();
                 $this->preAction($controller);
-
+                
+                $moduleClassName = Str::set(sprintf('%s.Controllers.%s', $route->getNamespace(), 'Module'));
                 $moduleInstance = Object::getInstance($moduleClassName, array(), false);
 
                 if($moduleInstance){

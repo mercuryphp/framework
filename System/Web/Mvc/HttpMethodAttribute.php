@@ -14,6 +14,7 @@ class HttpMethodAttribute extends FilterAttribute {
         if(!in_array($httpContext->getRequest()->getHttpMethod(), $this->methods)){
             throw new ActionNotFoundException($httpContext);
         }
+        return true;
     }
 }
 

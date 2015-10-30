@@ -11,6 +11,6 @@ class MvcApplication extends HttpApplication {
     }
     
     public function error(\Exception $e) {
-        $this->logger->exception($e)->flush();
+        $this->getLogger()->exception($e)->flush();
     }
 }

@@ -8,7 +8,6 @@ final class Object{
      * A variadic method that converts key/value arrays or objects to an object
      * specified by $toClass name.
      * 
-     * @method  toObject
      * @param   string $toClass
      * @param   array|object $data1, $data2...
      * @return  object
@@ -43,15 +42,9 @@ final class Object{
         }
     }
     
-    public static function hasProperties($object, $properties){
-        $properties = Object::getProperties($object);
-    }
-
-
     /**
      * Sets the property values of an object using an array.
      * 
-     * @method  setProperties
      * @param   object $object
      * @param   array $properties
      * @return  object
@@ -70,13 +63,20 @@ final class Object{
     /**
      * Gets the properties of an object as an array.
      * 
-     * @method  getProperties
      * @param   object $object
      * @return  array
      */
-    public static function getProperties($object){
+    public static function getProperties($object, $filter = null){
+        
+        if(is_null($filter)){
+            $filter = \ReflectionProperty::IS_PUBLIC | 
+                \ReflectionProperty::IS_PROTECTED | 
+                \ReflectionProperty::IS_PRIVATE |
+                \ReflectionProperty::IS_STATIC;
+        }
+        
         $refClass = new \ReflectionObject($object);
-        $properties = $refClass->getProperties();
+        $properties = $refClass->getProperties($filter);
         $array = array();
         
         foreach($properties as $property){
