@@ -211,6 +211,7 @@ abstract class Controller{
             throw new ActionNotFoundException($this->httpContext);
         }
 
+        $this->load();
         $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
         $modelBinders = new \System\Collections\Dictionary();
         
@@ -250,7 +251,6 @@ abstract class Controller{
             }
         }
 
-        $this->load();
         $actionResult = $actionMethod->invokeArgs($this, $methodArgs);
 
         if(!$actionResult){
