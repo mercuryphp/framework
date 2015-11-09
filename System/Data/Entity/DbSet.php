@@ -98,6 +98,25 @@ class DbSet {
         }
     }
     
+    public function insert(array $data){
+
+        return $this->dbContext->getDatabase()->insert(
+            $this->meta->getTable()->getTableName(), 
+            $data
+        );
+    }
+    
+    public function update(array $data, $conditions){
+        if(is_scalar($conditions)){
+            $conditions = array($this->meta->getKey()->getKeyName() => $value);
+        }
+        return $this->dbContext->getDatabase()->update(
+            $this->meta->getTable()->getTableName(), 
+            $data,  
+            $conditions
+        );
+    }
+
     /**
      * Adds an entity to the DbSet collection by creating a new EntityContext
      * object. The EntityContext object is then returned.

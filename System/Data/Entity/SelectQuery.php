@@ -57,7 +57,7 @@ class SelectQuery {
      * @param   string $join
      * @return  System.Data.Entity.SelectQuery
      */
-    public function left($entityName, $join = null){
+    public function leftJoin($entityName, $join = null){
         return $this->_join('LEFT JOIN', $entityName, $join);
     }
     
@@ -70,7 +70,7 @@ class SelectQuery {
      * @param   string $join
      * @return  System.Data.Entity.SelectQuery
      */
-    public function right($entityName, $join = null){
+    public function rightJoin($entityName, $join = null){
         return $this->_join('RIGHT JOIN', $entityName, $join);
     }
     

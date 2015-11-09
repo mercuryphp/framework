@@ -79,6 +79,12 @@ class Html {
         return $control;
     }
     
+    public static function element($tagName, $value, $bool = true){
+        if($bool){
+            return '<'.$tagName.'>'.$value.'</'.$tagName.'>';
+        }
+    }
+    
     public static function selectList(array $source, $dataValue, $dataText, $selectedValue = null){
         return new SelectList($source, $dataValue, $dataText, $selectedValue);
     }
