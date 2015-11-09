@@ -214,18 +214,6 @@ abstract class Controller{
         $this->load();
         $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
         $modelBinders = new \System\Collections\Dictionary();
-        
-        foreach($attributes as $attribute){
-            if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
-                return false;
-            }
-            elseif($attribute instanceof PreActionAttribute){
-                $attribute->execute($this);
-            }
-            elseif($attribute instanceof ModelBinderAttribute){
-                $modelBinders->add($attribute->getParameterName(), $attribute);
-            }
-        }
 
         $actionMethod = $refClass->getMethod($actionName);
         $methodParams = $actionMethod->getParameters();
@@ -237,7 +225,7 @@ abstract class Controller{
             if(is_object($object)){
                 try {
                     $modelBinder = $modelBinders->get($param->getName(), new DefaultModelBinder());
-                    $methodArgs[] = $modelBinder->bind(new ModelBindingContext($this->httpContext->getRequest(), $object->getName(), $param->isOptional(), null));
+                    $methodArgs[$param->getName()] = $modelBinder->bind(new ModelBindingContext($this->httpContext->getRequest(), $object->getName(), $param->isOptional(), null));
                 }catch(\Exception $e){
                     throw new ModelBinderException(sprintf("Model binding on parameter '%s' failed. %s", $param->getName(), $e->getMessage()));
                 }
@@ -247,7 +235,19 @@ abstract class Controller{
                 if(strlen($value) == 0 && $param->isOptional()){
                     $value = $param->getDefaultValue();
                 }
-                $methodArgs[] = $value;
+                $methodArgs[$param->getName()] = $value;
+            }
+        }
+        
+        foreach($attributes as $attribute){
+            if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
+                return false;
+            }
+            elseif($attribute instanceof ModelBinderAttribute){
+                $modelBinders->add($attribute->getParameterName(), $attribute);
+            }
+            elseif($attribute instanceof PreActionAttribute){
+                $attribute->execute($this, $methodArgs);
             }
         }
 
