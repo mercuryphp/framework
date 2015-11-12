@@ -7,6 +7,8 @@ use System\Collections\Dictionary;
 final class HttpRequest {
 
     private $uri;
+    private $rawUri;
+    private $queryString;
     private $uriSegments;
     private $routeData;
     private $cookies;
@@ -26,13 +28,15 @@ final class HttpRequest {
     public function __construct($uri = null){
         
         $uri = $uri ? $uri : $this->getServer('REQUEST_URI');
-
+        $this->rawUri = $uri;
+        
         $pos = strpos($uri, '?');
         
         if((bool)$pos === true){
             $uri = substr($uri, 0, $pos);
+            $this->queryString = substr($this->rawUri, $pos+1);
         }
-
+        
         $this->uri = trim($uri, '/');
         $this->uriSegments = explode('/', $this->uri);
         $this->routeData = new Dictionary();
@@ -150,12 +154,30 @@ final class HttpRequest {
     }
     
     /**
-     * Gets the request URI.
+     * Gets the request URI without query variables.
      * 
      * @return  string
      */
     public function getUri(){
         return $this->uri;
+    }
+    
+    /**
+     * Gets the request URI.
+     * 
+     * @return  string
+     */
+    public function getRawUri(){
+        return $this->rawUri;
+    }
+    
+    /**
+     * Gets the request query string.
+     * 
+     * @return  string
+     */
+    public function getQueryString(){
+        return $this->queryString;
     }
     
     /**

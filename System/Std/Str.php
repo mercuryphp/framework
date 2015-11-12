@@ -292,6 +292,20 @@ final class Str{
         }
         return $tokens;
     }
+    
+    public function parameterize($delimiter = '/'){
+        $segments = array_chunk(explode($delimiter, $this->string), 2);
+
+        foreach ($segments as $idx=>$segment){
+            if(isset($segment[1])){
+                $param = $segment[0];
+                $val = $segment[1];
+                $segments[$param] = $val;
+            }
+            unset($segments[$idx]);
+        }
+        return new \System\Collections\Dictionary($segments);
+    }
 
     /**
      * Gets the string for this instance. If $format is specified then formats the 
