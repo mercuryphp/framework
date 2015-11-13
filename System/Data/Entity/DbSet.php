@@ -32,8 +32,18 @@ class DbSet {
         return $queryBuilder;
     }
     
+    public function insert(){
+        $queryBuilder = new QueryBuilder(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $this->meta->getEntityName(), QueryBuilder::INSERT);
+        return $queryBuilder;
+    }
+    
     public function update(){
         $queryBuilder = new QueryBuilder(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $this->meta->getEntityName(), QueryBuilder::UPDATE);
+        return $queryBuilder;
+    }
+    
+    public function delete(){
+        $queryBuilder = new QueryBuilder(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $this->meta->getEntityName(), QueryBuilder::DELETE);
         return $queryBuilder;
     }
     
