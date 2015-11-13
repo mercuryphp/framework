@@ -20,14 +20,21 @@ class DbSet {
     }
     
     /**
-     * Gets a new SelectQuery instance that has been initilazied to select 
+     * Gets a new QueryBuilder instance that has been initilazied to select 
      * from the database table represented by the entity type for this DbSet.
      * 
      * @param   string $fields = '*'
-     * @return  System.Data.Entity.SelectQuery
+     * @return  System.Data.Entity.QueryBuilder
      */
     public function select($fields = '*'){
-        return new SelectQuery(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $fields, $this->meta->getEntityName());
+        $queryBuilder = new QueryBuilder(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $this->meta->getEntityName(), QueryBuilder::SELECT);
+        $queryBuilder->setFields($fields);
+        return $queryBuilder;
+    }
+    
+    public function update(){
+        $queryBuilder = new QueryBuilder(new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection()), $this->meta->getEntityName(), QueryBuilder::UPDATE);
+        return $queryBuilder;
     }
     
     /**
@@ -96,25 +103,6 @@ class DbSet {
             
             return $entityCollection;
         }
-    }
-    
-    public function insert(array $data){
-
-        return $this->dbContext->getDatabase()->insert(
-            $this->meta->getTable()->getTableName(), 
-            $data
-        );
-    }
-    
-    public function update(array $data, $conditions){
-        if(is_scalar($conditions)){
-            $conditions = array($this->meta->getKey()->getKeyName() => $value);
-        }
-        return $this->dbContext->getDatabase()->update(
-            $this->meta->getTable()->getTableName(), 
-            $data,  
-            $conditions
-        );
     }
 
     /**

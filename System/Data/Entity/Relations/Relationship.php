@@ -90,14 +90,15 @@ abstract class Relationship {
      * Gets the result of the current relationship query. If eager loading is 
      * set to true, then the return type is an object, which contains the result 
      * data. If eager loading is set to false, then gets a cloure, which 
-     * encapsulates an instance of SelectQuery.
+     * encapsulates an instance of QueryBuilder.
      * 
      * @return  mixed
      */
     public function execute(){
         
         $params = array();
-        $sqlSelect = new \System\Data\Entity\SelectQuery(new \System\Data\Entity\SqlQuery($this->db, $this->metaCollection), '*', $this->principalEntityName);
+        $sqlSelect = new \System\Data\Entity\QueryBuilder(new \System\Data\Entity\SqlQuery($this->db, $this->metaCollection), $this->principalEntityName, \System\Data\Entity\QueryBuilder::SELECT);
+        $sqlSelect->setFields('*');
         $meta = $this->metaCollection->get(str_replace('\\','.',get_class($this->dependantEntity)));
         $dependantKeyName = $meta->getKey()->getKeyName();
 

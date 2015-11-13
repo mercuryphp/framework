@@ -77,6 +77,17 @@ final class Str{
      * @param   string $string
      * @return  System.Std.Str
      */
+    public function insert($string, $position){
+        return new Str($this->subString(0,$position)->append($string)->append($this->subString($position)));
+    }
+    
+    /**
+     * Gets a new Str instance with the specified string appened to this 
+     * instance.
+     * 
+     * @param   string $string
+     * @return  System.Std.Str
+     */
     public function append($string){
         return new Str($this->string.$string);
     }
@@ -91,10 +102,6 @@ final class Str{
     public function appendLine($string){
         return new Str($this->string.$string.PHP_EOL);
     }
-    
-    public function glue($glue, $array, $removeEmptyEntries = true){
-        return new Str($this->string.Str::join($glue, $array, $removeEmptyEntries));
-    }
 
     /**
      * Gets a new Str instance with the specified string prepended to this instance.
@@ -104,6 +111,10 @@ final class Str{
      */
     public function prepend($string){
         return new Str($string.$this->string);
+    }
+    
+    public function glue($glue, $array, $removeEmptyEntries = true){
+        return new Str($this->string.Str::join($glue, $array, $removeEmptyEntries));
     }
 
     /**
