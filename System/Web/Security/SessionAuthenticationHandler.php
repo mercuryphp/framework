@@ -10,7 +10,6 @@ class SessionAuthenticationHandler extends AuthenticationHandler {
         $session = new FileSystem($this->httpContext->getRequest(), $this->httpContext->getResponse());
         $session->setName($this->cookieName);
         $session->setExpires($ticket->getExpire());
-        //print_R($session->getExpires()); exit;
         $session->set('ticket', $ticket);
         $session->write();
     }
@@ -22,7 +21,7 @@ class SessionAuthenticationHandler extends AuthenticationHandler {
         
         $identity = new UserIdentity('Anonymous');
         $ticket = $session->get('ticket');
-print_R($session);
+
         if($ticket){
             if($ticket && ((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0)){
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
