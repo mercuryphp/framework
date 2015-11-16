@@ -22,7 +22,7 @@ class SessionAuthenticationHandler extends AuthenticationHandler {
         
         $identity = new UserIdentity('Anonymous');
         $ticket = $session->get('ticket');
-
+print_R($ticket);
         if($ticket){
             if($ticket && ((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0)){
                 $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
