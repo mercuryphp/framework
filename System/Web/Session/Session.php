@@ -10,7 +10,7 @@ abstract class Session {
     protected $sessionName;
     protected $sessionStarted = false;
     protected $sessionId;
-    protected $expires;
+    protected $expires = 0;
     protected $path = '/';
     protected $domain = '';
     protected $isSecure = false;

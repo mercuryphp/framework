@@ -47,7 +47,7 @@ class SqlQuery {
      */
     public function column($columnName = ''){
         $stm = $this->db->query($this->sql, $this->params);
-        $row = $stm->fetch(\PDO::FETCH_ASSOC); print_R($row); 
+        $row = $stm->fetch(\PDO::FETCH_ASSOC);
         if($columnName){
             return $row[$columnName];
         }

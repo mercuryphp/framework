@@ -34,7 +34,7 @@ final class HttpRequest {
         
         if((bool)$pos === true){
             $uri = substr($uri, 0, $pos);
-            $this->queryString = substr($this->rawUri, $pos+1);
+            $this->queryString = trim(substr($this->rawUri, $pos+1), '/');
         }
         
         $this->uri = trim($uri, '/');

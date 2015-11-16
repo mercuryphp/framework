@@ -163,6 +163,18 @@ class QueryBuilder {
     }
     
     /**
+     * 
+     * @param   array $params
+     * @param   string $columnName
+     * @return  mixed
+     */
+    public function column($params = array(), $columnName = ''){
+        return $this->sqlQuery
+            ->setQuery($this->sql->toString(), $params)
+            ->column($columnName);
+    }
+    
+    /**
      * Gets a single row as an object. If $entityType is specified as a string,
      * then an instance of $entityType is created and returned where all column 
      * names are mapped to the entity's properties. If $default is specified and 

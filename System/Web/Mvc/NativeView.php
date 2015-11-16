@@ -92,7 +92,7 @@ class NativeView implements IView {
 
             if($this->layoutFile){
                 if(substr($this->layoutFile, 0, 1) == '~'){
-                    $this->layoutFile = \System\Std\Environment::getControllerPath() . substr($this->layoutFile, 1);
+                    $this->layoutFile = \System\Std\Environment::getRootPath() . substr($this->layoutFile, 1);
                 }
                 
                 if (file_exists($this->layoutFile)){

@@ -100,7 +100,6 @@ abstract class HttpApplication {
      */
     public final function init(){
         Environment::setRootPath($this->rootPath);
-        Environment::setControllerPath($this->rootPath);
         Environment::setExecutionTime($this->config->get('environment.executionTime', 30));
         Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
         Environment::setDateTimeFormat($this->config->get('environment.dateTimeFormat', 'yyyy-MM-dd HH:mm:ss'));

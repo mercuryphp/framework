@@ -247,6 +247,21 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
+     * Gets a System.Std.String where all elements are join using the specified glue.
+     * 
+     * @param   string $glue
+     * @param   bool $removeEmptyEntries = true
+     * @return  System.Std.Str
+     */
+    public function parameterize($glue){
+        $string = '';
+        foreach($this->collection as $k=>$v){
+            $string.=$k.$glue.$v.$glue;
+        }
+        return \System\Std\Str::set($string)->trim($glue);
+    }
+    
+    /**
      * Gets or sets a boolean value indicating if the collection is read-only.
      * 
      * @param   bool $bool = null

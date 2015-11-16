@@ -4,7 +4,6 @@ namespace System\Std;
 
 final class Environment {
     private static $rootPath;
-    private static $controllerPath;
     private static $executionTime;
     private static $cultureInfo;
     private static $dateTimeFormat;
@@ -30,27 +29,6 @@ final class Environment {
      */
     public static function getRootPath(){
         return self::$rootPath;
-    }
-    
-    /**
-     * Sets the controller path.
-     * 
-     * @method  setControllerPath
-     * @param   string $path
-     * @return  void
-     */
-    public static function setControllerPath($path){
-        self::$controllerPath = $path;
-    }
-    
-    /**
-     * Gets the controller path.
-     * 
-     * @method  getControllerPath
-     * @return  string
-     */
-    public static function getControllerPath(){
-        return self::$controllerPath;
     }
     
     /**
