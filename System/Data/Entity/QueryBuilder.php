@@ -10,7 +10,7 @@ class QueryBuilder {
     protected $isWhere = false;
     
     const SELECT = 'SELECT';
-    const INSERT = 'INSERT';
+    const INSERT = 'INSERT INTO';
     const UPDATE = 'UPDATE';
     const DELETE = 'DELETE';
     
@@ -34,9 +34,13 @@ class QueryBuilder {
             $this->sql = $this->sql->append('FROM ');
         }
         
-        $this->sql = $this->sql->append($metaData->getTable()->getTableName())
-            ->append(' '.$tableAlias)
-            ->append(PHP_EOL);
+        $this->sql = $this->sql->append($metaData->getTable()->getTableName().' ');
+        
+        if ($queryType != QueryBuilder::INSERT){
+            $this->sql = $this->sql->append($tableAlias.' ');
+        }
+            
+        $this->sql->append(PHP_EOL);
     }
     
     public function setFields($fields){
