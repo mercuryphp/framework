@@ -19,7 +19,7 @@ class Required extends ConstraintAttribute {
      * @return  bool
      */
     public function isValid(){
-        if($this->value == ''){
+        if(strlen($this->value) == 0){
             return false;
         }
         return true;

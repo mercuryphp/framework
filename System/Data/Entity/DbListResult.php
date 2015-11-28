@@ -164,6 +164,15 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function count(){
         return count($this->collection);
     }
+    
+    /**
+     * Gets the result as an array.
+     * 
+     * @return  array
+     */
+    public function toArray(){
+        return $this->collection;
+    }
 
     /**
      * Gets an ArrayIterator.

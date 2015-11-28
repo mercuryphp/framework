@@ -45,6 +45,7 @@ class QueryBuilder {
     
     public function setFields($fields){
         $this->sql = $this->sql->insert($fields.' ', 7);
+        return $this;
     }
 
     /**

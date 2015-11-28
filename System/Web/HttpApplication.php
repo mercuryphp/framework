@@ -187,12 +187,6 @@ abstract class HttpApplication {
 
                 try{
                     $controller = Object::getInstance((string)$class);
-                    $controller->setConfig($this->config);
-                    $controller->setLogger($this->logger);
-                    $controller->setHttpContext($this->httpContext);
-                    $controller->setAuthenticationHandler($this->authenticationHandler);
-                    $controller->getRegistry()->merge(Object::getProperties($this, \ReflectionProperty::IS_PUBLIC |  \ReflectionProperty::IS_PROTECTED));
-
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException($this->httpContext);
                 }
@@ -201,6 +195,11 @@ abstract class HttpApplication {
                     throw new Mvc\MvcException(sprintf("The controller '%s' does not inherit from System\Web\Mvc\Controller.", $class));
                 }
                 
+                $controller->setConfig($this->config);
+                $controller->setLogger($this->logger);
+                $controller->setHttpContext($this->httpContext);
+                $controller->setAuthenticationHandler($this->authenticationHandler);
+                $controller->getRegistry()->merge(Object::getProperties($this, \ReflectionProperty::IS_PUBLIC |  \ReflectionProperty::IS_PROTECTED));
                 $this->authenticationHandler->setHttpContext($this->httpContext);
                 
                 $this->authenticateRequest();

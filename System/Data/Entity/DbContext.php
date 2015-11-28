@@ -143,18 +143,20 @@ abstract class DbContext {
 
                     if(is_array($columnAttributes)){
                         foreach($columnAttributes as $attribute){
-                            if($attribute instanceof \System\Data\Entity\Attributes\ConstraintAttribute){
-                                $attribute->setColumnName($property);
-                                $attribute->setValue($value);
-                                if(!$attribute->isValid()){
-                                    throw new Attributes\ConstraintAttributeException($attribute->getMessage());
+                            if(is_scalar($value)){
+                                if($attribute instanceof \System\Data\Entity\Attributes\ConstraintAttribute){
+                                    $attribute->setColumnName($property);;
+                                    $attribute->setValue($value);
+                                    if(!$attribute->isValid()){
+                                        throw new Attributes\ConstraintAttributeException($attribute->getMessage());
+                                    }
                                 }
-                            }
 
-                            if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
-                                if(is_null($value)){
-                                    $properties[$property] = $attribute->getDefaultValue();
-                                    Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
+                                if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
+                                    if(is_null($value)){
+                                        $properties[$property] = $attribute->getDefaultValue();
+                                        Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
+                                    }
                                 }
                             }
                         }
