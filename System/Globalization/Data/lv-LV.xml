@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>lv-LV</name>
+    <displayName>Latvian (Latvia)</displayName>
+    <datetime>
+        <nativeCalendar>Gregora kalendārs</nativeCalendar>
+        <shortDatePattern>yyyy.MM.dd.</shortDatePattern>
+        <longDatePattern>dddd, yyyy'. gada 'd. MMMM</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>svētdiena</name>
+                <name>pirmdiena</name>
+                <name>otrdiena</name>
+                <name>trešdiena</name>
+                <name>ceturtdiena</name>
+                <name>piektdiena</name>
+                <name>sestdiena</name>
+            </fullName>
+            <shortName>
+                <name>sv</name>
+                <name>pr</name>
+                <name>ot</name>
+                <name>tr</name>
+                <name>ce</name>
+                <name>pk</name>
+                <name>se</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>janvāris</name>
+                <name>februāris</name>
+                <name>marts</name>
+                <name>aprīlis</name>
+                <name>maijs</name>
+                <name>jūnijs</name>
+                <name>jūlijs</name>
+                <name>augusts</name>
+                <name>septembris</name>
+                <name>oktobris</name>
+                <name>novembris</name>
+                <name>decembris</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>mar</name>
+                <name>apr</name>
+                <name>mai</name>
+                <name>jūn</name>
+                <name>jūl</name>
+                <name>aug</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>nov</name>
+                <name>dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>9</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

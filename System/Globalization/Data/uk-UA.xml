@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>uk-UA</name>
+    <displayName>Ukrainian (Ukraine)</displayName>
+    <datetime>
+        <nativeCalendar>Григоріаньский календар</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy' р.'</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>неділя</name>
+                <name>понеділок</name>
+                <name>вівторок</name>
+                <name>середа</name>
+                <name>четвер</name>
+                <name>п'ятниця</name>
+                <name>субота</name>
+            </fullName>
+            <shortName>
+                <name>Нд</name>
+                <name>Пн</name>
+                <name>Вт</name>
+                <name>Ср</name>
+                <name>Чт</name>
+                <name>Пт</name>
+                <name>Сб</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Січень</name>
+                <name>Лютий</name>
+                <name>Березень</name>
+                <name>Квітень</name>
+                <name>Травень</name>
+                <name>Червень</name>
+                <name>Липень</name>
+                <name>Серпень</name>
+                <name>Вересень</name>
+                <name>Жовтень</name>
+                <name>Листопад</name>
+                <name>Грудень</name>
+            </fullName>
+            <shortName>
+                <name>Січ</name>
+                <name>Лют</name>
+                <name>Бер</name>
+                <name>Кві</name>
+                <name>Тра</name>
+                <name>Чер</name>
+                <name>Лип</name>
+                <name>Сер</name>
+                <name>Вер</name>
+                <name>Жов</name>
+                <name>Лис</name>
+                <name>Гру</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>₴</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>5</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

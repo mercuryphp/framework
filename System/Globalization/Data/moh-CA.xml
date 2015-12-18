@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>moh-CA</name>
+    <displayName>Mohawk (Mohawk)</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Awentatokentì:ke</name>
+                <name>Awentataón'ke</name>
+                <name>Ratironhia'kehronòn:ke</name>
+                <name>Soséhne</name>
+                <name>Okaristiiáhne</name>
+                <name>Ronwaia'tanentaktonhne</name>
+                <name>Entákta</name>
+            </fullName>
+            <shortName>
+                <name>Sun</name>
+                <name>Mon</name>
+                <name>Tue</name>
+                <name>Wed</name>
+                <name>Thu</name>
+                <name>Fri</name>
+                <name>Sat</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Tsothohrkó:Wa</name>
+                <name>Enniska</name>
+                <name>Enniskó:Wa</name>
+                <name>Onerahtókha</name>
+                <name>Onerahtohkó:Wa</name>
+                <name>Ohiari:Ha</name>
+                <name>Ohiarihkó:Wa</name>
+                <name>Seskéha</name>
+                <name>Seskehkó:Wa</name>
+                <name>Kenténha</name>
+                <name>Kentenhkó:Wa</name>
+                <name>Tsothóhrha</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mar</name>
+                <name>Apr</name>
+                <name>May</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Aug</name>
+                <name>Sep</name>
+                <name>Oct</name>
+                <name>Nov</name>
+                <name>Dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>$</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

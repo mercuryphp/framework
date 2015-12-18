@@ -84,7 +84,7 @@ abstract class Session {
     }
     
     public function abandon(){
-        $this->httpResponse->getCookies()->add(new \System\Web\HttpCookie($this->sessionName,'',time()-86400, '/', false, true));
+        $this->httpResponse->getCookies()->add(new \System\Web\HttpCookie($this->sessionName,'',time()-86400, '', '/', false, true));
         $this->sessionStarted = false;
     }
     

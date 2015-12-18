@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>he</name>
+    <displayName>Hebrew</displayName>
+    <datetime>
+        <nativeCalendar>לוח שנה גרגוריאני</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>יום ראשון</name>
+                <name>יום שני</name>
+                <name>יום שלישי</name>
+                <name>יום רביעי</name>
+                <name>יום חמישי</name>
+                <name>יום שישי</name>
+                <name>שבת</name>
+            </fullName>
+            <shortName>
+                <name>יום א</name>
+                <name>יום ב</name>
+                <name>יום ג</name>
+                <name>יום ד</name>
+                <name>יום ה</name>
+                <name>יום ו</name>
+                <name>שבת</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ינואר</name>
+                <name>פברואר</name>
+                <name>מרץ</name>
+                <name>אפריל</name>
+                <name>מאי</name>
+                <name>יוני</name>
+                <name>יולי</name>
+                <name>אוגוסט</name>
+                <name>ספטמבר</name>
+                <name>אוקטובר</name>
+                <name>נובמבר</name>
+                <name>דצמבר</name>
+            </fullName>
+            <shortName>
+                <name>ינו</name>
+                <name>פבר</name>
+                <name>מרץ</name>
+                <name>אפר</name>
+                <name>מאי</name>
+                <name>יונ</name>
+                <name>יול</name>
+                <name>אוג</name>
+                <name>ספט</name>
+                <name>אוק</name>
+                <name>נוב</name>
+                <name>דצמ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₪</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

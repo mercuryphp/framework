@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>cy-GB</name>
+    <displayName>Welsh (United Kingdom)</displayName>
+    <datetime>
+        <nativeCalendar>calendr Gregori</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Dydd Sul</name>
+                <name>Dydd Llun</name>
+                <name>Dydd Mawrth</name>
+                <name>Dydd Mercher</name>
+                <name>Dydd Iau</name>
+                <name>Dydd Gwener</name>
+                <name>Dydd Sadwrn</name>
+            </fullName>
+            <shortName>
+                <name>Sul</name>
+                <name>Llun</name>
+                <name>Maw</name>
+                <name>Mer</name>
+                <name>Iau</name>
+                <name>Gwe</name>
+                <name>Sad</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Ionawr</name>
+                <name>Chwefror</name>
+                <name>Mawrth</name>
+                <name>Ebrill</name>
+                <name>Mai</name>
+                <name>Mehefin</name>
+                <name>Gorffennaf</name>
+                <name>Awst</name>
+                <name>Medi</name>
+                <name>Hydref</name>
+                <name>Tachwedd</name>
+                <name>Rhagfyr</name>
+            </fullName>
+            <shortName>
+                <name>Ion</name>
+                <name>Chwe</name>
+                <name>Maw</name>
+                <name>Ebr</name>
+                <name>Mai</name>
+                <name>Meh</name>
+                <name>Gor</name>
+                <name>Aws</name>
+                <name>Med</name>
+                <name>Hyd</name>
+                <name>Tach</name>
+                <name>Rhag</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>£</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

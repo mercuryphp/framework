@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>mk-MK</name>
+    <displayName>Macedonian (Former Yugoslav Republic of Macedonia)</displayName>
+    <datetime>
+        <nativeCalendar>грегоријански календар</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>dddd, dd MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>недела</name>
+                <name>понеделник</name>
+                <name>вторник</name>
+                <name>среда</name>
+                <name>четврток</name>
+                <name>петок</name>
+                <name>сабота</name>
+            </fullName>
+            <shortName>
+                <name>нед</name>
+                <name>пон</name>
+                <name>втр</name>
+                <name>срд</name>
+                <name>чет</name>
+                <name>пет</name>
+                <name>саб</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>јануари</name>
+                <name>февруари</name>
+                <name>март</name>
+                <name>април</name>
+                <name>мај</name>
+                <name>јуни</name>
+                <name>јули</name>
+                <name>август</name>
+                <name>септември</name>
+                <name>октомври</name>
+                <name>ноември</name>
+                <name>декември</name>
+            </fullName>
+            <shortName>
+                <name>јан</name>
+                <name>фев</name>
+                <name>мар</name>
+                <name>апр</name>
+                <name>мај</name>
+                <name>јун</name>
+                <name>јул</name>
+                <name>авг</name>
+                <name>сеп</name>
+                <name>окт</name>
+                <name>ное</name>
+                <name>дек</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>ден.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sq</name>
+    <displayName>Albanian</displayName>
+    <datetime>
+        <nativeCalendar>kalendari gregorian</nativeCalendar>
+        <shortDatePattern>yyyy-MM-dd</shortDatePattern>
+        <longDatePattern>yyyy-MM-dd</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>h:mm.tt</shortTimePattern>
+        <longTimePattern>h:mm:ss.tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>e diel</name>
+                <name>e hënë</name>
+                <name>e martë</name>
+                <name>e mërkurë</name>
+                <name>e enjte</name>
+                <name>e premte</name>
+                <name>e shtunë</name>
+            </fullName>
+            <shortName>
+                <name>Die</name>
+                <name>Hën</name>
+                <name>Mar</name>
+                <name>Mër</name>
+                <name>Enj</name>
+                <name>Pre</name>
+                <name>Sht</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>janar</name>
+                <name>shkurt</name>
+                <name>mars</name>
+                <name>prill</name>
+                <name>maj</name>
+                <name>qershor</name>
+                <name>korrik</name>
+                <name>gusht</name>
+                <name>shtator</name>
+                <name>tetor</name>
+                <name>nëntor</name>
+                <name>dhjetor</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Shk</name>
+                <name>Mar</name>
+                <name>Pri</name>
+                <name>Maj</name>
+                <name>Qer</name>
+                <name>Kor</name>
+                <name>Gsh</name>
+                <name>Sht</name>
+                <name>Tet</name>
+                <name>Nën</name>
+                <name>Dhj</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>Lek</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>5</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

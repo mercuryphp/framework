@@ -57,7 +57,7 @@ class DbSet {
      * @param   bool $default = false
      * @return  mixed
      */
-    public function find($params, $default = false){
+    public function find($params, $default = false, $orderBy = ''){
 
         if(is_scalar($params)){
             $params = array($this->meta->getKey()->getKeyName() => $params); 
@@ -70,6 +70,10 @@ class DbSet {
                 $select->where($key.'=:'.$key);
             }
 
+            if($orderBy){
+                $select->orderBy($orderBy);
+            }
+            
             $entity = $select->single($params, $this->meta->getEntityName(), $default);
             
             if($entity){
@@ -90,7 +94,7 @@ class DbSet {
      * @param   mixed $params
      * @return  System.Data.Entity.DbListResult
      */
-    public function findAll($params = array()){
+    public function findAll($params = array(), $orderBy = ''){
 
         if(is_scalar($params)){
             $params = array($this->meta->getKey()->getKeyName() => $params);
@@ -101,6 +105,10 @@ class DbSet {
             
             foreach($params as $key=>$param){
                 $select->where($key.'=:'.$key);
+            }
+            
+            if($orderBy){
+                $select->orderBy($orderBy);
             }
 
             $entityCollection = $select->toList($params, $this->meta->getEntityName());
@@ -116,7 +124,7 @@ class DbSet {
     }
 
     /**
-     * Adds an entity to the DbSet collection by creating a new EntityContext
+     * Adds an entity to the DbSet by creating a new EntityContext
      * object. The EntityContext object is then returned.
      * 
      * @param   mixed $entity
@@ -127,6 +135,24 @@ class DbSet {
             $entityContext = new EntityContext($entity);
             $this->entities[$entityContext->getHashCode()] = $entityContext;
             return $entityContext;
+        }
+    }
+    
+    /**
+     * Adds a collection of entities to the DbSet by creating a new 
+     * EntityContext for each entity.
+     * 
+     * @param   mixed $collection
+     * @return  void
+     */
+    public function addRange($collection){
+        if($collection instanceof \Traversable || is_array($collection)){
+            foreach($collection as $entity){
+                $entityContext = new EntityContext($entity);
+                $this->entities[$entityContext->getHashCode()] = $entityContext;
+            }
+        }else{
+            throw new \Exception('The supplied argument is not traversable.');
         }
     }
     

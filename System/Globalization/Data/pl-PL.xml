@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>pl-PL</name>
+    <displayName>Polish (Poland)</displayName>
+    <datetime>
+        <nativeCalendar>Kalendarz gregoriański</nativeCalendar>
+        <shortDatePattern>yyyy-MM-dd</shortDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>niedziela</name>
+                <name>poniedziałek</name>
+                <name>wtorek</name>
+                <name>środa</name>
+                <name>czwartek</name>
+                <name>piątek</name>
+                <name>sobota</name>
+            </fullName>
+            <shortName>
+                <name>N</name>
+                <name>Pn</name>
+                <name>Wt</name>
+                <name>Śr</name>
+                <name>Cz</name>
+                <name>Pt</name>
+                <name>So</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>styczeń</name>
+                <name>luty</name>
+                <name>marzec</name>
+                <name>kwiecień</name>
+                <name>maj</name>
+                <name>czerwiec</name>
+                <name>lipiec</name>
+                <name>sierpień</name>
+                <name>wrzesień</name>
+                <name>październik</name>
+                <name>listopad</name>
+                <name>grudzień</name>
+            </fullName>
+            <shortName>
+                <name>sty</name>
+                <name>lut</name>
+                <name>mar</name>
+                <name>kwi</name>
+                <name>maj</name>
+                <name>cze</name>
+                <name>lip</name>
+                <name>sie</name>
+                <name>wrz</name>
+                <name>paź</name>
+                <name>lis</name>
+                <name>gru</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>zł</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

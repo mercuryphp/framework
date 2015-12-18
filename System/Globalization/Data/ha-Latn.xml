@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ha-Latn</name>
+    <displayName>Hausa (Latin)</displayName>
+    <datetime>
+        <nativeCalendar>Kalenda ya Gregori</nativeCalendar>
+        <shortDatePattern>d/M/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Lahadi</name>
+                <name>Litinin</name>
+                <name>Talata</name>
+                <name>Laraba</name>
+                <name>Alhamis</name>
+                <name>Juma'a</name>
+                <name>Asabar</name>
+            </fullName>
+            <shortName>
+                <name>Lah</name>
+                <name>Lit</name>
+                <name>Tal</name>
+                <name>Lar</name>
+                <name>Alh</name>
+                <name>Jum</name>
+                <name>Asa</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Januwaru</name>
+                <name>Febreru</name>
+                <name>Maris</name>
+                <name>Afrilu</name>
+                <name>Mayu</name>
+                <name>Yuni</name>
+                <name>Yuli</name>
+                <name>Agusta</name>
+                <name>Satumba</name>
+                <name>Oktocba</name>
+                <name>Nuwamba</name>
+                <name>Disamba</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mar</name>
+                <name>Afr</name>
+                <name>May</name>
+                <name>Yun</name>
+                <name>Yul</name>
+                <name>Agu</name>
+                <name>Sat</name>
+                <name>Okt</name>
+                <name>Nuw</name>
+                <name>Dis</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>N</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

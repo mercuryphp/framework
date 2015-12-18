@@ -16,6 +16,16 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         $this->collection = $result;
     }
     
+    public function groupConcat($field){
+        $result = new \System\Collections\ArrayList();
+        foreach($this->collection as $v){
+            $item = \System\Std\Object::getProperties($v);
+            $result->add($item[$field]);
+        }
+        return $result;
+    }
+
+
     /**
      * Applys a callback function to every row in the rowset.
      * 
@@ -153,6 +163,36 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
             $item = \System\Std\Object::getProperties($this->collection[$count]);
             return $item[$field];
         }
+    }
+    
+    /**
+     * Determines if the collection has items.
+     * 
+     * @return  bool
+     */
+    public function hasItems(){
+        if(count($this->collection) > 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Gets the first element from the collection.
+     * 
+     * @return  mixed
+     */
+    public function first(){
+        return reset($this->collection);
+    }
+    
+    /**
+     * Gets the last element from the collection.
+     * 
+     * @return  mixed
+     */
+    public function last(){
+        return end($this->collection);
     }
     
     /**

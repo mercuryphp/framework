@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>tg</name>
+    <displayName>Tajik</displayName>
+    <datetime>
+        <nativeCalendar>тақвими григорианӣ</nativeCalendar>
+        <shortDatePattern>dd.MM.yy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Яш</name>
+                <name>Душанбе</name>
+                <name>Сешанбе</name>
+                <name>Чоршанбе</name>
+                <name>Панҷшанбе</name>
+                <name>Ҷумъа</name>
+                <name>Шанбе</name>
+            </fullName>
+            <shortName>
+                <name>Яш</name>
+                <name>Дш</name>
+                <name>Сш</name>
+                <name>Чш</name>
+                <name>Пш</name>
+                <name>Ҷм</name>
+                <name>Шн</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Январ</name>
+                <name>Феврал</name>
+                <name>Март</name>
+                <name>Апрел</name>
+                <name>Май</name>
+                <name>Июн</name>
+                <name>Июл</name>
+                <name>Август</name>
+                <name>Сентябр</name>
+                <name>Октябр</name>
+                <name>Ноябр</name>
+                <name>Декабр</name>
+            </fullName>
+            <shortName>
+                <name>Янв</name>
+                <name>Фев</name>
+                <name>Мар</name>
+                <name>Апр</name>
+                <name>Май</name>
+                <name>Июн</name>
+                <name>Июл</name>
+                <name>Авг</name>
+                <name>Сен</name>
+                <name>Окт</name>
+                <name>Ноя</name>
+                <name>Дек</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>т.р.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>;</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

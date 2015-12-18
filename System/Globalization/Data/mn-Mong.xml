@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>mn-Mong</name>
+    <displayName>Mongolian (Traditional Mongolian)</displayName>
+    <datetime>
+        <nativeCalendar>ᠠᠷᠭᠠ ᠢᠨ ᠤᠯᠠᠷᠢᠯ</nativeCalendar>
+        <shortDatePattern>yyyy/M/d</shortDatePattern>
+        <longDatePattern>yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ'</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ</name>
+            </fullName>
+            <shortName>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ</name>
+                <name>ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+            </fullName>
+            <shortName>
+                <name>ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ</name>
+                <name>ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>¥</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

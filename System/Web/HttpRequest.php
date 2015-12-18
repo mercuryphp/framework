@@ -225,9 +225,13 @@ final class HttpRequest {
      * @param   int $name
      * @return  string
      */
-    public function getServer($name){
-        if(array_key_exists($name, $_SERVER)){
-            return $_SERVER[$name];
+    public function getServer($name = null){
+        if($name){
+            if(array_key_exists($name, $_SERVER)){
+                return $_SERVER[$name];
+            }
+        }else{
+            return $_SERVER;
         }
     }
     
@@ -316,7 +320,11 @@ final class HttpRequest {
      * @param   object $object
      */
     public function bindModel($object){
-        $refClass = new \ReflectionClass($object);
+        try{
+            $refClass = new \ReflectionClass($object);
+        }catch(\Exception $e){
+            throw new \Exception(sprintf('Request binding failed. %s.', $e->getMessage()));
+        }
         $properties = $refClass->getProperties();
         
         $params = $this->toArray();

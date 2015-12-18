@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ii-CN</name>
+    <displayName>Yi (PRC)</displayName>
+    <datetime>
+        <nativeCalendar>ꇬꆀ</nativeCalendar>
+        <shortDatePattern>yyyy/M/d</shortDatePattern>
+        <longDatePattern>yyyy'ꈎ' M'ꆪ' d'ꑍ'</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>tt h:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ꑭꆏꑍ</name>
+                <name>ꆏꊂ꒔</name>
+                <name>ꆏꊂꑍ</name>
+                <name>ꆏꊂꌕ</name>
+                <name>ꆏꊂꇖ</name>
+                <name>ꆏꊂꉬ</name>
+                <name>ꆏꊂꃘ</name>
+            </fullName>
+            <shortName>
+                <name>ꑭꆏ</name>
+                <name>ꆏ꒔</name>
+                <name>ꆏꑍ</name>
+                <name>ꆏꌕ</name>
+                <name>ꆏꇖ</name>
+                <name>ꆏꉬ</name>
+                <name>ꆏꃘ</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ꋍꆪ</name>
+                <name>ꑍꆪ</name>
+                <name>ꌕꆪ</name>
+                <name>ꇖꆪ</name>
+                <name>ꉬꆪ</name>
+                <name>ꃘꆪ</name>
+                <name>ꏃꆪ</name>
+                <name>ꉆꆪ</name>
+                <name>ꈬꆪ</name>
+                <name>ꊰꆪ</name>
+                <name>ꊯꊪꆪ</name>
+                <name>ꊰꑋꆪ</name>
+            </fullName>
+            <shortName>
+                <name>ꋍꆪ</name>
+                <name>ꑍꆪ</name>
+                <name>ꌕꆪ</name>
+                <name>ꇖꆪ</name>
+                <name>ꉬꆪ</name>
+                <name>ꃘꆪ</name>
+                <name>ꏃꆪ</name>
+                <name>ꉆꆪ</name>
+                <name>ꈬꆪ</name>
+                <name>ꊰꆪ</name>
+                <name>ꊯꊪꆪ</name>
+                <name>ꊰꑋꆪ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>¥</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>quz-PE</name>
+    <displayName>Quechua (Peru)</displayName>
+    <datetime>
+        <nativeCalendar>calendario gregoriano</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>intichaw</name>
+                <name>killachaw</name>
+                <name>atipachaw</name>
+                <name>quyllurchaw</name>
+                <name>Ch' askachaw</name>
+                <name>Illapachaw</name>
+                <name>k'uychichaw</name>
+            </fullName>
+            <shortName>
+                <name>int</name>
+                <name>kil</name>
+                <name>ati</name>
+                <name>quy</name>
+                <name>Ch'</name>
+                <name>Ill</name>
+                <name>k'u</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Qulla puquy</name>
+                <name>Hatun puquy</name>
+                <name>Pauqar waray</name>
+                <name>ayriwa</name>
+                <name>Aymuray</name>
+                <name>Inti raymi</name>
+                <name>Anta Sitwa</name>
+                <name>Qhapaq Sitwa</name>
+                <name>Uma raymi</name>
+                <name>Kantaray</name>
+                <name>Ayamarq'a</name>
+                <name>Kapaq Raymi</name>
+            </fullName>
+            <shortName>
+                <name>Qul</name>
+                <name>Hat</name>
+                <name>Pau</name>
+                <name>ayr</name>
+                <name>Aym</name>
+                <name>Int</name>
+                <name>Ant</name>
+                <name>Qha</name>
+                <name>Uma</name>
+                <name>Kan</name>
+                <name>Aya</name>
+                <name>Kap</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>S/.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

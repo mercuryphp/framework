@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>co-FR</name>
+    <displayName>Corsican (France)</displayName>
+    <datetime>
+        <nativeCalendar>calendariu gregurianu</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd d MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>dumenica</name>
+                <name>luni</name>
+                <name>marti</name>
+                <name>mercuri</name>
+                <name>ghjovi</name>
+                <name>venderi</name>
+                <name>sabbatu</name>
+            </fullName>
+            <shortName>
+                <name>dum.</name>
+                <name>lun.</name>
+                <name>mar.</name>
+                <name>mer.</name>
+                <name>ghj.</name>
+                <name>ven.</name>
+                <name>sab.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ghjennaghju</name>
+                <name>ferraghju</name>
+                <name>marzu</name>
+                <name>aprile</name>
+                <name>maghju</name>
+                <name>ghjunghju</name>
+                <name>lugliu</name>
+                <name>aostu</name>
+                <name>settembre</name>
+                <name>ottobre</name>
+                <name>nuvembre</name>
+                <name>dicembre</name>
+            </fullName>
+            <shortName>
+                <name>ghje</name>
+                <name>ferr</name>
+                <name>marz</name>
+                <name>apri</name>
+                <name>magh</name>
+                <name>ghju</name>
+                <name>lugl</name>
+                <name>aost</name>
+                <name>sett</name>
+                <name>otto</name>
+                <name>nuve</name>
+                <name>dice</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

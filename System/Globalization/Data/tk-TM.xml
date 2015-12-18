@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>tk-TM</name>
+    <displayName>Turkmen (Turkmenistan)</displayName>
+    <datetime>
+        <nativeCalendar>grigorian ýylhasaby</nativeCalendar>
+        <shortDatePattern>dd.MM.yy</shortDatePattern>
+        <longDatePattern>yyyy 'ý.' MMMM d</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Duşenbe</name>
+                <name>Sişenbe</name>
+                <name>Çarşenbe</name>
+                <name>Penşenbe</name>
+                <name>Anna</name>
+                <name>Şenbe</name>
+                <name>Ýekşenbe</name>
+            </fullName>
+            <shortName>
+                <name>Db</name>
+                <name>Sb</name>
+                <name>Çb</name>
+                <name>Pb</name>
+                <name>An</name>
+                <name>Şb</name>
+                <name>Ýb</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Ýanwar</name>
+                <name>Fewral</name>
+                <name>Mart</name>
+                <name>Aprel</name>
+                <name>Maý</name>
+                <name>lýun</name>
+                <name>lýul</name>
+                <name>Awgust</name>
+                <name>Sentýabr</name>
+                <name>Oktýabr</name>
+                <name>Noýabr</name>
+                <name>Dekabr</name>
+            </fullName>
+            <shortName>
+                <name>Ýan</name>
+                <name>Few</name>
+                <name>Mart</name>
+                <name>Apr</name>
+                <name>Maý</name>
+                <name>lýun</name>
+                <name>lýul</name>
+                <name>Awg</name>
+                <name>Sen</name>
+                <name>Okt</name>
+                <name>Not</name>
+                <name>Dek</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>m.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>5</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

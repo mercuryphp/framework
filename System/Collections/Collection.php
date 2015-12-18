@@ -64,6 +64,18 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
     }
     
     /**
+     * Determines if the collection has items.
+     * 
+     * @return  bool
+     */
+    public function hasItems(){
+        if(count($this->collection) > 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
      * Gets an element from the collection using the specified $key. If $default 
      * is specified and element is not found then get $default. 
      * 
@@ -76,6 +88,33 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
             return $this->collection[$key];
         }
         return $default;
+    }
+    
+    /**
+     * Gets a System.Std.Str object from the collection using the specified $key. 
+     * If $default is specified and element is not found then get $default. 
+     * 
+     * @param   mixed $key
+     * @param   string $default = null
+     * @return  System.Std.Str
+     */
+    public function getString($key, $default = null){
+        if($this->hasKey($key)){
+            $default = $this->collection[$key];
+        }
+        if(is_string($default)){
+            return \System\Std\Str::set($default);
+        }
+        return new \System\Std\Str();
+    }
+    
+    /**
+     * Gets the first element from the collection.
+     * 
+     * @return  mixed
+     */
+    public function first(){
+        return reset($this->collection);
     }
     
     /**
@@ -281,6 +320,15 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
      */
     public function toArray(){
         return $this->collection;
+    }
+    
+    /**
+     * Gets a serialized representation of the collection.
+     * 
+     * @return  string
+     */
+    public function serialize(){
+        return serialize($this->collection);
     }
 
     /**

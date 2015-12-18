@@ -180,15 +180,30 @@ abstract class HttpApplication {
             $route->setHttpRequest($this->httpContext->getRequest());
             $routeData = $route->execute();
 
-            if($routeData){
+            if(!$routeData instanceof \System\Collections\Dictionary){
+                throw new Mvc\MvcException('System\Web\Routing\IRouteHandler->execute() must return an instance of System\Collections\Dictionary');
+            }
+            
+            if($routeData->hasItems()){
 
-                $class = Str::set(sprintf('%s.Controllers.%sController', $route->getNamespace(), ucfirst(strtolower($routeData->get('controller')))));
+                if($routeData->hasKey('namespace')){
+                    $route->setNamespace($routeData->get('namespace'));
+                }
+
+                $class = Str::set('{n}.{m}Controllers.{c}Controller')->template(
+                    array(
+                        'n' => $route->getNamespace(),
+                        'm' => $routeData->getString('module')->toLower()->toUpperFirst()->append('.', true),
+                        'c' => $routeData->getString('controller')->toLower()->toUpperFirst()
+                    )
+                );
+                
                 $this->httpContext->getRequest()->getRouteData()->set('namespace', $route->getNamespace());
 
                 try{
                     $controller = Object::getInstance((string)$class);
                 }catch(\ReflectionException $e){
-                    throw new Mvc\ControllerNotFoundException($this->httpContext);
+                    throw new Mvc\ControllerNotFoundException($this->httpContext, $class);
                 }
                 
                 if(!$controller instanceof Mvc\Controller){

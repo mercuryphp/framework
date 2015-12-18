@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>pt-PT</name>
+    <displayName>Portuguese (Portugal)</displayName>
+    <datetime>
+        <nativeCalendar>Calendário gregoriano</nativeCalendar>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
+        <longDatePattern>dddd, d' de 'MMMM' de 'yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>domingo</name>
+                <name>segunda-feira</name>
+                <name>terça-feira</name>
+                <name>quarta-feira</name>
+                <name>quinta-feira</name>
+                <name>sexta-feira</name>
+                <name>sábado</name>
+            </fullName>
+            <shortName>
+                <name>dom</name>
+                <name>seg</name>
+                <name>ter</name>
+                <name>qua</name>
+                <name>qui</name>
+                <name>sex</name>
+                <name>sáb</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Janeiro</name>
+                <name>Fevereiro</name>
+                <name>Março</name>
+                <name>Abril</name>
+                <name>Maio</name>
+                <name>Junho</name>
+                <name>Julho</name>
+                <name>Agosto</name>
+                <name>Setembro</name>
+                <name>Outubro</name>
+                <name>Novembro</name>
+                <name>Dezembro</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Fev</name>
+                <name>Mar</name>
+                <name>Abr</name>
+                <name>Mai</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Ago</name>
+                <name>Set</name>
+                <name>Out</name>
+                <name>Nov</name>
+                <name>Dez</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

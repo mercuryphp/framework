@@ -2,10 +2,21 @@
 
 namespace System\Web\Mvc\Validators;
 
-abstract class Validator implements Validator {
+abstract class Validator {
     
+    protected $fieldName;
     protected $value;
     protected $errMessage;
+    
+    /**
+     * Sets the field name.
+     * 
+     * @param   string $fieldName
+     * @return  void
+     */
+    public function setFieldName($fieldName){
+        $this->fieldName = $fieldName;
+    }
     
     public function setValue($value){
         $this->value = $value;

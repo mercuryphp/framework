@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>it-CH</name>
+    <displayName>Italian (Switzerland)</displayName>
+    <datetime>
+        <nativeCalendar>calendario gregoriano</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>dddd, d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>domenica</name>
+                <name>lunedì</name>
+                <name>martedì</name>
+                <name>mercoledì</name>
+                <name>giovedì</name>
+                <name>venerdì</name>
+                <name>sabato</name>
+            </fullName>
+            <shortName>
+                <name>dom</name>
+                <name>lun</name>
+                <name>mar</name>
+                <name>mer</name>
+                <name>gio</name>
+                <name>ven</name>
+                <name>sab</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>gennaio</name>
+                <name>febbraio</name>
+                <name>marzo</name>
+                <name>aprile</name>
+                <name>maggio</name>
+                <name>giugno</name>
+                <name>luglio</name>
+                <name>agosto</name>
+                <name>settembre</name>
+                <name>ottobre</name>
+                <name>novembre</name>
+                <name>dicembre</name>
+            </fullName>
+            <shortName>
+                <name>gen</name>
+                <name>feb</name>
+                <name>mar</name>
+                <name>apr</name>
+                <name>mag</name>
+                <name>giu</name>
+                <name>lug</name>
+                <name>ago</name>
+                <name>set</name>
+                <name>ott</name>
+                <name>nov</name>
+                <name>dic</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>'</numberGroupSeparator>
+        <currencySymbol>fr.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>'</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

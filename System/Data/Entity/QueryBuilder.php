@@ -30,13 +30,13 @@ class QueryBuilder {
         $this->lastTableAlias = $tableAlias;
         
         $this->sql = \System\Std\Str::set($queryType.' ');
-        if ($queryType == QueryBuilder::SELECT){
+        if ($queryType == QueryBuilder::SELECT || $queryType == QueryBuilder::DELETE){
             $this->sql = $this->sql->append('FROM ');
         }
         
         $this->sql = $this->sql->append($metaData->getTable()->getTableName().' ');
         
-        if ($queryType != QueryBuilder::INSERT){
+        if ($queryType == QueryBuilder::SELECT){
             $this->sql = $this->sql->append($tableAlias.' ');
         }
             
@@ -120,6 +120,48 @@ class QueryBuilder {
             $this->isWhere = true;
         }
         $this->sql = $this->sql->append("$op ")->append($condition.' '.PHP_EOL);
+        return $this;
+    }
+    
+    /**
+     * Adds a IN clause to the underlying SQL query using the 
+     * specified $fieldName and $values. Subsequent calls to this method will 
+     * result in an AND operation.
+     * 
+     * @param   string $condition
+     * @return  System.Data.Entity.QueryBuilder
+     */
+    public function whereIn($fieldName, $values){
+        $op = "AND";
+        if(!$this->isWhere){
+            $op = "WHERE";
+            $this->isWhere = true;
+        }
+        if(is_array($values)){
+            $values = join(',', $values);
+        }
+        $this->sql = $this->sql->append("$op ")->append($fieldName.' IN ('.$values.')'.PHP_EOL);
+        return $this;
+    }
+    
+    /**
+     * Adds a NOT IN clause to the underlying SQL query using the 
+     * specified $fieldName and $values. Subsequent calls to this method will 
+     * result in an AND operation.
+     * 
+     * @param   string $condition
+     * @return  System.Data.Entity.QueryBuilder
+     */
+    public function whereNotIn($fieldName, $values){
+        $op = "AND";
+        if(!$this->isWhere){
+            $op = "WHERE";
+            $this->isWhere = true;
+        }
+        if(is_array($values)){
+            $values = join(',', $values);
+        }
+        $this->sql = $this->sql->append("$op ")->append($fieldName.' NOT IN ('.$values.')'.PHP_EOL);
         return $this;
     }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>bs-Cyrl</name>
+    <displayName>Bosnian (Cyrillic)</displayName>
+    <datetime>
+        <nativeCalendar>грегоријански календар</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>недјеља</name>
+                <name>понедјељак</name>
+                <name>уторак</name>
+                <name>сриједа</name>
+                <name>четвртак</name>
+                <name>петак</name>
+                <name>субота</name>
+            </fullName>
+            <shortName>
+                <name>нед</name>
+                <name>пон</name>
+                <name>уто</name>
+                <name>сре</name>
+                <name>чет</name>
+                <name>пет</name>
+                <name>суб</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>јануар</name>
+                <name>фебруар</name>
+                <name>март</name>
+                <name>април</name>
+                <name>мај</name>
+                <name>јун</name>
+                <name>јул</name>
+                <name>август</name>
+                <name>септембар</name>
+                <name>октобар</name>
+                <name>новембар</name>
+                <name>децембар</name>
+            </fullName>
+            <shortName>
+                <name>јан</name>
+                <name>феб</name>
+                <name>мар</name>
+                <name>апр</name>
+                <name>мај</name>
+                <name>јун</name>
+                <name>јул</name>
+                <name>авг</name>
+                <name>сеп</name>
+                <name>окт</name>
+                <name>нов</name>
+                <name>дец</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>КМ</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

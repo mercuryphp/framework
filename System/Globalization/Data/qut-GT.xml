@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>qut-GT</name>
+    <displayName>K'iche (Guatemala)</displayName>
+    <datetime>
+        <nativeCalendar>calendario gregoriano</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>juq'ij</name>
+                <name>kaq'ij</name>
+                <name>oxq'ij</name>
+                <name>kajq'ij</name>
+                <name>joq'ij</name>
+                <name>waqq'ij</name>
+                <name>wuqq'ij</name>
+            </fullName>
+            <shortName>
+                <name>juq</name>
+                <name>kaq</name>
+                <name>oxq</name>
+                <name>kajq</name>
+                <name>joq</name>
+                <name>waqq</name>
+                <name>wuqq</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>nab'e ik'</name>
+                <name>ukab' ik'</name>
+                <name>rox ik'</name>
+                <name>ukaj ik'</name>
+                <name>uro' ik'</name>
+                <name>uwaq ik'</name>
+                <name>uwuq ik'</name>
+                <name>uwajxaq ik'</name>
+                <name>ub'elej ik'</name>
+                <name>ulaj ik'</name>
+                <name>ujulaj ik'</name>
+                <name>ukab'laj ik'</name>
+            </fullName>
+            <shortName>
+                <name>nab'e</name>
+                <name>ukab</name>
+                <name>rox</name>
+                <name>ukaj</name>
+                <name>uro</name>
+                <name>uwaq</name>
+                <name>uwuq</name>
+                <name>uwajxaq</name>
+                <name>ub'elej</name>
+                <name>ulaj</name>
+                <name>ujulaj</name>
+                <name>ukab'laj</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>Q</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

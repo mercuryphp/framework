@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>syr-SY</name>
+    <displayName>Syriac (Syria)</displayName>
+    <datetime>
+        <nativeCalendar>ܣܘܪܓܕܐ ܓܪܝܓܘܪܝܐ</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ܚܕ ܒܫܒܐ</name>
+                <name>ܬܪܝܢ ܒܫܒܐ</name>
+                <name>ܬܠܬܐ ܒܫܒܐ</name>
+                <name>ܐܪܒܥܐ ܒܫܒܐ</name>
+                <name>ܚܡܫܐ ܒܫܒܐ</name>
+                <name>ܥܪܘܒܬܐ</name>
+                <name>ܫܒܬܐ</name>
+            </fullName>
+            <shortName>
+                <name>܏ܐ ܏ܒܫ</name>
+                <name>܏ܒ ܏ܒܫ</name>
+                <name>܏ܓ ܏ܒܫ</name>
+                <name>܏ܕ ܏ܒܫ</name>
+                <name>܏ܗ ܏ܒܫ</name>
+                <name>܏ܥܪܘܒ</name>
+                <name>܏ܫܒ</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ܟܢܘܢ ܐܚܪܝ</name>
+                <name>ܫܒܛ</name>
+                <name>ܐܕܪ</name>
+                <name>ܢܝܣܢ</name>
+                <name>ܐܝܪ</name>
+                <name>ܚܙܝܪܢ</name>
+                <name>ܬܡܘܙ</name>
+                <name>ܐܒ</name>
+                <name>ܐܝܠܘܠ</name>
+                <name>ܬܫܪܝ ܩܕܝܡ</name>
+                <name>ܬܫܪܝ ܐܚܪܝ</name>
+                <name>ܟܢܘܢ ܩܕܝܡ</name>
+            </fullName>
+            <shortName>
+                <name>܏ܟܢ ܏ܒ</name>
+                <name>ܫܒܛ</name>
+                <name>ܐܕܪ</name>
+                <name>ܢܝܣܢ</name>
+                <name>ܐܝܪ</name>
+                <name>ܚܙܝܪܢ</name>
+                <name>ܬܡܘܙ</name>
+                <name>ܐܒ</name>
+                <name>ܐܝܠܘܠ</name>
+                <name>܏ܬܫ ܏ܐ</name>
+                <name>܏ܬܫ ܏ܒ</name>
+                <name>܏ܟܢ ܏ܐ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>ل.س.‏</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>3</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

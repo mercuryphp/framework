@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ko-KR</name>
+    <displayName>Korean (Korea)</displayName>
+    <datetime>
+        <nativeCalendar>서기 (한글)</nativeCalendar>
+        <shortDatePattern>yyyy-MM-dd</shortDatePattern>
+        <longDatePattern>yyyy'년' M'월' d'일' dddd</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>tt h:mm</shortTimePattern>
+        <longTimePattern>tt h:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>일요일</name>
+                <name>월요일</name>
+                <name>화요일</name>
+                <name>수요일</name>
+                <name>목요일</name>
+                <name>금요일</name>
+                <name>토요일</name>
+            </fullName>
+            <shortName>
+                <name>일</name>
+                <name>월</name>
+                <name>화</name>
+                <name>수</name>
+                <name>목</name>
+                <name>금</name>
+                <name>토</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>1월</name>
+                <name>2월</name>
+                <name>3월</name>
+                <name>4월</name>
+                <name>5월</name>
+                <name>6월</name>
+                <name>7월</name>
+                <name>8월</name>
+                <name>9월</name>
+                <name>10월</name>
+                <name>11월</name>
+                <name>12월</name>
+            </fullName>
+            <shortName>
+                <name>1</name>
+                <name>2</name>
+                <name>3</name>
+                <name>4</name>
+                <name>5</name>
+                <name>6</name>
+                <name>7</name>
+                <name>8</name>
+                <name>9</name>
+                <name>10</name>
+                <name>11</name>
+                <name>12</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₩</currencySymbol>
+        <currencyDecimalDigits>0</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

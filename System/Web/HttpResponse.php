@@ -286,7 +286,7 @@ final class HttpResponse {
                 header($header.':'.$value, true);
             }
             foreach($this->cookies as $cookie){
-                setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpires(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
+                setcookie($cookie->getName(), $cookie->getValue(), $cookie->getExpires(), $cookie->getPath(), $cookie->getDomain(), $cookie->getIsSecure(), $cookie->getIsHttpOnly());
             }
             if($this->redirect){
                 header('Location: ' . $this->redirect);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>lo-LA</name>
+    <displayName>Lao (Lao P.D.R.)</displayName>
+    <datetime>
+        <nativeCalendar>ເພຳເນພຣັື ແັສຳືກັພ</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>H:mm tt</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ວັນອາທິດ</name>
+                <name>ວັນຈັນ</name>
+                <name>ວັນອັງຄານ</name>
+                <name>ວັນພຸດ</name>
+                <name>ວັນພະຫັດ</name>
+                <name>ວັນສຸກ</name>
+                <name>ວັນເສົາ</name>
+            </fullName>
+            <shortName>
+                <name>ອາທິດ</name>
+                <name>ຈັນ</name>
+                <name>ອັງຄານ</name>
+                <name>ພຸດ</name>
+                <name>ພະຫັດ</name>
+                <name>ສຸກ</name>
+                <name>ເສົາ</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ມັງກອນ</name>
+                <name>ກຸມພາ</name>
+                <name>ມີນາ</name>
+                <name>ເມສາ</name>
+                <name>ພຶດສະພາ</name>
+                <name>ມິຖຸນາ</name>
+                <name>ກໍລະກົດ</name>
+                <name>ສິງຫາ</name>
+                <name>ກັນຍາ</name>
+                <name>ຕຸລາ</name>
+                <name>ພະຈິກ</name>
+                <name>ທັນວາ</name>
+            </fullName>
+            <shortName>
+                <name>ມັງກອນ</name>
+                <name>ກຸມພາ</name>
+                <name>ມີນາ</name>
+                <name>ເມສາ</name>
+                <name>ພຶດສະພາ</name>
+                <name>ມິຖຸນາ</name>
+                <name>ກໍລະກົດ</name>
+                <name>ສິງຫາ</name>
+                <name>ກັນຍາ</name>
+                <name>ຕຸລາ</name>
+                <name>ພະຈິກ</name>
+                <name>ທັນວາ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₭</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>4</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

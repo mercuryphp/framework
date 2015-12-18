@@ -150,7 +150,7 @@ class SqlQuery {
         if(is_callable($entityType) && $data){
             return $entityType($data);
         }
-        
+
         if($entityType instanceof Relations\Relationship){
             $entityType->setDatabase($this->db);
             $entityType->setMetaCollection($this->metaCollection);
@@ -160,9 +160,14 @@ class SqlQuery {
 
         if(is_string($entityType)){
             $class = '\\'.str_replace('.', '\\', $entityType);
-            $refClass = new \ReflectionClass($class);
+            
+            try{
+                $refClass = new \ReflectionClass($class);
+            }catch(\Exception $e){
+                throw new EntityNotFoundException($class, $data);
+            }
+            
             $entity = $refClass->newInstance();
-
             if(!$data){
                 if($default){ 
                     return $entity;

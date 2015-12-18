@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>prs</name>
+    <displayName>Dari</displayName>
+    <datetime>
+        <nativeCalendar>لمريز هجرى‏</nativeCalendar>
+        <shortDatePattern>dd/MM/yy</shortDatePattern>
+        <longDatePattern>dd/MM/yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>الأحد</name>
+                <name>الإثنين</name>
+                <name>الثلاثاء</name>
+                <name>الأربعاء</name>
+                <name>الخميس</name>
+                <name>الجمعة</name>
+                <name>السبت</name>
+            </fullName>
+            <shortName>
+                <name>الأحد</name>
+                <name>الإثنين</name>
+                <name>الثلاثاء</name>
+                <name>الأربعاء</name>
+                <name>الخميس</name>
+                <name>الجمعة</name>
+                <name>السبت</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>محرم</name>
+                <name>صفر</name>
+                <name>ربيع الأول</name>
+                <name>ربيع الثاني</name>
+                <name>جمادى الأولى</name>
+                <name>جمادى الثانية</name>
+                <name>رجب</name>
+                <name>شعبان</name>
+                <name>رمضان</name>
+                <name>شوال</name>
+                <name>ذو القعدة</name>
+                <name>ذو الحجة</name>
+            </fullName>
+            <shortName>
+                <name>محرم</name>
+                <name>صفر</name>
+                <name>ربيع الأول</name>
+                <name>ربيع الثاني</name>
+                <name>جمادى الأولى</name>
+                <name>جمادى الثانية</name>
+                <name>رجب</name>
+                <name>شعبان</name>
+                <name>رمضان</name>
+                <name>شوال</name>
+                <name>ذو القعدة</name>
+                <name>ذو الحجة</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>؋</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>3</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

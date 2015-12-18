@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>mi</name>
+    <displayName>Maori</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd, dd MMMM, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Rātapu</name>
+                <name>Rāhina</name>
+                <name>Rātū</name>
+                <name>Rāapa</name>
+                <name>Rāpare</name>
+                <name>Rāmere</name>
+                <name>Rāhoroi</name>
+            </fullName>
+            <shortName>
+                <name>Ta</name>
+                <name>Hi</name>
+                <name>Tū</name>
+                <name>Apa</name>
+                <name>Pa</name>
+                <name>Me</name>
+                <name>Ho</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Kohi-tātea</name>
+                <name>Hui-tanguru</name>
+                <name>Poutū-te-rangi</name>
+                <name>Paenga-whāwhā</name>
+                <name>Haratua</name>
+                <name>Pipiri</name>
+                <name>Hōngongoi</name>
+                <name>Here-turi-kōkā</name>
+                <name>Mahuru</name>
+                <name>Whiringa-ā-nuku</name>
+                <name>Whiringa-ā-rangi</name>
+                <name>Hakihea</name>
+            </fullName>
+            <shortName>
+                <name>Kohi</name>
+                <name>Hui</name>
+                <name>Pou</name>
+                <name>Pae</name>
+                <name>Hara</name>
+                <name>Pipi</name>
+                <name>Hōngo</name>
+                <name>Here</name>
+                <name>Mahu</name>
+                <name>Nuku</name>
+                <name>Rangi</name>
+                <name>Haki</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>$</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

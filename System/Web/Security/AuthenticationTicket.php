@@ -8,10 +8,10 @@ final class AuthenticationTicket {
     private $expire;
     private $userData;
     
-    public function __construct($name, $expire, $userData){
+    public function __construct($name, $userData = '', $expire = 0){
         $this->name = $name;
-        $this->expire = $expire;
         $this->userData = $userData;
+        $this->expire = $expire;
     }
     
     public function getName(){

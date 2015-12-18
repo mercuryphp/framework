@@ -10,8 +10,9 @@ class NativeView implements IView {
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
-    protected $viewFilePattern = '/@namespace/Views/@controller/@action';
+    protected $viewFilePattern = '/{n}/{m}Views/{c}/{a}';
     protected $escaper;
+    protected $dynamicMethods = array();
     
     public function __construct(){
         $this->setEscaper(function($value){
@@ -46,6 +47,10 @@ class NativeView implements IView {
         return call_user_func_array($this->escaper, array($value));
     }
     
+    public function addMethod($name, $cloure){
+        $this->dynamicMethods[$name] = $cloure;
+    }
+    
     public function renderScripts(){
         foreach($this->scripts as $type=>$scripts){
             foreach($scripts as $script){
@@ -74,15 +79,16 @@ class NativeView implements IView {
         $response = $viewContext->getHttpContext()->getResponse();
         $routeData = $viewContext->getRouteData();
 
-        $viewFile = Str::set($this->viewFilePattern)
-            ->prepend(Environment::getRootPath())
-            ->replace('@namespace', Str::set($routeData->namespace)->replace('.', '/'))
-            ->replace('@controller', Str::set($routeData->controller)->toLower()->toUpperFirst())
-            ->replace('@action', Str::set($routeData->action)->toLower()->toUpperFirst())
-            ->append('.php')
-            ->replace('\\', '/');
+        $viewFile = Str::set($this->viewFilePattern)->template(
+            array(
+                'n' => $routeData->getString('namespace')->replace('.', '/'),
+                'm' => $routeData->getString('module')->toLower()->toUpperFirst()->append('/', true),
+                'c' => $routeData->getString('controller')->toLower()->toUpperFirst(),
+                'a' => $routeData->getString('action')->toLower()->toUpperFirst()
+            )
+        )->prepend(Environment::getRootPath())->append('.php');
 
-        if(file_exists($viewFile)){
+        if(is_file($viewFile)){
             extract($viewContext->getViewBag()->toArray());
 
             ob_start();
@@ -95,7 +101,7 @@ class NativeView implements IView {
                     $this->layoutFile = \System\Std\Environment::getRootPath() . substr($this->layoutFile, 1);
                 }
                 
-                if (file_exists($this->layoutFile)){
+                if (is_file($this->layoutFile)){
                     ob_start();
                     require_once $this->layoutFile;
                     $this->output['layoutFile'] = ob_get_clean();
@@ -111,6 +117,14 @@ class NativeView implements IView {
             return $this->output['view'];
         }else{
             throw new ViewNotFoundException(sprintf("The view '%s' was not found.", $viewFile));
+        }
+    }
+    
+    public function __call($name, $arguments){
+        if(array_key_exists($name, $this->dynamicMethods)){
+            return call_user_func_array($this->dynamicMethods[$name], $arguments);
+        }else{
+            throw new \Exception('Call to undefined method ' . get_class($this) .'::'.$name.'()');
         }
     }
 }

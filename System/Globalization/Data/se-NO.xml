@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>se-NO</name>
+    <displayName>Sami, Northern (Norway)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriansk kalender</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>MMMM d'. b. 'yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>sotnabeaivi</name>
+                <name>vuossárga</name>
+                <name>maŋŋebárga</name>
+                <name>gaskavahkku</name>
+                <name>duorastat</name>
+                <name>bearjadat</name>
+                <name>lávvardat</name>
+            </fullName>
+            <shortName>
+                <name>sotn</name>
+                <name>vuos</name>
+                <name>maŋ</name>
+                <name>gask</name>
+                <name>duor</name>
+                <name>bear</name>
+                <name>láv</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ođđajagemánnu</name>
+                <name>guovvamánnu</name>
+                <name>njukčamánnu</name>
+                <name>cuoŋománnu</name>
+                <name>miessemánnu</name>
+                <name>geassemánnu</name>
+                <name>suoidnemánnu</name>
+                <name>borgemánnu</name>
+                <name>čakčamánnu</name>
+                <name>golggotmánnu</name>
+                <name>skábmamánnu</name>
+                <name>juovlamánnu</name>
+            </fullName>
+            <shortName>
+                <name>ođđj</name>
+                <name>guov</name>
+                <name>njuk</name>
+                <name>cuo</name>
+                <name>mies</name>
+                <name>geas</name>
+                <name>suoi</name>
+                <name>borg</name>
+                <name>čakč</name>
+                <name>golg</name>
+                <name>skáb</name>
+                <name>juov</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>kr</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

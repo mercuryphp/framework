@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sma-NO</name>
+    <displayName>Sami, Southern (Norway)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriansk kalender</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>MMMM d'. b. 'yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>aejlege</name>
+                <name>måanta</name>
+                <name>dæjsta</name>
+                <name>gaskevåhkoe</name>
+                <name>duarsta</name>
+                <name>bearjadahke</name>
+                <name>laavvardahke</name>
+            </fullName>
+            <shortName>
+                <name>aej</name>
+                <name>måa</name>
+                <name>dæj</name>
+                <name>gask</name>
+                <name>duar</name>
+                <name>bearj</name>
+                <name>laav</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>tsïengele</name>
+                <name>goevte</name>
+                <name>njoktje</name>
+                <name>voerhtje</name>
+                <name>suehpede</name>
+                <name>ruffie</name>
+                <name>snjaltje</name>
+                <name>mïetske</name>
+                <name>skïerede</name>
+                <name>golke</name>
+                <name>rahka</name>
+                <name>goeve</name>
+            </fullName>
+            <shortName>
+                <name>tsïen</name>
+                <name>goevt</name>
+                <name>njok</name>
+                <name>voer</name>
+                <name>sueh</name>
+                <name>ruff</name>
+                <name>snja</name>
+                <name>mïet</name>
+                <name>skïer</name>
+                <name>golk</name>
+                <name>rahk</name>
+                <name>goev</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>kr</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

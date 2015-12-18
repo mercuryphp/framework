@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>dsb</name>
+    <displayName>Lower Sorbian</displayName>
+    <datetime>
+        <nativeCalendar>gregorianska pratyja</nativeCalendar>
+        <shortDatePattern>d. M. yyyy</shortDatePattern>
+        <longDatePattern>dddd, 'dnja' d. MMMM yyyy</longDatePattern>
+        <dateSeparator>. </dateSeparator>
+        <shortTimePattern>H.mm 'goź.'</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>njeźela</name>
+                <name>ponjeźele</name>
+                <name>wałtora</name>
+                <name>srjoda</name>
+                <name>stwortk</name>
+                <name>pětk</name>
+                <name>sobota</name>
+            </fullName>
+            <shortName>
+                <name>nje</name>
+                <name>pon</name>
+                <name>wał</name>
+                <name>srj</name>
+                <name>stw</name>
+                <name>pět</name>
+                <name>sob</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>januar</name>
+                <name>februar</name>
+                <name>měrc</name>
+                <name>apryl</name>
+                <name>maj</name>
+                <name>junij</name>
+                <name>julij</name>
+                <name>awgust</name>
+                <name>september</name>
+                <name>oktober</name>
+                <name>nowember</name>
+                <name>december</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>měr</name>
+                <name>apr</name>
+                <name>maj</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>awg</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>now</name>
+                <name>dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

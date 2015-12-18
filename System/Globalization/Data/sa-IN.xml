@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sa-IN</name>
+    <displayName>Sanskrit (India)</displayName>
+    <datetime>
+        <nativeCalendar>ख्रिस्ताब्द पञ्जिका</nativeCalendar>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy dddd</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>रविवासरः</name>
+                <name>सोमवासरः</name>
+                <name>मङ्गलवासरः</name>
+                <name>बुधवासरः</name>
+                <name>गुरुवासरः</name>
+                <name>शुक्रवासरः</name>
+                <name>शनिवासरः</name>
+            </fullName>
+            <shortName>
+                <name>रविवासरः</name>
+                <name>सोमवासरः</name>
+                <name>मङ्गलवासरः</name>
+                <name>बुधवासरः</name>
+                <name>गुरुवासरः</name>
+                <name>शुक्रवासरः</name>
+                <name>शनिवासरः</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>जनवरी</name>
+                <name>फरवरी</name>
+                <name>मार्च</name>
+                <name>अप्रैल</name>
+                <name>मई</name>
+                <name>जून</name>
+                <name>जुलाई</name>
+                <name>अगस्त</name>
+                <name>सितम्बर</name>
+                <name>अक्तूबर</name>
+                <name>नवम्बर</name>
+                <name>दिसम्बर</name>
+            </fullName>
+            <shortName>
+                <name>जनवरी</name>
+                <name>फरवरी</name>
+                <name>मार्च</name>
+                <name>अप्रैल</name>
+                <name>मई</name>
+                <name>जून</name>
+                <name>जुलाई</name>
+                <name>अगस्त</name>
+                <name>सितम्बर</name>
+                <name>अक्तूबर</name>
+                <name>नवम्बर</name>
+                <name>दिसम्बर</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₹</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -55,6 +55,6 @@ class RouteHandler implements IRouteHandler {
             $httpRequest->getParam()->merge($defaults);
             return $httpRequest->getRouteData();
         }
-        return false;
+        return new Dictionary();
     }
 }

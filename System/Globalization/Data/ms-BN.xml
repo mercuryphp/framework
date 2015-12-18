@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ms-BN</name>
+    <displayName>Malay (Brunei Darussalam)</displayName>
+    <datetime>
+        <nativeCalendar>kalendar Masehi</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Ahad</name>
+                <name>Isnin</name>
+                <name>Selasa</name>
+                <name>Rabu</name>
+                <name>Khamis</name>
+                <name>Jumaat</name>
+                <name>Sabtu</name>
+            </fullName>
+            <shortName>
+                <name>Ahad</name>
+                <name>Isnin</name>
+                <name>Sel</name>
+                <name>Rabu</name>
+                <name>Khamis</name>
+                <name>Jumaat</name>
+                <name>Sabtu</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Januari</name>
+                <name>Februari</name>
+                <name>Mac</name>
+                <name>April</name>
+                <name>Mei</name>
+                <name>Jun</name>
+                <name>Julai</name>
+                <name>Ogos</name>
+                <name>September</name>
+                <name>Oktober</name>
+                <name>November</name>
+                <name>Disember</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mac</name>
+                <name>Apr</name>
+                <name>Mei</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Ogos</name>
+                <name>Sept</name>
+                <name>Okt</name>
+                <name>Nov</name>
+                <name>Dis</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>$</currencySymbol>
+        <currencyDecimalDigits>0</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>rw-RW</name>
+    <displayName>Kinyarwanda (Rwanda)</displayName>
+    <datetime>
+        <nativeCalendar>Kalenda ya Gregori</nativeCalendar>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Ku wa mbere</name>
+                <name>Ku wa kabiri</name>
+                <name>Ku wa gatatu</name>
+                <name>Ku wa kane</name>
+                <name>Ku wa gatanu</name>
+                <name>Ku wa gatandatu</name>
+                <name>Ku cyumweru</name>
+            </fullName>
+            <shortName>
+                <name>mbe.</name>
+                <name>kab.</name>
+                <name>gat.</name>
+                <name>kan.</name>
+                <name>gat.</name>
+                <name>gat.</name>
+                <name>cyu.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Mutarama</name>
+                <name>Gashyantare</name>
+                <name>Werurwe</name>
+                <name>Mata</name>
+                <name>Gicurasi</name>
+                <name>Kamena</name>
+                <name>Nyakanga</name>
+                <name>Kanama</name>
+                <name>Nzeli</name>
+                <name>Ukwakira</name>
+                <name>Ugushyingo</name>
+                <name>Ukuboza</name>
+            </fullName>
+            <shortName>
+                <name>Mut</name>
+                <name>Gas</name>
+                <name>Wer</name>
+                <name>Mat</name>
+                <name>Gic</name>
+                <name>Kam</name>
+                <name>Nya</name>
+                <name>Kan</name>
+                <name>Nze</name>
+                <name>Ukwa</name>
+                <name>Ugu</name>
+                <name>Uku</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>RWF</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

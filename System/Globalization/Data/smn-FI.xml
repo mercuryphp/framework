@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>smn-FI</name>
+    <displayName>Sami, Inari (Finland)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriaaninen kalenteri</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>MMMM d'. p. 'yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>pasepeivi</name>
+                <name>vuossargâ</name>
+                <name>majebargâ</name>
+                <name>koskokko</name>
+                <name>tuorâstâh</name>
+                <name>vástuppeivi</name>
+                <name>lávárdâh</name>
+            </fullName>
+            <shortName>
+                <name>pa</name>
+                <name>vu</name>
+                <name>ma</name>
+                <name>ko</name>
+                <name>tu</name>
+                <name>vá</name>
+                <name>lá</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>uđđâivemáánu</name>
+                <name>kuovâmáánu</name>
+                <name>njuhčâmáánu</name>
+                <name>cuáŋuimáánu</name>
+                <name>vyesimáánu</name>
+                <name>kesimáánu</name>
+                <name>syeinimáánu</name>
+                <name>porgemáánu</name>
+                <name>čohčâmáánu</name>
+                <name>roovvâdmáánu</name>
+                <name>skammâmáánu</name>
+                <name>juovlâmáánu</name>
+            </fullName>
+            <shortName>
+                <name>uđiv</name>
+                <name>kuov</name>
+                <name>njuh</name>
+                <name>cuoŋ</name>
+                <name>vyes</name>
+                <name>kesi</name>
+                <name>syei</name>
+                <name>porg</name>
+                <name>čoh</name>
+                <name>roov</name>
+                <name>ska</name>
+                <name>juov</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

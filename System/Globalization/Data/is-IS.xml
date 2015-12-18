@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>is-IS</name>
+    <displayName>Icelandic (Iceland)</displayName>
+    <datetime>
+        <nativeCalendar>gregorískt tímatal</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>sunnudagur</name>
+                <name>mánudagur</name>
+                <name>þriðjudagur</name>
+                <name>miðvikudagur</name>
+                <name>fimmtudagur</name>
+                <name>föstudagur</name>
+                <name>laugardagur</name>
+            </fullName>
+            <shortName>
+                <name>sun.</name>
+                <name>mán.</name>
+                <name>þri.</name>
+                <name>mið.</name>
+                <name>fim.</name>
+                <name>fös.</name>
+                <name>lau.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>janúar</name>
+                <name>febrúar</name>
+                <name>mars</name>
+                <name>apríl</name>
+                <name>maí</name>
+                <name>júní</name>
+                <name>júlí</name>
+                <name>ágúst</name>
+                <name>september</name>
+                <name>október</name>
+                <name>nóvember</name>
+                <name>desember</name>
+            </fullName>
+            <shortName>
+                <name>jan.</name>
+                <name>feb.</name>
+                <name>mar.</name>
+                <name>apr.</name>
+                <name>maí</name>
+                <name>jún.</name>
+                <name>júl.</name>
+                <name>ágú.</name>
+                <name>sep.</name>
+                <name>okt.</name>
+                <name>nóv.</name>
+                <name>des.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>kr.</currencySymbol>
+        <currencyDecimalDigits>0</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

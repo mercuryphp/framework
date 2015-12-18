@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>nn</name>
+    <displayName>Norwegian (Nynorsk)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriansk kalender</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>søndag</name>
+                <name>måndag</name>
+                <name>tysdag</name>
+                <name>onsdag</name>
+                <name>torsdag</name>
+                <name>fredag</name>
+                <name>laurdag</name>
+            </fullName>
+            <shortName>
+                <name>sø</name>
+                <name>må</name>
+                <name>ty</name>
+                <name>on</name>
+                <name>to</name>
+                <name>fr</name>
+                <name>la</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>januar</name>
+                <name>februar</name>
+                <name>mars</name>
+                <name>april</name>
+                <name>mai</name>
+                <name>juni</name>
+                <name>juli</name>
+                <name>august</name>
+                <name>september</name>
+                <name>oktober</name>
+                <name>november</name>
+                <name>desember</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>mar</name>
+                <name>apr</name>
+                <name>mai</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>aug</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>nov</name>
+                <name>des</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>kr</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

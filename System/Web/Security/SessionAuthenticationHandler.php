@@ -23,11 +23,14 @@ class SessionAuthenticationHandler extends AuthenticationHandler {
         $ticket = $session->get('ticket');
 
         if($ticket){
-            if($ticket && ((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire()) || $ticket->getExpire()==0)){
-                $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
+            if((\System\Std\Date::now()->getTimestamp() < $ticket->getExpire() || $ticket->getExpire()==0)){
+                if(is_callable($this->identityModelCloure)){
+                    $identity = call_user_func_array($this->identityModelCloure, array($ticket));
+                }else{
+                    $identity = new UserIdentity($ticket->getName(), $ticket->getUserData(), true);
+                }
             }
         }
-
         $this->httpContext->getRequest()->setUser($identity);
     }
 }

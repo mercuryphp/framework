@@ -86,9 +86,15 @@ final class Str{
      * instance.
      * 
      * @param   string $string
+     * @param   bool $ignoreOnEmptyString = false
      * @return  System.Std.Str
      */
-    public function append($string){
+    public function append($string, $ignoreOnEmptyString = false){
+        if($ignoreOnEmptyString){
+            if($this->string===''){
+                return new Str($this->string);
+            }
+        }
         return new Str($this->string.$string);
     }
     
@@ -97,9 +103,15 @@ final class Str{
      * character appened to this instance.
      * 
      * @param   string $string
+     * @param   bool $ignoreOnEmptyString = false
      * @return  System.Std.Str
      */
-    public function appendLine($string){
+    public function appendLine($string, $ignoreOnEmptyString = false){
+        if($ignoreOnEmptyString){
+            if($this->string===''){
+                return new Str($this->string);
+            }
+        }
         return new Str($this->string.$string.PHP_EOL);
     }
 
@@ -107,9 +119,15 @@ final class Str{
      * Gets a new Str instance with the specified string prepended to this instance.
      * 
      * @param   string $string
+     * @param   bool $ignoreOnEmptyString = false
      * @return  System.Std.Str
      */
-    public function prepend($string){
+    public function prepend($string, $ignoreOnEmptyString = false){
+        if($ignoreOnEmptyString){
+            if($this->string===''){
+                return new Str($this->string);
+            }
+        }
         return new Str($string.$this->string);
     }
     
@@ -316,6 +334,15 @@ final class Str{
             unset($segments[$idx]);
         }
         return new \System\Collections\Dictionary($segments);
+    }
+    
+    public function template($params){
+        foreach($params as $key=>$val){
+            if($val){
+                $this->string = str_replace('{'.$key.'}', $val, $this->string);
+            }
+        }
+        return new Str($this->string);
     }
 
     /**

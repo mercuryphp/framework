@@ -7,6 +7,8 @@
         <shortDatePattern>dd-MM-yyyy</shortDatePattern>
         <longDatePattern>dddd, dd' de 'MMMM' de 'yyyy</longDatePattern>
         <dateSeparator>-</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
         <timeSeparator>:</timeSeparator>
         <dayNames>
             <fullName>
@@ -64,6 +66,7 @@
         <numberDecimalSeparator>,</numberDecimalSeparator>
         <numberGroupSeparator>.</numberGroupSeparator>
         <currencySymbol>$</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
         <currencyDecimalSeparator>,</currencyDecimalSeparator>
         <currencyGroupSeparator>.</currencyGroupSeparator>
         <currencyNegativePattern>9</currencyNegativePattern>

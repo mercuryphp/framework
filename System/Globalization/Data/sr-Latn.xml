@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sr-Latn</name>
+    <displayName>Serbian (Latin)</displayName>
+    <datetime>
+        <nativeCalendar>gregorijanski kalendar</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>nedelja</name>
+                <name>ponedeljak</name>
+                <name>utorak</name>
+                <name>sreda</name>
+                <name>četvrtak</name>
+                <name>petak</name>
+                <name>subota</name>
+            </fullName>
+            <shortName>
+                <name>ned</name>
+                <name>pon</name>
+                <name>uto</name>
+                <name>sre</name>
+                <name>čet</name>
+                <name>pet</name>
+                <name>sub</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>januar</name>
+                <name>februar</name>
+                <name>mart</name>
+                <name>april</name>
+                <name>maj</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>avgust</name>
+                <name>septembar</name>
+                <name>oktobar</name>
+                <name>novembar</name>
+                <name>decembar</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>mar</name>
+                <name>apr</name>
+                <name>maj</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>avg</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>nov</name>
+                <name>dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>Din.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

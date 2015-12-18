@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ur-PK</name>
+    <displayName>Urdu (Islamic Republic of Pakistan)</displayName>
+    <datetime>
+        <nativeCalendar>عيسوى سال</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>اتوار</name>
+                <name>پير</name>
+                <name>منگل</name>
+                <name>بدھ</name>
+                <name>جمعرات</name>
+                <name>جمعه</name>
+                <name>هفته</name>
+            </fullName>
+            <shortName>
+                <name>اتوار</name>
+                <name>پير</name>
+                <name>منگل</name>
+                <name>بدھ</name>
+                <name>جمعرات</name>
+                <name>جمعه</name>
+                <name>هفته</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>جنوری</name>
+                <name>فروری</name>
+                <name>مارچ</name>
+                <name>اپریل</name>
+                <name>مئی</name>
+                <name>جون</name>
+                <name>جولائی</name>
+                <name>اگست</name>
+                <name>ستمبر</name>
+                <name>اکتوبر</name>
+                <name>نومبر</name>
+                <name>دسمبر</name>
+            </fullName>
+            <shortName>
+                <name>جنوری</name>
+                <name>فروری</name>
+                <name>مارچ</name>
+                <name>اپریل</name>
+                <name>مئی</name>
+                <name>جون</name>
+                <name>جولائی</name>
+                <name>اگست</name>
+                <name>ستمبر</name>
+                <name>اکتوبر</name>
+                <name>نومبر</name>
+                <name>دسمبر</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>Rs</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>3</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

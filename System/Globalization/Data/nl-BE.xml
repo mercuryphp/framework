@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>nl-BE</name>
+    <displayName>Dutch (Belgium)</displayName>
+    <datetime>
+        <nativeCalendar>Gregoriaanse kalender</nativeCalendar>
+        <shortDatePattern>d/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd d MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>zondag</name>
+                <name>maandag</name>
+                <name>dinsdag</name>
+                <name>woensdag</name>
+                <name>donderdag</name>
+                <name>vrijdag</name>
+                <name>zaterdag</name>
+            </fullName>
+            <shortName>
+                <name>zo</name>
+                <name>ma</name>
+                <name>di</name>
+                <name>wo</name>
+                <name>do</name>
+                <name>vr</name>
+                <name>za</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>januari</name>
+                <name>februari</name>
+                <name>maart</name>
+                <name>april</name>
+                <name>mei</name>
+                <name>juni</name>
+                <name>juli</name>
+                <name>augustus</name>
+                <name>september</name>
+                <name>oktober</name>
+                <name>november</name>
+                <name>december</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>mrt</name>
+                <name>apr</name>
+                <name>mei</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>aug</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>nov</name>
+                <name>dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

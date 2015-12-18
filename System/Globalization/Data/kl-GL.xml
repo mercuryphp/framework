@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>kl-GL</name>
+    <displayName>Greenlandic (Greenland)</displayName>
+    <datetime>
+        <nativeCalendar>qaamatisiutit gregorianerisooq</nativeCalendar>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>sapaat</name>
+                <name>ataasinngorneq</name>
+                <name>marlunngorneq</name>
+                <name>pingasunngorneq</name>
+                <name>sisamanngorneq</name>
+                <name>tallimanngorneq</name>
+                <name>arfininngorneq</name>
+            </fullName>
+            <shortName>
+                <name>sap</name>
+                <name>ata</name>
+                <name>mar</name>
+                <name>ping</name>
+                <name>sis</name>
+                <name>tal</name>
+                <name>arf</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>januari</name>
+                <name>februari</name>
+                <name>martsi</name>
+                <name>apriili</name>
+                <name>maaji</name>
+                <name>juni</name>
+                <name>juli</name>
+                <name>aggusti</name>
+                <name>septembari</name>
+                <name>oktobari</name>
+                <name>novembari</name>
+                <name>decembari</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>feb</name>
+                <name>mar</name>
+                <name>apr</name>
+                <name>mai</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>aug</name>
+                <name>sep</name>
+                <name>okt</name>
+                <name>nov</name>
+                <name>dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>kr.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>smj</name>
+    <displayName>Sami (Lule)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriansk kalender</nativeCalendar>
+        <shortDatePattern>yyyy-MM-dd</shortDatePattern>
+        <longDatePattern>MMMM d'. b. 'yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ájllek</name>
+                <name>mánnodahka</name>
+                <name>dijstahka</name>
+                <name>gasskavahkko</name>
+                <name>duorastahka</name>
+                <name>bierjjedahka</name>
+                <name>lávvodahka</name>
+            </fullName>
+            <shortName>
+                <name>ájl</name>
+                <name>mán</name>
+                <name>dis</name>
+                <name>gas</name>
+                <name>duor</name>
+                <name>bier</name>
+                <name>láv</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ådåjakmánno</name>
+                <name>guovvamánno</name>
+                <name>sjnjuktjamánno</name>
+                <name>vuoratjismánno</name>
+                <name>moarmesmánno</name>
+                <name>biehtsemánno</name>
+                <name>sjnjilltjamánno</name>
+                <name>bårggemánno</name>
+                <name>ragátmánno</name>
+                <name>gålgådismánno</name>
+                <name>basádismánno</name>
+                <name>javllamánno</name>
+            </fullName>
+            <shortName>
+                <name>ådåj</name>
+                <name>guov</name>
+                <name>snju</name>
+                <name>vuor</name>
+                <name>moar</name>
+                <name>bieh</name>
+                <name>snji</name>
+                <name>bårg</name>
+                <name>ragá</name>
+                <name>gålg</name>
+                <name>basá</name>
+                <name>javl</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>kr</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -81,7 +81,7 @@ class EntityMeta {
         
         foreach($this->meta['Columns'] as $columnName => $attributes){
             foreach($attributes as $attribute){
-                if($attribute instanceof \System\Web\Mvc\Validators\IValidator){
+                if($attribute instanceof \System\Web\Mvc\Validators\Validator){
                     $tmp[$columnName][] = $attribute;
                 }
             }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>mn-Cyrl</name>
+    <displayName>Mongolian (Cyrillic)</displayName>
+    <datetime>
+        <nativeCalendar>Грегорийн он тоолол</nativeCalendar>
+        <shortDatePattern>yy.MM.dd</shortDatePattern>
+        <longDatePattern>yyyy 'оны' MMMM d</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Ням</name>
+                <name>Даваа</name>
+                <name>Мягмар</name>
+                <name>Лхагва</name>
+                <name>Пүрэв</name>
+                <name>Баасан</name>
+                <name>Бямба</name>
+            </fullName>
+            <shortName>
+                <name>Ня</name>
+                <name>Да</name>
+                <name>Мя</name>
+                <name>Лх</name>
+                <name>Пү</name>
+                <name>Ба</name>
+                <name>Бя</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>1 дүгээр сар</name>
+                <name>2 дугаар сар</name>
+                <name>3 дугаар сар</name>
+                <name>4 дүгээр сар</name>
+                <name>5 дугаар сар</name>
+                <name>6 дугаар сар</name>
+                <name>7 дугаар сар</name>
+                <name>8 дугаар сар</name>
+                <name>9 дүгээр сар</name>
+                <name>10 дугаар сар</name>
+                <name>11 дүгээр сар</name>
+                <name>12 дугаар сар</name>
+            </fullName>
+            <shortName>
+                <name>I</name>
+                <name>II</name>
+                <name>III</name>
+                <name>IV</name>
+                <name>V</name>
+                <name>VI</name>
+                <name>VII</name>
+                <name>VIII</name>
+                <name>IX</name>
+                <name>X</name>
+                <name>XI</name>
+                <name>XII</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>₮</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>5</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

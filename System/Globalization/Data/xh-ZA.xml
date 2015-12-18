@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>xh-ZA</name>
+    <displayName>isiXhosa (South Africa)</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>yyyy/MM/dd</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>iCawa</name>
+                <name>uMvulo</name>
+                <name>uLwesibini</name>
+                <name>uLwesithathu</name>
+                <name>uLwesine</name>
+                <name>uLwesihlanu</name>
+                <name>uMgqibelo</name>
+            </fullName>
+            <shortName>
+                <name>Sun</name>
+                <name>Mon</name>
+                <name>Tue</name>
+                <name>Wed</name>
+                <name>Thu</name>
+                <name>Fri</name>
+                <name>Sat</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Mqungu</name>
+                <name>Mdumba</name>
+                <name>Kwindla</name>
+                <name>Tshazimpuzi</name>
+                <name>Canzibe</name>
+                <name>Silimela</name>
+                <name>Khala</name>
+                <name>Thupha</name>
+                <name>Msintsi</name>
+                <name>Dwarha</name>
+                <name>Nkanga</name>
+                <name>Mnga</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mar</name>
+                <name>Apr</name>
+                <name>May</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Aug</name>
+                <name>Sep</name>
+                <name>Oct</name>
+                <name>Nov</name>
+                <name>Dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>R</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

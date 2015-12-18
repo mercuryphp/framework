@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sms</name>
+    <displayName>Sami (Skolt)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriaaninen kalenteri</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>MMMM d'. p. 'yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>pâ´sspei´vv</name>
+                <name>vuõssargg</name>
+                <name>mââibargg</name>
+                <name>seärad</name>
+                <name>nelljdpei´vv</name>
+                <name>piâtnâc</name>
+                <name>sue´vet</name>
+            </fullName>
+            <shortName>
+                <name>pâ</name>
+                <name>vu</name>
+                <name>mâ</name>
+                <name>se</name>
+                <name>ne</name>
+                <name>pi</name>
+                <name>su</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ođđee´jjmään</name>
+                <name>tä´lvvmään</name>
+                <name>pâ´zzlâšttammään</name>
+                <name>njuhččmään</name>
+                <name>vue´ssmään</name>
+                <name>ǩie´ssmään</name>
+                <name>suei´nnmään</name>
+                <name>på´rǧǧmään</name>
+                <name>čõhččmään</name>
+                <name>kålggmään</name>
+                <name>skamm´mään</name>
+                <name>rosttovmään</name>
+            </fullName>
+            <shortName>
+                <name>ođjm</name>
+                <name>tä´lvv</name>
+                <name>pâzl</name>
+                <name>njuh</name>
+                <name>vue</name>
+                <name>ǩie</name>
+                <name>suei</name>
+                <name>på´r</name>
+                <name>čõh</name>
+                <name>kålg</name>
+                <name>ska</name>
+                <name>rost</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>id-ID</name>
+    <displayName>Indonesian (Indonesia)</displayName>
+    <datetime>
+        <nativeCalendar>kalendar Masehi</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Minggu</name>
+                <name>Senin</name>
+                <name>Selasa</name>
+                <name>Rabu</name>
+                <name>Kamis</name>
+                <name>Jumat</name>
+                <name>Sabtu</name>
+            </fullName>
+            <shortName>
+                <name>Minggu</name>
+                <name>Sen</name>
+                <name>Sel</name>
+                <name>Rabu</name>
+                <name>Kamis</name>
+                <name>Jumat</name>
+                <name>Sabtu</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Januari</name>
+                <name>Februari</name>
+                <name>Maret</name>
+                <name>April</name>
+                <name>Mei</name>
+                <name>Juni</name>
+                <name>Juli</name>
+                <name>Agustus</name>
+                <name>September</name>
+                <name>Oktober</name>
+                <name>Nopember</name>
+                <name>Desember</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mar</name>
+                <name>Apr</name>
+                <name>Mei</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Agust</name>
+                <name>Sep</name>
+                <name>Okt</name>
+                <name>Nop</name>
+                <name>Des</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>Rp</currencySymbol>
+        <currencyDecimalDigits>0</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

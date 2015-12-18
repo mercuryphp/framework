@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ig-NG</name>
+    <displayName>Igbo (Nigeria)</displayName>
+    <datetime>
+        <nativeCalendar>Kalenda ya Gregori</nativeCalendar>
+        <shortDatePattern>d/M/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Aiku</name>
+                <name>Aje</name>
+                <name>Isegun</name>
+                <name>Ojo'ru</name>
+                <name>Ojo'bo</name>
+                <name>Eti</name>
+                <name>Abameta</name>
+            </fullName>
+            <shortName>
+                <name>Aik</name>
+                <name>Aje</name>
+                <name>Ise</name>
+                <name>Ojo</name>
+                <name>Ojo</name>
+                <name>Eti</name>
+                <name>Aba</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Onwa mbu</name>
+                <name>Onwa ibua</name>
+                <name>Onwa ato</name>
+                <name>Onwa ano</name>
+                <name>Onwa ise</name>
+                <name>Onwa isi</name>
+                <name>Onwa asa</name>
+                <name>Onwa asato</name>
+                <name>Onwa itolu</name>
+                <name>Onwa iri</name>
+                <name>Onwa iri n'ofu</name>
+                <name>Onwa iri n'ibua</name>
+            </fullName>
+            <shortName>
+                <name>mbu.</name>
+                <name>ibu.</name>
+                <name>ato.</name>
+                <name>ano.</name>
+                <name>ise</name>
+                <name>isi</name>
+                <name>asa</name>
+                <name>asa.</name>
+                <name>ito.</name>
+                <name>iri.</name>
+                <name>n'of.</name>
+                <name>n'ib.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>N</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -7,6 +7,8 @@
         <shortDatePattern>M/d/yyyy</shortDatePattern>
         <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
         <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
         <timeSeparator>:</timeSeparator>
         <dayNames>
             <fullName>
@@ -64,6 +66,7 @@
         <numberDecimalSeparator>.</numberDecimalSeparator>
         <numberGroupSeparator>,</numberGroupSeparator>
         <currencySymbol>Php</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
         <currencyDecimalSeparator>.</currencyDecimalSeparator>
         <currencyGroupSeparator>,</currencyGroupSeparator>
         <currencyNegativePattern>0</currencyNegativePattern>

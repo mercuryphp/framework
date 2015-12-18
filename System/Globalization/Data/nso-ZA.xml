@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>nso-ZA</name>
+    <displayName>Sesotho sa Leboa (South Africa)</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>yyyy/MM/dd</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Lamorena</name>
+                <name>Mošupologo</name>
+                <name>Labobedi</name>
+                <name>Laboraro</name>
+                <name>Labone</name>
+                <name>Labohlano</name>
+                <name>Mokibelo</name>
+            </fullName>
+            <shortName>
+                <name>Lam</name>
+                <name>Moš</name>
+                <name>Lbb</name>
+                <name>Lbr</name>
+                <name>Lbn</name>
+                <name>Lbh</name>
+                <name>Mok</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Pherekgong</name>
+                <name>Hlakola</name>
+                <name>Mopitlo</name>
+                <name>Moranang</name>
+                <name>Mosegamanye</name>
+                <name>Ngoatobošego</name>
+                <name>Phuphu</name>
+                <name>Phato</name>
+                <name>Lewedi</name>
+                <name>Diphalana</name>
+                <name>Dibatsela</name>
+                <name>Manthole</name>
+            </fullName>
+            <shortName>
+                <name>Pher</name>
+                <name>Hlak</name>
+                <name>Mop</name>
+                <name>Mor</name>
+                <name>Mos</name>
+                <name>Ngwat</name>
+                <name>Phup</name>
+                <name>Phat</name>
+                <name>Lew</name>
+                <name>Dip</name>
+                <name>Dib</name>
+                <name>Man</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>R</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

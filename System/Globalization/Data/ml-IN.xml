@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ml-IN</name>
+    <displayName>Malayalam (India)</displayName>
+    <datetime>
+        <nativeCalendar>ഇംഗ്ളീഷ് കലണ്ടറ്</nativeCalendar>
+        <shortDatePattern>dd-MM-yy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH.mm</shortTimePattern>
+        <longTimePattern>HH.mm.ss</longTimePattern>
+        <timeSeparator>.</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ഞായറാഴ്ച</name>
+                <name>തിങ്കളാഴ്ച</name>
+                <name>ചൊവ്വാഴ്ച</name>
+                <name>ബുധനാഴ്ച</name>
+                <name>വ്യാഴാഴ്ച</name>
+                <name>വെള്ളിയാഴ്ച</name>
+                <name>ശനിയാഴ്ച</name>
+            </fullName>
+            <shortName>
+                <name>ഞായർ.</name>
+                <name>തിങ്കൾ.</name>
+                <name>ചൊവ്വ.</name>
+                <name>ബുധൻ.</name>
+                <name>വ്യാഴം.</name>
+                <name>വെള്ളി.</name>
+                <name>ശനി.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ജനുവരി</name>
+                <name>ഫെബ്റുവരി</name>
+                <name>മാറ്ച്ച്</name>
+                <name>ഏപ്റില്</name>
+                <name>മെയ്</name>
+                <name>ജൂണ്</name>
+                <name>ജൂലൈ</name>
+                <name>ഓഗസ്ററ്</name>
+                <name>സെപ്ററംബറ്</name>
+                <name>ഒക്ടോബറ്</name>
+                <name>നവംബറ്</name>
+                <name>ഡിസംബറ്</name>
+            </fullName>
+            <shortName>
+                <name>ജനുവരി</name>
+                <name>ഫെബ്റുവരി</name>
+                <name>മാറ്ച്ച്</name>
+                <name>ഏപ്റില്</name>
+                <name>മെയ്</name>
+                <name>ജൂണ്</name>
+                <name>ജൂലൈ</name>
+                <name>ഓഗസ്ററ്</name>
+                <name>സെപ്ററംബറ്</name>
+                <name>ഒക്ടോബറ്</name>
+                <name>നവംബറ്</name>
+                <name>ഡിസംബറ്</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₹</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>tn</name>
+    <displayName>Setswana</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>yyyy/MM/dd</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Latshipi</name>
+                <name>Mosupologo</name>
+                <name>Labobedi</name>
+                <name>Laboraro</name>
+                <name>Labone</name>
+                <name>Labotlhano</name>
+                <name>Lamatlhatso</name>
+            </fullName>
+            <shortName>
+                <name>Ltp.</name>
+                <name>Mos.</name>
+                <name>Lbd.</name>
+                <name>Lbr.</name>
+                <name>Lbn.</name>
+                <name>Lbt.</name>
+                <name>Lmt.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Ferikgong</name>
+                <name>Tlhakole</name>
+                <name>Mopitloe</name>
+                <name>Moranang</name>
+                <name>Motsheganong</name>
+                <name>Seetebosigo</name>
+                <name>Phukwi</name>
+                <name>Phatwe</name>
+                <name>Lwetse</name>
+                <name>Diphalane</name>
+                <name>Ngwanatsele</name>
+                <name>Sedimothole</name>
+            </fullName>
+            <shortName>
+                <name>Fer.</name>
+                <name>Tlhak.</name>
+                <name>Mop.</name>
+                <name>Mor.</name>
+                <name>Motsh.</name>
+                <name>Seet.</name>
+                <name>Phukw.</name>
+                <name>Phatw.</name>
+                <name>Lwets.</name>
+                <name>Diph.</name>
+                <name>Ngwan.</name>
+                <name>Sed.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>R</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

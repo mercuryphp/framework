@@ -90,7 +90,7 @@ abstract class Controller{
      * @return  void
      */
     public function setLogger(\System\Diagnostics\Logger $logger){
-        $this->logger;
+        $this->logger = $logger;
     }
     
     /**
@@ -171,7 +171,7 @@ abstract class Controller{
      * @return  System.Web.Mvc.RedirectResult
      */
     public function redirect($location){
-        return new RedirectResult($this->httpContext->getResponse(), $location);
+        return new RedirectResult($this->httpContext, $location);
     }
 
     public function json($data, $options = null){
@@ -217,21 +217,29 @@ abstract class Controller{
 
         $actionMethod = $refClass->getMethod($actionName);
         $methodParams = $actionMethod->getParameters();
-        $methodArgs = array();
+        $methodArgs = new \System\Collections\Dictionary();
         
+        foreach($attributes as $attribute){
+            if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
+                return false;
+            }
+            elseif($attribute instanceof ModelBinder){
+                $modelBinders->add($attribute->getParameterName(), $attribute);
+            }
+        }
+
         foreach($methodParams as $param){
             $object = $param->getClass();
 
             if(is_object($object)){
                 try {
-                    $modelBinder = $modelBinders->get($param->getName(), new DefaultModelBinder());
+                    $modelBinder = $modelBinders->get($param->getName(), new DefaultModelBinderAttribute());
                     $methodArgs[$param->getName()] = $modelBinder->bind(new ModelBindingContext($this->httpContext->getRequest(), $object->getName(), $param->isOptional(), null));
                 }catch(\Exception $e){
                     throw new ModelBinderException(sprintf("Model binding on parameter '%s' failed. %s", $param->getName(), $e->getMessage()));
                 }
             }else{
                 $value = $this->httpContext->getRequest()->getParam($param->getName());
-
                 if(strlen($value) == 0 && $param->isOptional()){
                     $value = $param->getDefaultValue();
                 }
@@ -240,18 +248,12 @@ abstract class Controller{
         }
         
         foreach($attributes as $attribute){
-            if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
-                return false;
-            }
-            elseif($attribute instanceof ModelBinderAttribute){
-                $modelBinders->add($attribute->getParameterName(), $attribute);
-            }
-            elseif($attribute instanceof PreActionAttribute){
+            if($attribute instanceof PreActionAttribute){
                 $attribute->execute($this, $methodArgs);
             }
         }
 
-        $actionResult = $actionMethod->invokeArgs($this, $methodArgs);
+        $actionResult = $actionMethod->invokeArgs($this, $methodArgs->toArray());
 
         if(!$actionResult){
             $actionResult = new ActionResult();
@@ -260,6 +262,7 @@ abstract class Controller{
         }
         
         $this->render($actionResult);
+        $this->unload();
         
         foreach($attributes as $attribute){
             if($attribute instanceof PostActionAttribute){
@@ -270,6 +273,8 @@ abstract class Controller{
     
     public function load(){}
     
+    public function unload(){}
+
     public function render($actionResult){
         $this->httpContext->getResponse()->write($actionResult->execute());
     }

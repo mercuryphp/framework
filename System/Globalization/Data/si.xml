@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>si</name>
+    <displayName>Sinhala</displayName>
+    <datetime>
+        <nativeCalendar>දින දර්ශනය</nativeCalendar>
+        <shortDatePattern>yyyy-MM-dd</shortDatePattern>
+        <longDatePattern>yyyy MMMM' මස 'dd' වැනිදා 'dddd</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>ඉරිදා</name>
+                <name>සඳුදා</name>
+                <name>අඟහරුවාදා</name>
+                <name>බදාදා</name>
+                <name>බ්‍රහස්පතින්දා</name>
+                <name>සිකුරාදා</name>
+                <name>සෙනසුරාදා</name>
+            </fullName>
+            <shortName>
+                <name>ඉරිදා</name>
+                <name>සඳුදා</name>
+                <name>කුජදා</name>
+                <name>බුදදා</name>
+                <name>ගුරුදා</name>
+                <name>කිවිදා</name>
+                <name>ශනිදා</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>ජනවාරි</name>
+                <name>පෙබරවාරි</name>
+                <name>මාර්තු</name>
+                <name>අ‌ප්‍රේල්</name>
+                <name>මැයි</name>
+                <name>ජූනි</name>
+                <name>ජූලි</name>
+                <name>අ‌ගෝස්තු</name>
+                <name>සැප්තැම්බර්</name>
+                <name>ඔක්තෝබර්</name>
+                <name>නොවැම්බර්</name>
+                <name>දෙසැම්බර්</name>
+            </fullName>
+            <shortName>
+                <name>ජන.</name>
+                <name>පෙබ.</name>
+                <name>මාර්තු.</name>
+                <name>අප්‍රේල්.</name>
+                <name>මැයි.</name>
+                <name>ජූනි.</name>
+                <name>ජූලි.</name>
+                <name>අගෝ.</name>
+                <name>සැප්.</name>
+                <name>ඔක්.</name>
+                <name>නොවැ.</name>
+                <name>දෙසැ.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>රු.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>14</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

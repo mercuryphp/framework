@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>pt-BR</name>
+    <displayName>Portuguese (Brazil)</displayName>
+    <datetime>
+        <nativeCalendar>Calendário gregoriano</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd, d' de 'MMMM' de 'yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>domingo</name>
+                <name>segunda-feira</name>
+                <name>terça-feira</name>
+                <name>quarta-feira</name>
+                <name>quinta-feira</name>
+                <name>sexta-feira</name>
+                <name>sábado</name>
+            </fullName>
+            <shortName>
+                <name>dom</name>
+                <name>seg</name>
+                <name>ter</name>
+                <name>qua</name>
+                <name>qui</name>
+                <name>sex</name>
+                <name>sáb</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>janeiro</name>
+                <name>fevereiro</name>
+                <name>março</name>
+                <name>abril</name>
+                <name>maio</name>
+                <name>junho</name>
+                <name>julho</name>
+                <name>agosto</name>
+                <name>setembro</name>
+                <name>outubro</name>
+                <name>novembro</name>
+                <name>dezembro</name>
+            </fullName>
+            <shortName>
+                <name>jan</name>
+                <name>fev</name>
+                <name>mar</name>
+                <name>abr</name>
+                <name>mai</name>
+                <name>jun</name>
+                <name>jul</name>
+                <name>ago</name>
+                <name>set</name>
+                <name>out</name>
+                <name>nov</name>
+                <name>dez</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>R$</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>9</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

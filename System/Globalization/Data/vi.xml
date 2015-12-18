@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>vi</name>
+    <displayName>Vietnamese</displayName>
+    <datetime>
+        <nativeCalendar>Dương Lịch</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Chủ Nhật</name>
+                <name>Thứ Hai</name>
+                <name>Thứ Ba</name>
+                <name>Thứ Tư</name>
+                <name>Thứ Năm</name>
+                <name>Thứ Sáu</name>
+                <name>Thứ Bảy</name>
+            </fullName>
+            <shortName>
+                <name>CN</name>
+                <name>Hai</name>
+                <name>Ba</name>
+                <name>Tư</name>
+                <name>Năm</name>
+                <name>Sáu</name>
+                <name>Bảy</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Tháng Giêng</name>
+                <name>Tháng Hai</name>
+                <name>Tháng Ba</name>
+                <name>Tháng Tư</name>
+                <name>Tháng Năm</name>
+                <name>Tháng Sáu</name>
+                <name>Tháng Bảy</name>
+                <name>Tháng Tám</name>
+                <name>Tháng Chín</name>
+                <name>Tháng Mười</name>
+                <name>Tháng Mười Một</name>
+                <name>Tháng Mười Hai</name>
+            </fullName>
+            <shortName>
+                <name>Thg1</name>
+                <name>Thg2</name>
+                <name>Thg3</name>
+                <name>Thg4</name>
+                <name>Thg5</name>
+                <name>Thg6</name>
+                <name>Thg7</name>
+                <name>Thg8</name>
+                <name>Thg9</name>
+                <name>Thg10</name>
+                <name>Thg11</name>
+                <name>Thg12</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>₫</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

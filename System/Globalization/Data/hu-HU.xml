@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>hu-HU</name>
+    <displayName>Hungarian (Hungary)</displayName>
+    <datetime>
+        <nativeCalendar>Gergely-naptár</nativeCalendar>
+        <shortDatePattern>yyyy.MM.dd.</shortDatePattern>
+        <longDatePattern>yyyy. MMMM d.</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>vasárnap</name>
+                <name>hétfő</name>
+                <name>kedd</name>
+                <name>szerda</name>
+                <name>csütörtök</name>
+                <name>péntek</name>
+                <name>szombat</name>
+            </fullName>
+            <shortName>
+                <name>V</name>
+                <name>H</name>
+                <name>K</name>
+                <name>Sze</name>
+                <name>Cs</name>
+                <name>P</name>
+                <name>Szo</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>január</name>
+                <name>február</name>
+                <name>március</name>
+                <name>április</name>
+                <name>május</name>
+                <name>június</name>
+                <name>július</name>
+                <name>augusztus</name>
+                <name>szeptember</name>
+                <name>október</name>
+                <name>november</name>
+                <name>december</name>
+            </fullName>
+            <shortName>
+                <name>jan.</name>
+                <name>febr.</name>
+                <name>márc.</name>
+                <name>ápr.</name>
+                <name>máj.</name>
+                <name>jún.</name>
+                <name>júl.</name>
+                <name>aug.</name>
+                <name>szept.</name>
+                <name>okt.</name>
+                <name>nov.</name>
+                <name>dec.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>Ft</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

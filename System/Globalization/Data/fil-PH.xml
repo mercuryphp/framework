@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>fil-PH</name>
+    <displayName>Filipino (Philippines)</displayName>
+    <datetime>
+        <nativeCalendar>kaledaryong Gregoryano</nativeCalendar>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Linggo</name>
+                <name>Lunes</name>
+                <name>Martes</name>
+                <name>Mierkoles</name>
+                <name>Huebes</name>
+                <name>Biernes</name>
+                <name>Sabado</name>
+            </fullName>
+            <shortName>
+                <name>Lin</name>
+                <name>Lun</name>
+                <name>Mar</name>
+                <name>Mier</name>
+                <name>Hueb</name>
+                <name>Bier</name>
+                <name>Saba</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Enero</name>
+                <name>Pebrero</name>
+                <name>Marso</name>
+                <name>Abril</name>
+                <name>Mayo</name>
+                <name>Hunyo</name>
+                <name>Hulyo</name>
+                <name>Agosto</name>
+                <name>Septyembre</name>
+                <name>Oktubre</name>
+                <name>Nobyembre</name>
+                <name>Disyembre</name>
+            </fullName>
+            <shortName>
+                <name>En</name>
+                <name>Peb</name>
+                <name>Mar</name>
+                <name>Abr</name>
+                <name>Mayo</name>
+                <name>Hun</name>
+                <name>Hul</name>
+                <name>Agos</name>
+                <name>Sept</name>
+                <name>Okt</name>
+                <name>Nob</name>
+                <name>Dis</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>PhP</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

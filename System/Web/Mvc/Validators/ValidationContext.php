@@ -22,19 +22,27 @@ class ValidationContext {
     
     public function addRange($field, $value, array $validators){
         foreach($validators as $validator){
-            $validator->setColumnName($field);
+            $validator->setFieldName($field);
             $this->add($field, $value)->add($validator);
         }
     }
     
-    public function addError($fieldName, $errMessage){
-        $this->errors[$fieldName] = $errMessage;
+    public function addError($field, $errMessage){
+        $this->errors[$field] = $errMessage;
+    }
+    
+    public function removeField($field){
+        if(array_key_exists($field, $this->fields)){
+            unset($this->fields[$field]);
+            return true;
+        }
+        return false;
     }
     
     public function isValid(){
-        foreach($this->fields as $fieldName => $stack){
+        foreach($this->fields as $field => $stack){
             if(!$stack->isValid()){
-                $this->errors[$fieldName] = $stack->getError();
+                $this->errors[$field] = $stack->getError();
             }
         }
 

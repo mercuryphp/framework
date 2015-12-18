@@ -42,6 +42,7 @@ final class HttpCookie {
      */
     public function setName($name){
         $this->name = $name;
+        return $this;
     }
     
     /**
@@ -61,6 +62,7 @@ final class HttpCookie {
      */
     public function setValue($value){
         $this->value = $value;
+        return $this;
     }
     
     /**
@@ -80,6 +82,7 @@ final class HttpCookie {
      */
     public function setExpires($expires){
         $this->expires = $expires;
+        return $this;
     }
     
     /**
@@ -99,6 +102,7 @@ final class HttpCookie {
      */
     public function setPath($path){
         $this->path = $path;
+        return $this;
     }
     
     /**
@@ -118,6 +122,7 @@ final class HttpCookie {
      */
     public function setDomain($domain){
         $this->domain = $domain;
+        return $this;
     }
     
     /**
@@ -130,32 +135,48 @@ final class HttpCookie {
     }
 
     /**
-     * Gets or sets a value indicating that the cookie should only be transmitted 
+     * Sets a value indicating that the cookie should only be transmitted 
      * over a secure HTTPS connection from the client.
      * 
      * @param   bool $bool = null
      * @return  bool
      */
-    public function isSecure($bool = null){
-        if(!is_null($bool)){
-            $this->isSecure = $bool;
-        }else{
-            return $this->isSecure;
-        }
+    public function setIsSecure($bool = null){
+        $this->isSecure = $bool;
+        return $this;
+    }
+    
+    /**
+     * Gets a value indicating that the cookie should only be transmitted 
+     * over a secure HTTPS connection from the client.
+     * 
+     * @param   bool $bool = null
+     * @return  bool
+     */
+    public function getIsSecure(){
+        return $this->isSecure;
     }
 
     /**
-     * Gets or sets a value indicating that the cookie should be accessible only 
+     * Sets a value indicating that the cookie should be accessible only 
      * through the HTTP protocol.
      * 
      * @param   bool $bool = null
      * @return  bool
      */
-    public function isHttpOnly($bool = null){
-        if(!is_null($bool)){
-            $this->isHttpOnly = $bool;
-        }else{
-            return $this->isHttpOnly;
-        }
+    public function setIsHttpOnly($bool = null){
+        $this->isHttpOnly = $bool;
+        return $this;
+    }
+    
+    /**
+     * Gets a value indicating that the cookie should be accessible only 
+     * through the HTTP protocol.
+     * 
+     * @param   bool $bool = null
+     * @return  bool
+     */
+    public function getIsHttpOnly(){
+        return $this->isHttpOnly;
     }
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>zh-SG</name>
+    <displayName>Chinese (Simplified, Singapore)</displayName>
+    <datetime>
+        <nativeCalendar>西历</nativeCalendar>
+        <shortDatePattern>d/M/yyyy</shortDatePattern>
+        <longDatePattern>yyyy'年'M'月'd'日'</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>tt h:mm</shortTimePattern>
+        <longTimePattern>tt h:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>星期日</name>
+                <name>星期一</name>
+                <name>星期二</name>
+                <name>星期三</name>
+                <name>星期四</name>
+                <name>星期五</name>
+                <name>星期六</name>
+            </fullName>
+            <shortName>
+                <name>周日</name>
+                <name>周一</name>
+                <name>周二</name>
+                <name>周三</name>
+                <name>周四</name>
+                <name>周五</name>
+                <name>周六</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>一月</name>
+                <name>二月</name>
+                <name>三月</name>
+                <name>四月</name>
+                <name>五月</name>
+                <name>六月</name>
+                <name>七月</name>
+                <name>八月</name>
+                <name>九月</name>
+                <name>十月</name>
+                <name>十一月</name>
+                <name>十二月</name>
+            </fullName>
+            <shortName>
+                <name>一月</name>
+                <name>二月</name>
+                <name>三月</name>
+                <name>四月</name>
+                <name>五月</name>
+                <name>六月</name>
+                <name>七月</name>
+                <name>八月</name>
+                <name>九月</name>
+                <name>十月</name>
+                <name>十一月</name>
+                <name>十二月</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>$</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>mr-IN</name>
+    <displayName>Marathi (India)</displayName>
+    <datetime>
+        <nativeCalendar>इंग्रजी कॅलेन्डर</nativeCalendar>
+        <shortDatePattern>dd-MM-yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>-</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>रविवार</name>
+                <name>सोमवार</name>
+                <name>मंगळवार</name>
+                <name>बुधवार</name>
+                <name>गुरुवार</name>
+                <name>शुक्रवार</name>
+                <name>शनिवार</name>
+            </fullName>
+            <shortName>
+                <name>रवि.</name>
+                <name>सोम.</name>
+                <name>मंगळ.</name>
+                <name>बुध.</name>
+                <name>गुरु.</name>
+                <name>शुक्र.</name>
+                <name>शनि.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>जानेवारी</name>
+                <name>फेब्रुवारी</name>
+                <name>मार्च</name>
+                <name>एप्रिल</name>
+                <name>मे</name>
+                <name>जून</name>
+                <name>जुलै</name>
+                <name>ऑगस्ट</name>
+                <name>सप्टेंबर</name>
+                <name>ऑक्टोबर</name>
+                <name>नोव्हेंबर</name>
+                <name>डिसेंबर</name>
+            </fullName>
+            <shortName>
+                <name>जाने.</name>
+                <name>फेब्रु.</name>
+                <name>मार्च</name>
+                <name>एप्रिल</name>
+                <name>मे</name>
+                <name>जून</name>
+                <name>जुलै</name>
+                <name>ऑगस्ट</name>
+                <name>सप्टें.</name>
+                <name>ऑक्टो.</name>
+                <name>नोव्हें.</name>
+                <name>डिसें.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>₹</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>12</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ga-IE</name>
+    <displayName>Irish (Ireland)</displayName>
+    <datetime>
+        <nativeCalendar>Féilire Greagórach</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Dé Domhnaigh</name>
+                <name>Dé Luain</name>
+                <name>Dé Máirt</name>
+                <name>Dé Céadaoin</name>
+                <name>Déardaoin</name>
+                <name>Dé hAoine</name>
+                <name>Dé Sathairn</name>
+            </fullName>
+            <shortName>
+                <name>Domh</name>
+                <name>Luan</name>
+                <name>Máir</name>
+                <name>Céad</name>
+                <name>Déar</name>
+                <name>Aoi</name>
+                <name>Sath</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Eanáir</name>
+                <name>Feabhra</name>
+                <name>Márta</name>
+                <name>Aibreán</name>
+                <name>Bealtaine</name>
+                <name>Meitheamh</name>
+                <name>Iúil</name>
+                <name>Lúnasa</name>
+                <name>Meán Fómhair</name>
+                <name>Deireadh Fómhair</name>
+                <name>Samhain</name>
+                <name>Nollaig</name>
+            </fullName>
+            <shortName>
+                <name>Ean</name>
+                <name>Feabh</name>
+                <name>Már</name>
+                <name>Aib</name>
+                <name>Bealt</name>
+                <name>Meith</name>
+                <name>Iúil</name>
+                <name>Lún</name>
+                <name>M.Fómh</name>
+                <name>D.Fómh</name>
+                <name>Samh</name>
+                <name>Noll</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

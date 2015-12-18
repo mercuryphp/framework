@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>tt-RU</name>
+    <displayName>Tatar (Russia)</displayName>
+    <datetime>
+        <nativeCalendar>Григориан календаре</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Якшәмбе</name>
+                <name>Дүшәмбе</name>
+                <name>Сишәмбе</name>
+                <name>Чәршәмбе</name>
+                <name>Пәнҗешәмбе</name>
+                <name>Җомга</name>
+                <name>Шимбә</name>
+            </fullName>
+            <shortName>
+                <name>Якш</name>
+                <name>Дүш</name>
+                <name>Сиш</name>
+                <name>Чәрш</name>
+                <name>Пәнҗ</name>
+                <name>Җом</name>
+                <name>Шим</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Гыйнвар</name>
+                <name>Февраль</name>
+                <name>Март</name>
+                <name>Апрель</name>
+                <name>Май</name>
+                <name>Июнь</name>
+                <name>Июль</name>
+                <name>Август</name>
+                <name>Сентябрь</name>
+                <name>Октябрь</name>
+                <name>Ноябрь</name>
+                <name>Декабрь</name>
+            </fullName>
+            <shortName>
+                <name>Гыйн.</name>
+                <name>Фев.</name>
+                <name>Мар.</name>
+                <name>Апр.</name>
+                <name>Май</name>
+                <name>Июнь</name>
+                <name>Июль</name>
+                <name>Авг.</name>
+                <name>Сен.</name>
+                <name>Окт.</name>
+                <name>Нояб.</name>
+                <name>Дек.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>₽</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

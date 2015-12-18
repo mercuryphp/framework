@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>zu-ZA</name>
+    <displayName>isiZulu (South Africa)</displayName>
+    <datetime>
+        <nativeCalendar>Gregorian Calendar</nativeCalendar>
+        <shortDatePattern>yyyy/MM/dd</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>hh:mm tt</shortTimePattern>
+        <longTimePattern>hh:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>iSonto</name>
+                <name>uMsombuluko</name>
+                <name>uLwesibili</name>
+                <name>uLwesithathu</name>
+                <name>uLwesine</name>
+                <name>uLwesihlanu</name>
+                <name>uMgqibelo</name>
+            </fullName>
+            <shortName>
+                <name>Son.</name>
+                <name>Mso.</name>
+                <name>Bi.</name>
+                <name>Tha.</name>
+                <name>Ne.</name>
+                <name>Hla.</name>
+                <name>Mgq.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>uMasingana</name>
+                <name>uNhlolanja</name>
+                <name>uNdasa</name>
+                <name>uMbaso</name>
+                <name>uNhlaba</name>
+                <name>uNhlangulana</name>
+                <name>uNtulikazi</name>
+                <name>uNcwaba</name>
+                <name>uMandulo</name>
+                <name>uMfumfu</name>
+                <name>uLwezi</name>
+                <name>uZibandlela</name>
+            </fullName>
+            <shortName>
+                <name>Mas.</name>
+                <name>Nhlo.</name>
+                <name>Nda.</name>
+                <name>Mba.</name>
+                <name>Nhla.</name>
+                <name>Nhlang.</name>
+                <name>Ntu.</name>
+                <name>Ncwa.</name>
+                <name>Man.</name>
+                <name>Mfu.</name>
+                <name>Lwe.</name>
+                <name>Zib.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>R</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

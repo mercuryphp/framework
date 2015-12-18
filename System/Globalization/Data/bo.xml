@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>bo</name>
+    <displayName>Tibetan</displayName>
+    <datetime>
+        <nativeCalendar>ལོ་ཐོ</nativeCalendar>
+        <shortDatePattern>yyyy/M/d</shortDatePattern>
+        <longDatePattern>yyyy'ལོའི་ཟླ' M'ཚེས' d</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>གཟའ་ཉི་མ།</name>
+                <name>གཟའ་ཟླ་བ།</name>
+                <name>གཟའ་མིག་དམར།</name>
+                <name>གཟའ་ལྷག་པ།</name>
+                <name>གཟའ་ཕུར་བུ།</name>
+                <name>གཟའ་པ་སངས།</name>
+                <name>གཟའ་སྤེན་པ།</name>
+            </fullName>
+            <shortName>
+                <name>ཉི་མ།</name>
+                <name>ཟླ་བ།</name>
+                <name>མིག་དམར།</name>
+                <name>ལྷག་པ།</name>
+                <name>ཕུར་བུ།</name>
+                <name>པ་སངས།</name>
+                <name>སྤེན་པ།</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>སྤྱི་ཟླ་དང་པོ།</name>
+                <name>སྤྱི་ཟླ་གཉིས་པ།</name>
+                <name>སྤྱི་ཟླ་གསུམ་པ།</name>
+                <name>སྤྱི་ཟླ་བཞི་པ།</name>
+                <name>སྤྱི་ཟླ་ལྔ་པ།</name>
+                <name>སྤྱི་ཟླ་དྲུག་པ།</name>
+                <name>སྤྱི་ཟླ་བདུན་པ།</name>
+                <name>སྤྱི་ཟླ་བརྒྱད་པ།</name>
+                <name>སྤྱི་ཟླ་དགུ་པ།</name>
+                <name>སྤྱི་ཟླ་བཅུ་པོ།</name>
+                <name>སྤྱི་ཟླ་བཅུ་གཅིག་པ།</name>
+                <name>སྤྱི་ཟླ་བཅུ་གཉིས་པ།</name>
+            </fullName>
+            <shortName>
+                <name>ཟླ་ ༡</name>
+                <name>ཟླ་ ༢</name>
+                <name>ཟླ་ ༣</name>
+                <name>ཟླ་ ༤</name>
+                <name>ཟླ་ ༥</name>
+                <name>ཟླ་ ༦</name>
+                <name>ཟླ་ ༧</name>
+                <name>ཟླ་ ༨</name>
+                <name>ཟླ་ ༩</name>
+                <name>ཟླ་ ༡༠</name>
+                <name>ཟླ་ ༡༡</name>
+                <name>ཟླ་ ༡༢</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>¥</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

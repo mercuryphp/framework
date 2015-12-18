@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ne-NP</name>
+    <displayName>Nepali (Nepal)</displayName>
+    <datetime>
+        <nativeCalendar>अङ्ग्रेजी क्यालेण्डेर</nativeCalendar>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>आइतवार</name>
+                <name>सोमवार</name>
+                <name>मङ्गलवार</name>
+                <name>बुधवार</name>
+                <name>बिहीवार</name>
+                <name>शुक्रवार</name>
+                <name>शनिवार</name>
+            </fullName>
+            <shortName>
+                <name>आइत</name>
+                <name>सोम</name>
+                <name>मङ्गल</name>
+                <name>बुध</name>
+                <name>बिही</name>
+                <name>शुक्र</name>
+                <name>शनि</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>जनवरी</name>
+                <name>फेब्रुअरी</name>
+                <name>मार्च</name>
+                <name>अप्रिल</name>
+                <name>मे</name>
+                <name>जून</name>
+                <name>जुलाई</name>
+                <name>अगस्त</name>
+                <name>सेप्टेम्बर</name>
+                <name>अक्टोबर</name>
+                <name>नोभेम्बर</name>
+                <name>डिसेम्बर</name>
+            </fullName>
+            <shortName>
+                <name>जन</name>
+                <name>फेब</name>
+                <name>मार्च</name>
+                <name>अप्रिल</name>
+                <name>मे</name>
+                <name>जून</name>
+                <name>जुलाई</name>
+                <name>अग</name>
+                <name>सेप्ट</name>
+                <name>अक्ट</name>
+                <name>नोभ</name>
+                <name>डिस</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>रु</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

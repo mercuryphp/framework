@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>yo-NG</name>
+    <displayName>Yoruba (Nigeria)</displayName>
+    <datetime>
+        <nativeCalendar>Kalenda ya Gregori</nativeCalendar>
+        <shortDatePattern>d/M/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Aiku</name>
+                <name>Aje</name>
+                <name>Isegun</name>
+                <name>Ojo'ru</name>
+                <name>Ojo'bo</name>
+                <name>Eti</name>
+                <name>Abameta</name>
+            </fullName>
+            <shortName>
+                <name>Aik</name>
+                <name>Aje</name>
+                <name>Ise</name>
+                <name>Ojo</name>
+                <name>Ojo</name>
+                <name>Eti</name>
+                <name>Aba</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Osu kinni</name>
+                <name>Osu keji</name>
+                <name>Osu keta</name>
+                <name>Osu kerin</name>
+                <name>Osu karun</name>
+                <name>Osu kefa</name>
+                <name>Osu keje</name>
+                <name>Osu kejo</name>
+                <name>Osu kesan</name>
+                <name>Osu kewa</name>
+                <name>Osu kokanla</name>
+                <name>Osu keresi</name>
+            </fullName>
+            <shortName>
+                <name>kin.</name>
+                <name>kej.</name>
+                <name>ket.</name>
+                <name>ker.</name>
+                <name>kar.</name>
+                <name>kef.</name>
+                <name>kej.</name>
+                <name>kej.</name>
+                <name>kes.</name>
+                <name>kew.</name>
+                <name>kok.</name>
+                <name>ker.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>N</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>2</currencyNegativePattern>
+        <currencyPositivePattern>2</currencyPositivePattern>
+    </numberFormat>
+</locale>

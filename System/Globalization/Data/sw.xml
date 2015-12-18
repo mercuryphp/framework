@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sw</name>
+    <displayName>Kiswahili</displayName>
+    <datetime>
+        <nativeCalendar>Kalenda ya Gregori</nativeCalendar>
+        <shortDatePattern>M/d/yyyy</shortDatePattern>
+        <longDatePattern>dddd, MMMM dd, yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>h:mm tt</shortTimePattern>
+        <longTimePattern>h:mm:ss tt</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Jumapili</name>
+                <name>Jumatatu</name>
+                <name>Jumanne</name>
+                <name>Jumatano</name>
+                <name>Alhamisi</name>
+                <name>Ijumaa</name>
+                <name>Jumamosi</name>
+            </fullName>
+            <shortName>
+                <name>Jumap.</name>
+                <name>Jumat.</name>
+                <name>Juman.</name>
+                <name>Jumat.</name>
+                <name>Alh.</name>
+                <name>Iju.</name>
+                <name>Jumam.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Januari</name>
+                <name>Februari</name>
+                <name>Machi</name>
+                <name>Aprili</name>
+                <name>Mei</name>
+                <name>Juni</name>
+                <name>Julai</name>
+                <name>Agosti</name>
+                <name>Septemba</name>
+                <name>Oktoba</name>
+                <name>Novemba</name>
+                <name>Decemba</name>
+            </fullName>
+            <shortName>
+                <name>Jan</name>
+                <name>Feb</name>
+                <name>Mac</name>
+                <name>Apr</name>
+                <name>Mei</name>
+                <name>Jun</name>
+                <name>Jul</name>
+                <name>Ago</name>
+                <name>Sep</name>
+                <name>Okt</name>
+                <name>Nov</name>
+                <name>Dec</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>S</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>0</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

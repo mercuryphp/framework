@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sah-RU</name>
+    <displayName>Sakha (Russia)</displayName>
+    <datetime>
+        <nativeCalendar>григорианский</nativeCalendar>
+        <shortDatePattern>MM.dd.yyyy</shortDatePattern>
+        <longDatePattern>MMMM d yyyy 'с.'</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>баскыһыанньа</name>
+                <name>бэнидиэнньик</name>
+                <name>оптуорунньук</name>
+                <name>сэрэдэ</name>
+                <name>чэппиэр</name>
+                <name>бээтинсэ</name>
+                <name>субуота</name>
+            </fullName>
+            <shortName>
+                <name>Бс</name>
+                <name>Бн</name>
+                <name>Оп</name>
+                <name>Ср</name>
+                <name>Чп</name>
+                <name>Бт</name>
+                <name>Сб</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Тохсунньу</name>
+                <name>Олунньу</name>
+                <name>Кулун тутар</name>
+                <name>Муус устар</name>
+                <name>Ыам ыйа</name>
+                <name>Бэс ыйа</name>
+                <name>От ыйа</name>
+                <name>Атырдьах ыйа</name>
+                <name>Балаҕан ыйа</name>
+                <name>Алтынньы</name>
+                <name>Сэтинньи</name>
+                <name>Ахсынньы</name>
+            </fullName>
+            <shortName>
+                <name>тхс</name>
+                <name>олн</name>
+                <name>кул</name>
+                <name>мст</name>
+                <name>ыам</name>
+                <name>бэс</name>
+                <name>отй</name>
+                <name>атр</name>
+                <name>блҕ</name>
+                <name>алт</name>
+                <name>стн</name>
+                <name>ахс</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>₽</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>5</currencyNegativePattern>
+        <currencyPositivePattern>1</currencyPositivePattern>
+    </numberFormat>
+</locale>

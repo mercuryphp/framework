@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>hr-BA</name>
+    <displayName>Croatian (Latin, Bosnia and Herzegovina)</displayName>
+    <datetime>
+        <nativeCalendar>gregorijanski kalendar</nativeCalendar>
+        <shortDatePattern>d.M.yyyy.</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy.</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>nedjelja</name>
+                <name>ponedjeljak</name>
+                <name>utorak</name>
+                <name>srijeda</name>
+                <name>četvrtak</name>
+                <name>petak</name>
+                <name>subota</name>
+            </fullName>
+            <shortName>
+                <name>ned</name>
+                <name>pon</name>
+                <name>uto</name>
+                <name>sri</name>
+                <name>čet</name>
+                <name>pet</name>
+                <name>sub</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>siječanj</name>
+                <name>veljača</name>
+                <name>ožujak</name>
+                <name>travanj</name>
+                <name>svibanj</name>
+                <name>lipanj</name>
+                <name>srpanj</name>
+                <name>kolovoz</name>
+                <name>rujan</name>
+                <name>listopad</name>
+                <name>studeni</name>
+                <name>prosinac</name>
+            </fullName>
+            <shortName>
+                <name>sij</name>
+                <name>vlj</name>
+                <name>ožu</name>
+                <name>tra</name>
+                <name>svi</name>
+                <name>lip</name>
+                <name>srp</name>
+                <name>kol</name>
+                <name>ruj</name>
+                <name>lis</name>
+                <name>stu</name>
+                <name>pro</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator>.</numberGroupSeparator>
+        <currencySymbol>KM</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator>.</currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

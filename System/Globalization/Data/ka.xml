@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>ka</name>
+    <displayName>Georgian</displayName>
+    <datetime>
+        <nativeCalendar>გრიგორიანული კალენდარი</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>yyyy 'წლის' dd MM, dddd</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>კვირა</name>
+                <name>ორშაბათი</name>
+                <name>სამშაბათი</name>
+                <name>ოთხშაბათი</name>
+                <name>ხუთშაბათი</name>
+                <name>პარასკევი</name>
+                <name>შაბათი</name>
+            </fullName>
+            <shortName>
+                <name>კვირა</name>
+                <name>ორშაბათი</name>
+                <name>სამშაბათი</name>
+                <name>ოთხშაბათი</name>
+                <name>ხუთშაბათი</name>
+                <name>პარასკევი</name>
+                <name>შაბათი</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>იანვარი</name>
+                <name>თებერვალი</name>
+                <name>მარტი</name>
+                <name>აპრილი</name>
+                <name>მაისი</name>
+                <name>ივნისი</name>
+                <name>ივლისი</name>
+                <name>აგვისტო</name>
+                <name>სექტემბერი</name>
+                <name>ოქტომბერი</name>
+                <name>ნოემბერი</name>
+                <name>დეკემბერი</name>
+            </fullName>
+            <shortName>
+                <name>იან</name>
+                <name>თებ</name>
+                <name>მარ</name>
+                <name>აპრ</name>
+                <name>მაის</name>
+                <name>ივნ</name>
+                <name>ივლ</name>
+                <name>აგვ</name>
+                <name>სექ</name>
+                <name>ოქტ</name>
+                <name>ნოემ</name>
+                <name>დეკ</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>Lari</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

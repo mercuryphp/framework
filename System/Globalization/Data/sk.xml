@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>sk</name>
+    <displayName>Slovak</displayName>
+    <datetime>
+        <nativeCalendar>gregoriánsky kalendár</nativeCalendar>
+        <shortDatePattern>d. M. yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>. </dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>nedeľa</name>
+                <name>pondelok</name>
+                <name>utorok</name>
+                <name>streda</name>
+                <name>štvrtok</name>
+                <name>piatok</name>
+                <name>sobota</name>
+            </fullName>
+            <shortName>
+                <name>ne</name>
+                <name>po</name>
+                <name>ut</name>
+                <name>st</name>
+                <name>št</name>
+                <name>pi</name>
+                <name>so</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>január</name>
+                <name>február</name>
+                <name>marec</name>
+                <name>apríl</name>
+                <name>máj</name>
+                <name>jún</name>
+                <name>júl</name>
+                <name>august</name>
+                <name>september</name>
+                <name>október</name>
+                <name>november</name>
+                <name>december</name>
+            </fullName>
+            <shortName>
+                <name>1</name>
+                <name>2</name>
+                <name>3</name>
+                <name>4</name>
+                <name>5</name>
+                <name>6</name>
+                <name>7</name>
+                <name>8</name>
+                <name>9</name>
+                <name>10</name>
+                <name>11</name>
+                <name>12</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

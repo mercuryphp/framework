@@ -142,7 +142,7 @@ final class Object{
                         if((string)$attribute){
                             $args = (string)Str::set($comments[$key])->get('(', ')');
                             $args = $args ? str_getcsv($args, ',', '"') : array();
-                            $comments[$key] = Object::getInstance((string)$attribute->append('Attribute'), $args);
+                            $comments[$key] = Object::getInstance((string)$attribute->append('Attribute'), array_map('trim', $args));
                         }else{
                             unset($comments[$key]);
                         }

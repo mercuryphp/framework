@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>gd-GB</name>
+    <displayName>Scottish Gaelic (United Kingdom)</displayName>
+    <datetime>
+        <nativeCalendar>miosachan Greagòrianach</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dd MMMM yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>Didòmhnaich</name>
+                <name>Diluain</name>
+                <name>Dimàirt</name>
+                <name>Diciadain</name>
+                <name>Diardaoin</name>
+                <name>Dihaoine</name>
+                <name>Disathairne</name>
+            </fullName>
+            <shortName>
+                <name>Dòm</name>
+                <name>Lua</name>
+                <name>Mài</name>
+                <name>Cia</name>
+                <name>Ard</name>
+                <name>Hao</name>
+                <name>Sat</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Am Faoilleach</name>
+                <name>An Gearran</name>
+                <name>Am Màrt</name>
+                <name>An Giblean</name>
+                <name>An Cèitean</name>
+                <name>An t-Ògmhios</name>
+                <name>An t-Iuchar</name>
+                <name>An Lùnastal</name>
+                <name>An t-Sultain</name>
+                <name>An Dàmhair</name>
+                <name>An t-Samhain</name>
+                <name>An Dùbhlachd</name>
+            </fullName>
+            <shortName>
+                <name>Fao</name>
+                <name>Gea</name>
+                <name>Màr</name>
+                <name>Gib</name>
+                <name>Cèi</name>
+                <name>Ògm</name>
+                <name>Iuc</name>
+                <name>Lùn</name>
+                <name>Sul</name>
+                <name>Dàm</name>
+                <name>Sam</name>
+                <name>Dùb</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>.</numberDecimalSeparator>
+        <numberGroupSeparator>,</numberGroupSeparator>
+        <currencySymbol>£</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>.</currencyDecimalSeparator>
+        <currencyGroupSeparator>,</currencyGroupSeparator>
+        <currencyNegativePattern>1</currencyNegativePattern>
+        <currencyPositivePattern>0</currencyPositivePattern>
+    </numberFormat>
+</locale>

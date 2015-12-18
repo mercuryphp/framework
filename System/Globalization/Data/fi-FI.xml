@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>fi-FI</name>
+    <displayName>Finnish (Finland)</displayName>
+    <datetime>
+        <nativeCalendar>gregoriaaninen kalenteri</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM'ta 'yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>sunnuntai</name>
+                <name>maanantai</name>
+                <name>tiistai</name>
+                <name>keskiviikko</name>
+                <name>torstai</name>
+                <name>perjantai</name>
+                <name>lauantai</name>
+            </fullName>
+            <shortName>
+                <name>su</name>
+                <name>ma</name>
+                <name>ti</name>
+                <name>ke</name>
+                <name>to</name>
+                <name>pe</name>
+                <name>la</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>tammikuu</name>
+                <name>helmikuu</name>
+                <name>maaliskuu</name>
+                <name>huhtikuu</name>
+                <name>toukokuu</name>
+                <name>kesäkuu</name>
+                <name>heinäkuu</name>
+                <name>elokuu</name>
+                <name>syyskuu</name>
+                <name>lokakuu</name>
+                <name>marraskuu</name>
+                <name>joulukuu</name>
+            </fullName>
+            <shortName>
+                <name>tammi</name>
+                <name>helmi</name>
+                <name>maalis</name>
+                <name>huhti</name>
+                <name>touko</name>
+                <name>kesä</name>
+                <name>heinä</name>
+                <name>elo</name>
+                <name>syys</name>
+                <name>loka</name>
+                <name>marras</name>
+                <name>joulu</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

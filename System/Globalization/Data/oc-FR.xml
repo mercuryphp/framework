@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>oc-FR</name>
+    <displayName>Occitan (France)</displayName>
+    <datetime>
+        <nativeCalendar>calendier gregorian</nativeCalendar>
+        <shortDatePattern>dd/MM/yyyy</shortDatePattern>
+        <longDatePattern>dddd,' lo 'd MMMM' de 'yyyy</longDatePattern>
+        <dateSeparator>/</dateSeparator>
+        <shortTimePattern>HH:mm</shortTimePattern>
+        <longTimePattern>HH:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>dimenge</name>
+                <name>diluns</name>
+                <name>dimars</name>
+                <name>dimècres</name>
+                <name>dijòus</name>
+                <name>divendres</name>
+                <name>dissabte</name>
+            </fullName>
+            <shortName>
+                <name>dim.</name>
+                <name>lun.</name>
+                <name>mar.</name>
+                <name>mèc.</name>
+                <name>jòu.</name>
+                <name>ven.</name>
+                <name>sab.</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>genier</name>
+                <name>febrier</name>
+                <name>març</name>
+                <name>abril</name>
+                <name>mai</name>
+                <name>junh</name>
+                <name>julh</name>
+                <name>agost</name>
+                <name>setembre</name>
+                <name>octobre</name>
+                <name>novembre</name>
+                <name>desembre</name>
+            </fullName>
+            <shortName>
+                <name>gen.</name>
+                <name>feb.</name>
+                <name>mar.</name>
+                <name>abr.</name>
+                <name>mai.</name>
+                <name>jun.</name>
+                <name>jul.</name>
+                <name>ag.</name>
+                <name>set.</name>
+                <name>oct.</name>
+                <name>nov.</name>
+                <name>des.</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>€</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

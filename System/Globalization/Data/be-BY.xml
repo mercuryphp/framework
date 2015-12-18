@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>be-BY</name>
+    <displayName>Belarusian (Belarus)</displayName>
+    <datetime>
+        <nativeCalendar>григорианский календарь</nativeCalendar>
+        <shortDatePattern>dd.MM.yyyy</shortDatePattern>
+        <longDatePattern>d MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>нядзеля</name>
+                <name>панядзелак</name>
+                <name>аўторак</name>
+                <name>серада</name>
+                <name>чацвер</name>
+                <name>пятніца</name>
+                <name>субота</name>
+            </fullName>
+            <shortName>
+                <name>нд</name>
+                <name>пн</name>
+                <name>аў</name>
+                <name>ср</name>
+                <name>чц</name>
+                <name>пт</name>
+                <name>сб</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>Студзень</name>
+                <name>Люты</name>
+                <name>Сакавік</name>
+                <name>Красавік</name>
+                <name>Май</name>
+                <name>Чэрвень</name>
+                <name>Ліпень</name>
+                <name>Жнівень</name>
+                <name>Верасень</name>
+                <name>Кастрычнік</name>
+                <name>Лістапад</name>
+                <name>Снежань</name>
+            </fullName>
+            <shortName>
+                <name>Сту</name>
+                <name>Лют</name>
+                <name>Сак</name>
+                <name>Кра</name>
+                <name>Май</name>
+                <name>Чэр</name>
+                <name>Ліп</name>
+                <name>Жні</name>
+                <name>Вер</name>
+                <name>Кас</name>
+                <name>Ліс</name>
+                <name>Сне</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>р.</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>

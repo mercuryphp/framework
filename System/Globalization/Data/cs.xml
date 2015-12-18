@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<locale>
+    <name>cs</name>
+    <displayName>Czech</displayName>
+    <datetime>
+        <nativeCalendar>gregoriánský kalendář</nativeCalendar>
+        <shortDatePattern>d.M.yyyy</shortDatePattern>
+        <longDatePattern>d. MMMM yyyy</longDatePattern>
+        <dateSeparator>.</dateSeparator>
+        <shortTimePattern>H:mm</shortTimePattern>
+        <longTimePattern>H:mm:ss</longTimePattern>
+        <timeSeparator>:</timeSeparator>
+        <dayNames>
+            <fullName>
+                <name>neděle</name>
+                <name>pondělí</name>
+                <name>úterý</name>
+                <name>středa</name>
+                <name>čtvrtek</name>
+                <name>pátek</name>
+                <name>sobota</name>
+            </fullName>
+            <shortName>
+                <name>ne</name>
+                <name>po</name>
+                <name>út</name>
+                <name>st</name>
+                <name>čt</name>
+                <name>pá</name>
+                <name>so</name>
+            </shortName>
+        </dayNames>
+        <monthNames>
+            <fullName>
+                <name>leden</name>
+                <name>únor</name>
+                <name>březen</name>
+                <name>duben</name>
+                <name>květen</name>
+                <name>červen</name>
+                <name>červenec</name>
+                <name>srpen</name>
+                <name>září</name>
+                <name>říjen</name>
+                <name>listopad</name>
+                <name>prosinec</name>
+            </fullName>
+            <shortName>
+                <name>1</name>
+                <name>2</name>
+                <name>3</name>
+                <name>4</name>
+                <name>5</name>
+                <name>6</name>
+                <name>7</name>
+                <name>8</name>
+                <name>9</name>
+                <name>10</name>
+                <name>11</name>
+                <name>12</name>
+            </shortName>
+        </monthNames>
+    </datetime>
+    <numberFormat>
+        <numberDecimalDigits>2</numberDecimalDigits>
+        <numberDecimalSeparator>,</numberDecimalSeparator>
+        <numberGroupSeparator> </numberGroupSeparator>
+        <currencySymbol>Kč</currencySymbol>
+        <currencyDecimalDigits>2</currencyDecimalDigits>
+        <currencyDecimalSeparator>,</currencyDecimalSeparator>
+        <currencyGroupSeparator> </currencyGroupSeparator>
+        <currencyNegativePattern>8</currencyNegativePattern>
+        <currencyPositivePattern>3</currencyPositivePattern>
+    </numberFormat>
+</locale>
