@@ -4,8 +4,9 @@ namespace System\Data;
 
 class Database {
     
-    protected $dsn = '';
-    protected $pdo = null;
+    protected $dsn;
+    protected $pdo;
+    protected $queryParams;
     protected $profiler;
     
     /**
@@ -20,6 +21,8 @@ class Database {
      */
     public function __construct($connectionString = null, $uid = '', $pwd = ''){
         $this->profiler = new Profiler();
+        $this->queryParams = new \System\Collections\Dictionary();
+        
         if($connectionString){
             $this->connect($connectionString, $uid, $pwd);
         }
@@ -76,10 +79,20 @@ class Database {
     public function query($sql, array $params = array()){
         if (!$this->pdo) { return false; }
         
+        $sqlString = \System\Std\Str::set($sql);
         $this->profiler->start();
+
+        if($this->queryParams->hasItems()){ 
+            foreach($this->queryParams as $k=>$v){ 
+                if($sqlString->indexOf('@'.$k) > -1){
+                    $sqlString = $sqlString->replace('@'.$k, ':'.$k);
+                    $params[$k] = $v;
+                }
+            }
+        }
         
         try{
-            $stm = $this->pdo->prepare($sql);
+            $stm = $this->pdo->prepare($sqlString->toString());
             $stm->execute($params);
         }catch (\PDOException $e){
             throw new QueryException($e->getMessage(), $sql, $params);
@@ -231,6 +244,11 @@ class Database {
         return $stm->rowCount();
     }
     
+    public function queryParams(){
+        return $this->queryParams;
+    }
+
+
     /**
      * Initiates a transaction.
      * 

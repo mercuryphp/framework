@@ -17,7 +17,12 @@ class AnnotationReader extends MetaReader {
         $tableName = new Str(Str::set($entityName)->toLower()->split('\.')->last());
         $className = Str::set($entityName)->replace('.', '\\');
 
-        $refClass = new \ReflectionClass((string)$className);
+        try{
+            $refClass = new \ReflectionClass((string)$className);
+        }catch(\ReflectionException $e){
+            throw new \System\Data\Entity\EntityNotFoundException((string)$className, null);
+        }
+        
         $tokens = token_get_all(file_get_contents($refClass->getFileName())); 
 
         $meta = array(

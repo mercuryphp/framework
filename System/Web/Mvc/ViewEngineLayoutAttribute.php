@@ -10,7 +10,7 @@ class ViewEngineLayoutAttribute extends \System\Web\Mvc\PreActionAttribute {
         $this->layout = $layout;
     }
     
-    public function execute(\System\Web\Mvc\Controller $controller, array $actionArgs = array()){
+    public function execute(\System\Web\Mvc\Controller $controller, \System\Collections\Dictionary $actionArgs){
         $controller->getViewEngine()->setLayout($this->layout);
     }
 }

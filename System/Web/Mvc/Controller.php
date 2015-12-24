@@ -8,6 +8,7 @@ use System\Web\Mvc\ViewContext;
 
 abstract class Controller{
     
+    private $attributes = array();
     private $registry;
     private $config;
     private $logger;
@@ -197,6 +198,10 @@ abstract class Controller{
         throw new \RuntimeException(sprintf("Property '%s' does not exist in controller registry", $key));
     }
     
+    public function addAttribute($attribute){
+        $this->attributes[] = $attribute; 
+    }
+    
     public function execute(array $routeData = array()){
         $controllerClass = Str::set(get_called_class())->get('\\', 'Controller', Str::LAST_LAST);
         $this->httpContext->getRequest()
@@ -212,25 +217,25 @@ abstract class Controller{
         }
 
         $this->load();
-        $attributes = \System\Std\Object::getMethodAnnotations($this, $actionName);
+        $attributes = array_merge($this->attributes, \System\Std\Object::getMethodAnnotations($this, $actionName));
         $modelBinders = new \System\Collections\Dictionary();
 
         $actionMethod = $refClass->getMethod($actionName);
         $methodParams = $actionMethod->getParameters();
         $methodArgs = new \System\Collections\Dictionary();
         
-        foreach($attributes as $attribute){
+        foreach($attributes as $idx=>$attribute){
             if($attribute instanceof FilterAttribute && !$attribute->isValid($this->httpContext)){
                 return false;
             }
             elseif($attribute instanceof ModelBinder){
                 $modelBinders->add($attribute->getParameterName(), $attribute);
             }
+            unset($attributes[$idx]);
         }
 
         foreach($methodParams as $param){
             $object = $param->getClass();
-
             if(is_object($object)){
                 try {
                     $modelBinder = $modelBinders->get($param->getName(), new DefaultModelBinderAttribute());
@@ -247,10 +252,11 @@ abstract class Controller{
             }
         }
         
-        foreach($attributes as $attribute){
+        foreach($attributes as $idx=>$attribute){
             if($attribute instanceof PreActionAttribute){
                 $attribute->execute($this, $methodArgs);
             }
+            unset($attributes[$idx]);
         }
 
         $actionResult = $actionMethod->invokeArgs($this, $methodArgs->toArray());
@@ -264,10 +270,11 @@ abstract class Controller{
         $this->render($actionResult);
         $this->unload();
         
-        foreach($attributes as $attribute){
+        foreach($attributes as $idx=>$attribute){
             if($attribute instanceof PostActionAttribute){
                 $attribute->execute($this);
             }
+            unset($attributes[$idx]);
         }
     }
     

@@ -231,7 +231,9 @@ final class HttpResponse {
      */
     public function writeFile($file){
         if(is_file($file)){
-            $this->output = file_get_contents($file);
+            $this->output .= file_get_contents($file);
+        }else{
+            throw new \RuntimeException(sprintf("File '%s' not found.", $file));
         }
         return $this;
     }

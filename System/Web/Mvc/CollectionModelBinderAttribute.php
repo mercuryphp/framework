@@ -13,12 +13,17 @@ class CollectionModelBinderAttribute extends ModelBinder {
 
     public function bind(\System\Web\Mvc\ModelBindingContext $modelBindingContext){
         $collection = \System\Std\Object::toObject($modelBindingContext->getObjectName(), array());
-        $post = $modelBindingContext->getRequest()->getPost();
-        $fields = $post->getKeys();
+        $post = $modelBindingContext->getRequest()->getPost()->toArray();
 
         $tmp = array();
-        foreach($post->toArray() as $key => $array){
+        foreach($post as $key => $array){
             if(is_array($array)){
+                if(strpos($key, '->') > -1){
+                    list($object, $field) = explode('->', $key, 2);
+                    if($object == $this->paramName){
+                        $key = $field;
+                    }
+                }
                 foreach($array as $idx=> $value){
                     $tmp[$idx][$key] = $value;
                 }

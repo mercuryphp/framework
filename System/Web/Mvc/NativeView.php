@@ -90,7 +90,6 @@ class NativeView implements IView {
 
         if(is_file($viewFile)){
             extract($viewContext->getViewBag()->toArray());
-
             ob_start();
             
             require_once $viewFile;
@@ -106,7 +105,7 @@ class NativeView implements IView {
                     require_once $this->layoutFile;
                     $this->output['layoutFile'] = ob_get_clean();
                 }else{
-                    throw new ViewNotFoundException(sprintf("The layout file '%s' was not found",$this->layoutFile));
+                    throw new ViewNotFoundException("The Layout file '%s' was not found", $this->layoutFile);
                 }
             }
 
@@ -116,7 +115,7 @@ class NativeView implements IView {
             
             return $this->output['view'];
         }else{
-            throw new ViewNotFoundException(sprintf("The view '%s' was not found.", $viewFile));
+            throw new ViewNotFoundException("The View '%s' was not found.", (string)$viewFile);
         }
     }
     

@@ -8,6 +8,7 @@ class QueryBuilder {
     protected $sql;
     protected $lastTableAlias;
     protected $isWhere = false;
+    protected $entityKeys = array();
     
     const SELECT = 'SELECT';
     const INSERT = 'INSERT INTO';
@@ -28,6 +29,7 @@ class QueryBuilder {
         $metaData = $this->sqlQuery->getMetaCollection()->get($entityName);
         $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
+        $this->entityKeys[] = $metaData->getKey()->getKeyName();
         
         $this->sql = \System\Std\Str::set($queryType.' ');
         if ($queryType == QueryBuilder::SELECT || $queryType == QueryBuilder::DELETE){
@@ -35,12 +37,12 @@ class QueryBuilder {
         }
         
         $this->sql = $this->sql->append($metaData->getTable()->getTableName().' ');
-        
+
         if ($queryType == QueryBuilder::SELECT){
-            $this->sql = $this->sql->append($tableAlias.' ');
+            $this->sql = $this->sql->append($tableAlias);
         }
             
-        $this->sql->append(PHP_EOL);
+        $this->sql = $this->sql->appendLine('');
     }
     
     public function setFields($fields){
@@ -128,7 +130,8 @@ class QueryBuilder {
      * specified $fieldName and $values. Subsequent calls to this method will 
      * result in an AND operation.
      * 
-     * @param   string $condition
+     * @param   string $fieldName
+     * @param   mixed $values
      * @return  System.Data.Entity.QueryBuilder
      */
     public function whereIn($fieldName, $values){
@@ -149,7 +152,8 @@ class QueryBuilder {
      * specified $fieldName and $values. Subsequent calls to this method will 
      * result in an AND operation.
      * 
-     * @param   string $condition
+     * @param   string $fieldName
+     * @param   mixed $values
      * @return  System.Data.Entity.QueryBuilder
      */
     public function whereNotIn($fieldName, $values){
@@ -276,17 +280,17 @@ class QueryBuilder {
     }
 
     protected function _join($type, $entityName, $join = null){
-        
+
         $metaData = $this->sqlQuery->getMetaCollection()->get($entityName);
         $table = $metaData->getTable()->getTableName();
-        $key = $metaData->getKey()->getKeyName();
 
-        $this->sql = $this->sql->append("$type ")->append($table);
+        $this->sql = $this->sql->append($type.' ')->append($table);
 
         if($join){
             $segments = explode('.', $join, 2);
             $alias = isset($segments[0]) ? $segments[0] : '';
         }else{
+            $key = array_pop($this->entityKeys);
             $alias = $this->getTableNameAlias($table);
             $join = $alias.'.'.$key.' = '.$this->lastTableAlias.'.'.$key;
         }
@@ -296,6 +300,7 @@ class QueryBuilder {
             ->append('ON ')
             ->append($join.' '.PHP_EOL);
         
+        $this->entityKeys[] = $metaData->getKey()->getKeyName();
         $this->lastTableAlias = $alias;
         return $this;
     }

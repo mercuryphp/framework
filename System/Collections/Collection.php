@@ -141,6 +141,14 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess {
         $this->collection = array_merge($this->collection, $array);
         return $this;
     }
+    
+    public function combine($array, callable $func){
+        $collection = new static; //print_R($this->collection); exit; print_R($array); 
+        foreach($this->collection as $key=>$item){
+            $collection[$key] = $func($item, $array[$key]);
+        }
+        return $collection;
+    }
 
     /**
      * Removes the first occurrence of an element from the collection.
