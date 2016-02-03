@@ -4,7 +4,12 @@ namespace System\Globalization;
 
 class DateTimeFormat {
     
-    protected $formats;
+    protected $shortDatePattern;
+    protected $longDatePattern;
+    protected $dateSeparator;
+    protected $shortTimePattern;
+    protected $longTimePattern;
+    protected $timeSeparator;
     protected $dayNames;
     protected $monthNames;
     
@@ -14,7 +19,13 @@ class DateTimeFormat {
      * @param   object $formats
      */
     public function __construct($formats){
-        $this->formats = $formats;
+
+        $this->shortDatePattern = (string)$formats->shortDatePattern;
+        $this->longDatePattern = (string)$formats->longDatePattern;
+        $this->dateSeparator = (string)$formats->dateSeparator;
+        $this->shortTimePattern = (string)$formats->shortTimePattern;
+        $this->longTimePattern = (string)$formats->longTimePattern;
+        $this->timeSeparator = (string)$formats->timeSeparator;
         $this->dayNames = new Names($formats->dayNames);
         $this->monthNames = new Names($formats->monthNames);
     }
@@ -25,7 +36,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getShortDatePattern(){
-        return (string)$this->formats->shortDatePattern;
+        return $this->shortDatePattern;
     }
     
     /**
@@ -34,7 +45,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getLongDatePattern(){
-        return (string)$this->formats->longDatePattern;
+        return $this->longDatePattern;
     }
     
     /**
@@ -43,7 +54,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getDateSeparator(){
-        return (string)$this->formats->dateSeparator;
+        return $this->dateSeparator;
     }
     
     /**
@@ -52,7 +63,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getShortTimePattern(){
-        return (string)$this->formats->shortTimePattern;
+        return $this->shortTimePattern;
     }
     
     /**
@@ -61,7 +72,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getLongTimePattern(){
-        return (string)$this->formats->longTimePattern;
+        return $this->longTimePattern;
     }
     
     /**
@@ -70,7 +81,7 @@ class DateTimeFormat {
      * @return  string
      */
     public function getTimeSeparator(){
-        return (string)$this->formats->timeSeparator;
+        return $this->timeSeparator;
     }
     
     /**

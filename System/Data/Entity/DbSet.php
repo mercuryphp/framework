@@ -19,6 +19,12 @@ class DbSet {
         $this->meta = $meta;
     }
     
+    public function query($sql, $params = array()){
+        $sqlQuery = new SqlQuery($this->dbContext->getDatabase(), $this->dbContext->getMetaCollection());
+        $sqlQuery->setQuery($sql, $params);
+        return $sqlQuery;
+    }
+
     /**
      * Gets a new QueryBuilder instance that has been initilazied to select 
      * from the database table represented by the entity type for this DbSet.
@@ -79,7 +85,7 @@ class DbSet {
             if($entity){
                 $entityContext = $this->add($entity);
                 $entityContext->setState(EntityContext::PERSISTED);
-                $this->dbContext->getPersistedEntities()->add($entityContext->getHashCode(), $entityContext);
+                $this->dbContext->getEntries()->add($entityContext->getHashCode(), $entityContext);
 
                 return $entity;
             }
@@ -116,7 +122,7 @@ class DbSet {
             foreach($entityCollection as $entity){
                 $entityContext = $this->add($entity);
                 $entityContext->setState(EntityContext::PERSISTED);
-                $this->dbContext->getPersistedEntities()->add($entityContext->getHashCode(), $entityContext);
+                $this->dbContext->getEntries()->add($entityContext->getHashCode(), $entityContext);
             }
             
             return $entityCollection;

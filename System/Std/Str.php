@@ -338,9 +338,7 @@ final class Str{
     
     public function template($params){
         foreach($params as $key=>$val){
-            if($val){
-                $this->string = str_replace('{'.$key.'}', $val, $this->string);
-            }
+            $this->string = str_replace('{'.$key.'}', $val, $this->string);
         }
         return new Str($this->string);
     }

@@ -4,7 +4,8 @@ namespace System\Globalization;
 
 class Names {
     
-    protected $names = null;
+    protected $fullNames = array();
+    protected $shortNames = array();
     
     /**
      * Initializes an instance of Names.
@@ -12,26 +13,33 @@ class Names {
      * @param   object $names
      */
     public function __construct($names){
-        $this->names = $names;
+        $this->fullNames = (array)$names->fullName->name;
+        $this->shortNames = (array)$names->shortName->name;
     }
     
     /**
      * Gets the full name using the specified $index.
      * 
      * @param   int $index
-     * @return  string
+     * @return  mixed
      */
     public function getFullName($index){
-        return (string)$this->names->fullName->name[$index];
+        if(isset($this->fullNames[$index])){
+            return $this->fullNames[$index];
+        }
+        return false;
     }
     
     /**
      * Gets the short name using the specified $index.
      * 
      * @param   int $index
-     * @return  string
+     * @return  mixed
      */
     public function getShortName($index){
-        return (string)$this->names->shortName->name[$index];
+        if(isset($this->shortNames[$index])){
+            return $this->shortNames[$index];
+        }
+        return false;
     }
 }

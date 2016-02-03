@@ -230,8 +230,8 @@ abstract class Controller{
             }
             elseif($attribute instanceof ModelBinder){
                 $modelBinders->add($attribute->getParameterName(), $attribute);
+                unset($attributes[$idx]);
             }
-            unset($attributes[$idx]);
         }
 
         foreach($methodParams as $param){
@@ -251,12 +251,12 @@ abstract class Controller{
                 $methodArgs[$param->getName()] = $value;
             }
         }
-        
+
         foreach($attributes as $idx=>$attribute){
             if($attribute instanceof PreActionAttribute){
                 $attribute->execute($this, $methodArgs);
+                unset($attributes[$idx]);
             }
-            unset($attributes[$idx]);
         }
 
         $actionResult = $actionMethod->invokeArgs($this, $methodArgs->toArray());
@@ -273,8 +273,8 @@ abstract class Controller{
         foreach($attributes as $idx=>$attribute){
             if($attribute instanceof PostActionAttribute){
                 $attribute->execute($this);
+                unset($attributes[$idx]);
             }
-            unset($attributes[$idx]);
         }
     }
     

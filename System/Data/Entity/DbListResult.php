@@ -25,7 +25,6 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return $result;
     }
 
-
     /**
      * Applys a callback function to every row in the rowset.
      * 
@@ -54,15 +53,16 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      * Groups the rowset using the specified $field name.
      * 
      * @param   string $field
+     * @param   bool $useKey = false
      * @return  System.Data.Entity.DbListResult
      */
-    public function groupBy($field){
+    public function groupBy($field, $useKey = false){
         $tmp = array();
         foreach($this->collection as $v){
             $item = \System\Std\Object::getProperties($v);
-            $tmp[$item[$field]] = $item;
+            $tmp[$item[$field]] = $v;
         }
-        $this->collection = array_values($tmp);
+        $this->collection = ($useKey) ? $tmp : array_values($tmp);
         unset($tmp);
         return $this;
     }
@@ -172,6 +172,19 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      */
     public function hasItems(){
         if(count($this->collection) > 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Determines if the collection has a row using the specified index.
+     * 
+     * @param   mixed $index
+     * @return  bool
+     */
+    public function hasRow($index){
+        if(array_key_exists($index, $this->collection)){
             return true;
         }
         return false;

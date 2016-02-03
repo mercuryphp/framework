@@ -50,8 +50,13 @@ final class Object{
      * @return  object
      */
     public static function setProperties($object, array $properties){
-        $refClass = new \ReflectionObject($object);
         
+        if(!is_object($object)){
+            throw new \RuntimeException(sprintf('Object::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
+        }
+        
+        $refClass = new \ReflectionObject($object);
+
         foreach($properties as $key=>$value){
             $property = $refClass->getProperty($key);
             $property->setAccessible(true);
@@ -64,9 +69,14 @@ final class Object{
      * Gets the properties of an object as an array.
      * 
      * @param   object $object
+     * @param   mixed $filter = null
      * @return  array
      */
     public static function getProperties($object, $filter = null){
+        
+        if(!is_object($object)){
+            throw new \RuntimeException(sprintf('Object::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
+        }
         
         if(is_null($filter)){
             $filter = \ReflectionProperty::IS_PUBLIC | 
@@ -78,7 +88,7 @@ final class Object{
         $refClass = new \ReflectionObject($object);
         $properties = $refClass->getProperties($filter);
         $array = array();
-        
+
         foreach($properties as $property){
             $property->setAccessible(true);
             $array[$property->getName()] = $property->getValue($object);
@@ -89,15 +99,19 @@ final class Object{
     /**
      * Sets the property value of an object.
      * 
-     * @method  setPropertyValue
      * @param   object $object
      * @param   string $propertyName
      * @param   mixed $value
      * @return  void
      */
     public static function setPropertyValue($object, $propertyName, $value){
-        $refClass = new \ReflectionObject($object);
         
+        if(!is_object($object)){
+            throw new \RuntimeException(sprintf('Object::setPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
+        }
+        
+        $refClass = new \ReflectionObject($object);
+
         if($refClass->hasProperty($propertyName)){
             $property = $refClass->getProperty($propertyName);
             $property->setAccessible(true);
@@ -108,12 +122,16 @@ final class Object{
     /**
      * Gets the property value of an object.
      * 
-     * @method  getPropertyValue
      * @param   object $object
      * @param   string $propertyName
      * @return  mixed
      */
     public static function getPropertyValue($object, $propertyName){
+        
+        if(!is_object($object)){
+            throw new \RuntimeException(sprintf('Object::getPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
+        }
+        
         $refClass = new \ReflectionObject($object);
         if($refClass->hasProperty($propertyName)){
             $property = $refClass->getProperty($propertyName);
@@ -123,6 +141,11 @@ final class Object{
     }
     
     public static function getMethodAnnotations($object, $methodName){
+        
+        if(!is_object($object)){
+            throw new \RuntimeException(sprintf('Object::getMethodAnnotations() expects parameter 1 to be object, %s given', gettype($object)));
+        }
+        
         $refClass = new \ReflectionObject($object);
         $tokens = token_get_all(file_get_contents($refClass->getFileName()));
 

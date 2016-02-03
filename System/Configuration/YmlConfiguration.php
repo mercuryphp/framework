@@ -32,7 +32,7 @@ class YmlConfiguration extends Configuration {
                 $line = trim($line);
 
                 if(substr($line, -1) == ':'){
-                    $sectionName = substr($line,0, -1);
+                    $sectionName = trim(substr($line,0, -1));
                     $section[$sectionName] = array();
                 }else if($line == ''){
                     if(count($section) > 0){
@@ -54,7 +54,6 @@ class YmlConfiguration extends Configuration {
                         }
                     }
                 }
-
             }
             $this->parseSection($section);
         }
@@ -68,6 +67,8 @@ class YmlConfiguration extends Configuration {
             $data = array($key => ($idx > 0) ? array_merge($data, $val) : $val);
             $idx++;
         }
-        $this->config = array_merge($this->config, $data);
+        if(is_array($data)){
+            $this->config = array_merge($this->config, $data);
+        }
     }
 }

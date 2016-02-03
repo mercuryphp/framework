@@ -5,7 +5,7 @@ namespace System\Globalization;
 class CultureInfo {
     
     protected $cultureName;
-    protected $xml = null;
+    protected $displayName;
     protected $dateTimeFormat;
     protected $numberFormat;
 
@@ -20,18 +20,19 @@ class CultureInfo {
         $dataFile = (string)\System\Std\Str::set(dirname(__FILE__).'/Data/'.$name.'.xml')->replace('\\', '/');
         
         if(is_file($dataFile)){
-            $this->xml = simplexml_load_file($dataFile);
+            $xml = simplexml_load_file($dataFile);
         }elseif(is_file($name)){
             $name = \System\Std\Str::set($name)->replace('\\', '/');
-            $this->xml = simplexml_load_file($name);
+            $xml = simplexml_load_file($name);
             $this->cultureName = (string)$name->get('/', '.', \System\Std\Str::LAST_FIRST);
             Cultures::add($this);
         }else{
             throw new \Exception(sprintf("Culture '%s' is not supported", $name));
         }
-        
-        $this->dateTimeFormat = new DateTimeFormat($this->xml->datetime);
-        $this->numberFormat = new NumberFormat($this->xml->numberFormat);
+         
+        $this->displayName = (string)$xml->displayName;
+        $this->dateTimeFormat = new DateTimeFormat($xml->datetime);
+        $this->numberFormat = new NumberFormat($xml->numberFormat);
     }
     
     /**
@@ -49,7 +50,7 @@ class CultureInfo {
      * @return  string
      */
     public function getDisplayName(){
-        return (string)$this->xml->displayName;
+        return $this->displayName ;
     }
     
     /**
@@ -68,10 +69,5 @@ class CultureInfo {
      */
     public function getNumberFormat(){
         return $this->numberFormat;
-    }
-    
-    public function __debugInfo() {
-        return [
-        ];
     }
 }

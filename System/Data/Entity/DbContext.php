@@ -83,8 +83,21 @@ abstract class DbContext {
      * 
      * @return  System.Collections.Dictionary
      */
-    public function getPersistedEntities(){
+    public function getEntries(){
         return $this->persistedEntities;
+    }
+    
+    /**
+     * Gets a single persisted entity stored in the context.
+     * 
+     * @param   object $entity
+     * @return  System.Data.Entity.EntityContext
+     */
+    public function getEntry($entity){
+        $hash = spl_object_hash($entity);
+        if($this->persistedEntities->hasKey($hash)){
+            return $this->persistedEntities->get($hash);
+        }
     }
     
     /**
@@ -172,7 +185,7 @@ abstract class DbContext {
                         if($result){
                             Object::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->db->getInsertId($meta->getKey()->getKeyName()));
                             $entityContext->setState(EntityContext::PERSISTED);
-                            $this->persistedEntities->add($entityContext->getHashCode(), $entityContext);
+                            $this->persistedEntities->set($entityContext->getHashCode(), $entityContext);
                         }
                         break;
 

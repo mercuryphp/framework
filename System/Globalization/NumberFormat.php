@@ -4,7 +4,15 @@ namespace System\Globalization;
 
 class NumberFormat {
     
-    protected $formats;
+    protected $numberDecimalDigits;
+    protected $numberDecimalSeparator;
+    protected $numberGroupSeparator;
+    protected $currencySymbol;
+    protected $currencyDecimalDigits;
+    protected $currencyDecimalSeparator;
+    protected $currencyGroupSeparator;
+    protected $currencyNegativePattern;
+    protected $currencyPositivePattern;
     
     /**
      * Initializes an instance of NumberFormat.
@@ -12,7 +20,15 @@ class NumberFormat {
      * @param   object $formats
      */
     public function __construct($formats){
-        $this->formats = $formats;
+        $this->numberDecimalDigits = (string)$formats->numberDecimalDigits;
+        $this->numberDecimalSeparator = (string)$formats->numberDecimalSeparator;
+        $this->numberGroupSeparator = (string)$formats->numberGroupSeparator;
+        $this->currencySymbol = (string)$formats->currencySymbol;
+        $this->currencyDecimalDigits = (string)$formats->currencyDecimalDigits;
+        $this->currencyDecimalSeparator = (string)$formats->currencyDecimalSeparator;
+        $this->currencyGroupSeparator = (string)$formats->currencyGroupSeparator;
+        $this->currencyNegativePattern = (string)$formats->currencyNegativePattern;
+        $this->currencyPositivePattern = (string)$formats->currencyPositivePattern;
     }
     
     /**
@@ -21,7 +37,7 @@ class NumberFormat {
      * @return  string
      */
     public function getNumberDecimalDigits(){
-        return (string)$this->formats->numberDecimalDigits;
+        return $this->numberDecimalDigits;
     }
     
     /**
@@ -30,7 +46,7 @@ class NumberFormat {
      * @return  string
      */
     public function getNumberDecimalSeparator(){
-        return (string)$this->formats->numberDecimalSeparator;
+        return $this->numberDecimalSeparator;
     }
     
     /**
@@ -39,7 +55,7 @@ class NumberFormat {
      * @return  string
      */
     public function getNumberGroupSeparator(){
-        return (string)$this->formats->numberGroupSeparator;
+        return $this->numberGroupSeparator;
     }
 
     /**
@@ -48,7 +64,7 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencySymbol(){ 
-        return (string)$this->formats->currencySymbol;
+        return $this->currencySymbol;
     }
     
     /**
@@ -57,7 +73,7 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencyDecimalDigits(){
-        return (string)$this->formats->currencyDecimalDigits;
+        return $this->currencyDecimalDigits;
     }
 
     /**
@@ -66,7 +82,7 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencyDecimalSeparator(){
-        return (string)$this->formats->currencyDecimalSeparator;
+        return $this->currencyDecimalSeparator;
     }
     
     /**
@@ -75,7 +91,7 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencyGroupSeparator(){
-        return (string)$this->formats->currencyGroupSeparator;
+        return $this->currencyGroupSeparator;
     }
 
     /**
@@ -84,7 +100,7 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencyNegativePattern(){
-        return (string)$this->formats->currencyNegativePattern;
+        return $this->currencyNegativePattern;
     }
     
     /**
@@ -93,12 +109,13 @@ class NumberFormat {
      * @return  string
      */
     public function getCurrencyPositivePattern(){
-        return (string)$this->formats->currencyPositivePattern;
+        return $this->currencyPositivePattern;
     }
 
     /**
      * Get a formatted currency value.
      * 
+     * @param   string $value
      * @return  string
      */
     public function formatCurrency($value){
@@ -151,6 +168,7 @@ class NumberFormat {
     /**
      * Get a formatted numeric value.
      * 
+     * @param   string $value
      * @return  string
      */
     public function formatNumber($value){
