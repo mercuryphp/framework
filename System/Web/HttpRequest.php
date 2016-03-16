@@ -55,9 +55,9 @@ final class HttpRequest {
      * @param   string $name
      * @return  mixed
      */
-    public function getCookies($name = null){
+    public function getCookies($name = null, $default = null){
         if($name){
-            return $this->cookies->get($name);
+            return $this->cookies->get($name, $default);
         }
         return $this->cookies;
     }
@@ -69,9 +69,9 @@ final class HttpRequest {
      * @param   string $name = null
      * @return  mixed
      */
-    public function getQuery($name = null){
+    public function getQuery($name = null, $default = null){
         if($name){
-            return $this->query->get($name);
+            return $this->query->get($name, $default);
         }
         return $this->query;
     }
@@ -83,9 +83,9 @@ final class HttpRequest {
      * @param   string $name = null
      * @return  mixed
      */
-    public function getPost($name = null){
+    public function getPost($name = null, $default = null){
         if($name){
-            return $this->post->get($name);
+            return $this->post->get($name, $default);
         }
         return $this->post;
     }
@@ -121,9 +121,9 @@ final class HttpRequest {
      * @param   string $name = null
      * @return  mixed
      */
-    public function getParam($name = null){
+    public function getParam($name = null, $default = null){
         if($name){
-            return $this->params->get($name);
+            return $this->params->get($name, $default);
         }
         return $this->params;
     }

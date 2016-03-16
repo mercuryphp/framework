@@ -248,7 +248,6 @@ class Database {
         return $this->queryParams;
     }
 
-
     /**
      * Initiates a transaction.
      * 

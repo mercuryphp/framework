@@ -11,6 +11,10 @@ class MaxLength extends Validator {
         $this->errMessage = $errMessage;
     }
     
+    public function getLength(){
+        return $this->length;
+    }
+    
     public function isValid(){
         if(strlen($this->value) > $this->length){
             return false;
