@@ -2,7 +2,7 @@
 
 namespace System\Collections;
 
-abstract class Collection implements \IteratorAggregate, \ArrayAccess {
+abstract class Collection implements \IteratorAggregate, \ArrayAccess, \Countable {
     
     protected $collection = array();
     protected $isReadOnly = false;
