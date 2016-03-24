@@ -23,6 +23,10 @@ class DropDown extends Element {
         $dataValue = $this->source->getDataValue();
         $dataText = $this->source->getDataText();
         $selectedValue = $this->source->getSelectedValue();
+        
+        if(is_object($selectedValue)){
+            $selectedValue = \System\Std\Object::getPropertyValue($selectedValue, $this->attributes['name']);
+        }
 
         $control = $this->control->append('<select ')->append($this->renderAttributes())->append('>');
 
