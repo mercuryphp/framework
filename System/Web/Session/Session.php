@@ -93,10 +93,13 @@ abstract class Session {
         $this->collection[$key] = $value;
     }
     
-    public function get($key){
+    public function get($key, $default = null){
         $this->sessionStarted = true;
         if(array_key_exists($key, $this->collection)){
             return $this->collection[$key];
+        }
+        if($default != null){
+            return $default;
         }
         return false;
     }
@@ -105,8 +108,8 @@ abstract class Session {
         $this->set($key, $value); 
     }
     
-    public function __get($key) {
-        return $this->get($key);
+    public function __get($key, $default = null) {
+        return $this->get($key, $default);
     }
     
     public abstract function write();
