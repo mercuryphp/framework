@@ -108,8 +108,8 @@ abstract class Session {
         $this->set($key, $value); 
     }
     
-    public function __get($key, $default = null) {
-        return $this->get($key, $default);
+    public function __get($key) {
+        return $this->get($key);
     }
     
     public abstract function write();
