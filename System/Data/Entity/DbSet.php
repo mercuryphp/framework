@@ -69,6 +69,12 @@ class DbSet {
             $params = array($this->meta->getKey()->getKeyName() => $params); 
         }
         
+        if(is_object($params)){
+            $entityName = \System\Std\Str::set(get_class($params))->trim('\\')->replace('\\', '.')->toString();
+            $entityMeta = $this->dbContext->getMetaCollection()->get($entityName);
+            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Object::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
+        }
+        
         if(is_array($params)){
             $select = $this->select('*', $this->meta->getEntityName());
             
@@ -104,6 +110,12 @@ class DbSet {
 
         if(is_scalar($params)){
             $params = array($this->meta->getKey()->getKeyName() => $params);
+        }
+        
+        if(is_object($params)){
+            $entityName = \System\Std\Str::set(get_class($params))->trim('\\')->replace('\\', '.')->toString();
+            $entityMeta = $this->dbContext->getMetaCollection()->get($entityName);
+            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Object::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
         }
 
         if(is_array($params)){

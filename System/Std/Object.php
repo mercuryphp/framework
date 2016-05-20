@@ -177,7 +177,7 @@ final class Object{
         }
         return $comments;
     }
-
+    
     /**
      * Gets a new instance of a class.
      * 
@@ -204,5 +204,10 @@ final class Object{
             return null;
         }
         return $instance;
+    }
+    
+    public static function hasProperty($object, $property){
+        $obj = new \ReflectionObject($object);
+        return $obj->hasProperty($property);
     }
 }
