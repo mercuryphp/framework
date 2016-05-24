@@ -199,6 +199,21 @@ final class HttpRequest {
     }
     
     /**
+     * Gets the http protocol and hostname as a string.
+     * 
+     * @return  string
+     */
+    public function getHost(){
+        $https = $this->getServer('HTTPS');
+        
+        if(!$https || $https == 'off'){
+            return 'http://'.$this->getServer('HTTP_HOST');
+        }else{
+            return 'https://'.$this->getServer('HTTP_HOST');
+        }
+    }
+    
+    /**
      * Gets the Http method.
      * 
      * @return  string
