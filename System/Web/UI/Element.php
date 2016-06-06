@@ -22,6 +22,22 @@ abstract class Element {
         return $this->escaper;
     }
     
+    public function setAttribute($name, $value){
+        $this->attributes[$name] = $value;
+    }
+    
+    public function getAttribute($name){
+        if(array_key_exists($name, $this->attributes)){
+            return $this->attributes[$name];
+        }
+    }
+
+    public abstract function render();
+    
+    public function __toString(){
+        return $this->render();
+    }
+    
     protected function renderAttributes(){
         foreach($this->attributes as $attribute=>$value){
             if(is_string($value)){
@@ -37,11 +53,5 @@ abstract class Element {
         }else{
             return call_user_func_array($this->escaper, array($value));
         }
-    }
-    
-    public abstract function render();
-    
-    public function __toString(){
-        return $this->render();
     }
 }

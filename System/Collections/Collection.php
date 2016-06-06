@@ -125,13 +125,23 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess, \Countabl
     public function last(){
         return end($this->collection);
     }
+    
+    /**
+     * Pop the element off the end of array.
+     * 
+     * @return  @this
+     */
+    public function pop(){
+        array_pop($this->collection);
+        return $this;
+    }
 
     /**
      * Merges an array or an instance of System.Collections.Collection with the collection.
      * Throws ReadOnlyException if the collection is set as read-only.
      * 
      * @param   mixed $array
-     * @return  mixed
+     * @return  @this
      */
     public function merge($array){
         $this->readOnlyCheck();
@@ -143,7 +153,7 @@ abstract class Collection implements \IteratorAggregate, \ArrayAccess, \Countabl
     }
     
     public function combine($array, callable $func){
-        $collection = new static; //print_R($this->collection); exit; print_R($array); 
+        $collection = new static;
         foreach($this->collection as $key=>$item){
             $collection[$key] = $func($item, $array[$key]);
         }

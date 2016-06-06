@@ -6,7 +6,7 @@ class TextBox extends Element {
    
     protected $textMode;
     
-    public function __construct($name, $value = '', array $attributes = array(), $textMode = ''){
+    public function __construct($name, $value = '', array $attributes = array(), $textMode = 'text'){
         parent::__construct();
         
         if(is_object($value)){
