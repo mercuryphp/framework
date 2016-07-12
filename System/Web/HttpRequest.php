@@ -40,12 +40,12 @@ final class HttpRequest {
         
         $inputParams = array();
         if($this->input){
-            $inputParams = json_decode($this->input, true); print_R($inputParams);
+            $inputParams = json_decode($this->input, true);
             if(!is_array($inputParams)){
                 $inputParams = array();
             }
         }
-        
+             
         $this->uri = trim($uri, '/');
         $this->uriSegments = explode('/', $this->uri);
         $this->routeData = new Dictionary();
