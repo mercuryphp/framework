@@ -40,7 +40,7 @@ final class HttpRequest {
         
         $inputParams = array();
         if($this->input){
-            $inputParams = json_decode($this->input, true);
+            $inputParams = json_decode($this->input, true); print_R($inputParams);
             if(!is_array($inputParams)){
                 $inputParams = array();
             }
