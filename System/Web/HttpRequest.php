@@ -50,7 +50,7 @@ final class HttpRequest {
         $this->uriSegments = explode('/', $this->uri);
         $this->routeData = new Dictionary();
         $this->query = new Dictionary($_GET);
-        $this->post = new Dictionary($_POST);
+        $this->post = new Dictionary(array_merge($_POST, $inputParams));
         $this->cookies = new HttpCookieCollection($_COOKIE);
         $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE, $inputParams));
         $this->headers = (new Dictionary($_SERVER))->where(function($v, $k){ if (substr($k, 0,4)=='HTTP'){ return array($k => $v); }});
