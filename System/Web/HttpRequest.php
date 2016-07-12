@@ -12,6 +12,7 @@ final class HttpRequest {
     private $uriSegments;
     private $routeData;
     private $cookies;
+    private $input;
     private $query = array();
     private $post = array();
     private $params = array();
@@ -29,12 +30,20 @@ final class HttpRequest {
         
         $uri = $uri ? $uri : $this->getServer('REQUEST_URI');
         $this->rawUri = $uri;
-        
+        $this->input = file_get_contents("php://input");
         $pos = strpos($uri, '?');
         
         if((bool)$pos === true){
             $uri = substr($uri, 0, $pos);
             $this->queryString = trim(substr($this->rawUri, $pos+1), '/');
+        }
+        
+        $inputParams = array();
+        if($this->input){
+            $inputParams = json_decode($this->input, true);
+            if(!is_array($inputParams)){
+                $inputParams = array();
+            }
         }
         
         $this->uri = trim($uri, '/');
@@ -43,9 +52,13 @@ final class HttpRequest {
         $this->query = new Dictionary($_GET);
         $this->post = new Dictionary($_POST);
         $this->cookies = new HttpCookieCollection($_COOKIE);
-        $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE));
+        $this->params = new Dictionary(array_merge($_REQUEST, $_COOKIE, $inputParams));
         $this->headers = (new Dictionary($_SERVER))->where(function($v, $k){ if (substr($k, 0,4)=='HTTP'){ return array($k => $v); }});
         $this->files = $this->httpFiles();
+    }
+    
+    public function getRawInput(){
+        return $this->input;
     }
     
     /**
