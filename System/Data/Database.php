@@ -8,6 +8,7 @@ class Database {
     protected $pdo;
     protected $queryParams;
     protected $profiler;
+    protected $callbacks = array();
     
     /**
      * Constructs a new System.Data.Database instance. Creates a new connection 
@@ -22,6 +23,7 @@ class Database {
     public function __construct($connectionString = null, $uid = '', $pwd = ''){
         $this->profiler = new Profiler();
         $this->queryParams = new \System\Collections\Dictionary();
+        $this->callbacks = array('insert' => null, 'select' => null, 'update' => null, 'delete' => null);
         
         if($connectionString){
             $this->connect($connectionString, $uid, $pwd);
@@ -170,7 +172,16 @@ class Database {
         }
 
         $sql = trim($sql, ',').')';
-        $stm = $this->query($sql, $params);
+        
+        $queryArg = new QueryArg($sql, $params);
+        
+        $callback = $this->callbacks['insert']; 
+        
+        if(is_callable($callback)){
+            call_user_func_array($callback, array($queryArg));
+        }
+        
+        $stm = $this->query($queryArg->getSql(), $queryArg->getParams());
 
         return $stm->rowCount();
     }
@@ -246,6 +257,10 @@ class Database {
     
     public function queryParams(){
         return $this->queryParams;
+    }
+    
+    public function onInsert(callable $callbackFunction){
+        $this->callbacks['insert'] = $callbackFunction;
     }
 
     /**
