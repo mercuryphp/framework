@@ -293,8 +293,11 @@ class Date extends \DateTime {
                 case 'mm':
                     $string .= $this->getMinute();
                     break;
-                case 'ss':
+                case 's':
                     $string .= $this->getSecond();
+                    break;
+                case 'ss':
+                    $string .= $this->getSecond() < 10 ? '0'.$this->getSecond() : $this->getSecond();
                     break;
                 default:
                     $string .= $token;
