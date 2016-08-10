@@ -18,7 +18,7 @@ class SessionAuthenticationHandler extends AuthenticationHandler {
         $session = new FileSystem($this->httpContext->getRequest(), $this->httpContext->getResponse());
         $session->setName($this->cookieName);
         $session->open();
-        
+
         $identity = new UserIdentity('Anonymous');
         $ticket = $session->get('ticket');
 

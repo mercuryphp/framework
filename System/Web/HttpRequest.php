@@ -11,6 +11,7 @@ final class HttpRequest {
     private $queryString;
     private $uriSegments;
     private $routeData;
+    private $server = array();
     private $cookies;
     private $input;
     private $query = array();
@@ -27,7 +28,7 @@ final class HttpRequest {
      * @param   string $uri = null
      */
     public function __construct($uri = null){
-        
+        $this->server = new Dictionary($_SERVER);
         $uri = $uri ? $uri : $this->getServer('REQUEST_URI');
         $this->rawUri = $uri;
         $this->input = file_get_contents("php://input");
@@ -253,14 +254,8 @@ final class HttpRequest {
      * @param   int $name
      * @return  string
      */
-    public function getServer($name = null){
-        if($name){
-            if(array_key_exists($name, $_SERVER)){
-                return $_SERVER[$name];
-            }
-        }else{
-            return $_SERVER;
-        }
+    public function getServer($name = null, $default = null){
+        return $this->server->get($name, $default);
     }
     
     /**

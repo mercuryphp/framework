@@ -15,7 +15,7 @@ class TextBox extends Element {
 
         $attributes['value'] = $value;
         $attributes['name'] = !array_key_exists('name',$attributes) ? $name : $attributes['name'];
-        $attributes['id'] = !array_key_exists('id',$attributes) ? $name : $attributes['id'];
+        $attributes['id'] = !array_key_exists('id',$attributes) ? str_replace(['.','[',']',], '_', $name) : str_replace(['.','[',']'], '_', $attributes['id']);
         
         $this->attributes = array_merge($this->attributes, $attributes);
         $this->textMode = $textMode;

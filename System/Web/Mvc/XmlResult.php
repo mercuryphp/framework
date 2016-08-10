@@ -36,8 +36,13 @@ class XmlResult extends ActionResult {
                 $subNode = $rootNode->addChild($key);            
                 $this->toXml($value, $subNode);
             }elseif (is_object($value)){
-                $segments = explode('\\',get_class($value));
-                $subNode = $rootNode->addChild(array_pop($segments));            
+                if(isset($this->options['childName'])){
+                    $childName = $this->options['childName'];
+                }else{
+                    $segments = explode('\\',get_class($value));
+                    $childName = array_pop($segments);
+                }
+                $subNode = $rootNode->addChild($childName);            
                 $this->toXml(\System\Std\Object::getProperties($value), $subNode);
             }else{
                 $rootNode->addChild($key,htmlentities($value));  

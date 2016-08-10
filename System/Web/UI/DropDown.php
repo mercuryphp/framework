@@ -10,8 +10,8 @@ class DropDown extends Element {
     public function __construct($name, $source, $default = null, array $attributes = array()){
         parent::__construct();
         
-        $attributes['name'] = $name;
-        $attributes['id'] = $name;
+        $attributes['name'] = !array_key_exists('name',$attributes) ? $name : $attributes['name'];
+        $attributes['id'] = !array_key_exists('id',$attributes) ? str_replace(['.','[',']',], '_', $name) : str_replace(['.','[',']'], '_', $attributes['id']);
         
         $this->source = $source;
         $this->default = $default;

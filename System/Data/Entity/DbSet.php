@@ -141,6 +141,16 @@ class DbSet {
         }
     }
 
+    public function findColumn($params, $columnName){
+        
+        $select = $this->select($columnName, $this->meta->getEntityName());
+        
+        foreach($params as $key=>$param){
+            $select->where($key.'=:'.$key);
+        }
+        return $select->column($params, $columnName);
+    }
+    
     /**
      * Adds an entity to the DbSet by creating a new EntityContext
      * object. The EntityContext object is then returned.

@@ -62,7 +62,7 @@ class Html {
         echo $control->render();
     }
     
-    public static function hidden($text, $value, array $attributes = array()){
+    public static function hidden($text, $value = '', array $attributes = array()){
         $control = new Hidden($text, $value, $attributes);
         $control->setEscaper(self::$escaper);
         echo $control->render();

@@ -16,6 +16,17 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         $this->collection = $result;
     }
     
+    public function rowKey($propertyName){
+        $tmp = [];
+        foreach($this->collection as $idx => $v){
+            $value = \System\Std\Object::getPropertyValue($v, $propertyName);
+            $tmp[$value] = $v;
+        }
+        $this->collection = $tmp;
+        unset($tmp);
+        return $this;
+    }
+    
     public function groupConcat($field){
         $result = new \System\Collections\ArrayList();
         foreach($this->collection as $v){
