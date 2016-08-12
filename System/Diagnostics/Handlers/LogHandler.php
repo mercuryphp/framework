@@ -4,9 +4,15 @@ namespace System\Diagnostics\Handlers;
 
 abstract class LogHandler {
     
+    protected $httpContext = null;
     protected $processor = array();
     protected $filters = array();
-    
+
+    public function setHttpContext(\System\Web\HttpContext $httpContext){
+        $this->httpContext = $httpContext;
+        return $this;
+    }
+
     /**
      * Sets a callback that can be used to process each log entry before
      * it is handled by the LogHandler.

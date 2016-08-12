@@ -51,7 +51,7 @@ abstract class HttpApplication {
         $this->rootPath = $rootPath;
         $this->config = new YmlConfiguration('config.php'); 
         $this->routes = new RouteCollection();
-        $this->logger = new Logger(new \System\Diagnostics\Handlers\OutputHandler());
+        $this->logger = new Logger();
         $this->authenticationHandler = new \System\Web\Security\SessionAuthenticationHandler();
     }
     
@@ -99,6 +99,10 @@ abstract class HttpApplication {
      * @return  void
      */
     public final function init(){
+        $this->getLogger()
+            ->addHandler(new \System\Diagnostics\Handlers\OutputHandler())    
+            ->addHandler(new \System\Diagnostics\Handlers\JsonHandler());
+
         Environment::setRootPath($this->rootPath);
         Environment::setExecutionTime($this->config->get('environment.executionTime', 30));
         Environment::setCulture(new CultureInfo($this->config->get('environment.locale', 'en')));
@@ -123,6 +127,7 @@ abstract class HttpApplication {
             class_alias(str_replace('.', '\\', $class), $alias, true);
         }
         
+        $this->logger->setHttpContext($this->httpContext);
         $this->httpContext->getSession()->open();
     }
     

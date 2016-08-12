@@ -4,6 +4,7 @@ namespace System\Diagnostics;
 
 class Logger {
     
+    protected $httpContext = null;
     protected $handlers = array();
     protected $processor;
     protected $logs = array();
@@ -33,6 +34,10 @@ class Logger {
         if($handler){
             $this->addHandler($handler);
         }
+    }
+    
+    public function setHttpContext(\System\Web\HttpContext $httpContext){
+        $this->httpContext = $httpContext;
     }
 
     /**
@@ -186,6 +191,7 @@ class Logger {
     public function flush(){
         foreach($this->handlers as $handler){
             $handler['handler']
+                ->setHttpContext($this->httpContext)
                 ->setProcessor($this->processor)
                 ->setLevelFilters($handler['filters'])
                 ->write($this->logs, $this->extra);

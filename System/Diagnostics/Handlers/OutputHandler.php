@@ -108,6 +108,8 @@ class OutputHandler extends LogHandler {
                 }
             }
         }
-        echo $html;
+        $this->httpContext->getResponse()
+            ->clear()
+            ->write($html->toString());
     }
 }
