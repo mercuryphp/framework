@@ -6,8 +6,10 @@ class QueryBuilder {
     
     protected $sqlQuery;
     protected $sql;
+    protected $params;
     protected $lastTableAlias;
     protected $isWhere = false;
+    protected $groupOrWhere  = array();
     protected $entityKeys = array();
     
     const SELECT = 'SELECT';
@@ -26,6 +28,7 @@ class QueryBuilder {
     public function __construct(SqlQuery $sqlQuery, $entityName, $queryType){
         
         $this->sqlQuery = $sqlQuery;
+        $this->params = new \System\Collections\Dictionary();
         $metaData = $this->sqlQuery->getMetaCollection()->get($entityName);
         $tableAlias = $this->getTableNameAlias($metaData->getTable()->getTableName());
         $this->lastTableAlias = $tableAlias;
@@ -122,6 +125,19 @@ class QueryBuilder {
             $this->isWhere = true;
         }
         $this->sql = $this->sql->append("$op ")->append($condition.' '.PHP_EOL);
+        return $this;
+    }
+    
+    public function groupOrWhere($prefix, $field, $conditions = array()){
+        if(count($conditions) > 0){
+            $sql = "";
+            foreach($conditions as $idx=>$condition){
+                $fieldName = str_replace(".", "_",$field).$idx;
+                $sql.= $field.'=:'.$fieldName.' OR ';
+                $this->params[$fieldName] = $condition;
+            }
+            $this->sql = $this->sql->append("$prefix (" .rtrim($sql, ' OR ').")")->append(PHP_EOL);
+        }
         return $this;
     }
     
@@ -254,7 +270,7 @@ class QueryBuilder {
      */
     public function toList($params = array(), $entityType = null){
         return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
+            ->setQuery($this->sql->toString(), $this->params->merge($params)->toArray())
             ->toList($entityType);
     }
     
@@ -262,6 +278,10 @@ class QueryBuilder {
         return $this->sqlQuery
             ->setQuery($this->sql->toString(), $params)
             ->nonQuery();
+    }
+    
+    public function getParams(){
+        return $this->params;
     }
 
     protected function getTableNameAlias($tableName){

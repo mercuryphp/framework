@@ -194,14 +194,21 @@ final class Str{
      * Gets a new Str instance which is a sub string of this instance.
      * 
      * @param   string $start
-     * @param   int $length = null
+     * @param   int $param = null
      * @return  System.Std.Str
      */
-    public function subString($start, $length = null){
-        if(is_null($length)){
+    public function subString($start, $param = null){
+        
+        if(is_string($start)){
+            $start = strpos($this->string, $start);
+        }
+        if(is_null($param)){
             return new Str(substr($this->string, $start));
         }
-        return new Str(substr($this->string, $start, $length));
+        if(is_string($param)){
+            $param = strpos($this->string, $param);
+        }
+        return new Str(substr($this->string, $start, $param));
     }
 
     /**

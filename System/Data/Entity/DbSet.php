@@ -79,7 +79,14 @@ class DbSet {
             $select = $this->select('*', $this->meta->getEntityName());
             
             foreach($params as $key=>$param){
-                $select->where($key.'=:'.$key);
+                $field = ':'.$key;
+                if(substr($param, 0,1) == '@'){
+                    $param = substr($param,1);
+                    if($this->dbContext->getDatabase()->queryParams()->hasKey($param)){
+                        $field = '@'.$param;
+                    }
+                }
+                $select->where($key.'='.$field);
             }
 
             if($orderBy){
@@ -122,7 +129,14 @@ class DbSet {
             $select = $this->select('*', $this->meta->getEntityName());
             
             foreach($params as $key=>$param){
-                $select->where($key.'=:'.$key);
+                $field = ':'.$key;
+                if(substr($param, 0,1) == '@'){
+                    $param = substr($param,1);
+                    if($this->dbContext->getDatabase()->queryParams()->hasKey($param)){
+                        $field = '@'.$param;
+                    }
+                }
+                $select->where($key.'='.$field);
             }
             
             if($orderBy){
