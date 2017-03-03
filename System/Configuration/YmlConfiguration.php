@@ -41,8 +41,16 @@ class YmlConfiguration extends Configuration {
                     }
                 }else{
                     if($line){
+                        
                         $segments = explode(':', $line, 2);
 
+                        if($sectionName =='import'){
+                            if(trim($segments[0]) == 'file'){
+                                $config = new YmlConfiguration(trim($segments[1]));
+                                $this->config = array_merge($this->config, $config->toArray());
+                            }
+                        }
+                        
                         if(count($segments) == 1){
                             $section[$sectionName][] = trim($segments[0]);
                         }

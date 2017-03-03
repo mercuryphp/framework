@@ -95,7 +95,7 @@ class Database {
             $stm = $this->pdo->prepare($sqlString->toString());
             $stm->execute($params);
         }catch (\PDOException $e){
-            throw new QueryException($e->getMessage(), $sql, $params);
+            throw new QueryException($e->getMessage(), $sql, $params, $e->getCode());
         }
 
         $this->profiler->log($sql, $params);

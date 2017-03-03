@@ -39,4 +39,8 @@ abstract class Configuration {
         }
         return $tmp;
     }
+    
+    public function toArray(){
+        return $this->config;
+    }
 }

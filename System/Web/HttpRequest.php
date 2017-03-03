@@ -336,6 +336,13 @@ final class HttpRequest {
         }
         return false;
     }
+    
+    public function hasKey($key){
+        if ($this->params->hasKey($key)){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Binds request params to an object.

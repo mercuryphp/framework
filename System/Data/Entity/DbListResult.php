@@ -201,6 +201,21 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         return false;
     }
     
+    public function get($index){
+        if(array_key_exists($index, $this->collection)){
+            return $this->collection[$index];
+        }
+        return false;
+    }
+    
+    public function add($value){
+        $this->collection[] = $value;
+    }
+    
+    public function set($index, $value){
+        $this->collection[$index] = $value;
+    }
+    
     /**
      * Gets the first element from the collection.
      * 

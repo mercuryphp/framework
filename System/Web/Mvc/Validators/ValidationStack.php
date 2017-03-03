@@ -13,16 +13,18 @@ class ValidationStack {
     }
 
     public function validators(){
-        $arrgs = func_get_args();
+        $arrgs = func_get_args(); 
         if(count($arrgs) > 0){
             foreach($arrgs as $arg){
                 $this->add($arg);
             }
         }
+        return $this;
     }
     
     public function add(\System\Web\Mvc\Validators\Validator $validator){
         $this->validators[] = $validator;
+        return $this;
     }
     
     public function isValid(){
