@@ -73,7 +73,7 @@ final class Object{
      * @return  array
      */
     public static function getProperties($object, $filter = null){
-        
+
         if(!is_object($object)){
             throw new \RuntimeException(sprintf('Object::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
         }

@@ -100,8 +100,7 @@ abstract class HttpApplication {
      */
     public final function init(){
         $this->getLogger()
-            ->addHandler(new \System\Diagnostics\Handlers\OutputHandler())    
-            ->addHandler(new \System\Diagnostics\Handlers\JsonHandler());
+            ->addHandler(new \System\Diagnostics\Handlers\OutputHandler());
 
         Environment::setRootPath($this->rootPath);
         Environment::setExecutionTime($this->config->get('environment.executionTime', 30));

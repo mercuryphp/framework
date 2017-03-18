@@ -66,6 +66,10 @@ abstract class Session {
         }
         $this->isHttpOnly = (bool)$bool;
     }
+    
+    public function getId(){
+        return $this->sessionId;
+    }
 
     public function hasKey($key){
         $this->sessionStarted = true;
