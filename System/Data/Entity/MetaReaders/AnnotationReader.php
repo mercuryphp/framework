@@ -36,7 +36,7 @@ class AnnotationReader extends MetaReader {
         foreach($tokens as $token){
             switch($token[0]){
                 case T_DOC_COMMENT:
-                    $lines = explode(PHP_EOL, $token[1]);
+                    $lines = explode("\n", $token[1]);
                     
                     foreach($lines as $line){
                         $strAttr = trim(str_replace(array('*', '/'), '', $line));
