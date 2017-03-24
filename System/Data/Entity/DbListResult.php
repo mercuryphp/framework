@@ -207,9 +207,17 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         }
         return false;
     }
+
+    public function removeAt($index){
+        unset($this->collection[$index]);
+    }
     
     public function add($value){
         $this->collection[] = $value;
+    }
+    
+    public function insertAt($index, $value){
+        print_R(array_splice($this->collection, $index, 0, [$value]));
     }
     
     public function set($index, $value){
