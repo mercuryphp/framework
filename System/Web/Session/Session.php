@@ -99,6 +99,11 @@ abstract class Session {
     
     public function get($key, $default = null){
         $this->sessionStarted = true;
+        
+        if(!is_array($this->collection)){
+            $this->collection = [];
+        }
+        
         if(array_key_exists($key, $this->collection)){
             return $this->collection[$key];
         }
