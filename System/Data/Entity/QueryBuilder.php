@@ -5,6 +5,7 @@ namespace System\Data\Entity;
 class QueryBuilder {
     
     protected $sqlQuery;
+    protected $selectFields;
     protected $sql;
     protected $params;
     protected $lastTableAlias;
@@ -48,8 +49,14 @@ class QueryBuilder {
         $this->sql = $this->sql->appendLine('');
     }
     
-    public function setFields($fields){
-        $this->sql = $this->sql->insert($fields.' ', 7);
+    public function select($fields){ 
+        $this->selectFields = $fields;
+        return $this;
+    }
+    
+    public function setFields($fields){ 
+        $this->selectFields = $fields;
+        $this->sql = $this->sql->insert('@fields'.' ', 7);
         return $this;
     }
 
@@ -226,7 +233,7 @@ class QueryBuilder {
      * @return  string
      */
     public function sql(){
-        return $this->sql->toString();
+        return $this->sql->replace('@fields', $this->selectFields)->toString();
     }
     
     /**
@@ -237,7 +244,7 @@ class QueryBuilder {
      */
     public function column($params = array(), $columnName = ''){
         return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
+            ->setQuery($this->sql(), $params)
             ->column($columnName);
     }
     
@@ -254,7 +261,7 @@ class QueryBuilder {
      */
     public function single($params = array(), $entityType = null, $default = false){
         return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
+            ->setQuery($this->sql(), $params)
             ->single($entityType, $default);
     }
 
@@ -270,13 +277,13 @@ class QueryBuilder {
      */
     public function toList($params = array(), $entityType = null){
         return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $this->params->merge($params)->toArray())
+            ->setQuery($this->sql(), $this->params->merge($params)->toArray())
             ->toList($entityType);
     }
     
     public function nonQuery($params = array()){
         return $this->sqlQuery
-            ->setQuery($this->sql->toString(), $params)
+            ->setQuery($this->sql(), $params)
             ->nonQuery();
     }
     
