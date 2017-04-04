@@ -59,6 +59,10 @@ class QueryBuilder {
         $this->sql = $this->sql->insert('@fields'.' ', 7);
         return $this;
     }
+    
+    public function addParam($name, $value){
+        $this->params->add($name, $value);
+    }
 
     /**
      * Adds a JOIN clause to the underlying SQL query using the 
