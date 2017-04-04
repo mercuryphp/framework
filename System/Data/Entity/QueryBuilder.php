@@ -107,12 +107,13 @@ class QueryBuilder {
      * @param   string $condition
      * @return  System.Data.Entity.QueryBuilder
      */
-    public function where($condition){
+    public function where($condition, $keyValParam = []){
         $op = "AND";
         if(!$this->isWhere){
             $op = "WHERE";
             $this->isWhere = true;
         }
+        $this->params->merge($keyValParam);
         $this->sql = $this->sql->append("$op ")->append($condition.' '.PHP_EOL);
         return $this;
     }
@@ -244,7 +245,7 @@ class QueryBuilder {
      */
     public function column($params = array(), $columnName = ''){
         return $this->sqlQuery
-            ->setQuery($this->sql(), $params)
+            ->setQuery($this->sql(), $this->params->merge($params)->toArray())
             ->column($columnName);
     }
     
