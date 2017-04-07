@@ -32,9 +32,19 @@ class JsonConfiguration extends Configuration {
                 $data = trim($sections[1]);
             }
             $data = json_decode($data, true);
-            
+
             if(is_array($data)){
+                
                 $this->config = $data;
+                
+                if(array_key_exists('import', $data)){
+                    $files = $data['import'];
+
+                    foreach($files as $file){
+                        $config = new JsonConfiguration($file);
+                        $this->config = array_merge($this->config, $config->toArray());
+                    }
+                }
             }
         }
     }
