@@ -7,6 +7,7 @@ use System\Std\Str;
 
 class NativeView implements IView {
 
+    protected $viewFile;
     protected $layoutFile;
     protected $scripts = array();
     protected $output = array();
@@ -31,6 +32,11 @@ class NativeView implements IView {
 
     public function setLayout($layoutFile){
         $this->layoutFile = $layoutFile;
+        return $this;
+    }
+    
+    public function setViewFile($viewFile){
+        $this->viewFile = $viewFile;
         return $this;
     }
     
@@ -88,6 +94,8 @@ class NativeView implements IView {
             )
         )->prepend(Environment::getRootPath())->append('.php');
 
+        $viewFile = $this->viewFile ? $this->viewFile : $viewFile;
+        
         if(is_file($viewFile)){
             extract($viewContext->getViewBag()->toArray());
             ob_start();
