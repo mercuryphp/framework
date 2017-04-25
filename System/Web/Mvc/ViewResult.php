@@ -12,6 +12,11 @@ class ViewResult extends ActionResult {
         $this->viewContext = $viewContext;
     }
     
+    public function setViewName($name){
+        $this->viewContext->setViewName($name);
+        return $this;
+    }
+    
     public function execute(){
         return $this->controller->getViewEngine()->render($this->viewContext);
     }

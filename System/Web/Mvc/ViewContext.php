@@ -27,6 +27,10 @@ class ViewContext {
         
     }
     
+    public function setViewName($name){
+        $this->httpContext->getRequest()->getRouteData()->set('action', $name);
+    }
+    
     public function getHttpContext(){
         return $this->httpContext;
     }

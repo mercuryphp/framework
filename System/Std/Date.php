@@ -114,6 +114,14 @@ class Date extends \DateTime {
         return $this;
     }
     
+    public static function getDateRange($date, $days, $format = 'yyyy-MM-d'){
+        $dates = [];
+        for($d = 0; $d < $days; $d++){
+            $dates[] = $date->modify('1 day')->toString($format);
+        }
+        return $dates;
+    }
+    
     /**
      * Returns a new System.Std.Date that adds the value of $months to the 
      * value of this instance.
@@ -305,6 +313,10 @@ class Date extends \DateTime {
             }
         }
         return $string; 
+    }
+    
+    public function __toString(){
+        return $this->toString();
     }
     
     /**
