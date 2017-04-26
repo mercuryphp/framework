@@ -63,7 +63,7 @@ class Date extends \DateTime {
      * @return  int
      */
     public function getHour(){
-        return (int)$this->format('H');
+        return $this->format('H');
     }
     
     /**
@@ -297,6 +297,9 @@ class Date extends \DateTime {
                     break;
                 case 'HH':
                     $string .= $this->getHour();
+                    break;
+                case 'h':
+                    $string .= (int)$this->getHour();
                     break;
                 case 'mm':
                     $string .= $this->getMinute();
