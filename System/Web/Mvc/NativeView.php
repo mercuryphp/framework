@@ -57,6 +57,10 @@ class NativeView implements IView {
         $this->dynamicMethods[$name] = $cloure;
     }
     
+    public function getMethods(){
+        return $this->dynamicMethods;
+    }
+    
     public function renderScripts(){
         foreach($this->scripts as $type=>$scripts){
             foreach($scripts as $script){
