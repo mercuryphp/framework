@@ -72,7 +72,7 @@ class DbSet {
         if(is_object($params)){
             $entityName = \System\Std\Str::set(get_class($params))->trim('\\')->replace('\\', '.')->toString();
             $entityMeta = $this->dbContext->getMetaCollection()->get($entityName);
-            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Object::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
+            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Obj::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
         }
         
         if(is_array($params)){
@@ -122,7 +122,7 @@ class DbSet {
         if(is_object($params)){
             $entityName = \System\Std\Str::set(get_class($params))->trim('\\')->replace('\\', '.')->toString();
             $entityMeta = $this->dbContext->getMetaCollection()->get($entityName);
-            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Object::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
+            $params = array($entityMeta->getKey()->getKeyName() => \System\Std\Obj::getPropertyValue($params, $entityMeta->getKey()->getKeyName()));
         }
 
         if(is_array($params)){

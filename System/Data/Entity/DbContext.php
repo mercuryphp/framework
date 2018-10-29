@@ -2,7 +2,7 @@
 
 namespace System\Data\Entity;
 
-use System\Std\Object;
+use System\Std\Obj;
 use System\Data\Database;
 
 abstract class DbContext {
@@ -135,7 +135,7 @@ abstract class DbContext {
             foreach($entities as $entityContext){
                 $entity = $entityContext->getEntity();
                 
-                $properties = Object::getProperties($entity);
+                $properties = Obj::getProperties($entity);
 
                 foreach($properties as $property=>$value){
                     if(is_object($value)){
@@ -144,7 +144,7 @@ abstract class DbContext {
                         if($this->persistedEntities->hasKey($parentEntityHash)){
                             $parentEntityContext = $this->persistedEntities->get($parentEntityHash);
                             $parentMeta = $this->dbSets[$parentEntityContext->getEntityName()]->getMeta();
-                            $properties[$property] = Object::getPropertyValue($value, $parentMeta->getKey()->getKeyName());
+                            $properties[$property] = Obj::getPropertyValue($value, $parentMeta->getKey()->getKeyName());
                         }
                     }
                     
@@ -168,7 +168,7 @@ abstract class DbContext {
                                 if($attribute instanceof \System\Data\Entity\Attributes\DefaultValue){
                                     if(is_null($value)){
                                         $properties[$property] = $attribute->getDefaultValue();
-                                        Object::setPropertyValue($entity, $property, $attribute->getDefaultValue());
+                                        Obj::setPropertyValue($entity, $property, $attribute->getDefaultValue());
                                     }
                                 }
                             }
@@ -183,7 +183,7 @@ abstract class DbContext {
                         $log[] = $result;
                         
                         if($result){
-                            Object::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->db->getInsertId($meta->getKey()->getKeyName()));
+                            Obj::setPropertyValue($entity, $meta->getKey()->getKeyName(), $this->db->getInsertId($meta->getKey()->getKeyName()));
                             $entityContext->setState(EntityContext::PERSISTED);
                             $this->persistedEntities->set($entityContext->getHashCode(), $entityContext);
                         }

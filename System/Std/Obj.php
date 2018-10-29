@@ -2,7 +2,7 @@
 
 namespace System\Std;
 
-final class Object{
+final class Obj{
 
     /**
      * A variadic method that converts key/value arrays or objects to an object
@@ -25,7 +25,7 @@ final class Object{
             foreach($args as $arg){
                 
                 if(is_object($arg)){
-                    $arg = Object::getProperties($arg);
+                    $arg = Obj::getProperties($arg);
                 }
                 
                 if(is_array($arg)){
@@ -52,7 +52,7 @@ final class Object{
     public static function setProperties($object, array $properties){
         
         if(!is_object($object)){
-            throw new \RuntimeException(sprintf('Object::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
+            throw new \RuntimeException(sprintf('Obj::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
         }
         
         $refClass = new \ReflectionObject($object);
@@ -75,7 +75,7 @@ final class Object{
     public static function getProperties($object, $filter = null){
 
         if(!is_object($object)){
-            throw new \RuntimeException(sprintf('Object::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
+            throw new \RuntimeException(sprintf('Obj::getProperties() expects parameter 1 to be object, %s given', gettype($object)));
         }
         
         if(is_null($filter)){
@@ -107,7 +107,7 @@ final class Object{
     public static function setPropertyValue($object, $propertyName, $value){
         
         if(!is_object($object)){
-            throw new \RuntimeException(sprintf('Object::setPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
+            throw new \RuntimeException(sprintf('Obj::setPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
         }
         
         $refClass = new \ReflectionObject($object);
@@ -129,7 +129,7 @@ final class Object{
     public static function getPropertyValue($object, $propertyName){
         
         if(!is_object($object)){
-            throw new \RuntimeException(sprintf('Object::getPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
+            throw new \RuntimeException(sprintf('Obj::getPropertyValue() expects parameter 1 to be object, %s given', gettype($object)));
         }
         
         $refClass = new \ReflectionObject($object);
@@ -143,7 +143,7 @@ final class Object{
     public static function getMethodAnnotations($object, $methodName){
         
         if(!is_object($object)){
-            throw new \RuntimeException(sprintf('Object::getMethodAnnotations() expects parameter 1 to be object, %s given', gettype($object)));
+            throw new \RuntimeException(sprintf('Obj::getMethodAnnotations() expects parameter 1 to be object, %s given', gettype($object)));
         }
         
         $refClass = new \ReflectionObject($object);
@@ -165,7 +165,7 @@ final class Object{
                         if((string)$attribute){
                             $args = (string)Str::set($comments[$key])->get('(', ')');
                             $args = $args ? str_getcsv($args, ',', '"') : array();
-                            $comments[$key] = Object::getInstance((string)$attribute->append('Attribute'), array_map('trim', $args));
+                            $comments[$key] = Obj::getInstance((string)$attribute->append('Attribute'), array_map('trim', $args));
                         }else{
                             unset($comments[$key]);
                         }

@@ -12,7 +12,7 @@ class CollectionModelBinderAttribute extends ModelBinder {
     }
 
     public function bind(\System\Web\Mvc\ModelBindingContext $modelBindingContext){
-        $collection = \System\Std\Object::toObject($modelBindingContext->getObjectName(), array());
+        $collection = \System\Std\Obj::toObject($modelBindingContext->getObjectName(), array());
         $post = $modelBindingContext->getRequest()->getPost()->toArray();
 
         $tmp = array();
@@ -31,7 +31,7 @@ class CollectionModelBinderAttribute extends ModelBinder {
         }
         
         foreach($tmp as $item){
-            $collection->add(\System\Std\Object::toObject($this->model, $item));
+            $collection->add(\System\Std\Obj::toObject($this->model, $item));
         }
         return $collection;
     }

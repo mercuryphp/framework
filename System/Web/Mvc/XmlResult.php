@@ -43,7 +43,7 @@ class XmlResult extends ActionResult {
                     $childName = array_pop($segments);
                 }
                 $subNode = $rootNode->addChild($childName);            
-                $this->toXml(\System\Std\Object::getProperties($value), $subNode);
+                $this->toXml(\System\Std\Obj::getProperties($value), $subNode);
             }else{
                 $rootNode->addChild($key,htmlentities($value));  
             }

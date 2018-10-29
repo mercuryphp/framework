@@ -154,7 +154,7 @@ class Database {
      */
     public function insert($tableName, $data){
         if(is_object($data)){
-            $data = \System\Std\Object::getProperties($data);
+            $data = \System\Std\Obj::getProperties($data);
         }
 
         $params = array();

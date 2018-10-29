@@ -3,7 +3,7 @@
 namespace System\Data\Entity\MetaReaders;
 
 use System\Std\Str;
-use System\Std\Object;
+use System\Std\Obj;
 
 class JsonReader extends MetaReader {
     
@@ -56,7 +56,7 @@ class JsonReader extends MetaReader {
                         }
 
                         try{ 
-                            $meta['Columns'][$columnName][(string)$attribute] = Object::getInstance((string)$attribute, $this->getArgs($args));
+                            $meta['Columns'][$columnName][(string)$attribute] = Obj::getInstance((string)$attribute, $this->getArgs($args));
                         }catch(\Exception $e){
                             throw new \System\Data\Entity\EntityException('The attribute "'.(string)$attribute.'" does not exist.');
                         }

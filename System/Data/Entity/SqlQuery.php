@@ -199,7 +199,7 @@ class SqlQuery {
                         $relationship->setDatabase($this->db);
                         $relationship->setMetaCollection($this->metaCollection);
                         $relationship->setDependantEntity($entity);
-                        \System\Std\Object::setPropertyValue($entity, $propertyName, $relationship->execute());
+                        \System\Std\Obj::setPropertyValue($entity, $propertyName, $relationship->execute());
                     }
                 }
             }

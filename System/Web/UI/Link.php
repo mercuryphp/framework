@@ -23,7 +23,7 @@ class Link extends Element {
     
     public function render(){
         if(is_object($this->params)){
-            $this->params = \System\Std\Object::getProperties($this->params);
+            $this->params = \System\Std\Obj::getProperties($this->params);
         }
 
         if(is_array($this->params)){

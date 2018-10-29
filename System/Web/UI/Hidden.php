@@ -8,7 +8,7 @@ class Hidden extends TextBox {
         parent::__construct($name, $value);
         
         if(is_object($value)){
-            $value = \System\Std\Object::getPropertyValue($value, $name);
+            $value = \System\Std\Obj::getPropertyValue($value, $name);
         }
         
         $attributes['value'] = $value;

@@ -19,7 +19,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function rowKey($propertyName){
         $tmp = [];
         foreach($this->collection as $idx => $v){
-            $value = \System\Std\Object::getPropertyValue($v, $propertyName);
+            $value = \System\Std\Obj::getPropertyValue($v, $propertyName);
             $tmp[$value] = $v;
         }
         $this->collection = $tmp;
@@ -30,7 +30,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function groupConcat($field){
         $result = new \System\Collections\ArrayList();
         foreach($this->collection as $v){
-            $item = \System\Std\Object::getProperties($v);
+            $item = \System\Std\Obj::getProperties($v);
             $result->add($item[$field]);
         }
         return $result;
@@ -70,7 +70,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function groupBy($field, $useKey = false){
         $tmp = array();
         foreach($this->collection as $v){
-            $item = \System\Std\Object::getProperties($v);
+            $item = \System\Std\Obj::getProperties($v);
             $tmp[$item[$field]] = $v;
         }
         $this->collection = ($useKey) ? $tmp : array_values($tmp);
@@ -86,8 +86,8 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
      */
     public function sortBy($field){
         usort($this->collection, function($a, $b) use($field) {
-            $array1 = \System\Std\Object::getProperties($a);
-            $array2 = \System\Std\Object::getProperties($b);
+            $array1 = \System\Std\Obj::getProperties($a);
+            $array2 = \System\Std\Obj::getProperties($b);
             return $array1[$field] > $array2[$field];
         });
         return $this;
@@ -125,7 +125,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function sum($field){
         $sum = 0;
         foreach($this->collection as $v){
-            $item = \System\Std\Object::getProperties($v);
+            $item = \System\Std\Obj::getProperties($v);
             $sum += (int)$item[$field];
         }
         return $sum;
@@ -140,7 +140,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
     public function avg($field){
         $sum = 0;
         foreach($this->collection as $v){
-            $item = \System\Std\Object::getProperties($v);
+            $item = \System\Std\Obj::getProperties($v);
             $sum += (int)$item[$field];
         }
         return $sum / count($this->collection);
@@ -156,7 +156,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         $this->sortBy($field);
 
         if(isset($this->collection[0])){
-            $item = \System\Std\Object::getProperties($this->collection[0]);
+            $item = \System\Std\Obj::getProperties($this->collection[0]);
             return $item[$field];
         }
     }
@@ -171,7 +171,7 @@ class DbListResult implements \IteratorAggregate, \ArrayAccess {
         $this->sortBy($field);
         $count = $this->count()-1;
         if(isset($this->collection[$count])){
-            $item = \System\Std\Object::getProperties($this->collection[$count]);
+            $item = \System\Std\Obj::getProperties($this->collection[$count]);
             return $item[$field];
         }
     }

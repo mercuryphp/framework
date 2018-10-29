@@ -10,7 +10,7 @@ class TextBox extends Element {
         parent::__construct();
         
         if(is_object($value)){
-            $value = \System\Std\Object::getPropertyValue($value, $name);
+            $value = \System\Std\Obj::getPropertyValue($value, $name);
         }
 
         $attributes['value'] = $value;

@@ -9,7 +9,7 @@ class ValidationContext {
     
     public function add($field, $value){
         if(is_object($value)){
-            $value = \System\Std\Object::getPropertyValue($value, $field);
+            $value = \System\Std\Obj::getPropertyValue($value, $field);
         }
         if(array_key_exists($field, $this->fields)){
             $validationStack = $this->fields[$field];

@@ -106,7 +106,7 @@ abstract class Relationship {
             $this->bindingProperties = array($dependantKeyName => $dependantKeyName);
         }
  
-        $dependantEntityProperties = \System\Std\Object::getProperties($this->dependantEntity); 
+        $dependantEntityProperties = \System\Std\Obj::getProperties($this->dependantEntity); 
         foreach($this->bindingProperties as $principalProperty => $dependantProperty){
             if(array_key_exists($dependantProperty, $dependantEntityProperties)){ 
                 $value = $dependantEntityProperties[$dependantProperty];

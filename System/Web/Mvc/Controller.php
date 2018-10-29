@@ -217,7 +217,7 @@ abstract class Controller{
         }
 
         $this->load();
-        $attributes = array_merge($this->attributes, \System\Std\Object::getMethodAnnotations($this, $actionName));
+        $attributes = array_merge($this->attributes, \System\Std\Obj::getMethodAnnotations($this, $actionName));
         $modelBinders = new \System\Collections\Dictionary();
 
         $actionMethod = $refClass->getMethod($actionName);

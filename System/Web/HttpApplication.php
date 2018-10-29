@@ -4,7 +4,7 @@ namespace System\Web;
 
 use System\Std\Environment;
 use System\Std\Str;
-use System\Std\Object;
+use System\Std\Obj;
 use System\Diagnostics\Logger;
 use System\Globalization\CultureInfo;
 use System\Configuration\YmlConfiguration;
@@ -111,7 +111,7 @@ abstract class HttpApplication {
         $request = new HttpRequest();
         $response = new HttpResponse();
 
-        $session = Object::getInstance($this->config->get('session.handler', 'System.Web.Session.FileSystem'),array($request,$response));
+        $session = Obj::getInstance($this->config->get('session.handler', 'System.Web.Session.FileSystem'),array($request,$response));
         $session->setName($this->config->get('session.name', 'PHPSESSID'));
         $session->setExpires($this->config->get('session.expires', 0));
         $session->setPath($this->config->get('session.path', '/'));
@@ -205,7 +205,7 @@ abstract class HttpApplication {
                 $this->httpContext->getRequest()->getRouteData()->set('namespace', $route->getNamespace());
 
                 try{
-                    $controller = Object::getInstance((string)$class);
+                    $controller = Obj::getInstance((string)$class);
                 }catch(\ReflectionException $e){
                     throw new Mvc\ControllerNotFoundException($this->httpContext, $class);
                 }
@@ -218,14 +218,14 @@ abstract class HttpApplication {
                 $controller->setLogger($this->logger);
                 $controller->setHttpContext($this->httpContext);
                 $controller->setAuthenticationHandler($this->authenticationHandler);
-                $controller->getRegistry()->merge(Object::getProperties($this, \ReflectionProperty::IS_PUBLIC |  \ReflectionProperty::IS_PROTECTED));
+                $controller->getRegistry()->merge(Obj::getProperties($this, \ReflectionProperty::IS_PUBLIC |  \ReflectionProperty::IS_PROTECTED));
                 $this->authenticationHandler->setHttpContext($this->httpContext);
                 
                 $this->authenticateRequest();
                 $this->preAction($controller);
                 
                 $moduleClassName = Str::set(sprintf('%s.Controllers.%s', $route->getNamespace(), 'Module'));
-                $moduleInstance = Object::getInstance($moduleClassName, array(), false);
+                $moduleInstance = Obj::getInstance($moduleClassName, array(), false);
 
                 if($moduleInstance){
                     if (method_exists($moduleInstance, 'load')){

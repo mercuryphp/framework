@@ -3,7 +3,7 @@
 namespace System\Data\Entity\MetaReaders;
 
 use System\Std\Str;
-use System\Std\Object;
+use System\Std\Obj;
 
 class AnnotationReader extends MetaReader {
     
@@ -50,7 +50,7 @@ class AnnotationReader extends MetaReader {
                             }
                             
                             try{
-                                $meta[(string)$attribute] = Object::getInstance($attribute, $this->getArgs($args));
+                                $meta[(string)$attribute] = Obj::getInstance($attribute, $this->getArgs($args));
                             }catch(\Exception $e){
                                 throw new \System\Data\Entity\EntityException('The attribute "'.(string)$attribute.'" does not exist.');
                             }
@@ -67,9 +67,9 @@ class AnnotationReader extends MetaReader {
                     }
                     
                     if((string)$args){
-                        $tmp[(string)$attribute] = Object::getInstance($attribute, $this->getArgs($args));
+                        $tmp[(string)$attribute] = Obj::getInstance($attribute, $this->getArgs($args));
                     }else{
-                        $tmp[(string)$attribute] = Object::getInstance($attribute);
+                        $tmp[(string)$attribute] = Obj::getInstance($attribute);
                     }
                     break;
                 
